@@ -1,0 +1,234 @@
+@import "../../common/style";
+@import "../../common/title";
+@import "../../custom/jt";
+@import "../../custom/city";
+
+.subscribe{
+  .list-area{
+    width: 100%;
+    min-height: 300px;
+    padding: 15px 0 50px;
+    background: @mainBackground;
+    .subscribe-form{
+      width: 528px;
+      position: relative;
+      margin: 50px auto 0;
+      border: 1px solid #eee;
+      padding: 40px 0;
+      @formColor: #f8f7f4;
+      background: @formColor;
+      box-shadow: 0 5px 5px #ddd;
+      color: #333;
+      .form-line{
+        border-bottom: 1px solid #eee;
+        padding-left: 40px;
+        position: relative;
+        >div{
+          float: left;
+          &.info,&.title{
+            height: 45px;
+            line-height: 45px;
+          }
+        }
+        .info{
+          margin-left: 15px;
+          position: relative;
+          width: 395px;
+          input{
+            width: 320px;
+            height: 35px;
+            line-height: 35px;
+            border: none;
+            outline: none;
+            background:@formColor;
+            font-size: 16px;
+          }
+          em{
+            color: @errorColor;
+            position: absolute;
+            height: 15px;
+            line-height: 15px;
+            right: 35px;
+            top: 19px;
+          }
+          .icon-down{
+            width: 15px;
+            height: 9px;
+            background: url("../../../img/icon-down.png") 0 0 no-repeat;
+            background-size: cover;
+          }
+        }
+        .selector-jt{
+          background: @formColor;
+          top: 45px;
+          left: 134px;
+          display: none;
+        }
+        .selector-city{
+          display: block;
+          background: @formColor;
+          top: 45px;
+          left: 134px;
+        }
+        &.mr50{
+          margin-top: 50px;
+        }
+        .selector-parallel{
+          display: none;
+          position: absolute;
+          z-index: 10000;
+          top: 45px;
+          left: 133px;
+          min-height: 35px;
+          line-height:35px;
+          max-width: 318px;
+          padding: 0 10px;
+          background: @formColor;
+          border: 1px solid #eee;
+          border-top: none;
+          li{
+            float: left;
+            margin: 0 10px;
+            cursor: pointer;
+            border-bottom: 1px solid @formColor;
+            &:hover{
+              color: @mainColor;
+              border-color: @mainColor;
+            }
+          }
+        }
+      }
+      .btn-area{
+        margin-top: 25px;
+        text-align: right;
+        .btn-confirm{
+          padding: 5px 10px;
+          background: @mainColor;
+          color: #fff;
+          border-radius: 3px;
+        }
+        .btn-console{
+          margin: 0 45px 0 15px;
+          color: #666;
+        }
+      }
+      .icon-tape{
+        width: 63px;
+        height: 60px;
+        background: url("@{baseUrl}/img/favorite/icon-tape.png") 0 0 no-repeat;
+        position: absolute;
+        top:-25px;
+        &-l{
+          left: -25px;
+        }
+        &-r{
+          background-position: 0 -83px;
+          right: -25px;
+        }
+      }
+    }
+    .subscribe-list{
+      margin: 25px 0;
+      .subscribe-info{
+        width: 676px;
+        height: 131px;
+        margin: 0 auto 10px;
+        padding: 0;
+        border: none;
+        background: url("@{baseUrl}/img/favorite/bg-favorite.png") 0 0 no-repeat;
+        .info-content{
+          margin: 0 35px;
+          padding-top: 15px;
+          .info-center,.info-bottom{
+            margin-top: 12px;
+          }
+          .info-top{
+            text-align: center;
+            position: relative;
+            .subscribe-name{
+              font-size: 17px;
+              color: #333;
+            }
+            .btn-area{
+              position: absolute;
+              top: -12px;
+              right: -18px;
+              .btn{
+                width: 30px;
+                height: 30px;
+                background: url("@{baseUrl}/img/favorite/icon-subscribe-edit.png") 0 0 no-repeat;
+                &-edit{
+                  background-position: 8px 7px;
+                }
+                &-delete{
+                  background-position: 8px -51px;
+                  &:hover{
+                    background-color: #b5ddde;
+                    background-position: 8px -78px;
+                  }
+                }
+              }
+            }
+          }
+          .info-center{
+            .subscribe-job{
+              color: @mainColor;
+            }
+          }
+          .info-bottom{
+            color: #666;
+          }
+        }
+      }
+    }
+    .subscribe-add{
+      .btn-add{
+        position: relative;
+        margin: 15px 85px 0 0;
+        padding: 5px 36px 5px 12px;
+        color: #fff;
+        font-size: 18px;
+        background: @mainColor;
+        border-radius: 3px;
+        i{
+          position: absolute;
+          width: 22px;
+          height: 22px;
+          right: 10px;
+          top: 6px;
+          background: url("@{baseUrl}/img/favorite/icon-subscribe-edit.png") 0 0 no-repeat;
+          background-position: 0 -26px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  .sidebar-nav{
+    text-align: center;
+    border: 1px solid #eee;
+    background: #fff;
+    width: 200px;
+    margin: 0 auto;
+    li{
+      height: 50px;
+      line-height: 50px;
+      position: relative;
+      border-top: 1px solid #eee;
+      &:first-of-type{
+        border-top: none;
+      }
+      &.curr{
+        background: @mainColor;
+        width: 202px;
+        margin-left: -0.2px;
+        a{
+          color: #fff;
+        }
+      }
+      a{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

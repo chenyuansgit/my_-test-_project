@@ -1,0 +1,611 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../custom/jt";
+@import "../../custom/city";
+@import "../../plugin/date";
+@import "../../common/paging";
+@import "../../common/overlay";
+@import "../quickRecruit/popBox";
+@import "../../fonts";
+
+.btn-add-position{
+  height: 33px;
+  line-height: 33px;
+  padding: 15px 0;
+  background: @mainColor;
+ // border: 1px solid #eee;
+  border-radius: 3px;
+  text-align: center;
+  position: relative;
+  .borderRadius(3px);
+  span.icon-r-add {
+    font-size: 20px;
+    color: #fff;
+    padding-right: 6px;
+  }
+  /*i{
+    width: 20px;
+    height: 20px;
+    .background("@{baseUrl}/img/icon-white-add.png",auto 100%);
+    position: absolute;
+    left: 22px;
+    top: 12px;
+  }*/
+  a{
+    color: #fff;
+    font-size: 18px;
+  }
+}
+.company-position-nav{
+  background: #fff;
+  margin-top: 15px;
+  font-size: 16px;
+  height: 192px;
+  padding: 18px 30px 12px;
+  border: 1px solid #eee;
+  .borderRadius(3px);
+  dd{
+    padding: 12px 0;
+    height: 21px;
+    line-height: 21px;
+    border-bottom: 1px dashed #ddd;
+    a{
+      color:#666;
+    }
+    &.title{
+      padding-left: 30px;
+      font-size: 19px;
+      position: relative;
+      border-bottom: 1px dashed #999;
+    }
+    &.curr{
+      a{
+        color:@mainColor;
+      }
+    }
+  }
+}
+.quick-recruit-recommend{
+  margin-top: 20px;
+  width: 230px;
+  border-radius: 3px;
+  background: @mainBackground;
+  .pic{
+    width: 230px;
+    height: 153px;
+    font-size: 0;
+    background: url("@{baseUrl}/img/articles/3.jpg") 0 0 no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+  }
+  .text{
+    color: #333;
+    font-size: 15px;
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+  .bottom{
+    padding: 15px 0;
+    .btn{
+      width: 70px;
+      float: left;
+      text-align: center;
+      font-size: 15px;
+      line-height: 30px;
+      cursor: pointer;
+      border-radius: 3px;
+      margin-left: 30px;
+      &-look{
+        background: @mainColor;
+        color: #fff;
+      }
+      &-invite{
+        background: #b3f1f2;
+        color: @mainColor;
+      }
+    }
+  }
+}
+/*postPosition*/
+.post-position{
+  .add-area{
+    min-height: 375px;
+    margin-bottom: 50px;
+    padding: 15px 0;
+    border: 1px solid #eee;
+    .borderRadius(3px);
+    background: #fff;
+    color: #666;
+    position: relative;
+    .title-area {
+      padding-top: 10px;
+      margin: 0 30px;
+      height: 36px;
+      line-height: 36px;
+      border-bottom: 1px #eee dashed;
+      .title {
+        font-size: 20px;
+      }
+    }
+    .release-tips{
+      position:absolute;
+      right: 30px;
+      top: 20px;
+      span{
+        color: @mainColor;
+      }
+    }
+    .pos-block{
+      margin: 0 30px;
+      padding: 10px 0 20px 20px;
+      border-bottom: 1px dashed #ddd;
+      >div{
+        margin: 20px 0 0 10px;
+        position: relative;
+        .req{
+          color: @errorColor;
+          position: absolute;
+          left: -15px;
+          margin-top: 7px;
+        }
+        .selector-jt{
+          margin-left: 95px;
+          margin-top: 1px;
+          display: none;
+        }
+        >span.first-of-type{
+          width:75px;
+          text-align: left;
+          margin-right: 15px;
+        }
+        .mg20{
+          margin-top: 20px;
+          .prompt{
+            margin-left: 100px;
+            font-size: 15px;
+          }
+          .map-preview{
+            font-size: 15px;
+            margin-left: 200px;
+            color: @mainColor;
+            cursor: pointer;
+          }
+        }
+        .addresses{
+          display: none;
+          width: 570px;
+          background: #fff;
+          max-height: 300px;
+          position: absolute;
+          z-index: 10000;
+          left: 95px;
+          border: 1px solid #eee;
+          .address{
+            line-height: 30px;
+            cursor: pointer;
+            padding-left: 10px;
+            &:hover{
+              background: #eee;
+            }
+          }
+        }
+      }
+      .jobs-chance {
+        height: auto;
+        >span.first-of-type{
+          width:120px;
+          margin-right: 0;
+        }
+        span.btn {
+          width: 30px;
+          height: 30px;
+          border: 1px #eee solid;
+          color: @c2;
+          margin: 0 12px;
+          line-height: 30px;
+          text-align: center;
+        }
+        span.cur {
+          border: 1px @mainColor solid;
+          background-color: @mainColor;
+          color: #fff;
+        }
+      }
+      &.pos-bottom,&.pos-mail-area{
+       // padding-left: 30px ;
+        >div{
+          >span.first-of-type{
+            width: 85px;
+            text-align: left;
+            margin-right: 15px;
+          }
+        }
+      }
+      &.pos-bottom{
+        border-bottom: none;
+        position: relative;
+      }
+      .pos-bottom-btn {
+        text-align: center;
+        margin: 30px 0;
+        .btn-add-preview, .btn-add-pos{
+          outline: none;
+          margin: 0 12px;
+          .borderRadius(3px);
+        }
+      }
+    }
+    .pos-content-area{
+      display: none;
+      width: 570px;
+      margin-left: 95px;
+      margin-top: 10px;
+    }
+    .success-area{
+      height: 500px;
+      padding:75px 0 0 280px;
+      color: #333;
+      .top{
+        position: relative;
+        margin: 0 auto;
+        font-size: 22px;
+        i{
+          position: absolute;
+          width: 50px;
+          height:50px;
+          .background("@{baseUrl}/img/icon-success.png",cover);
+          left: -70px;
+          top: -10px;
+        }
+      }
+      .more-link-area{
+        >div{
+          margin-top: 15px;
+          font-size: 18px;
+          &.top{
+            font-size: 16px;
+          }
+          i{
+            width: 8px;
+            height: 8px;
+            margin-right: 15px;
+            background: @mainColor;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+  .btn-selector{
+    position: relative;
+    *{
+      cursor: pointer;
+    }
+    /*i{
+      position:absolute;
+      width: 32px;
+      height: 32px;
+      right: 0;
+      border: 1px solid #eee;
+    }*/
+  }
+  .selector{
+    width: 360px;
+    position: absolute;
+    z-index: 1000;
+    background: #fff;
+    top: 34px;
+    left:94px;
+    border: 1px solid #eee;
+    display: none;
+    li{
+      color: #999;
+      padding:5px 0 5px 15px;
+      &:hover{
+        background: #ededed;
+        color: #666;
+        cursor: pointer;
+      }
+    }
+  }
+  .selector-city{
+    margin-left: 95px;
+  }
+  .pos-type-list, .selector-input {
+    cursor: pointer;
+    position: relative;
+  }
+  span.icon-down-arrow, span.icon-up-arrow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    color: @mainColor;
+    text-align: center;
+    font-size: 22px;
+  }
+  .pos-item {
+    z-index: 9;
+    width: 340px;
+  }
+  .pos-block-date .pos-item {
+    width: 218px;
+  }
+  .pos-item-tip {
+    padding-left: 12px;
+    color: @c2;
+  }
+  .mlr20 {
+    width: 20px;
+    text-align: center;
+    color: #999;
+  }
+  .pos-payment-l.pos-item, .pos-payment-h.pos-item {
+    width: 145px;
+  }
+  .note{
+    position: relative;
+    i{
+      position: absolute;
+      width:18px;
+      height:18px;
+      left: 0;
+      top: 2px;
+    }
+    &.warning{
+      margin-top: 10px;
+      color:#dc103b;
+      /*i{
+        .background("@{baseUrl}/img/icon-error.png",cover);
+      }*/
+      span.icon-prompt {
+        font-size: 16px;
+        padding-right: 8px;
+      }
+    }
+    &.input-error{
+      margin-left: 95px;
+      display: none;
+    }
+  }
+}
+.post-position .pos-block-prefix .selector {
+  left: 104px;
+}
+
+input[type="text"]{
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  padding: 0 10px;
+  border: 1px solid #eee;
+  &.pos-attr,&.pos-address{
+    width:550px;
+  }
+}
+input[type="button"]{
+  width: 120px;
+  height: 38px;
+  background: @mainColor;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+/*postPosition end*/
+.popBox{
+  .address-area{
+    padding: 25px 20px 20px 35px;
+    #map{
+      width: 405px;
+      height: 300px;
+    }
+  }
+  .deliver-upperLimit{
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 20px;
+    .btn-link{
+      margin-right: 15px;
+    }
+  }
+}
+.popBox-prefix {
+  .popBox-content {
+    padding: 25px 20px 20px 20px;
+    .custom-pop-prefix {
+      width: 418px;
+    }
+    p {
+      color: @c2;
+      padding: 20px 0;
+    }
+    .popBox-area-btn {
+      text-align: center;
+    }
+  }
+}
+.all-position {
+  height: auto!important;
+  height: 193px;
+  min-height: 193px;
+}
+/*companyPosition*/
+.company-position{
+  position: relative;
+  .title-area {
+    padding-top: 10px;
+    margin: 0 30px;
+    height: 36px;
+    border-bottom: 1px #eee dashed;
+    .title {
+      font-size: 20px;
+    }
+  }
+  .position-list{
+   /* min-height: 375px;*/
+    padding: 15px 0;
+    background: #fff;
+    border: 1px solid #eee;
+    .borderRadius(3px);
+    .position-detail{
+      padding: 15px 0;
+      margin: 15px 30px;
+      height: 81px;
+      border-bottom: 1px #eee solid;
+      //border-left: 3px solid @mainColor;
+      background: #fff;
+      position: relative;
+      .position-name{
+        font-size: 18px;
+        color: @mainColor;
+      }
+      .position-detail-info{
+        margin-top: 8px;
+        .job-info-city, .job-info-days {
+          margin-right: 20px;
+        }
+        span.icon-locate, span.icon-calendar, span.icon-salary {
+          font-size: 16px;
+          padding-right: 4px;
+        }
+      }
+      .position-update-time{
+        font-size: 14px;
+        color: #666;
+        margin: 8px 0 0 6px;
+      }
+
+      .position-info{
+        padding-left: 22px;
+        font-size: 15px;
+        background: url("@{baseUrl}/img/position/icon-job.png") no-repeat;
+        &.position-money,&.position-days{
+          margin-left: 15px;
+        }
+        &.position-city{
+          background-position: 0 3px;
+        }
+        &.position-money {
+          background-position: 0 -18px;
+          color:#61addd;
+        }
+        &.position-days {
+          background-position: 0 -39px;
+        }
+      }
+      .btn-position-resume{
+        position: absolute;
+        background: @mainColor;
+        padding: 5px 10px;
+        top: 16px;
+        right: 0;
+        a{
+          color:#fff;
+        }
+      }
+      .position-option{
+        position: absolute;
+        right: 0;
+        top: 70px;
+        >a{
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+  .empty-area{
+    width: 100%;
+    height: 223px;
+    .no-position {
+      width: 360px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 50px 0 0 50px;
+    }
+  }
+}
+/*companyPosition end*/
+.popBox{
+  &-online{
+    .popBox-content{
+      padding: 15px 15px;
+      .online-top{
+        position: relative;
+        padding-left: 30px;
+        .icon-warn {
+          width: 18px;
+          height: 18px;
+          background: url("@{baseUrl}/img/icon-error.png") left center no-repeat;
+          background-size: cover;
+          position: absolute;
+          left: 2px;
+          top: 2px;
+        }
+        i{
+          font-style: normal;
+          &.deadline{
+            color: @mainColor;
+          }
+          &.time-differ{
+            color: @errorColor;
+          }
+        }
+      }
+      .online-center{
+        margin-top: 15px;
+        padding-left: 30px;
+        .timepicker{
+          cursor: pointer;
+          width: 150px;
+          height: 30px;
+          line-height: 30px;
+          border: 1px solid #eee;
+          padding: 0 15px 0 0;
+          margin-left: 15px;
+          position: relative;
+          .online-time{
+            border: none;
+            cursor: pointer;
+            width: 150px;
+            height: 28px;
+            padding-left: 5px;
+            font-size: 15px;
+            color: #333;
+          }
+          .icon-down{
+            width: 17px;
+            height: 10px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            margin-top: -5px;
+            background: url("@{baseUrl}/img/icon-down.png") 0 0 no-repeat;
+            background-size: cover;
+          }
+        }
+        .input-tips{
+          display: inline-block;
+        }
+      }
+      .online-bottom{
+        margin-top: 25px;
+        text-align: center;
+        .btn{
+          padding: 5px 15px;
+          border-radius: 3px;
+          &.btn-online{
+            background: @mainColor;
+            color: #fff;
+          }
+          &.btn-edit{
+            background: #b3f1f2;
+            color: @mainColor;
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+  }
+}

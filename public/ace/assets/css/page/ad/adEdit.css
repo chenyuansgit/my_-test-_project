@@ -1,0 +1,29 @@
+.selector-wrap{
+    position: relative;
+}
+.selector{
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    border: 1px solid #eee;
+    width: 340px;
+    max-height: 200px;
+    overflow-y: auto;
+    top: 30px;
+    display: none;
+}
+.selector li {
+    color: #999;
+    padding: 5px 0 5px 15px;
+}
+.selector li:hover {
+    background: #ededed;
+    color: #666;
+    cursor: pointer;
+}
+.selector-input {
+    cursor: pointer;
+}
+.selector-input input {
+    cursor: pointer;
+}

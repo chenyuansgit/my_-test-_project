@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/setting/setting.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix mb20">
+    <div class="w310 fl">
+        <div class="setting-nav sideBox">
+            <h4>账号设置</h4>
+            <ul>
+                <li class="curr"><a href="http://<%=host.www%>/userCenter">个人信息</a><span class="icon-sign"></span></li>
+                <li><a href="http://<%=host.account%>/setting/user">密码修改</a></li>
+                <li><a href="http://<%=host.account%>/setting/base">账号关联</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wl840 fr">
+        <div class="setting-main inwrapBox">
+            <div class="setting-box modify-personal">
+                <h3>修改个人信息</h3>
+                <div class="setting-edit-avatar mb20 clearfix">
+                    <span class="t fl">头像：</span>
+                    <%if(avatar && avatar!="undefined"){%>
+                    <div class="avatar fl" data-avatar="<%=avatar||''%>"  style="background-image:url('<%=avatar||''%>?imageView2/2/w/240/h/240')">
+                        <input type="file" id="avatar-file" name="file" class="avatar-file" title="支持jpg、jpeg、gif、png格式，文件小于5M"/>
+                        <div class="avatar-text">上传新的图像</div>
+                    </div>
+                    <%}else{%>
+                    <div class="avatar fl" data-avatar="">
+                        <input type="file" id="avatar-file" name="file" class="avatar-file" title="支持jpg、jpeg、gif、png格式，文件小于5M"/>
+                        <div class="avatar-text">上传新的图像</div>
+                    </div>
+                    <%}%>
+                </div>
+                <div class="setting-edit-nickname mb20">
+                    <span class="t">昵称：</span>
+                    <input class="new-nickname setting-input" value="<%=nick_name||''%>" type="text" placeholder="请填写用户昵称"/>
+                </div>
+                <input type="button" class="btn btn-outline btn-blue btn-edit" value="修改"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%include ../common/footer.ejs%>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/setting/IB_setting.js"></script>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.uid = "<%=user_id%>";
+</script>
+<%include ../common/statistics.ejs%>
+</body>
+</html>

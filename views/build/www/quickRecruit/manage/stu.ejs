@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/quickRecruit/manage.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/manage/IB_private.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include ../../quickRecruit/common/headerStu.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li class="curr">
+                    <span class="icon-curr-up"></span>
+                    <a class="header-link-item" href="/quickRecruit">快招</a>
+                    <i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li class="curr"><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container mb20">
+    <div class="center-content">
+        <div class="quickRecruit clearfix">
+            <div class="left w800 fl">
+                <div class="left-content">
+                    <%if(resume){%>
+                    <div class="control-panel">
+                        <div class="top-banner"></div>
+                        <%if(resume.avatar){%>
+                        <div class="avatar" style="background-image: url('<%=resume.avatar%>?imageView2/2/w/176/h/176')"></div>
+                        <%}else{%>
+                        <div class="avatar"></div>
+                        <%}%>
+                        <h3><em class="name"><%=resume.name?resume.name:"我"%></em>的快招</h3>
+                        <div class="bottom-bar">
+                            <div class="bar-content clearfix">
+                                <div class="join-tips">
+                                    <%if(resume && resume.is_public){%>
+                                    <span class="btn-join on"></span>
+                                    <%}else{%>
+                                    <span class="btn-join off"></span>
+                                    <%}%>
+                                    <span>开通快招</span>
+                                </div>
+                                <%if(resume && +new Date() - new Date(resume.refresh_time) < 7*24*60*60*1000 && resume.is_public){%>
+                                <div class="btn btn-update off" title="简历每7天可刷新一次">
+                                    <span class="btn-text">简历已刷新</span>
+                                </div>
+                                <%}else{%>
+                                <div class="btn btn-update on" title="简历每7天可刷新一次">
+                                     <span class="btn-text">刷新简历</span>
+                                    <p class="update-tips"><i></i>刷新后，可以提高简历在人才库的排名，增大曝光机会；刷新后，可以更新和活跃你的求职状态，让HR优先选择你；</p>
+                                </div>
+                                <%}%>
+                                <div class="btn-apply btn">报名精选</div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <div class="top-nav">
+                        <ul class="nav-list clearfix">
+                            <%
+                            var status_1 = "",status_2 = "",status_3 = "",status_4 = "";
+                            switch (parseInt(status)){
+                                case 2: status_2 = "curr"; break;
+                                case 3: status_3 = "curr"; break;
+                                case 4: status_4 = "curr"; break;
+                                default : status_1 = "curr";break;
+                            }
+                            %>
+                            <li class="nav <%=status_1%>"><a href="#1">待处理</a></li>
+                            <li class="nav <%=status_2%>"><a href="#2">已接受</a></li>
+                            <li class="nav <%=status_3%>"><a href="#3">已拒绝</a></li>
+                            <li class="nav <%=status_4%>"><a href="#4">已过期</a></li>
+                        </ul>
+                    </div>
+                    <div class="jobs-area">
+                        <%if(!invites.length){%>
+                        <div class="empty-area empty-area-apply">
+                            <div class="no-apply">
+                                <div class="bg"></div>
+                                <p class="notice-word">没有找到符合条件的快招邀约...</p>
+                                <a class="btn btn-apply" href="/quickRecruit" target="_blank">前往快招</a>
+                            </div>
+                        </div>
+                        <%}else{%>
+                        <%if(status == 1){%>
+                        <%for(var i= 0,len=invites.length;i<len;i++){%>
+                        <div class="job job-quickRecruit clearfix" data-jid="<%=invites[i].job_id%>" data-id="<%=invites[i].id%>" data-tid="<%=invites[i].term_id%>">
+                            <div class="clearfix invite-info">
+                                <%if(invites[i].term_id){%>
+                                <div class="invite-term fl">第<%=invites[i].term_id%>期</div>
+                                <%}%>
+                                <div class="invite-time fl">邀请时间&nbsp;:&nbsp;<%=new Date(invites[i].create_time).format("yyyy-MM-dd hh:mm")%></div>
+                                <i class="icon-quick-corner"></i>
+                                <%=%>
+                                <%var days = 7- Math.floor((+new Date-parseInt(invites[i].create_time))/(1000*60*60*24))%>
+                                <div class="overdue-tips fr">距离自动失效还有<em><%=days%></em>天</div>
+                            </div>
+                            <div class="job-logo">
+                                <%if(invites[i].avatar){%>
+                                <span class="company-logo" style="background-image: url('<%=invites[i].avatar%>')"></span>
+                                <%}else{%>
+                                <span class="company-logo"></span>
+                                <%}%>
+                            </div>
+                            <div class="job-l">
+                                <%if(invites[i].avatar && invites[i].avatar !='undefined'){%>
+                                <div class="avatar" style="background-image:url('<%=invites[i].avatar%>?imageView2/2/w/120/h/120')"></div>
+                                <%}else{%>
+                                <div class="avatar"></div>
+                                <%}%>
+                                <div class="job-info-top">
+                                    <span class="job-info-name"><a href="/job/detail/<%=invites[i].job_id%>" target="_blank"><%=invites[i].job_name%></a></span>
+                                    <span>-</span>
+                                    <span  class="job-info-company"><a href="/company/detail/<%=invites[i].company_id%>" target="_blank"><%=invites[i].company_name%></a></span>
+                                </div>
+                                <div class="job-info-bottom">
+                                    <span class="job-info-city"><span class="icon-locate"></span><%=invites[i].city%></span>
+                                    <%if(invites[i].min_payment ==0 && invites[i].max_payment ==0){%>
+                                    <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                                    <%}else{%>
+                                    <%if(invites[i].channel_type ==3) {%>
+                                    <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment/10000%>-<%=invites[i].max_payment/10000%>万/年</span>
+                                    <%}else{%>
+                                    <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment%>-<%=invites[i].max_payment%>/天</span>
+                                    <%}%>
+                                    <%}%>
+                                    <%if(invites[i].channel_type ==1) {%>
+                                    <span class="job-info-days"><span class="icon-calendar"></span>≥<%=invites[i].workdays?invites[i].workdays:1%>天</span>
+                                    <%}%>
+                                </div>
+                                <div class="invite-state">
+                                    <span class="btn-accept btn">接受</span>
+                                    <span class="btn-refuse btn">拒绝</span>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                        <%}else if(status == 2){%>
+                        <%for(var i= 0,len=invites.length;i<len;i++){%>
+                        <div class="job job-quickRecruit">
+                            <div class="clearfix invite-info">
+                                <%if(invites[i].term_id){%>
+                                <div class="invite-term fl">第<%=invites[i].term_id%>期</div>
+                                <%}%>
+                                <div class="invite-time fl">邀请时间&nbsp;:&nbsp;<%=new Date(invites[i].create_time).format("yyyy-MM-dd hh:mm")%></div>
+                                <i class="icon-quick-corner"></i>
+                            </div>
+                            <div class="clearfix">
+                                <div class="job-logo">
+                                    <%if(invites[i].avatar){%>
+                                    <span class="company-logo" style="background-image: url('<%=invites[i].avatar%>')"></span>
+                                    <%}else{%>
+                                    <span class="company-logo"></span>
+                                    <%}%>
+                                </div>
+                                <div class="job-l">
+                                    <%if(invites[i].avatar && invites[i].avatar !='undefined'){%>
+                                    <div class="avatar" style="background-image:url('<%=invites[i].avatar%>?imageView2/2/w/120/h/120')"></div>
+                                    <%}else{%>
+                                    <div class="avatar"></div>
+                                    <%}%>
+                                    <div class="job-info-top">
+                                        <span class="job-info-name"><a href="/job/detail/<%=invites[i].job_id%>" target="_blank"><%=invites[i].job_name%></a></span>
+                                        <span>-</span>
+                                        <span  class="job-info-company"><a href="/company/detail/<%=invites[i].company_id%>" target="_blank"><%=invites[i].company_name%></a></span>
+                                    </div>
+                                    <div class="job-info-bottom">
+                                        <span class="job-info-city"><span class="icon-locate"></span><%=invites[i].city%></span>
+                                        <%if(invites[i].min_payment ==0 && invites[i].max_payment ==0){%>
+                                        <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                                        <%}else{%>
+                                        <%if(invites[i].channel_type ==3) {%>
+                                        <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment/10000%>-<%=invites[i].max_payment/10000%>万/年</span>
+                                        <%}else{%>
+                                        <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment%>-<%=invites[i].max_payment%>/天</span>
+                                        <%}%>
+                                        <%}%>
+                                        <%if(invites[i].channel_type ==1) {%>
+                                        <span class="job-info-days"><span class="icon-calendar"></span>≥<%=invites[i].workdays?invites[i].workdays:1%>天</span>
+                                        <%}%>
+                                    </div>
+                                    <div class="invite-state">
+                                        <span class="accepted">已接受</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-info company-info">
+                                企业的联系方式为&nbsp;<em class="company-contact"><%=invites[i].hr_email%></em>，快和ta联系吧
+                            </div>
+                        </div>
+                        <%}%>
+                        <%}else if(status == 3){%>
+                        <%for(var i= 0,len=invites.length;i<len;i++){%>
+                        <div class="job job-quickRecruit">
+                            <div class="clearfix invite-info">
+                                <%if(invites[i].term_id){%>
+                                <div class="invite-term fl">第<%=invites[i].term_id%>期</div>
+                                <%}%>
+                                <div class="invite-time fl">邀请时间&nbsp;:&nbsp;<%=new Date(invites[i].create_time).format("yyyy-MM-dd hh:mm")%></div>
+                                <i class="icon-quick-corner"></i>
+                            </div>
+                            <div class="clearfix">
+                                <div class="job-logo">
+                                    <%if(invites[i].avatar){%>
+                                    <span class="company-logo" style="background-image: url('<%=invites[i].avatar%>')"></span>
+                                    <%}else{%>
+                                    <span class="company-logo"></span>
+                                    <%}%>
+                                </div>
+                                <div class="job-l">
+                                    <%if(invites[i].avatar && invites[i].avatar !='undefined'){%>
+                                    <div class="avatar" style="background-image:url('<%=invites[i].avatar%>?imageView2/2/w/120/h/120')"></div>
+                                    <%}else{%>
+                                    <div class="avatar"></div>
+                                    <%}%>
+                                    <div class="job-info-top">
+                                        <span class="job-info-name"><a href="/job/detail/<%=invites[i].job_id%>" target="_blank"><%=invites[i].job_name%></a></span>
+                                        <span>-</span>
+                                        <span  class="job-info-company"><a href="/company/detail/<%=invites[i].company_id%>" target="_blank"><%=invites[i].company_name%></a></span>
+                                    </div>
+                                    <div class="job-info-bottom">
+                                        <span class="job-info-city"><span class="icon-locate"></span><%=invites[i].city%></span>
+                                        <%if(invites[i].min_payment ==0 && invites[i].max_payment ==0){%>
+                                        <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                                        <%}else{%>
+                                        <%if(invites[i].channel_type ==3) {%>
+                                        <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment/10000%>-<%=invites[i].max_payment/10000%>万/年</span>
+                                        <%}else{%>
+                                        <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment%>-<%=invites[i].max_payment%>/天</span>
+                                        <%}%>
+                                        <%}%>
+                                        <%if(invites[i].channel_type ==1) {%>
+                                        <span class="job-info-days"><span class="icon-calendar"></span>≥<%=invites[i].workdays?invites[i].workdays:1%>天</span>
+                                        <%}%>
+                                    </div>
+                                    <div class="invite-state">
+                                        <span class="refused">已拒绝</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                        <%}else if(status == 4){%>
+                        <%for(var i= 0,len=invites.length;i<len;i++){%>
+                        <div class="job job-quickRecruit">
+                            <div class="invite-info clearfix ">
+                                <%if(invites[i].term_id){%>
+                                <div class="invite-term fl">第<%=invites[i].term_id%>期</div>
+                                <%}%>
+                                <div class="invite-time fl">邀请时间&nbsp;:&nbsp;<%=new Date(invites[i].create_time).format("yyyy-MM-dd hh:mm")%></div>
+                                <i class="icon-quick-corner"></i>
+                            </div>
+                            <div class="clearfix">
+                                <div class="job-logo">
+                                    <%if(invites[i].avatar){%>
+                                    <span class="company-logo" style="background-image: url('<%=invites[i].avatar%>')"></span>
+                                    <%}else{%>
+                                    <span class="company-logo"></span>
+                                    <%}%>
+                                </div>
+                                <div class="job-l">
+                                    <%if(invites[i].avatar && invites[i].avatar !='undefined'){%>
+                                    <div class="avatar" style="background-image:url('<%=invites[i].avatar%>?imageView2/2/w/120/h/120')"></div>
+                                    <%}else{%>
+                                    <div class="avatar"></div>
+                                    <%}%>
+                                    <div class="job-info-top">
+                                        <span class="job-info-name"><a href="/job/detail/<%=invites[i].job_id%>" target="_blank"><%=invites[i].job_name%></a></span>
+                                        <span>-</span>
+                                        <span  class="job-info-company"><a href="/company/detail/<%=invites[i].company_id%>" target="_blank"><%=invites[i].company_name%></a></span>
+                                    </div>
+                                    <div class="job-info-bottom">
+                                        <span class="job-info-city"><span class="icon-locate"></span><%=invites[i].city%></span>
+                                        <%if(invites[i].min_payment ==0 && invites[i].max_payment ==0){%>
+                                        <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                                        <%}else{%>
+                                        <%if(invites[i].channel_type ==3) {%>
+                                        <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment/10000%>-<%=invites[i].max_payment/10000%>万/年</span>
+                                        <%}else{%>
+                                        <span class="job-info-money"><span class="icon-salary"></span><%=invites[i].min_payment%>-<%=invites[i].max_payment%>/天</span>
+                                        <%}%>
+                                        <%}%>
+                                        <%if(invites[i].channel_type ==1) {%>
+                                        <span class="job-info-days"><span class="icon-calendar"></span>≥<%=invites[i].workdays?invites[i].workdays:1%>天</span>
+                                        <%}%>
+                                    </div>
+                                    <div class="invite-state">
+                                        <span class="refused">已过期</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                        <%}%>
+                        <%}%>
+                    </div>
+                    <%if(invites && invites.length == 10){%>
+                    <div class="load-tips">
+                        <span class="btn-load">加载更多</span>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <div class="right w330 fr">
+                <div class="jump-area">
+                    <div class="clearfix">
+                        <a class="fl" href="/quickRecruit/process">快招攻略</a>
+                        <a class="fr" href="/jobCondition">求职动态</a>
+                    </div>
+                </div>
+                <ul class="quick-recruit-record">
+                    <li>
+                        <div class="list-title">快招精选记录</div>
+                    </li>
+                    <%if(quick_recruit_applies.length){%>
+                    <%for(var i= 0,len=quick_recruit_applies.length;i<len;i++){%>
+                    <li class="record clearfix">
+                        <div class="title">快招精选第<em><%=quick_recruit_applies[i].term_id%></em>期</div>
+                        <%
+                            var state = ""
+                            switch (quick_recruit_applies[i].status){
+                                case 1 : state = "待审核";break;
+                                case 2 : state = "已通过";break;
+                                case 3 : state = "未通过";break;
+                            }
+                        %>
+                        <div class="status status-<%=quick_recruit_applies[i].status%>">&nbsp;<%=state%>&nbsp;</div>
+                    </li>
+                    <%}%>
+                    <%}else{%>
+                    <li class="no-apply">暂时还没有快招精选申请记录</li>
+                    <%}%>
+                </ul>
+                <%if(stats_info){%>
+                <ul class="viewed-record">
+                    <li>
+                        <div class="list-title">哪些企业看了我？</div>
+                    </li>
+                    <li class="views-info">
+                         <div>今日访客&nbsp;&nbsp;<em><%=stats_info.today_visitor_num||0%></em></div>
+                         <div>访问总量&nbsp;&nbsp;<em><%=stats_info.views||0%></em></div>
+                     </li>
+                    <%try{ %>
+
+                    <%
+                    var visitors =  JSON.parse(stats_info.recent_visitor);
+                    if(visitors && visitors.length){%>
+                    <%
+
+                    for(var i= 0,len = visitors.length;i<len;i++){
+                        var visitor = visitors[i];
+                    %>
+                    <li class="record">
+                        <div><a href="/company/detail/<%=visitor.cid%>" target="_blank" class="company-name ellipsis" title="<%=visitor.name%>"><%=visitor.name%></a></div>
+                        <div>共查看<em class="viewed-num"><%=visitor.count%></em>次</div>
+                        <div>最近查看&nbsp;&nbsp;<em class="viewed-time"><%=new Date(visitor.visit_time).format("yyyy-MM-dd hh:mm")%></em></div>
+                    </li>
+                    <%}%>
+                    <%}else{%>
+                    <li class="no-viewed">暂时还没有被企业查看</li>
+                    <%}%>
+                    <%}catch(e){}%>
+                </ul>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../../common/footer.ejs%>
+<!-----------弹窗----------->
+<div class="overlay"></div>
+<%include ../common/popBox/apply.ejs%>
+<%include ../common/popBox/join.ejs%>
+<!--------弹窗 end---------->
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.term_id = '<%=quick_recruit_term.term_id?quick_recruit_term.term_id:0%>';
+    global.status = '<%=status%>';
+    global.rid = '<%=resume.rid%>';
+    global.is_public = '<%=resume.is_public%>';
+    global.uid =  '<%=account.uid%>';
+</script>
+<%include ../../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

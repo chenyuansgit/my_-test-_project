@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./../common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/jobList.css">
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/mine/IB_jobList.js"></script>
+</head>
+<body>
+<%include ./../common/bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/mine" class="back left-icon"></a>
+        <span>我发布的职位</span>
+    </div>
+    <div class="jobs-area">
+        <%if(jobs && jobs.length){%>
+
+        <%for(var i=0,len=jobs.length;i<len;i++){%>
+        <a class="job" data-jid="<%=jobs[i].jid%>" href="/job/detail/<%=jobs[i].jid%>">
+            <div class="job-top job-line">
+                <span class="job-name ellipsis"><%=jobs[i].name%></span>
+                <span class="time"><%=new Date(jobs[i].update_time).format("yyyy-MM-dd")%></span>
+            </div>
+            <div class="job-center job-line">
+                <span class="job-info job-city ellipsis"><%=jobs[i].city%></span>
+                <%if(!jobs[i].min_payment && !jobs[i].max_payment){%>
+                <span class="job-info job-payment ellipsis">面议</span>
+                <%}else if(jobs[i].channel_type==3 || jobs[i].channel_type==4){%>
+                <span class="job-info job-payment ellipsis"><%=parseInt(jobs[i].min_payment/10000)%>-<%=parseInt(jobs[i].max_payment/10000)%>万/年</span>
+                <%}else{%>
+                <span class="job-info job-payment ellipsis"><%=jobs[i].min_payment%>-<%=jobs[i].max_payment%>/天</span>
+                <%}%>
+                <%if(jobs[i].channel_type !=3 && jobs[i].channel_type!=4){%>
+                <span class="job-info job-days ellipsis">≥<%=jobs[i].workdays%>天/周</span>
+                <%}%>
+            </div>
+            <!--<div class="job-bottom job-line">
+                <span class="job-option refresh">刷新</span>
+                <span class="job-option offline">下线</span>
+                <span class="job-option delete">删除</span>
+            </div>-->
+        </a>
+        <%}%>
+
+        <%}else{%>
+            <p class="tac blank-tips">没有符合条件的职位信息,快去实习鸟官网发布一下职位吧~</p>
+        <%}%>
+        </div>
+    </div>
+</div>
+</body>
+</html>

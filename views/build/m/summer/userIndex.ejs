@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/summer/entry.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.type = "user";
+        global.status = "<%=isJoiner%>";
+    </script>
+    <%
+    var clientFlag = platform == "client"?1:0;
+    if(!clientFlag){%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/summer/IB_summer.js"></script>
+    <%}%>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<!--页面主体-->
+<div class="join-container">
+    <img class="pic-intro" src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/8632b27e31915e830b6638cf6ee392ef.png" alt="暑期实习介绍"/>
+    <div class="btn-area">
+        <%if(!clientFlag){%>
+        <%if(isJoiner){%>
+        <span class="btn off btn-join">已加入暑期实习</span>
+        <%}else{%>
+        <span class="btn on btn-join">加入暑期实习</span>
+        <%}%>
+        <a class="btn on" href="/private/summer/jobList">挑选好职位</a>
+        <%}%>
+    </div>
+</div>
+
+<div class="overlay"></div>
+<div class="pop pop-join">
+    <div class="pop-top clearfix">
+        <div class="icon-logo"></div>
+        <div class="btn-cancel"></div>
+    </div>
+    <div class="pop-content">
+        <h3 class="pop-title">报名2016暑期实习</h3>
+        <p>你将要加入2016暑期实习专场。</p>
+        <p>报名成功后，4月25日—5月25日，你可以在实习鸟首页暑期实习风暴月专场挑选适合自己的实习职位，以及接受企业邀约~</p>
+        <%if(isJoiner){%>
+        <div class="btn-confirm off">已加入</div>
+        <%}else{%>
+        <div class="btn-confirm on">加入</div>
+        <%}%>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <% include ../header.ejs %>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/resume/add.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.forward = '<%=forward%>'
+    </script>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/resume/IB_addResume.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main" data-uid="<%= uid %>">
+    <div class="step step-0">
+        <div class="header w100 tac">
+            <a href="javascript:" class="back left-icon"></a>
+            <span>为自己创建一份简历</span>
+            <a href="/" class="home right-icon"></a>
+        </div>
+        <div class="pic-text"></div>
+        <button class="btn-block btn-next" data-step="1">开始创建</button>
+    </div>
+    <div class="step step-1">
+        <div class="header w100 tac">
+            <a href="javascript:" class="back left-icon"></a>
+            <span>基本信息(1/3)</span>
+            <a href="/" class="home right-icon"></a>
+        </div>
+        <div class="avatar-area">
+            <span class="avatar"></span>
+            <input type="file" class="file-avatar" id="file-avatar"/>
+        </div>
+        <div class="mr-info">
+            <div class="mr-line">
+                <span>姓&nbsp;&nbsp;名</span>
+                <span><input class="name required input" type="text"/></span>
+            </div>
+            <div class="mr-line">
+                <span>性&nbsp;&nbsp;别</span>
+                <span class="sex-area">
+                    <span class="sex curr" data-type="0"><i class="icon-sex"></i>女</span>
+                    <span class="sex" data-type="1"><i class="icon-sex"></i>男</span>
+                </span>
+            </div>
+            <div class="mr-line select-block" data-sel="city" id="address">
+                <span>籍&nbsp;&nbsp;贯</span>
+                <span class="address required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line" id="birth">
+                <span>出生年月</span>
+                <span class="birthday required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line">
+                <span>常用手机</span>
+                <span><input class="phone required input" type="tel"/></span>
+            </div>
+            <div class="mr-line">
+                <span>常用邮箱</span>
+                <span><input class="email required input" type="text"/></span>
+            </div>
+        </div>
+        <div class="btn-area clearfix">
+            <button class="btn-half btn-pre fll" data-step="0">上一步</button>
+            <button class="btn-half btn-next fll" data-step="2">下一步</button>
+        </div>
+    </div>
+    <div class="step step-2">
+        <div class="header w100 tac">
+            <a href="javascript:" class="back left-icon"></a>
+            <span>教育信息(2/3)</span>
+            <a href="/" class="home right-icon"></a>
+        </div>
+        <div class="mr-info">
+            <div class="mr-line">
+                <span>毕业院校</span>
+                <span><input class="school required input" type="text"/></span>
+            </div>
+            <div class="mr-line">
+                <span>所学专业</span>
+                <span><input class="major required input" type="text"/></span>
+            </div>
+            <div class="mr-line select-block" data-selector="stage" id="stage">
+                <span>学&nbsp;&nbsp;历</span>
+                <span class="stage required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line" id="edu-start">
+                <span>入学时间</span>
+                <span class="start_time edu_time required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line" id="edu-end">
+                <span>毕业时间</span>
+                <span class="end_time edu_time required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+        </div>
+        <div class="btn-area clearfix">
+            <button class="btn-half btn-pre fll" data-step="1">上一步</button>
+            <button class="btn-half btn-next fll" data-step="3">下一步</button>
+        </div>
+    </div>
+    <div class="step step-3">
+        <div class="header w100 tac">
+            <a href="#" class="back left-icon"></a>
+            <span>期望实习(3/3)</span>
+            <a href="/" class="home right-icon"></a>
+        </div>
+        <div class="mr-info">
+            <div class="mr-line" id="hope-city">
+                <span>实习地点</span>
+                <span class="hope-city required select" ></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line">
+                <span>职位名称</span>
+                <span><input class="position required input" type="text"/></span>
+            </div>
+            <div class="mr-line" id="position-type">
+                <span>职位类型</span>
+                <span class="position-type required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line select-block" data-selector="payment" id="payment">
+                <span>每日薪资</span>
+                <span class="payment required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line select-block select" data-selector="days" id="days">
+                <span>每周实习天数</span>
+                <span class="days required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="mr-line select-block" data-selector="duration" id="duration">
+                <span>连续实习时间</span>
+                <span  class="duration required select"></span>
+                <span class="btn-sel"></span>
+            </div>
+        </div>
+        <div class="btn-area clearfix">
+            <button class="btn-half btn-pre fll" data-step="2">上一步</button>
+            <button class="btn-half btn-next btn-complete btn fll" data-step="4">完成</button>
+        </div>
+    </div>
+</div>
+<div class="popTips animation"></div>
+<div class="selector-stage selector">
+    <div class="sel-title"><span class="btn-console"></span>请选择您的学历</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-type="1"><span>大专</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="2"><span>本科</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="3"><span>硕士</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="4"><span>博士及以上</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="5"><span>其他</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+<div class="selector-payment selector">
+    <div class="sel-title"><span class="btn-console"></span>您期望的每日薪资是多少？</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-type="0"><span>不限</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="1"><span>50以下</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="50"><span>50-100</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="100"><span>100-200</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="200"><span>200-500</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="500"><span>500以上</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+<div class="selector-days selector">
+    <div class="sel-title"><span class="btn-console"></span>您期望的实习天数是多少？</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-type="1"><span>1-2天/周</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="2"><span>3天/周</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="3"><span>4天/周</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="4"><span>5天/周</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="5"><span>6-7天/周</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+<div class="selector-duration selector">
+    <div class="sel-title"><span class="btn-console"></span>您期望的连续实习时间是多久？</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-type="1"><span>1个月以下</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="2"><span>2个月以下</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="3"><span>3个月以下</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-type="4"><span>3个月以上</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>

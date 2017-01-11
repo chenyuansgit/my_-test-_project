@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/quickRecruit/index.css">
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.uid = "<%=account.uid%>";
+        global.validated = "<%=validated%>";
+    </script>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_index.js"></script>
+</head>
+<body>
+<%include ./common/bodyHeader.ejs%>
+<div class="main">
+    <%if(quick_recruits && quick_recruits.length ){%>
+    <div class="special-list swiper-container">
+        <div class="swiper-wrapper">
+            <%for(var i=0,len=quick_recruits.length;i<len;i++){%>
+            <div class="swiper-slide">
+                <a href="/quickRecruit/detail/<%=quick_recruits[i].id%>" style="background-image: url('<%=quick_recruits[i].img+'?imageView2/2/w/750'%>')"></a>
+            </div>
+            <%}%>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <%}%>
+    <%if(account.uid && account.uid != "undefined" && validated){%>
+    <ul class="option-list clearfix">
+        <li class="option option-jt" data-for="jt"><span>职位类型</span><i class="icon icon-down"></i></li>
+        <li class="option option-city" data-for="city"><span>期望城市</span><i class="icon icon-down"></i></li>
+        <li class="option option-days" data-for="days"><span>每周实习</span><i class="icon icon-down"></i></li>
+        <li class="option option-stage" data-for="stage"><span>最高学历</span><i class="icon icon-down"></i></li>
+    </ul>
+    <%}%>
+    <div class="talent-list" id="list">
+        <%if(resumes && resumes.length && (!account.uid || account.uid == "undefined" || !validated)){%>
+        <%if(!account.uid || account.uid == "undefined" ){%>
+        <div class='w100 loading tac' id='loading'>登录后可查看更多简历信息</div>
+        <%}else if(!validated){%>
+        <div class='w100 loading tac' id='loading'>还没有企业身份,快到实习鸟官网验证一下吧~</div>
+        <%}%>
+        <%for(var i=0,len=resumes.length;i<len;i++){%>
+        <%var resume = resumes[i]%>
+        <a href="/talentPool/detail/<%=resume.user_id%>" class="talent <%=parseInt(resume.male)?"":"female"%>">
+            <div class="talent-l">
+                <%if(resume.avatar && resume.avatar != 'undefined'){%>
+                <div class="avatar" style="background-image:url('<%=resume.avatar%>')"></div>
+                <%}else{%>
+                <div class="avatar"></div>
+                <%}%>
+                <div class="name"><%=resume.name%></div>
+            </div>
+            <div class="talent-r">
+                <div class="info-line top">
+                    <%try{%>
+                    <%
+                        var eduArr = JSON.parse(resume.education_detail);
+                        var edu = eduArr[0];
+                    %>
+                    <div class="info school left ellipsis"><%=edu.school%></div>
+                    <div class="info right">
+                        <span class="major ellipsis"><%=edu.major%></span>
+                        <span class="ellipsis">-</span>
+                        <span class="stage ellipsis"><%=edu.stage.substr(0,2)%></span>
+                    </div>
+                    <%}catch(e){}%>
+                </div>
+                <div class="info-line  bottom">
+                    <div class="info left">
+                        <i class="icon icon-city"></i>
+                        <span class="hope-city ellipsis"><%=resume.intern_expect_city%></span>
+                    </div>
+                    <div class="info right">
+                        <%try{%>
+                        <%
+                            var type_id = resume.intern_expect_position_type.toString().split(",");
+                            var type_text = [];
+                            for(var j=0,type_len=type_id.length;j<type_len;j++){
+                                var pid = parseInt(type_id[j].substr(0,1))-1;
+                                var sid = parseInt(type_id[j].substr(1)) ;
+                                if(pid>-1 && sid > -1){
+                                    type_text.push(job_type[pid].sub_types[sid].group_name);
+                                }
+                            }
+                            var jt = type_text.toString();
+                        %>
+                        <i class="icon icon-position"></i>
+                        <span class="hope-job-type ellipsis"><%=jt%></span>
+                        <%}catch(e){}%>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <%}%>
+        <%}%>
+    </div>
+    <div class="footer clearfix">
+        <a class="tab curr" href="/">
+            <i class="icon icon-quick"></i>
+            <p>快招</p>
+        </a>
+        <a class="tab" href="/message">
+            <i class="icon icon-message"></i>
+            <p>消息</p>
+        </a>
+        <a class="tab" href="/mine">
+            <i class="icon icon-index"></i>
+            <p>我的</p>
+        </a>
+    </div>
+</div>
+<%include ./custom/mainCity.ejs%>
+<%include ./custom/selectorHope.ejs%>
+</body>
+</html>

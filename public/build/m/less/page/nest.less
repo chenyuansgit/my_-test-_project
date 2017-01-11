@@ -1,0 +1,130 @@
+@import "../common/reconsitution";
+@import "../common/index";
+html,body{
+  background-color: #f6f6f6;
+}
+.nav-content{
+  width:100%;
+  overflow: hidden;
+}
+.nav {
+  background-color: #fff;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+  overflow-x: auto;
+  display:-moz-box;
+  display:-webkit-box;
+  -moz-box-orient:horizontal;
+  -webkit-box-orient:horizontal;
+  box-orient:horizontal;//水平排列
+  li {
+    display: block;
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #666;
+  }
+  li.cur {
+    color: @mainColor;
+  }
+  li.cur span {
+    border-bottom: 1px @mainColor solid;
+  }
+}
+
+.listone{
+  display:block;
+  margin-bottom: 1rem;
+  position:relative;
+  text-decoration: none;
+  height: 8.4rem;
+  a {
+    display: block;
+    background-color: #fff;
+    padding: .6rem 1rem;
+  }
+  *,*:hover{
+    text-decoration: none;
+    outline:none;
+  }
+  .lazyImg {
+    position: absolute;
+    left: 1rem;
+    top: .5rem;
+    text-align: center;
+    line-height: 0;
+    width: 10rem;
+    height: 7.2rem;
+    background-image: url('@{baseUrl}/img/default-img.png');
+    background-size: 100% auto;
+    -webkit-background-size: 100% auto;
+    background-repeat: no-repeat ;
+    background-position: center;
+  }
+  .info {
+    height: 7.2rem;
+    padding-left: 11rem;
+    line-height: 2rem;
+    .title {
+      font-size: 1.6rem;
+      color: #666;
+      height: 4rem;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      a, a:hover, a:visited, a:focus {
+        color: #333;
+      }
+    }
+    .next {
+      font-size: 1.4rem;
+      color: #999;
+      height: 2rem;
+    }
+  }
+}
+
+//活动详情
+.detail {
+  padding: 1rem 1.2rem;
+  //正文
+  h3 {
+    font-size:1.8rem;
+    color: #333;
+    text-align: center;
+  }
+  .activity-info {
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    color: #999;
+    border-bottom: 1px #eee dashed;
+    .sponsor {
+      color: @mainColor;
+      padding-left: 1rem;
+    }
+  }
+  .activity-content {
+    padding: 1rem 0;
+    p {
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      color: #999;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+    }
+  }
+  .qrcode {
+    width: 12rem;
+    height: 12rem;
+    margin: 3rem auto;
+    img {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+}

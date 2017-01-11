@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+    <link rel="stylesheet" href="/public/ace/assets/css/page/ad/adEdit.css">
+</head>
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-11">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <script type="text/javascript">
+                            var $path_assets = "assets";//this will be used in loading jQuery UI if needed!
+                        </script>
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right"> 广告时间 </label>
+                                <div class="col-sm-1">
+                                    <input type="text" name="datetime" class="ui_timepicker enter-content start-time" id="startTime" value="" placeholder="开始时间">
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right"> </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="datetime" class="ui_timepicker enter-content end-time" id="endTime" value="" placeholder="结束时间">
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 广告类型 </div>
+
+                                <div class="col-sm-11">
+                                    <!--<input type="number" id="term" placeholder="请输入快照期数,只支持数字,表示第几期(一经确认不能修改)" class="col-xs-12 col-sm-8" />-->
+                                    <select class="form-control col-xs-12 col-sm-8" id="type_id"  style="max-width: 300px;">
+                                        <option value="0" selected="selected">暂无选择</option>
+                                        <option value="1">公司详情</option>
+                                        <option value="2">职位详情</option>
+                                        <option value="3">活动页面</option>
+                                        <option value="4">第三方页面</option>
+                                        <option value="5">包打听</option>
+                                    </select>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+
+                                <%if(category_id == 2){%>
+                                <label class="col-sm-1 control-label no-padding-right" for="mainTitle"> 主标题 </label>
+                                <div class="col-sm-11 company-name-area selector-wrap">
+                                    <input type="text" id="mainTitle" placeholder="请输入主标题，不超过5个字" class="col-xs-10 col-sm-5 enter-content main-title" />
+                                    <!--<span class="btn-company-search btn" style="padding:0;">搜索</span>&nbsp;*若搜索到的公司名太长,请修改使用简称替代
+                                    <ul class="selector selector-company"></ul>-->
+                                </div>
+                                <%}else{%>
+                                <label class="col-sm-1 control-label no-padding-right" for="mainTitle"> 主标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="mainTitle" placeholder="请输入主标题，不超过16个字" class="col-xs-10 col-sm-5 enter-content main-title" />
+                                </div>
+                                <%}%>
+                                <p>&nbsp;</p>
+                                <%if(category_id == 2){%>
+                                <label class="col-sm-1 control-label no-padding-right" for="sideTitle"> 副标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="sideTitle" placeholder="请输入副标题，不超过24个字" class="col-xs-10 col-sm-5 enter-content side-title" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <%}%>
+                                <label class="col-sm-1 control-label no-padding-right" for="adOrder"> 广告排序 </label>
+                                <div class="col-sm-11">
+                                    <%if(category_id == 3){%>
+                                    <input type="text" id="adOrder"  placeholder="输入整数1——4,数字越大越靠前" min="1" max="4" class="col-xs-10 col-sm-5 enter-content order-4" />
+                                    <%}else if(category_id == 4){%>
+                                    <input type="text" id="adOrder"  placeholder="输入整数1——6,数字越大越靠前" min="1" max="6" class="col-xs-10 col-sm-5 enter-content order-6" />
+                                    <%}else{%>
+                                    <input type="text" id="adOrder"  placeholder="输入整数1——8,数字越大越靠前" min="1" max="8" class="col-xs-10 col-sm-5 enter-content order-8" />
+                                    <%}%>
+                                </div>
+                                <%if(category_id == '1' || category_id == '2' || category_id == '3'||category_id == '4'||category_id == '6'){%>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="skipLink"> 跳转链接 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="skipLink" placeholder="请输入跳转链接" class="col-xs-10 col-sm-5 enter-content skip-link" />
+                                </div>
+                                <%}%>
+                                <%if(category_id=='5'){%>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 文章ID </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="articleId" placeholder="" class="col-xs-10 col-sm-5 enter-content article-id" />
+                                </div>
+                                <%}%>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="addImage"> 广告图片</label>
+                                <div class="col-sm-11">
+                                    <%if(category_id == "1"){%>
+                                    <p>图片大小不超过3M,900*500</p>
+                                    <div class="company-pic" >
+                                        <%}else if(category_id == "2"){%>
+                                        <p>图片大小不超过3M,500*500</p>
+                                        <div class="ad-small-pic enter-content input-pic">
+                                            <%}else if(category_id == "3"||category_id == "6"){%>
+                                            <p>图片大小不超过3M,240*140</p>
+                                            <div class="ad-small-pic enter-content input-pic" style="width: 240px;height: 140px;padding: 0">
+                                                <%}else if(category_id == "4"){%>
+                                                <p>图片大小不超过3M,640*640</p>
+                                                <div class="ad-small-pic enter-content input-pic" style="width: 320px;height: 320px;padding: 0">
+                                                    <%}%>
+                                                <input type="file" class="avatar input-transparent" id="avatar" name="avatar" placeholder="请插入图片"/>
+                                                <span class="avatar-mask"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                    <div>
+                                        <label class="col-sm-1 control-label no-padding-right" for="adDesc"> 广告概述 </label>
+                                        <div class="col-sm-11">
+                                            <input type="text" id="adDesc" placeholder="请输入广告关键词，便于寻找" class="col-xs-10 col-sm-5 enter-content" />
+                                        </div>
+                                    </div>
+                                    <div class="space-4"></div>
+                                    <div class="ib-how">
+                                        <span  class="ib-confirm"><a href="javascript:" id="buttonAdd">确定</a></span>
+                                        <span  class="ib-quit"><a href="javascript:" id='buttonCancel'>取消</a></span>
+                                    </div>
+                                    <!-- PAGE CONTENT ENDS -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                        <i class="icon-double-angle-up icon-only bigger-110"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/regex.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.category_id = '<%=category_id%>';
+</script>
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+    jQuery(function($) {
+        //时间插件
+        $(".ui_timepicker").datetimepicker({
+            //showOn: "button",
+            //buttonImage: "./css/images/icon_calendar.gif",
+            //buttonImageOnly: true,
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        })
+        //图片上传
+        var avatar,imageInfo;
+        fileUpload("admin", "avatar", function (error, pic, info) {
+            if (!error) {
+                avatar = pic;
+                imageInfo= info
+                if(global.category_id == 1){
+                    $(".company-pic").css({"background-image":"url('"+avatar+"')"});
+                }else{
+                    $(".ad-small-pic").css({"background-image":"url('"+avatar+"')"});
+                }
+            }
+        })
+        //上传广告
+        var startTime, endTime,type_id, adOrder,maintitle, sidetitle, skipLink, imageUrl, adDesc,addurl,flag = 0;
+        $('#buttonCancel').click(function(){
+            window.history.back();
+        })
+
+        //判断输入
+        $('.enter-content').blur(function(){
+            startTime = parseInt(Date.parse($("input#startTime").val()))/1000;
+            endTime = parseInt(Date.parse($("input#endTime").val()))/1000;
+            if($(this).hasClass("start-time")) {
+                if(!startTime) {
+                    $(this).after("<span class='input-tips red'>请输入开始时间</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("end-time")){
+                if(!endTime){
+                    $(this).after("<span class='input-tips red'>请输入结束时间</span>");
+                    flag = 0;
+                }else flag =1;
+            }
+            else if($(this).hasClass("main-title")){
+                if($('.main-title').val().length>16 || $('.main-title').val().length<=0){
+                    if(global.category_id == 2){
+                        $(this).after("<span class='input-tips red'>请输入主标题，不超过5个字</span>");
+                    }else{
+                        $(this).after("<span class='input-tips red'>请输入主标题，不超过16个字</span>");
+                    }
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("side-title")){
+                if($('.side-title').val().length>24 || $('.side-title').val().length<=0){
+                    $(this).after("<span class='input-tips red'>不超过24个字</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("order-8")){
+                if(parseInt($('.order-8').val())>8 || parseInt($('.order-8').val()) <=0 || $('.order-8').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入正确的序号</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("order-4")){
+                if(parseInt($('.order-4').val())>4 || parseInt($('.order-4').val()) <=0 || $('.order-4').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入正确的序号</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("skip-link")){
+                if($('.skip-link').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入链接</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+        })
+        $(".enter-content").focus(function(){
+            $(this).siblings(".input-tips").remove();
+        });
+        $('#buttonAdd').click(function(){
+            startTime = parseInt(Date.parse($("input#startTime").val()));
+            endTime = parseInt(Date.parse($("input#endTime").val()));
+            type_id = $('#type_id option:selected').val();
+            maintitle= $('input#mainTitle').val().trim();
+            if(global.category_id =="2"){
+                sidetitle = $('input#sideTitle').val().trim();
+            }
+            adOrder = $('#adOrder').val();
+            skipLink= $('input#skipLink').val().trim();
+            imageUrl = avatar;
+            if(!imageUrl) alert("请上传图片！");
+            var obj = $.parseJSON(imageInfo);
+            var img= {};
+            img.url = imageUrl;
+            img.height = obj.height;
+            img.width = obj.width;
+            var image = JSON.stringify(img);
+            adDesc= $('input#adDesc').val();
+            addurl = '/ad/add';
+            if( adOrder=="" || maintitle=='' || !startTime || !endTime|| flag == 0||type_id==0)
+            {
+                alert('请输入正确的内容');
+            } else if(!regex.url.test(skipLink)){
+                alert('请输入跳转链接(地址前面请加上："http://"或"https://")');
+            }else{
+                $.ajax({
+                    type:'POST',
+                    url:addurl,
+                    dataType:'json',
+                    data:{
+                        option:{
+                            title:maintitle,
+                            sub_title:sidetitle,
+                            category_id:parseInt(global.category_id),
+                            start_time: startTime,
+                            end_time:endTime,
+                            type_id :type_id,
+                            order: parseInt(adOrder),
+                            url: skipLink,
+                            image: image,
+                            desc: adDesc,
+                            status:1
+                        }
+                    },
+                    success:function(data){
+                        if (data.status == '10000') {
+                            window.location.href='/ad/list?status=1&page=1&category_id='+global.category_id;
+                        }
+                        else if(data.status == '10006'){
+                            alert('可能存在已经上线的广告，上线时间冲突');
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+                    }
+                })
+            }
+            return false;
+        })
+
+
+        $(document).click(function (e) {
+            var event = e || window.event;
+            event.stopPropagation();
+            $(".selector-company").hide();
+        });
+
+        $(".btn-company-search").click(function(){
+            var company_name = $.trim($(".main-title").val());
+            if(company_name){
+                $.ajax({
+                    url:" /company/search?key="+company_name,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data){
+                        if(data.status == 10000){
+                            var companies = data.data.company;
+                            if(!companies.length){
+                                alert("没有找到符合条件的注册公司");
+                            }else{
+                                $(".selector-company").empty();
+                                for(var i=0,len = companies.length;i<len;i++){
+                                    var _liCom = "<li  data-cid="+companies[i].cid+" data-avatar="+companies[i].avatar+"><span class='c-name'>"+companies[i].name+"</span><span>(类型:"+companies[i].type+")</span></li>";
+                                    $(".selector-company").append(_liCom);
+                                }
+                                $(".selector-company").show();
+                            }
+                        }else if(data.status == 10003){
+                            alert("服务器错误,请稍后重试");
+                        }
+                    }
+                });
+            }
+        });
+        $(document).on("click",".selector-company li",function(e){
+            var event = window.event || e;
+            event.stopPropagation();
+            var $this = $(this);
+            var company_name = $.trim($this.find(".c-name").text());
+            var cid = $this.attr("data-cid");
+            avatar = $this.attr("data-avatar");
+
+            $(".main-title").val(company_name).attr("data-cid",cid);
+            $(".skip-link").val("http://www.internbird.com/company/detail/"+cid);
+            $(".ad-small-pic").attr("data-avatar",avatar).css({"background-image":"url('"+avatar+"')"});
+            $(".selector-company").hide();
+        });
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/search.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_campusSearch.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面顶部背景-->
+<div class="top-wrap"></div>
+<!--页面头部-->
+<div class="header">
+    <%include common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item on" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!--滚动图片-->
+    <%if(ads && ads.length>=4){%>
+    <div class="jobs-roll wrapBox">
+
+        <div class="adv-medium-area clearfix">
+            <%for(var i=0;i<4;i++){
+                var ad = JSON.parse(ads[i]);
+                var ad_img = JSON.parse(ad.image).url;
+            %>
+            <div class="adv-medium adv-medium-<%=i+1%>">
+                <a href="<%=ad.url||"/"%>" target="_blank"><div class="adv-medium-img" style="background-image: url('<%=ad_img%>?imageView2/2/w/490/h/284');"></div></a>
+            </div>
+            <%}%>
+        </div>
+        <!--<span class="icon-left-arrow"></span>
+        <span class="icon-right-arrow"></span>-->
+    </div>
+    <%}%>
+    <!--搜索面板-->
+    <div class="intern-search wrapBox">
+        <!--职位搜索输入框-->
+        <div class="search-top">
+            <div class="intern-search-box clearfix">
+                <div class="intern-search-sel fl">
+                    <span class="icon-drop-down"></span>
+                    <div class="intern-search-prev">校招</div>
+                    <!--公司搜索-->
+                    <div class="intern-search-next"><a href="/c/search">公司</a></div>
+                </div>
+                <div class="intern-search-box-input"><input class="index-search-text" id="searchInput" type="text" placeholder="请输入期待的 校招岗位 或企业名称 或工作城市" value="<%=option.k?decodeURIComponent(option.k):''%>"/></div>
+                <div class="intern-search-box-btn"><span class="icon-search"></span>搜索</div>
+            </div>
+
+            <!--选择搜索类型-->
+            <!-- <div class="intern-search-type">
+                 <a href="/j/search" class="cur jops">职位</a>|<a href="/c/search" class="company">公司</a>
+             </div>-->
+        </div>
+
+        <!--职位搜索列表-->
+        <div class="intern-search-area">
+            <div class="intern-search-top">
+                <div class="line-select-wrap">
+                    <div class="item item-city">
+                        <ul class="active item-ul clearfix">
+                            <li class="title">工作地点:</li>
+                            <%if(!option.cid){%>
+                            <li class="job-city selected" data-c="" data-cid="">不限</li>
+                            <%}else{%>
+                            <li class="job-city" data-c="" data-cid="">不限</li>
+                            <%}%>
+                            <%for(var i= 0;i<16;++i){%>
+                            <%if(option.cid==hotCity[i].city_id){%>
+                            <li class="job-city selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}else{%>
+                            <li class="job-city" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}%>
+                            <%}%>
+                            <li class="btn-more">更多<i></i></li>
+                        </ul>
+                        <div class="more">
+                            <ul class="hot item-ul clearfix">
+                                <li class="title">工作地点:</li>
+                                <%if(!option.cid){%>
+                                <li class="job-city selected" data-c="">不限</li>
+                                <%}else{%>
+                                <li class="job-city" data-c="">不限</li>
+                                <%}%>
+
+                                <%for(var i= 0;i<16;++i){%>
+                                <%if(option.cid==hotCity[i].city_id){%>
+                                <li class="job-city selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}else{%>
+                                <li class="job-city" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}%>
+                                <%}%>
+                                <li class="btn-more">更多<i></i></li>
+                            </ul>
+                            <ul class="other item-ul clearfix">
+                                <%for(var i= 16;i<hotCity.length;++i){%>
+                                <%if(option.cid==hotCity[i].city_id){%>
+                                <li class="job-city selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}else{%>
+                                <li class="job-city" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}%>
+                                <%}%>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item item-job-type">
+                        <ul class="job-class-area clearfix">
+                            <li class="title">工作分类:</li>
+                            <%if(!option.jt){%>
+                            <li class="job-type selected" data-type="" data-id="" >不限</li>
+                            <%}else{%>
+                            <li class="job-type" data-type="" data-id="" >不限</li>
+                            <%}%>
+                            <li class="job-class" data-class="互联网">互联网</li>
+                            <li class="job-class" data-class="市场/商务">市场/商务</li>
+                            <li class="job-class" data-class="通信/电气">通信/电气</li>
+                            <li class="job-class" data-class="人事/行政">人事/行政</li>
+                            <li class="job-class" data-class="财经/法律">财经/法律</li>
+                            <li class="job-class" data-class="媒体/艺术">媒体/艺术</li>
+                            <li class="job-class" data-class="咨询/教育">咨询/教育</li>
+                            <li class="job-class" data-class="机械/建筑">机械/建筑</li>
+                            <li class="job-class" data-class="其他类型">其他类型</li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <ul class="item-ul clearfix">
+                            <li class="title">薪资 / 年:</li>
+                            <%if(!option.pt){%>
+                            <li class="job-salary selected" data-s="0">不限</li>
+                            <%}else{%>
+                            <li class="job-salary" data-s="0">不限</li>
+                            <%}%>
+                            <%if(option.pt==1){%>
+                            <li class="job-salary selected" data-s="1">小于3万</li>
+                            <%}else{%>
+                            <li class="job-salary" data-s="1">小于3万</li>
+                            <%}%>
+                            <%if(option.pt==2){%>
+                            <li class="job-salary selected" data-s="2">3万-6万</li>
+                            <%}else{%>
+                            <li class="job-salary" data-s="2">3万-6万</li>
+                            <%}%>
+                            <%if(option.pt==3){%>
+                            <li class="job-salary selected" data-s="3">6万-10万</li>
+                            <%}else{%>
+                            <li class="job-salary" data-s="3">6万-10万</li>
+                            <%}%>
+                            <%if(option.pt==4){%>
+                            <li class="job-salary selected" data-s="4">10万-20万</li>
+                            <%}else{%>
+                            <li class="job-salary" data-s="4">10万-20万</li>
+                            <%}%>
+                            <%if(option.pt==5){%>
+                            <li class="job-salary selected" data-s="5">大于20万</li>
+                            <%}else{%>
+                            <li class="job-salary" data-s="5">大于20万</li>
+                            <%}%>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <ul class="item-ul clearfix">
+                            <li class="title">学历要求:</li>
+                            <%if(option.et==0){%>
+                            <li class="job-edu selected" data-e="">不限</li>
+                            <%}else{%>
+                            <li class="job-edu" data-e="">不限</li>
+                            <%}%>
+                            <%if(option.et==1){%>
+                            <li class="job-edu selected" data-e="1">大专</li>
+                            <%}else{%>
+                            <li class="job-edu" data-e="1">大专</li>
+                            <%}%>
+                            <%if(option.et==2){%>
+                            <li class="job-edu selected" data-e="2">本科</li>
+                            <%}else{%>
+                            <li class="job-edu" data-e="2">本科</li>
+                            <%}%>
+                            <%if(option.et==3){%>
+                            <li class="job-edu selected" data-e="3">硕士</li>
+                            <%}else{%>
+                            <li class="job-edu" data-e="3">硕士</li>
+                            <%}%>
+                            <%if(option.et==4){%>
+                            <li class="job-edu selected" data-e="4">博士及以上</li>
+                            <%}else{%>
+                            <li class="job-edu" data-e="4">博士及以上</li>
+                            <%}%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--搜索职位列表-->
+    <div class="jobs-area wrapBox">
+        <ul class="jobs-area-title clearfix">
+            <%if(option.lt=='time'){%>
+            <li class="title-option-new title-option on"><span class="icon-new"></span>最新职位<span class="icon-sel-up"></span></li>
+            <li class="title-option-hot title-option"><span class="icon-hot"></span>热门职位</li>
+            <%}else{%>
+            <li class="title-option-new title-option"><span class="icon-new"></span>最新职位</li>
+            <li class="title-option-hot title-option on"><span class="icon-hot"></span>热门职位<span class="icon-sel-up"></span></li>
+            <%}%>
+        </ul>
+        <!--职位信息-->
+        <%if(jobs&&jobs.length){%>
+        <div class="jobs-area-search jobs-area-list clearfix">
+            <%for(var i = 0,len = jobs.length;i<len;++i){%>
+            <div class="job-box <%=(i%2)>0 ? "even" : "odd"%>">
+                <div class="job-content">
+                    <div class="job-info-top">
+                        <% var channel_type = parseInt(jobs[i].channel_type.toString())==4?"det":"job" %>
+                        <span class="job-info-name"><a href="/<%=channel_type%>/detail/<%=jobs[i].jid%>" target="_blank" title="<%=jobs[i].name%>"><%=jobs[i].name.length>10?jobs[i].name.substr(0,10)+"...":jobs[i].name.substr(0,10)%></a></span>
+                        <%
+                            var today = new Date();
+                            //console.log(today);
+                            today.setHours(0);
+                            today.setMinutes(0);
+                            today.setSeconds(0);
+                            var timestamp = +today;
+                        %>
+                        <% if(timestamp < jobs[i].refresh_time) {%>
+                        <span class="job-info-date"><%=new Date(parseInt(jobs[i].refresh_time)).format("hh:mm")%></span>
+                        <%}else if((timestamp-86400000)<jobs[i].refresh_time && jobs[i].refresh_time<timestamp) {%>
+                        <span class="job-info-date">1天前</span>
+                        <%}else if((timestamp-86400000*2)<jobs[i].refresh_time && jobs[i].refresh_time<(timestamp-86400000)) {%>
+                        <span class="job-info-date">2天前</span>
+                        <%}else if((timestamp-86400000*3)<jobs[i].refresh_time && jobs[i].refresh_time<(timestamp-86400000*2)) {%>
+                        <span class="job-info-date">3天前</span>
+                        <%}else {%>
+                        <span class="job-info-date"><%=new Date(parseInt(jobs[i].refresh_time)).format("yyyy-MM-dd")%></span>
+                        <%}%>
+                    </div>
+                    <% if(jobs[i].company_id == 0) {%>
+                    <div  class="job-info-company"><%=jobs[i].company_name.length>10?jobs[i].company_name.substr(0,10)+"...":jobs[i].company_name%></div>
+                    <%}else{%>
+                    <div  class="job-info-company"><a href="/company/detail/<%=jobs[i].company_id%>"  target="_blank" title="<%=jobs[i].company_name%>"><%=jobs[i].company_name.length>10?jobs[i].company_name.substr(0,10)+"...":jobs[i].company_name%></a> - <%=jobs[i].company_type%></div>
+                    <%}%>
+                    <div class="job-info-bottom">
+                        <span class="job-info-city"><span class="icon-locate"></span><%=jobs[i].city.length>12?jobs[i].city.substr(0,12)+"...":jobs[i].city%></span>
+                        <%if(jobs[i].min_payment ==0 && jobs[i].max_payment ==0){%>
+                        <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                        <%}else{%>
+                        <span class="job-info-money"><span class="icon-salary"></span><%=jobs[i].min_payment/10000%>-<%=jobs[i].max_payment/10000%>万/年</span>
+                        <%}%>
+                    </div>
+                    <%if(parseInt(jobs[i].channel_type.toString())==1) {%>
+                    <div class="job-logo">
+                        <%if(jobs[i].company_avatar){%>
+                        <span class="company-logo" style="background-image: url('<%=jobs[i].company_avatar%>?imageView2/2/w/152/h/152')"></span>
+                        <%}else{%>
+                        <span class="company-logo"></span>
+                        <%}%>
+                    </div>
+                    <%}else{%>
+                    <div class="job-logo">
+                        <%if(jobs[i].company_avatar){%>
+                        <span class="det-company-logo" style="background-image: url('<%=jobs[i].company_avatar%>?imageView2/2/w/152/h/152')"></span>
+                        <%}else{%>
+                        <span class="det-company-logo"></span>
+                        <%}%>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <%}%>
+        </div>
+        <%}else{%>
+        <div class="empty-area">
+            <div class="empty-content">
+                <span class="pic fl"></span>
+                <div class="text fl">
+                    <div>暂时没有符合您搜索条件的职位</div>
+                    <span>要不修改搜索条件重新试试?</span>
+                </div>
+            </div>
+        </div>
+        <%}%>
+
+        <!--分页-->
+        <%include common/paging.ejs%>
+    </div>
+
+</div>
+<%include common/footer.ejs%>
+<%include ./common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

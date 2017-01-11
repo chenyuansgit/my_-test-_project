@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <%if(account && account.uid){%>
+    <script>
+        var isLogin = true;
+    </script>
+    <%}else{%>
+    <script>
+        var isLogin = false;
+    </script>
+    <%}%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/sub/IB_subSetting.js"></script>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/sub/setting.css"/>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/sub/list" class="back left-icon"></a>
+        <span>职位详情</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100">
+        <ul class="subList w100 block">
+            <li class="label">关键词</li>
+            <li class="selection" id="key">
+                <input type="text" maxlength="32" class="w100 h100" value ='<%=sub.key||""%>' placeholder="支持多个关键词,逗号隔开"/>
+            </li>
+            <li class="label">实习地点</li>
+            <li class="selection" id="city" data-city-id ='<%=sub.city_id||0%>'><%=sub.city||'不限'%></li>
+            <li class="label">最低学历</li>
+            <li class="selection selector-tab" id="education" data-tag="<%=sub.education||0%>"><%=(!sub.education||sub.education==0)?'不限':(sub.education == 1?'大专':(sub.education==2?'本科':(sub.education==3?'硕士':'博士及以上')))%></li>
+            <li class="label">每日薪资</li>
+            <%if(sub.min_payment==500){%>
+            <li class="selection selector-tab" id="payment" data-tag = 500>500元以上</li>
+            <%}else if(sub.min_payment==200){%>
+            <li class="selection selector-tab" id="payment" data-tag = 200>200-500元</li>
+            <%}else if(sub.min_payment==100){%>
+            <li class="selection selector-tab" id="payment" data-tag = 100>100-200元</li>
+            <%}else if(sub.min_payment==50){%>
+            <li class="selection selector-tab" id="payment" data-tag = 50>50-100元</li>
+            <%}else if(sub.min_payment==1){%>
+            <li class="selection selector-tab" id="payment" data-tag = 1>0-50元</li>
+            <%}else{%>
+            <li class="selection selector-tab" id="payment" data-tag = 0>不限</li>
+            <%}%>
+            <li class="label">每周实习</li>
+            <li class="selection selector-tab" id="workdays" data-tag = '<%=sub.workdays||0%>'><%=sub.workdays>=1?(sub.workdays+'天'):'不限'%></li>
+<!--            <li class="label">推送职位</li>
+            <li class="selection" id="push">需要</li>-->
+        </ul>
+    </div>
+    <button class="footer bottom-fixed w100" id="complete">完成订阅</button>
+</div>
+<div class="selector" id="education-selector">
+    <div class="sel-title"><span class="btn-console"></span>请选择您的学历</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-tag="0"><span>不限</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag="1"><span>大专</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag="2"><span>本科</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag="3"><span>硕士</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag="4"><span>博士及以上</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+<div class="selector" id="payment-selector">
+    <div class="sel-title"><span class="btn-console"></span>期望的每日薪资</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-tag = '0'><span>不限</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '1'><span>0-50元</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '50'><span>50-100元</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '100'><span>100-200元</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '200'><span>200-500元</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '500'><span>500元以上</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+<div class="selector" id="workdays-selector">
+    <div class="sel-title"><span class="btn-console"></span>期望的每周实习天数</div>
+    <div class="sel-content">
+        <div class="sel-tab" data-tag = '0'><span>不限</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '1'><span>1天</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '2'><span>2天</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '3'><span>3天</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '4'><span>4天</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '5'><span>5天</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '6'><span>6天</span><i class="sel-circle"></i></div>
+        <div class="sel-tab" data-tag = '7'><span>7天</span><i class="sel-circle"></i></div>
+    </div>
+</div>
+
+
+</body>
+</html>

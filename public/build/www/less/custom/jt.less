@@ -1,0 +1,61 @@
+/*职位类型选择*/
+.selector-jt{
+  border: 1px solid #eee;
+  width: 500px;
+  position: absolute;
+  z-index: 1000;
+  background: #fff;
+  color: #666;
+  .main-box{
+    border-right: 1px solid #eee;
+    text-align: center;
+    .jt-1st{
+      padding: 5px 8px;
+      cursor: pointer;
+      margin: 1px 0;
+      &:hover,&.curr{
+        background: @mainColor;
+        color: #fff;
+      }
+    }
+  }
+  .sub-box{
+    width: 390px;
+    padding: 10px;
+    .type-detail{
+      display: none;
+      &.curr{
+        display: block;
+      }
+      dl{
+        position: relative;
+        dt{
+          position: absolute;
+          padding:3px 5px;
+          cursor: pointer;
+          color: #333;
+          &:hover,&.selected{
+            background: @mainColor;
+            color: #fff;
+            border-radius:2px;
+          }
+        }
+        dd{
+          margin-left: 75px;
+          a{
+            padding: 3px 8px;
+            margin: 1px 3px;
+            color: #666;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 2px;
+            &:hover,&.selected{
+              background: @mainColor;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2178 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+::selection {
+  background: #00cccc;
+  color: #fff;
+}
+::-moz-selection {
+  background: #00cccc;
+  color: #fff;
+}
+html {
+  width: 100%;
+  height: 100%;
+  min-width: 1024px;
+  color: #333;
+}
+body {
+  font-size: 16px;
+  height: 100%;
+  font-family: "Hiragino Sans GB", "Microsoft Yahei", "SimSun";
+}
+input {
+  -webkit-appearance: textfield;
+  padding: 1px;
+  background-color: white;
+  border: 2px inset;
+  font-family: "Hiragino Sans GB", "Microsoft Yahei", "SimSun";
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  -webkit-rtl-ordering: logical;
+  -webkit-user-select: text;
+  cursor: auto;
+  outline-color: #00cccc;
+}
+textarea,
+keygen,
+select,
+button {
+  margin: 0;
+  font: 13.3333px Arial;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  outline-color: #00cccc;
+}
+textarea,
+keygen,
+select,
+button,
+meter,
+progress {
+  -webkit-writing-mode: horizontal-tb;
+  font-family: PingHei, Microsoft Yahei, SimSun, Arial, Helvetica, sans-serif;
+}
+i,
+span,
+a {
+  display: inline-block;
+}
+li {
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #00cccc;
+}
+em {
+  font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+  -webkit-appearance: none;
+}
+.on {
+  color: #000;
+}
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.tc {
+  text-align: center;
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.transition {
+  -moz-transition: ease-in-out 0.3s;
+  -webkit-transition: ease-in-out 0.3s;
+  -o-transition: ease-in-out 0.3s;
+  -ms-transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.3s;
+}
+.input-warning {
+  border: 1px solid #ef2c55;
+}
+.input-tips {
+  position: relative;
+  z-index: 2;
+  display: block;
+  margin-top: 5px;
+  line-height: 18px;
+  padding-left: 20px;
+  font-size: 15px;
+  color: #ef2c55;
+  background: url("http://www.internbird.com/public/build/web/img/icon-error.png") left center no-repeat;
+  background-size: 15px 15px;
+}
+.input-transparent {
+  position: absolute;
+  display: none;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.btn {
+  cursor: pointer;
+}
+.btn-outline {
+  outline: none;
+  border: none;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
+.btn-blue {
+  background: #00cccc;
+  color: #fff;
+}
+.selector {
+  position: absolute;
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #eee;
+  display: none;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.selector li {
+  color: #999;
+  padding: 5px 0 5px 15px;
+}
+.selector li:hover {
+  background: #ededed;
+  color: #666;
+  cursor: pointer;
+}
+.selector-input {
+  cursor: pointer;
+}
+.selector-input input {
+  cursor: pointer;
+}
+.container {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding: 35px 0 50px;
+}
+.container .center {
+  width: 100%;
+}
+.container .center-content {
+  width: 60%;
+  min-width: 1024px;
+  margin: 0 auto;
+  position: relative;
+}
+.container .center-content .left {
+  width: 72%;
+  float: left;
+  padding-right: 10px;
+  margin-bottom: 50px;
+}
+.container .center-content .right {
+  width: 25%;
+  float: right;
+  top: 0;
+}
+.container .center-content .right .conn-article > div {
+  margin-bottom: 15px;
+}
+.sidebar {
+  width: 230px;
+  float: left;
+  position: relative;
+}
+.content {
+  width: 72.46%;
+  float: right;
+}
+/*日期选择插件*/
+.laydate_body .laydate_box,
+.laydate_body .laydate_box * {
+  margin: 0;
+  padding: 0;
+}
+.laydate_body .laydate_box {
+  width: 240px;
+  font-size: 14px;
+  z-index: 99999999;
+  *margin: -2px 0 0 -2px;
+  *overflow: hidden;
+  _margin: 0;
+  _position: absolute!important;
+  background-color: #fff;
+}
+.laydate_body .laydate_box li {
+  list-style: none;
+}
+.laydate_body .laydate_box .laydate_void {
+  cursor: text!important;
+}
+.laydate_body .laydate_box a,
+.laydate_body .laydate_box a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+.laydate_body .laydate_box a:hover {
+  text-decoration: none;
+}
+.laydate_body .laydate_box cite,
+.laydate_body .laydate_box label {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 5px;
+  border-style: dashed;
+  border-color: transparent;
+  overflow: hidden;
+  cursor: pointer;
+}
+.laydate_body .laydate_box .laydate_yms,
+.laydate_body .laydate_box .laydate_time {
+  display: none;
+}
+.laydate_body .laydate_box .laydate_show {
+  display: block;
+}
+.laydate_body .laydate_box input {
+  outline: 0;
+  font-size: 14px;
+  background-color: #fff;
+}
+.laydate_body .laydate_top {
+  position: relative;
+  height: 26px;
+  padding: 5px;
+  *width: 100%;
+  z-index: 99;
+}
+.laydate_body .laydate_ym {
+  position: relative;
+  float: left;
+  height: 24px;
+  cursor: pointer;
+}
+.laydate_body .laydate_ym input {
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+.laydate_body .laydate_ym .laydate_yms {
+  position: absolute;
+  left: -1px;
+  top: 24px;
+  height: 181px;
+}
+.laydate_body .laydate_y {
+  width: 121px;
+  margin-right: 6px;
+}
+.laydate_body .laydate_y input {
+  width: 64px;
+  margin-right: 15px;
+}
+.laydate_body .laydate_y .laydate_yms {
+  width: 121px;
+  text-align: center;
+}
+.laydate_body .laydate_y .laydate_yms a {
+  position: relative;
+  display: block;
+  height: 20px;
+}
+.laydate_body .laydate_y .laydate_yms ul {
+  height: 139px;
+  padding: 0;
+  *overflow: hidden;
+}
+.laydate_body .laydate_y .laydate_yms ul li {
+  float: left;
+  width: 60px;
+  height: 20px;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.laydate_body .laydate_m {
+  width: 99px;
+}
+.laydate_body .laydate_m .laydate_yms {
+  width: 99px;
+  padding: 0;
+}
+.laydate_body .laydate_m input {
+  width: 42px;
+  margin-right: 15px;
+}
+.laydate_body .laydate_m .laydate_yms span {
+  display: block;
+  float: left;
+  width: 42px;
+  margin: 5px 0 0 5px;
+  line-height: 24px;
+  text-align: center;
+  _display: inline;
+}
+.laydate_body .laydate_choose {
+  display: block;
+  float: left;
+  position: relative;
+  width: 20px;
+  height: 24px;
+}
+.laydate_body .laydate_choose cite,
+.laydate_body .laydate_tab cite {
+  left: 50%;
+  top: 50%;
+}
+.laydate_body .laydate_chtop cite {
+  margin: -7px 0 0 -5px;
+  border-bottom-style: solid;
+}
+.laydate_body .laydate_chdown cite,
+.laydate_body .laydate_ym label {
+  top: 50%;
+  margin: -2px 0 0 -5px;
+  border-top-style: solid;
+}
+.laydate_body .laydate_chprev cite {
+  margin: -5px 0 0 -7px;
+}
+.laydate_body .laydate_chnext cite {
+  margin: -5px 0 0 -2px;
+}
+.laydate_body .laydate_ym label {
+  right: 28px;
+}
+.laydate_body .laydate_table {
+  width: 230px;
+  margin: 0 5px;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+.laydate_body .laydate_table td {
+  width: 31px;
+  height: 19px;
+  line-height: 19px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 13px;
+}
+.laydate_body .laydate_table thead {
+  height: 26px;
+  line-height: 26px;
+}
+.laydate_body .laydate_table thead th {
+  font-weight: 400;
+  font-size: 13px;
+  text-align: center;
+}
+.laydate_body .laydate_bottom {
+  position: relative;
+  height: 22px;
+  line-height: 20px;
+  padding: 5px;
+  font-size: 13px;
+}
+.laydate_body .laydate_bottom #laydate_hms {
+  position: relative;
+  z-index: 1;
+  float: left;
+}
+.laydate_body .laydate_time {
+  position: absolute;
+  left: 5px;
+  bottom: 26px;
+  width: 129px;
+  height: 125px;
+  *overflow: hidden;
+}
+.laydate_body .laydate_time .laydate_hmsno {
+  padding: 5px 0 0 5px;
+}
+.laydate_body .laydate_time .laydate_hmsno span {
+  display: block;
+  float: left;
+  width: 24px;
+  height: 19px;
+  line-height: 19px;
+  text-align: center;
+  cursor: pointer;
+  *margin-bottom: -5px;
+}
+.laydate_body .laydate_time1 {
+  width: 228px;
+  height: 154px;
+}
+.laydate_body .laydate_time1 .laydate_hmsno {
+  padding: 6px 0 0 8px;
+}
+.laydate_body .laydate_time1 .laydate_hmsno span {
+  width: 21px;
+  height: 20px;
+  line-height: 20px;
+}
+.laydate_body .laydate_msg {
+  left: 49px;
+  bottom: 67px;
+  width: 141px;
+  height: auto;
+  overflow: hidden;
+}
+.laydate_body .laydate_msg p {
+  padding: 5px 10px;
+}
+.laydate_body .laydate_bottom li {
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  border-right: none;
+  font-weight: 900;
+}
+.laydate_body .laydate_bottom .laydate_sj {
+  width: 33px;
+  text-align: center;
+  font-weight: 400;
+}
+.laydate_body .laydate_bottom input {
+  float: left;
+  width: 21px;
+  height: 20px;
+  line-height: 20px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+}
+.laydate_body .laydate_bottom .laydte_hsmtex {
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+.laydate_body .laydate_bottom .laydte_hsmtex span {
+  position: absolute;
+  width: 20px;
+  top: 0;
+  right: 0px;
+  cursor: pointer;
+}
+.laydate_body .laydate_bottom .laydte_hsmtex span:hover {
+  font-size: 14px;
+}
+.laydate_body .laydate_bottom .laydate_btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.laydate_body .laydate_bottom .laydate_btn a {
+  float: left;
+  height: 20px;
+  padding: 0 6px;
+  _padding: 0 5px;
+}
+.laydate_body .laydate_bottom .laydate_v {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  font-family: Courier;
+  z-index: 0;
+}
+.laydate_body .laydate_bottom #laydate_hms,
+.laydate_body .laydate_time {
+  border: 1px solid #eee;
+}
+.laydate_body .laydate_box,
+.laydate_body .laydate_ym .laydate_yms,
+.laydate_body .laydate_time {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.laydate_body .laydate_box {
+  border-top: none;
+  border-bottom: none;
+  background-color: #fff;
+  color: #00cccc;
+}
+.laydate_body .laydate_box input {
+  background: none!important;
+  color: #fff;
+}
+.laydate_body .laydate_box .laydate_void {
+  color: #ddd!important;
+}
+.laydate_body .laydate_box .laydate_void:hover {
+  background: #eee!important;
+}
+.laydate_body .laydate_box a,
+.laydate_body .laydate_box a:hover {
+  color: #00cccc;
+}
+.laydate_body .laydate_box a:hover {
+  color: #666;
+}
+.laydate_body .laydate_click {
+  background-color: #00cccc !important;
+  color: #fff!important;
+}
+.laydate_body .laydate_top {
+  border-top: 1px solid #00cccc;
+  background-color: #00cccc;
+}
+.laydate_body .laydate_ym {
+  border: 1px solid #00cccc;
+  background-color: #00cccc;
+}
+.laydate_body .laydate_ym .laydate_yms {
+  border: 1px solid #00cccc;
+  background-color: #00cccc;
+  color: #fff;
+}
+.laydate_body .laydate_y .laydate_yms a {
+  border-bottom: 1px solid #00cccc;
+}
+.laydate_body .laydate_y .laydate_yms .laydate_chdown {
+  border-top: 1px solid #00cccc;
+  border-bottom: none;
+}
+.laydate_body .laydate_choose {
+  border-left: 1px solid #00cccc;
+}
+.laydate_body .laydate_chprev {
+  border-left: none;
+  border-right: 1px solid #00cccc;
+}
+.laydate_body .laydate_choose:hover,
+.laydate_body .laydate_y .laydate_yms a:hover {
+  background-color: #00cccc;
+}
+.laydate_body .laydate_chtop cite {
+  border-bottom-color: #fff;
+}
+.laydate_body .laydate_chdown cite,
+.laydate_body .laydate_ym label {
+  border-top-color: #fff;
+}
+.laydate_body .laydate_chprev cite {
+  border-right-style: solid;
+  border-right-color: #fff;
+}
+.laydate_body .laydate_chnext cite {
+  border-left-style: solid;
+  border-left-color: #fff;
+}
+.laydate_body .laydate_table {
+  width: 240px!important;
+  margin: 0!important;
+  border: 1px solid #eee;
+  border-top: none;
+  border-bottom: none;
+}
+.laydate_body .laydate_table td {
+  border: none;
+  height: 21px!important;
+  line-height: 21px!important;
+  background-color: #fff;
+  color: #00cccc;
+}
+.laydate_body .laydate_table .laydate_nothis {
+  color: #999;
+}
+.laydate_body .laydate_table thead {
+  border-bottom: 1px solid #eee;
+  height: 26px!important;
+  line-height: 26px!important;
+}
+.laydate_body .laydate_bottom {
+  border: 1px solid #eee;
+  border-top: none;
+}
+.laydate_body .laydate_bottom #laydate_hms {
+  background-color: #fff;
+}
+.laydate_body .laydate_time {
+  background-color: #fff;
+}
+.laydate_body .laydate_time1 {
+  width: 226px!important;
+  height: 152px!important;
+}
+.laydate_body .laydate_bottom .laydate_sj {
+  width: 31px!important;
+  border-right: 1px solid #eee;
+  background-color: #fff;
+}
+.laydate_body .laydate_bottom input {
+  background-color: #fff;
+  color: #00cccc;
+}
+.laydate_body .laydate_bottom .laydte_hsmtex {
+  border-bottom: 1px solid #eee;
+}
+.laydate_body .laydate_bottom .laydate_v {
+  color: #999999;
+}
+.laydate_body .laydate_bottom .laydate_btn a {
+  border-right: none;
+  background-color: #fff;
+}
+.laydate_body .laydate_bottom .laydate_btn a:hover {
+  background-color: #F6F6F6;
+  color: #00cccc;
+}
+.laydate_body .laydate_m .laydate_yms span:hover,
+.laydate_body .laydate_time .laydate_hmsno span:hover,
+.laydate_body .laydate_y .laydate_yms ul li:hover,
+.laydate_body .laydate_table td:hover {
+  background-color: #00cccc;
+  color: #fff;
+}
+/*header*/
+.header {
+  width: 100%;
+  background-color: #fafafa;
+}
+.header-bar {
+  width: 100%;
+  height: 30px;
+  color: #c4c3c3;
+  background: #333;
+}
+.header-bar a {
+  color: #c4c3c3;
+}
+.header-bar a:hover {
+  color: #fff;
+}
+.header-bar-inner {
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.header-bar-inner .header-bar-l {
+  float: left;
+  line-height: 30px;
+}
+.header-bar-inner .header-bar-r {
+  float: right;
+  line-height: 30px;
+}
+.header-bar-inner .header-bar-r > li {
+  display: inline-block;
+  position: relative;
+}
+.header-bar-inner .header-bar-r > li > a {
+  padding: 0 10px;
+}
+.header-bar-inner .header-bar-r > li > span {
+  padding: 0 10px;
+}
+.header-bar-inner .header-bar-r > li i {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  font-size: 0;
+  height: 0;
+  width: 0;
+  border-width: 5px 4px 0;
+  border-style: solid dashed;
+  border-color: #c4c3c3 transparent transparent;
+  overflow: hidden;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+.header-bar-inner .header-bar-r > li:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.header-bar-inner .header-bar-r > li:hover i {
+  -webkit-transfrom: rotate(180deg);
+  -moz-transfrom: rotate(180deg);
+  -ms-transfrom: rotate(180deg);
+  -o-transfrom: rotate(180deg);
+  transform: rotate(180deg);
+  border-color: #fff transparent transparent;
+  animation-fill-mode: forwards;
+}
+.header-bar-inner .header-bar-r > li ul {
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  min-width: 80px;
+  padding-bottom: 8px;
+  background-color: #333;
+  position: absolute;
+  right: -5px;
+  top: 30px;
+  z-index: 1000;
+}
+.header-bar-inner .header-bar-r > li ul li {
+  position: relative;
+  line-height: 30px;
+}
+.header-bar-inner .header-bar-r > li ul li a {
+  width: 100%;
+  min-width: 56px;
+  display: block;
+  color: #c4c3c3;
+  line-height: 30px;
+  padding: 0 8px;
+  margin: 0;
+}
+.header-bar-inner .header-bar-r > li ul li a:hover {
+  color: #fff;
+}
+.header-bar-inner .header-bar-r > li:hover ul {
+  display: block;
+}
+.header-nav {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+}
+.header-nav-inner {
+  width: 60%;
+  min-width: 1024px;
+  margin: 0 auto;
+  position: relative;
+}
+.header-nav-inner .logo {
+  position: absolute;
+  width: 140px;
+  height: 50px;
+  margin-top: 5px;
+  margin-left: 30px;
+  text-align: right;
+  line-height: 26px;
+  color: #666;
+  font-size: 12px;
+  background: url("http://www.internbird.com/public/build/web/img/logo.png") 0 0 no-repeat;
+  background-image: -webkit-image-set(url('http://www.internbird.com/public/build/web/img/logo.png') 1x, url('http://www.internbird.com/public/build/web/img/logo_3x.png') 2x);
+  background-size: auto 100%;
+  display: inline-block;
+}
+.header-nav-inner .header-link {
+  display: inline-block;
+  margin-left: 220px;
+  font-size: 18px;
+}
+.header-nav-inner .header-link > li {
+  display: inline-block;
+  height: 60px;
+  padding: 0 22px;
+  position: relative;
+}
+.header-nav-inner .header-link > li > a {
+  display: inline-block;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #999;
+}
+.header-nav-inner .header-link > li .icon-test {
+  position: absolute;
+  width: 49px;
+  height: 21px;
+  background: url("http://www.internbird.com/public/build/web/img/icon-test.png") 0 0 no-repeat;
+  background-image: -webkit-image-set(url('http://www.internbird.com/public/build/web/img/icon-test.png') 1x, url('http://www.internbird.com/public/build/web/img/icon-test_3x.png') 2x);
+  background-size: cover;
+  top: 8px;
+  right: -31px;
+}
+.header-nav-inner .header-link > li .icon-curr-up {
+  position: absolute;
+  width: 15px;
+  height: 5px;
+  bottom: -1px;
+  left: 50%;
+  margin-left: -8px;
+  background-image: url("http://www.internbird.com/public/build/web/img/icon-up.png");
+  background-repeat: no-repeat;
+}
+.header-nav-inner .header-link > li .sub-nav {
+  display: none;
+  position: absolute;
+  z-index: 10000;
+  width: 88px;
+  left: -4px;
+  background: #f3f3f3;
+  font-size: 15px;
+}
+.header-nav-inner .header-link > li .sub-nav li {
+  width: 88px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #999;
+  border-bottom: 1px solid #eee;
+}
+.header-nav-inner .header-link > li .sub-nav li a {
+  color: #999;
+  width: 100%;
+  height: 100%;
+}
+.header-nav-inner .header-link > li .sub-nav li:hover a,
+.header-nav-inner .header-link > li .sub-nav li.curr a {
+  color: #00cccc;
+  background: #fff;
+}
+.header-nav-inner .header-link > li:hover .sub-nav {
+  display: block;
+}
+.header-nav-inner .header-link > li:hover > a,
+.header-nav-inner .header-link .curr > a {
+  color: #333;
+}
+.header-nav-inner .back {
+  line-height: 60px;
+  color: #999;
+  font-size: 15px;
+}
+.header-nav-inner .back:hover {
+  color: #333;
+}
+.header .top-banner {
+  display: block;
+  height: 68px;
+  background: url("http://image.internbird.cn/quick-recruit-banner.png") 0 0 no-repeat;
+  background-position: center;
+}
+.header .top-banner span {
+  font-size: 30px;
+  position: absolute;
+  left: 55%;
+  line-height: 68px;
+  color: #dd4c2a;
+}
+/*header end*/
+/*footer*/
+.footer {
+  width: 100%;
+  background: #fafafa;
+  color: #666;
+  position: relative;
+}
+.footer a {
+  color: #666;
+}
+.footer-content {
+  width: 65%;
+  min-width: 1024px;
+  padding: 10px 0;
+  margin: 0 auto 0;
+  position: relative;
+  font-size: 15px;
+}
+.footer-content > div {
+  padding: 15px 0;
+}
+.footer-content .top {
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+.footer-content .top-l {
+  float: left;
+}
+.footer-content .top-l > span {
+  margin-right: 30px;
+}
+.footer-content .top-r {
+  position: absolute;
+  right: 20px;
+  top: 0;
+}
+.footer-content .top-r .office-account {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-left: 20px;
+  position: relative;
+  background: url("http://www.internbird.com/public/build/web/img/icon-office.png") no-repeat;
+}
+.footer-content .top-r .office-account.office-wechat {
+  background-position: 0 -51px;
+}
+.footer-content .top-r .office-account.office-wechat .qrcode {
+  position: absolute;
+  width: 266px;
+  height: 340px;
+  background: url("http://www.internbird.com/public/build/web/img/wechat-qrcode.png") 0 0 no-repeat;
+  background-size: 100% auto;
+  top: -345px;
+  left: -113px;
+  display: none;
+}
+.footer-content .top-r .office-account.office-wechat:hover .qrcode {
+  display: block;
+}
+.footer-content .top-r .office-account.office-weibo {
+  background-position: 0 0;
+}
+.footer-content .friend-links a {
+  margin-left: 15px;
+}
+/*footer end*/
+/*城市选择*/
+/*
+.selector-city{
+  border: 1px solid #eee;
+  width: 470px;
+  padding:20px 15px;
+  padding-bottom: 10px;
+  position: absolute;
+  z-index: 1000;
+  background: #fff;
+  display: none;
+  dl{
+    dt{
+      position: absolute;
+      text-align: left;
+      letter-spacing: 2px;
+    }
+    dd{
+      margin-left: 95px;
+      span{
+        padding: 5px 8px;
+        background: #eee;
+        color: #666;
+        .borderRadius(1px);
+        margin: 0 10px 15px 0;
+        cursor: pointer;
+        &:hover,&.on{
+          background: @mainColor;
+          color: #fff;
+        }
+      }
+    }
+  }
+}*/
+.selector-city {
+  width: 359px;
+  height: 160px;
+  position: absolute;
+  background: #fff;
+  color: #666;
+  font-size: 15px;
+  z-index: 1000;
+  border: 1px solid #eee;
+  display: none;
+}
+.selector-city .province-list {
+  width: 95px;
+  height: 160px;
+  text-align: center;
+  overflow-y: auto;
+}
+.selector-city .province-list .province {
+  padding: 3px 15px;
+  cursor: pointer;
+}
+.selector-city .province-list .province:hover {
+  background: #ddd;
+}
+.selector-city .province-list .province.curr {
+  background: #00cccc;
+  color: #fff;
+}
+.selector-city .city-list {
+  width: 244px;
+  height: 140px;
+  padding: 10px;
+  display: none;
+  overflow-y: auto;
+}
+.selector-city .city-list.curr {
+  display: block;
+}
+.selector-city .city-list .city {
+  padding: 3px 9px;
+  margin: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.selector-city .city-list .city:hover {
+  background: #ddd;
+}
+.selector-city .city-list .city.selected {
+  background: #00cccc;
+  color: #fff;
+}
+/*mask-area 遮罩层*/
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+  z-index: 1000;
+}
+.popBox {
+  display: none;
+  position: fixed;
+  width: 480px;
+  left: 50%;
+  top: 50%;
+  margin-left: -240px;
+  margin-top: -220px;
+  padding-bottom: 10px;
+  background: #fff;
+  z-index: 1001;
+}
+.popBox .popBox-title {
+  background: #00cccc;
+  color: #fff;
+  height: 44px;
+  line-height: 44px;
+  padding-left: 28px;
+  font-size: 18px;
+}
+.popBox .popBox-title.tc {
+  padding-left: 0;
+}
+.popBox .popBox-content .btn-area {
+  margin: 15px 0;
+}
+.popBox .popBox-content .btn-area .btn {
+  width: 65px;
+  height: 35px;
+  border-radius: 3px;
+}
+.popBox .popBox-content .btn-area .btn-confirm {
+  background: #00cccc;
+  color: #fff;
+}
+.popBox .popBox-content .btn-area .btn-console {
+  background: #f8f8f8;
+  margin-left: 20px;
+}
+.popBox .popBox-content .btn-area .btn-link {
+  background: #00ced1;
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 2px;
+}
+.cal_ym {
+  position: absolute;
+  height: 160px;
+  width: 244px;
+  background-color: #fff;
+  z-index: 5000;
+  border: 1px solid #e7e7e7;
+}
+.cal_ym * {
+  list-style: none;
+}
+.cal_ym ul {
+  float: left;
+}
+.cal_ym ul.cal_year {
+  width: 90px;
+  height: 160px;
+  overflow: auto;
+}
+.cal_ym ul.cal_year li {
+  width: 72px;
+  height: 32px;
+  cursor: pointer;
+  line-height: 32px;
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+}
+.cal_ym ul.cal_year li:hover {
+  background-color: #eee !important;
+  color: #333 !important;
+}
+.cal_ym ul.cal_year li.active {
+  background-color: #00ced1 !important;
+  color: #fff !important;
+}
+.cal_ym ul.cal_month {
+  width: 136px;
+  overflow: auto;
+  padding: 20px 0 10px 10px ;
+}
+.cal_ym ul.cal_month li {
+  float: left;
+  cursor: pointer;
+  text-align: center;
+  width: 33%;
+  margin-bottom: 10px;
+}
+.cal_ym ul.cal_month li > span {
+  font-size: 14px;
+  padding: 2px 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.cal_ym ul.cal_month li > span:hover {
+  background: #eee;
+}
+.cal_ym ul.cal_month li > span.active {
+  background: #00cccc;
+}
+.cal_ym ul.cal_month li.disabled span {
+  color: #999;
+}
+.cal_ym ul.cal_month li.active span {
+  background: #00ced1 !important;
+  color: #fff !important;
+}
+/*resume*/
+.resume .resume-content {
+  width: 742px;
+  position: relative;
+  margin: 0 auto;
+  color: #333;
+}
+.resume .resume-content .resume-header {
+  width: 742px;
+  height: 176px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/mr-top.png") 0 0 no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.resume .resume-content .resume-header .info {
+  height: 85px;
+  line-height: 85px;
+  color: #fff;
+  font-size: 18px;
+  margin-left: 205px;
+}
+.resume .resume-content .resume-header .info .name {
+  font-size: 25px;
+}
+.resume .resume-content .resume-header .avatar {
+  position: absolute;
+  z-index: 1000;
+  width: 163px;
+  height: 163px;
+  top: 15px;
+  left: 30px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-avatar.png") 0 0 no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+.resume .resume-content .resume-header .avatar * {
+  width: 163px;
+  height: 163px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.resume .resume-content .resume-header .avatar #avatar-file {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}
+.resume .resume-content .resume-header .avatar .avatar-mask {
+  background: url("http://www.internbird.com/public/build/web/img/mr/head-mask.png") 0 0 no-repeat;
+  background-size: cover;
+  display: none;
+}
+.resume .resume-content .resume-header .avatar .loading {
+  width: 30px;
+  height: 30px;
+  background: url("../../../img/loading-s.gif") 0 0 no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+}
+.resume .resume-content .resume-header .avatar:hover .avatar-mask {
+  display: block;
+}
+.resume .resume-content .resume-header .resume-r {
+  position: absolute;
+  right: 40px;
+  top: 38px;
+}
+.resume .resume-content .resume-header .resume-r .btn {
+  width: 18px;
+  height: 18px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-mr.png");
+}
+.resume .resume-content .resume-header .resume-r .btn-edit {
+  background-position: -4px -110px;
+}
+.resume .resume-content .resume-inner {
+  width: 700px;
+  position: relative;
+  margin: -96px auto 0;
+  background: #f8f8f8;
+  padding: 2px 0 25px;
+}
+.resume .resume-content .resume-inner .resume-block {
+  margin: 25px 0 0 30px;
+}
+.resume .resume-content .resume-inner .resume-block .show-state {
+  position: relative;
+  margin: 15px 0 0 40px;
+}
+.resume .resume-content .resume-inner .resume-block .show-state .resume-r {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.resume .resume-content .resume-inner .resume-block .show-state .resume-r .btn {
+  width: 18px;
+  height: 18px;
+  margin-right: 15px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-mr.png");
+}
+.resume .resume-content .resume-inner .resume-block .show-state .resume-r .btn-edit {
+  background-position: -76px -33px;
+}
+.resume .resume-content .resume-inner .resume-block .show-state .resume-r .btn-delete {
+  background-position: -76px -67px;
+}
+.resume .resume-content .resume-inner .resume-block-title {
+  font-size: 17px;
+  position: relative;
+}
+.resume .resume-content .resume-inner .resume-block-title .icon-diamond {
+  width: 22px;
+  height: 22px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-mr.png") 0 0 no-repeat;
+  background-position: -74px 0;
+  position: absolute;
+}
+.resume .resume-content .resume-inner .resume-block-title .title {
+  margin-left: 40px;
+}
+.resume .resume-content .resume-inner .resume-block-title .line {
+  width: 540px;
+  height: 2px;
+  background: #7de4e5;
+  margin-left: 21px;
+  vertical-align: middle;
+}
+.resume .resume-content .resume-inner .resume-block-base {
+  margin: 0;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base {
+  width: 460px;
+  position: relative;
+  margin-left: 240px;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li {
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  position: relative;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li:nth-child(odd) {
+  width: 60%;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li:nth-child(even) {
+  width: 40%;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li .icon {
+  width: 25px;
+  height: 19px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-mr.png") 0 0 no-repeat;
+  position: absolute;
+  top: 10px;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li .icon-address {
+  background-position: 0 0;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li .icon-birth {
+  background-position: 0 -52px;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li .icon-email {
+  background-position: 0 -26px;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li .icon-phone {
+  background-position: 0 -80px;
+}
+.resume .resume-content .resume-inner .resume-block-base .resume-base li span {
+  margin-left: 28px;
+}
+.resume .resume-content .resume-inner .resume-block-edu {
+  margin-top: 40px;
+}
+.resume .resume-content .resume-inner .resume-block-edu .resume-edu > span {
+  margin-right: 10px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li {
+  min-width: 33%;
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li .icon {
+  width: 16px;
+  height: 18px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-mr.png") 0 0 no-repeat;
+  position: absolute;
+  top: 10px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li .icon-position {
+  background-position: -40px 0;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li .icon-location {
+  background-position: -40px -27px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li .icon-payment {
+  background-position: -40px -50px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li .icon-days {
+  background-position: -40px -78px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li .icon-duration {
+  background-position: -40px -110px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope li span {
+  margin-left: 25px;
+}
+.resume .resume-content .resume-inner .resume-block-hope .resume-hope .resume-r {
+  top: 12px;
+  right: 0;
+}
+.resume .resume-content .resume-inner .resume-block-skill .skill {
+  max-width: 550px;
+  word-break: break-all;
+}
+.resume .resume-content .resume-inner .resume-block .resume-exp {
+  margin: 20px 0 0 40px;
+}
+.resume .resume-content .resume-inner .resume-block .resume-exp .exp-top .exp-role {
+  margin-left: 20px;
+}
+.resume .resume-content .resume-inner .resume-block .resume-exp .exp-time {
+  margin-top: 10px;
+}
+.resume .resume-content .resume-inner .resume-block .resume-exp .exp-content {
+  margin-top: 10px;
+}
+.resume .resume-content .resume-inner .resume-block .resume-exp .exp-content p {
+  line-height: 25px;
+}
+.resume .resume-content .resume-inner .resume-block-self .resume-self .self-content {
+  width: 82%;
+}
+.resume .resume-content .resume-inner .resume-block-self .resume-self .self-content p {
+  line-height: 25px;
+}
+.resume .resume-content .resume-inner .resume-block-self-state {
+  margin: 30px 0 15px;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con {
+  width: 315px;
+  margin: 0 auto;
+  position: relative;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con {
+  width: 315px;
+  height: 44px;
+  font-size: 18px;
+  background: #00cccc;
+  cursor: pointer;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con:hover,
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con:focus {
+  background: #65e2e4;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con:hover .self-state-btn,
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con:focus .self-state-btn,
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con:hover i,
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con:focus i {
+  background-color: #65e2e4;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-con .self-state-btn {
+  width: 285px;
+  height: 100%;
+  border: none;
+  background: #00cccc;
+  font-size: 16px;
+  text-align: left;
+  color: #fff;
+  padding-left: 15px;
+  outline: none;
+  cursor: pointer;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con i {
+  width: 17px;
+  height: 13px;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-mr.png") 0 0 no-repeat;
+  background-position: -76px -108px;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-list {
+  display: none;
+  position: absolute;
+  top: 45px;
+  left: 0;
+  z-index: 2;
+  width: 315px;
+  background-color: #65e2e4;
+  box-shadow: 2px 2px 4px #efefe4;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-list .ul-self-state {
+  list-style: none;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-list .ul-self-state li {
+  padding: 5px 15px;
+  color: #fff;
+  cursor: pointer;
+}
+.resume .resume-content .resume-inner .resume-block-self-state-con .self-state-list .ul-self-state li:hover {
+  background: #00cccc;
+}
+.resume .resume-content .resume-inner .resume-block .add-area {
+  text-align: center;
+  margin-top: 15px;
+}
+.resume .resume-content .resume-inner .resume-block .add-area .btn-add {
+  color: #00cccc;
+}
+.resume .resume-content .resume-inner .resume-block-project,
+.resume .resume-content .resume-inner .resume-block-school,
+.resume .resume-content .resume-inner .resume-block-intern,
+.resume .resume-content .resume-inner .resume-block-self {
+  /*ueditor*/
+  /*ueditor end*/
+}
+.resume .resume-content .resume-inner .resume-block-project p,
+.resume .resume-content .resume-inner .resume-block-school p,
+.resume .resume-content .resume-inner .resume-block-intern p,
+.resume .resume-content .resume-inner .resume-block-self p {
+  margin: 0.5em 0;
+}
+.resume .resume-content .resume-inner .resume-block-project strong,
+.resume .resume-content .resume-inner .resume-block-school strong,
+.resume .resume-content .resume-inner .resume-block-intern strong,
+.resume .resume-content .resume-inner .resume-block-self strong {
+  font-weight: 700;
+}
+.resume .resume-content .resume-inner .resume-block-project ol li,
+.resume .resume-content .resume-inner .resume-block-school ol li,
+.resume .resume-content .resume-inner .resume-block-intern ol li,
+.resume .resume-content .resume-inner .resume-block-self ol li {
+  list-style-type: decimal;
+}
+.resume .resume-content .resume-inner .resume-block-project ul li,
+.resume .resume-content .resume-inner .resume-block-school ul li,
+.resume .resume-content .resume-inner .resume-block-intern ul li,
+.resume .resume-content .resume-inner .resume-block-self ul li {
+  list-style-type: disc;
+}
+.resume .resume-content .resume-inner .resume-block-project .list-paddingleft-2,
+.resume .resume-content .resume-inner .resume-block-school .list-paddingleft-2,
+.resume .resume-content .resume-inner .resume-block-intern .list-paddingleft-2,
+.resume .resume-content .resume-inner .resume-block-self .list-paddingleft-2,
+.resume .resume-content .resume-inner .resume-block-project .list-paddingleft-1,
+.resume .resume-content .resume-inner .resume-block-school .list-paddingleft-1,
+.resume .resume-content .resume-inner .resume-block-intern .list-paddingleft-1,
+.resume .resume-content .resume-inner .resume-block-self .list-paddingleft-1 {
+  padding-left: 23px;
+}
+.resume .resume-content .resume-inner .resume-block-project .ueditor_underline,
+.resume .resume-content .resume-inner .resume-block-school .ueditor_underline,
+.resume .resume-content .resume-inner .resume-block-intern .ueditor_underline,
+.resume .resume-content .resume-inner .resume-block-self .ueditor_underline {
+  text-decoration: underline;
+}
+.resume .resume-content .resume-inner .resume-block-project .ueditor_left,
+.resume .resume-content .resume-inner .resume-block-school .ueditor_left,
+.resume .resume-content .resume-inner .resume-block-intern .ueditor_left,
+.resume .resume-content .resume-inner .resume-block-self .ueditor_left {
+  text-align: left;
+}
+.resume .resume-content .resume-inner .resume-block-project .ueditor_right,
+.resume .resume-content .resume-inner .resume-block-school .ueditor_right,
+.resume .resume-content .resume-inner .resume-block-intern .ueditor_right,
+.resume .resume-content .resume-inner .resume-block-self .ueditor_right {
+  text-align: right;
+}
+.resume .resume-content .resume-inner .resume-block-project .ueditor_center,
+.resume .resume-content .resume-inner .resume-block-school .ueditor_center,
+.resume .resume-content .resume-inner .resume-block-intern .ueditor_center,
+.resume .resume-content .resume-inner .resume-block-self .ueditor_center {
+  text-align: center;
+}
+.resume .resume-content .resume-inner .resume-block-project .ueditor_indent2,
+.resume .resume-content .resume-inner .resume-block-school .ueditor_indent2,
+.resume .resume-content .resume-inner .resume-block-intern .ueditor_indent2,
+.resume .resume-content .resume-inner .resume-block-self .ueditor_indent2 {
+  text-indent: 2em;
+}
+.resume .resume-content .resume-inner .resume-edit {
+  border: 1px solid #eee;
+  background: #fff;
+  margin-top: 5px;
+  padding: 15px;
+  display: none;
+}
+.resume .resume-content .resume-inner .resume-edit input[type="text"] {
+  border: 1px solid #eee;
+}
+.resume .resume-content .resume-inner .resume-edit input.error {
+  border: 1px solid #ef2c55;
+}
+.resume .resume-content .resume-inner .resume-edit > div {
+  margin-top: 10px;
+  width: 100%;
+}
+.resume .resume-content .resume-inner .resume-edit .title {
+  width: 70px;
+  text-align: right;
+  margin-right: 15px;
+  margin-top: 5px;
+}
+.resume .resume-content .resume-inner .resume-edit .title.tit-r {
+  margin-left: 20px;
+}
+.resume .resume-content .resume-inner .resume-edit .editor-content {
+  width: 80%;
+}
+.resume .resume-content .resume-inner .resume-edit .tab {
+  padding: 3px 8px;
+  margin-right: 10px;
+  color: #999;
+  border: 1px solid #eee;
+  background: #fff;
+  cursor: pointer;
+}
+.resume .resume-content .resume-inner .resume-edit .tab:hover,
+.resume .resume-content .resume-inner .resume-edit .tab.on {
+  border-color: #00cccc;
+  color: #333;
+}
+.resume .resume-content .resume-inner .resume-edit .tab.on {
+  border-color: #00cccc;
+}
+.resume .resume-content .resume-inner .resume-edit .sex-select {
+  margin-left: 5px;
+}
+.resume .resume-content .resume-inner .resume-edit input[type="text"] {
+  width: 200px;
+  padding: 5px 5px 5px 10px;
+  font-size: 16px;
+}
+.resume .resume-content .resume-inner .resume-edit-skill input[type="text"] {
+  width: 500px;
+}
+.resume .resume-content .resume-inner .resume-edit textarea {
+  width: 435px;
+  height: 150px;
+  resize: none;
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+.resume .resume-content .resume-inner .resume-edit .btn-area {
+  margin-left: 88px;
+}
+.resume .resume-content .resume-inner .resume-edit .btn-area input[type="button"] {
+  padding: 5px 25px;
+  margin-right: 15px;
+  font-size: 16px;
+  border: 1px solid #eee;
+  background: #00cccc;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}
+.resume .resume-content .resume-inner .resume-edit .btn-area .delete {
+  color: #ef2c55;
+  cursor: pointer;
+  font-size: 15px;
+}
+.resume .resume-content .resume-inner .resume-edit-self textarea {
+  width: 600px;
+  height: 200px;
+  resize: none;
+  margin-left: 15px;
+  padding: 5px;
+  font-size: 16px;
+}
+.resume .resume-content .resume-inner .resume-edit-self .btn-area {
+  text-align: right;
+  margin-right: 50px;
+  margin-left: 0;
+}
+.resume .resume-content .resume-inner .resume-update-time {
+  display: inline-block;
+  text-align: right;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #999;
+  float: right;
+}
+.resume .resume-content .resume-inner .selector {
+  width: 215px;
+}
+.resume .resume-content .resume-inner .selector-city {
+  margin-left: 88px;
+}
+.resume .right .resume-right > div {
+  padding: 10px 20px 10px 10px;
+  margin-bottom: 10px;
+}
+.resume .right .resume-right > div.download-select {
+  padding: 5px 10px;
+  display: none;
+  margin-bottom: 0;
+}
+.resume .right .resume-right .set-default {
+  width: 100%;
+  padding: 7px 0;
+  height: 34px;
+  background-color: #f8f8f8;
+}
+.resume .right .resume-right .set-default-wrap {
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+  height: 32px;
+  border: 1px solid #f1f3e9;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.resume .right .resume-right .set-default-wrap .btn-set-default {
+  padding-left: 9px;
+  height: 100%;
+  font-size: 16px;
+  border: none;
+  background-color: #f8f8f8;
+  outline: none;
+  cursor: pointer;
+}
+.resume .right .resume-right .set-default-wrap .resume-list {
+  position: absolute;
+  width: 100%;
+  top: 36px;
+  background: #fff;
+  border: 1px solid #f1f3e9;
+  display: none;
+}
+.resume .right .resume-right .set-default-wrap .resume-list li {
+  padding-left: 10px;
+  line-height: 30px;
+}
+.resume .right .resume-right .set-default-wrap .resume-list li:hover {
+  background: #f8f8f8;
+}
+.resume .right .resume-right .resume-integrity-area {
+  background: #f8f8f8;
+}
+.resume .right .resume-right .resume-integrity-area em {
+  color: #00cccc;
+}
+.resume .right .resume-right .resume-integrity-area .resume-integrity {
+  margin-top: 15px;
+  position: relative;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.resume .right .resume-right .resume-integrity-area .resume-integrity .integrity-solid {
+  width: 0;
+  position: absolute;
+  height: 100%;
+  border-radius: 5px;
+  z-index: 3;
+  background-color: #fff;
+}
+.resume .right .resume-right .btn-find-intern {
+  padding: 10px 20px;
+  background: #00cccc;
+  border: 1px solid #00cccc;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  outline: none;
+}
+.resume .right .resume-right .btn-find-intern a {
+  color: #fff;
+}
+.resume .right .resume-right .btn-downResume {
+  background: #00cccc;
+  border: 1px solid #eee;
+  padding: 10px 20px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+.resume .right .resume-right .btn-downResume i {
+  width: 22px;
+  height: 17px;
+  background: url("http://www.internbird.com/public/build/web/img/icon-gray-download.png") 0 0 no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 12px;
+  left: 25px;
+}
+.resume .right .resume-right .join-tips {
+  position: relative;
+  margin-top: 5px;
+  background: #f8f8f8;
+}
+.resume .right .resume-right .join-tips .tips-content {
+  width: 152px;
+  margin: 0 auto;
+}
+.resume .right .resume-right .join-tips .tips-content .btn-join {
+  width: 52px;
+  height: 23px;
+  background: url("../../../img/talentPool/icon-btn.png") 0 0 no-repeat;
+  float: left;
+  margin-right: 9px;
+  cursor: pointer;
+}
+.resume .right .resume-right .join-tips .tips-content .btn-join.off {
+  background-position: 0 0;
+}
+.resume .right .resume-right .join-tips .tips-content .btn-join.on {
+  background-position: 0 -36px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+  .resume .right .resume-right .join-tips .tips-content .btn-join {
+    background-image: url('../../../img/talentPool/icon-btn_3x.png');
+    background-size: cover;
+  }
+  .resume .right .resume-right .join-tips .tips-content .btn-join.on {
+    background-position: 0 -25px;
+  }
+  .resume .right .resume-right .join-tips .tips-content .btn-join.off {
+    background-position: 0 0;
+  }
+}
+.resume .right .resume-right .join-tips .tips-content .join-intro {
+  float: right;
+  position: relative;
+}
+.resume .right .resume-right .join-tips .tips-content .join-intro:hover .join-detail {
+  display: block;
+}
+.resume .right .resume-right .join-tips .tips-content .join-intro .intro-top {
+  cursor: pointer;
+  position: relative;
+  padding-right: 25px;
+}
+.resume .right .resume-right .join-tips .tips-content .join-intro .intro-top i {
+  width: 20px;
+  height: 20px;
+  background: url("../../../img/talentPool/icon-pool.png") 0 0 no-repeat;
+  background-position: -6px 0;
+  position: absolute;
+  right: 0;
+  top: 2px;
+}
+.resume .right .resume-right .join-tips .tips-content .join-intro .join-detail {
+  display: none;
+  width: 200px;
+  text-align: justify;
+  line-height: 22px;
+  color: #666;
+  font-size: 15px;
+  padding: 10px 15px;
+  background: #fff;
+  position: absolute;
+  z-index: 999;
+  box-shadow: 0 3px 3px #eee;
+  left: -27px;
+  top: 42px;
+}
+.resume .right .resume-right .join-tips .tips-content .join-intro .join-detail i {
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 16px solid #fff;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  margin-left: -23px;
+}
+.resume .transition_1000 {
+  -moz-transition: ease-in-out 1s;
+  -webkit-transition: ease-in-out 1s;
+  -o-transition: ease-in-out 1s;
+  -ms-transition: ease-in-out 1s;
+  transition: ease-in-out 1s;
+}
+/*resume end*/
+/*resumePreview*/
+.resume-preview {
+  position: absolute;
+  width: 742px;
+  left: 50%;
+  margin: 10px 0 80px -371px;
+}
+.resume-preview .resume-state {
+  text-align: center;
+  margin: 20px auto 0;
+}
+.resume-preview .resume-state > i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #666;
+}
+.resume-preview .resume-state .state {
+  padding: 0 10px;
+}
+/*resumePreview end*/
+.bottom {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.bottom .bottom-mask {
+  width: 100%;
+  height: 56px;
+  background: #000;
+  opacity: .8;
+}
+.bottom .btn-area {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 50px;
+  padding: 0 6%;
+}
+.bottom .btn-area > div {
+  display: inline-block;
+}
+.bottom .btn-area > div.btn-r {
+  float: right;
+  margin-right: 10%;
+}
+.bottom .btn-area .btn {
+  padding: 5px 10px;
+  border: 2px solid #eee;
+  margin: 10px 10px  0 0;
+}
+.bottom .btn-area .btn i {
+  width: 22px;
+  height: 19px;
+  vertical-align: middle;
+  background: url("http://www.internbird.com/public/build/web/img/mr/icon-operation.png") no-repeat;
+}
+.bottom .btn-area .btn.btn-download i {
+  background-position: 0 -48px;
+}
+.bottom .btn-area .btn.btn-share i {
+  background-position: 0 -25px;
+}
+.bottom .btn-area .btn.btn-print i {
+  background-position: 0 -73px;
+}
+.bottom .btn-area .btn.btn-favorite i {
+  width: 17px;
+  height: 19px;
+  background-position: 0 0;
+}
+.bottom .btn-area .btn.bg-blue {
+  background: #00cccc;
+  border: none;
+}
+.bottom .btn-area .btn a {
+  color: #eee;
+}
+.popBox .pop-title {
+  background: #00cccc;
+  color: #fff;
+  height: 44px;
+  padding-left: 28px;
+  line-height: 44px;
+  font-size: 18px;
+}
+.popBox .tc {
+  text-align: center;
+}
+.popBox .no-suitable-reason {
+  width: 360px;
+  margin: 0 auto 30px;
+}
+.popBox .no-suitable-reason textarea {
+  width: 342px;
+  height: 150px;
+  padding: 8px;
+  resize: none;
+  color: #888;
+  border: 1px #eee solid;
+  line-height: 25px;
+}
+.popBox .no-suitable-reason textarea.error {
+  border: 1px solid #ef2c55;
+}
+.popBox .pop-content {
+  padding: 20px 28px;
+  line-height: 28px;
+}
+.popBox .no-suitable-text {
+  width: 360px;
+  position: relative;
+  margin: 10px auto 40px;
+}
+.popBox .no-suitable-text h4 {
+  font-weight: 600;
+  position: relative;
+  line-height: 25px;
+}
+.popBox .no-suitable-text .no-suitable-wrap {
+  height: 24px;
+  line-height: 24px;
+  margin-bottom: 15px;
+}
+.popBox .no-suitable-text .no-suitable-wrap input {
+  border: 1px solid #eee;
+}
+.popBox .no-suitable-text .no-suitable-wrap input.error {
+  border: 1px solid #ef2c55;
+}
+.popBox .no-suitable-text .no-suitable-wrap .no-suitable-list {
+  line-height: 22px;
+  width: 130px;
+  position: relative;
+  padding: 0 48px 0 5px;
+}
+.popBox .no-suitable-text .no-suitable-wrap .no-suitable-list.error {
+  border: 1px solid #ef2c55;
+}
+.popBox .no-suitable-text .no-suitable-wrap .add-suitable {
+  color: #00ced1;
+  padding-left: 20px;
+}
+.popBox .no-suitable-text .no-suitable-item {
+  display: none;
+  width: 183px;
+  position: absolute;
+  z-index: 1;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px #eee solid;
+}
+.popBox .no-suitable-text .no-suitable-item li {
+  height: 24px;
+  line-height: 24px;
+  padding-left: 10px;
+  position: relative;
+  border-bottom: 1px #eee solid;
+}
+.popBox .no-suitable-text .no-suitable-item li :last-child {
+  border-bottom: none;
+}
+.popBox .pop-ul li,
+.popBox .forward-ul li,
+.popBox .notice-ul li {
+  line-height: 24px;
+  margin-bottom: 6px;
+  padding-left: 80px;
+  position: relative;
+}
+.popBox .pop-ul li span,
+.popBox .forward-ul li span,
+.popBox .notice-ul li span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 80px;
+}
+.popBox .pop-ul li .pop-inputText,
+.popBox .forward-ul li .pop-inputText,
+.popBox .notice-ul li .pop-inputText,
+.popBox .pop-ul li .forward-inputText,
+.popBox .forward-ul li .forward-inputText,
+.popBox .notice-ul li .forward-inputText {
+  height: 22px;
+  line-height: 22px;
+  padding: 0 5px;
+  border: 1px #eee solid;
+}
+.popBox .pop-ul li .pop-inputText.error,
+.popBox .forward-ul li .pop-inputText.error,
+.popBox .notice-ul li .pop-inputText.error,
+.popBox .pop-ul li .forward-inputText.error,
+.popBox .forward-ul li .forward-inputText.error,
+.popBox .notice-ul li .forward-inputText.error {
+  border: 1px solid #ef2c55;
+}
+.popBox .notice-box p {
+  padding-top: 20px;
+}
+.popBox .pop-ul {
+  margin: 0 auto 30px;
+  width: 300px;
+}
+.popBox .pop-ul li {
+  height: 24px;
+}
+.popBox .pop-ul li .pop-inputText {
+  width: 208px;
+}
+.popBox .tab-ui li {
+  background-color: #fdfdfd;
+  text-align: center;
+  color: #00ced1;
+  float: left;
+  width: 50%;
+  cursor: pointer;
+  padding: 10px 0;
+}
+.popBox .tab-ui li.active {
+  color: #fff;
+  background-color: #00ced1;
+}
+.popBox .forward-ul,
+.popBox .notice-ul {
+  margin: 20px auto 30px;
+  width: 360px;
+}
+.popBox .forward-ul li .forward-inputText,
+.popBox .notice-ul li .forward-inputText {
+  width: 268px;
+}
+.popBox .forward-ul li .forward-textareaText,
+.popBox .notice-ul li .forward-textareaText {
+  padding: 5px 4px;
+  width: 270px;
+  height: 72px;
+  resize: none;
+  line-height: 24px;
+  border: 1px #eee solid;
+}
+.popBox .forward-ul li .forward-textareaText.error,
+.popBox .notice-ul li .forward-textareaText.error {
+  border: 1px solid #ef2c55;
+}
+.popBox .forward-ul li span,
+.popBox .notice-ul li span {
+  text-align: right;
+}
+.popBox .pop-btn {
+  width: 360px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 25px;
+}
+.popBox .pop-btn a {
+  display: inline-block;
+  margin: 0 10px;
+  padding: 4px 30px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.popBox .pop-btn a.send {
+  background-color: #00ced1;
+  color: #fff;
+}
+.popBox .pop-btn a.cancel {
+  background-color: #fcfcfc;
+  color: #00ced1;
+}
+.popBox.popBox-download .top-tip {
+  text-align: center;
+  margin-top: 15px;
+  position: relative;
+  padding-left: 15px;
+}
+.popBox.popBox-download .top-tip .icon-light {
+  width: 27px;
+  height: 41px;
+  position: absolute;
+  top: -15px;
+  left: 25px;
+  background: url("/public/build/web/img/mr/icon-light.png") 0 0 no-repeat;
+  background-size: cover;
+}
+.popBox.popBox-download .top-tip .cb {
+  color: #00cccc;
+}
+.popBox.popBox-download .top-tip .cg {
+  color: #666;
+}
+.popBox.popBox-download .download-area {
+  margin: 10px 0;
+  text-align: center;
+}
+.popBox.popBox-download .download-area a {
+  display: block;
+  width: 50px;
+  padding: 10px 0;
+  margin: 10px auto 0;
+  border-radius: 3px;
+  color: #666;
+  font-size: 17px;
+  border-bottom: 1px solid #eee;
+}
+.popBox.popBox-download .download-area a:hover {
+  width: 150px;
+  background: #00cccc;
+  color: #fff;
+  border-bottom-color: #fff;
+}

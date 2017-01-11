@@ -1,0 +1,108 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+body{
+  position: relative;
+}
+.title{
+  margin:0.5rem 0 1rem 0;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color:#333;
+  font-weight: 500;
+}
+.tips{
+  font-size:1.2rem;
+  color:#666;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+  .ibird{
+    color:#46688a;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+}
+.content{
+  padding:0 1rem;
+  font-size:1.2rem;
+  img{
+    margin: 0 auto;
+  }
+  word-break: break-all;
+  *{
+    word-break: break-all;
+    box-sizing: border-box!important;
+    max-width: 100%!important;
+  }
+}
+.int{
+  margin-bottom: 6rem;
+  .tip{
+    padding:1rem 10rem 0 1rem;
+    margin-top: 2rem;
+    position: relative;
+    p{
+      text-align: right;
+      line-height: 150%;
+      color:#999;
+      font-size: 1.2rem;
+    }
+  }
+  a{
+    text-decoration: none;
+    position: absolute;
+    right:2rem;
+    top:1.5rem;
+    button{
+      border-radius: 0.3rem;
+      width: 6rem;
+      height: 2.1rem;
+      background-color: #fff;
+      border: 1px solid @mainColor;
+      color: @mainColor;
+      font-size: 1.35rem;
+      &.blue{
+        background: @mainColor;
+        color: #fff;
+      }
+    }
+  }
+  img{
+    position: absolute;
+    right:2rem;
+    top:0;
+    width: 6rem;
+    height: 6rem;
+  }
+}
+.bottom{
+  position: absolute;
+  bottom: 0.5rem;
+  left:0;
+  box-sizing: border-box;
+  padding: 3rem 1rem 0.5rem 1rem;
+  color:#666;
+  font-size: 1.15rem;
+  .read{
+    color:#54c4f9;
+    margin-right: 0.8rem;
+    text-decoration: none;
+  }
+  .like-icon{
+    width: 1.3rem;
+    margin:0.25rem 0.3rem 0 1rem;
+  }
+}
+.bottom-banner{
+  position: fixed;
+  bottom: 0;
+  .banner-link{
+    display: block;
+    width: 100%;
+    font-size: 0;
+    img{
+      width: 100%;
+    }
+  }
+}

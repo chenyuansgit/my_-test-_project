@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/m/sign.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            m: "http://<%=host.m%>",
+            account: "http://<%=host.account%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/m/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/m/page/IB_sign.js"></script>
+</head>
+<body>
+<%include ./common/bodyHeader.ejs%>
+<div class="main">
+    <div class="login-area sign-area">
+        <div class="sign-line input-area">
+            <i class="icon-user"></i><input type="text" class="user input-sign" placeholder="请输入邮箱/手机号码"/>
+            <span class="input-error">请输入有效账号</span>
+        </div>
+        <div class="sign-line input-area">
+            <i class="icon-pwd"></i><input type="password" class="password input-sign" placeholder="请输入密码"/>
+            <span class="input-error">6-20位密码</span>
+        </div>
+        <div class="tar notice clearfix">
+            <a href="/findPwd" class="fll">忘记密码?</a>
+            <a href="/register?forward=<%=forward%>">立即注册</a>
+        </div>
+        <div class="sign-line btn-area">
+            <button class="btn-login btn">登&nbsp;&nbsp;录</button>
+        </div>
+        <%if(isWeixin){%>
+        <div class="third-login-top">
+            <span class="line"></span>
+            <span class="title">第三方账号登录</span>
+            <span class="line"></span>
+        </div>
+        <div class="third-login-btn-area clearfix">
+            <div class="btn-contain fll"><span class="third-login-btn third-login-btn-wechat" data-type="wechat"></span></div>
+        </div>
+        <%}%>
+    </div>
+</div>
+<div class="popTips animation"></div>
+<%include ./common/footer.ejs%>
+</body>
+</html>

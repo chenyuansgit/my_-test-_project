@@ -1,0 +1,61 @@
+/*旋转*/
+/*左上角圆角*/
+/*右上角圆角*/
+/*左下角圆角*/
+/*右下角圆角*/
+/*圆角*/
+/*阴影*/
+.selector-jt {
+  display: none;
+  position: absolute;
+  z-index: 10000;
+  font-size: 15px;
+  width: 130px;
+  background: #fff;
+  border: 1px solid #eee;
+  color: #666;
+}
+.selector-jt .selector-top {
+  text-align: center;
+  color: #00d1ce;
+  line-height: 30px;
+  border-bottom: 1px solid #eee;
+}
+.selector-jt .main-type-list {
+  max-height: 180px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.selector-jt .main-type-list li {
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+.selector-jt .main-type-list li.curr {
+  background-color: #f1f1f1;
+}
+.selector-jt .sub-type-list {
+  display: none;
+  width: 130px;
+  height: 210px;
+  overflow-y: auto;
+  position: absolute;
+  top: -1px;
+  left: 127px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+.selector-jt .sub-type-list.curr {
+  display: block;
+}
+.selector-jt .sub-type-list li {
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 1px;
+}
+.selector-jt .sub-type-list li.on {
+  background-color: #00d1ce;
+  color: #fff;
+}

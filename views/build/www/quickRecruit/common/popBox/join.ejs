@@ -1,0 +1,22 @@
+<div class="popBox popBox-qr-join">
+    <div class="popBox-title tc">欢迎来到快招栏目</div>
+    <div class="popBox-content">
+        <div class="recruit-block">
+            <ul class="tips">
+                <li>开通快招，你的简历将放入人才库，招聘官可一键邀请你参加实习。</li>
+                <li class="mg">开通快招，即默认同意自己的简历信息被相应企业、机构查看或邀请（隐藏联系方式），默认同意实习鸟<a href="/public/static/extra/userProtocol.html" target="_blank">《用户协议》</a>和<a href="/public/static/extra/privacyPolicy.html" target="_blank">《隐私政策》</a>。</li>
+            </ul>
+        </div>
+        <div class="recruit-block clearfix bottom">
+            <div class="join-tips">
+                <%if(resume && resume.is_public){%>
+                <span class="btn-join on pop"></span>
+                <%}else{%>
+                <span class="btn-join off pop"></span>
+                <%}%>
+                <span>开通快招</span>
+            </div>
+            <span class="btn-whatever btn">随便逛逛</span>
+        </div>
+    </div>
+</div>

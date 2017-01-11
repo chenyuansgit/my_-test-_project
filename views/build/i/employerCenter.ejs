@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/userCenter.css">
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_userCenter.js"></script>
+</head>
+<body>
+<%include ./common/bodyHeader.ejs%>
+
+<div class="main">
+    <div class="header w100 tac">
+        <span>我的</span>
+        <%
+        var userUrl = "http://m.internbird.com/userCenter";
+        switch(env){
+            case "local" : userUrl = "http://localhost:8093/userCenter"; break;
+            case "development" : userUrl = "http://m.dev.internbird.com/userCenter"; break;
+            case "prod" : userUrl = "http://m.internbird.com/userCenter"; break;
+        }
+        %>
+        <a href="<%=userUrl%>" class="right-link">学生入口</a>
+    </div>
+    <div class="top">
+        <div class="bg"><img src="<%=baseUrl%>/img/c_bg.png" alt="我的背景图"></div>
+        <div class="top-content">
+            <%if(employer && employer.user_id){%>
+            <div class="account" id="sign" data-uid = '<%=employer.user_id%>'>
+                <%if(employer.avatar){%>
+                <span class="avatar" style="background-image: url('<%=employer.avatar%>');"></span>
+                <input type="file" class="file-avatar" id="file-avatar"/>
+                <%}else{%>
+                <span class="avatar"></span>
+                <input type="file" class="file-avatar" id="file-avatar"/>
+                <%}%>
+            </div>
+            <div class="uname"><%=employer.nick_name || "hr"%></div>
+            <%}else if(account && account.uid){%>
+            <div class="account" id="sign">
+                <span class="avatar"></span>
+            </div>
+            <div class="uname"><%=account.account_name || "hr"%></div>
+            <%}else{%>
+            <div class="account" id="sign">
+                <span class="avatar"></span>
+            </div>
+            <a href="http://<%=host.account%>/login?forward=<%=encodeOriginalUrl%>&type=companyMobile">登录</a>
+            <%}%>
+        </div>
+    </div>
+    <div class="nav-area">
+        <a href="/mine/company" class="nav">
+            <i class="icon icon-c-home"></i>
+            <span>我的公司主页</span>
+            <i class="icon icon-next"></i>
+        </a>
+        <a href="/mine/jobList" class="nav">
+            <i class="icon icon-c-job"></i>
+            <span>我发布的职位</span>
+            <em class="j-num">(<%=job_count||0%>个)</em>
+            <i class="icon icon-next"></i>
+        </a>
+    </div>
+    <%if(account && account.uid){%>
+    <div class="quit w100 tac" id="quit">
+        <span class="quit-icon iblock"></span>
+        <span class="iblock text">退出登录</span>
+    </div>
+    <%}%>
+    <div class="footer clearfix">
+        <a class="tab" href="/">
+            <i class="icon icon-quick"></i>
+            <p>快招</p>
+        </a>
+        <a class="tab" href="/message">
+            <i class="icon icon-message"></i>
+            <p>消息</p>
+        </a>
+        <a class="tab curr" href="/mine">
+            <i class="icon icon-index"></i>
+            <p>我的</p>
+        </a>
+    </div>
+</div>
+<div class="popTips animation"></div>
+</body>
+</html>

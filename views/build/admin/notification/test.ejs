@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <!--uid-->
+                                <div class="form-title">
+                                    <label class="col-sm-1 control-label no-padding-right" for="title"> 推送UID </label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="uid" placeholder="请输入推送UID" class="col-xs-12 col-sm-8" value="" />
+                                        <span class="red">（必填）</span>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--APNS-->
+                                <div class="form-type">
+                                    <label class="col-sm-1 control-label no-padding-right"> 推送APNS </label>
+                                    <div class="col-sm-11">
+                                        <!--<input type="number" id="term" placeholder="请输入快照期数,只支持数字,表示第几期(一经确认不能修改)" class="col-xs-12 col-sm-8" />-->
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="apns" type="checkbox" checked="" value="">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--描述-->
+                                <div class="form-desc">
+                                    <label class="col-sm-1 control-label no-padding-right" for="desc"> 推送MSG </label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="msg" placeholder="请输入文章描述" class="col-xs-12 col-sm-8" value="" />
+                                        <span class="red">（必填）</span>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div>
+                                <!--描述-->
+                                <div class="form-code">
+                                    <label class="col-sm-1 control-label no-padding-right" for="code"> 推送CODE </label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="code" placeholder="请输入文章CODE" class="col-xs-12 col-sm-8" value="" />
+                                        <span class="gray">（code与uri至少填一项）</span>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div>
+                                    <!--URL-->
+                                <div class="form-url">
+                                    <label class="col-sm-1 control-label no-padding-right" for="uri"> 推送URI </label>
+                                    <div class="col-sm-11">
+                                        <input type="text" id="uri" placeholder="请输入消息URL" class="col-xs-12 col-sm-8" value="" />
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ib-how">
+                            <a href=""> <span class="ib-release" id="buttonAdd">提交</span></a>
+                            <a href="/push/notification/list?page=1"> <span>取消</span></a>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+
+                    </div>
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div><!-- /.main-container -->
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<!--<script type="text/javascript" src="/public/ace/assets/js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/jquery-ui-timepicker-zh-CN.js"></script>-->
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<!--<script type="text/javascript" src="/public/ace/assets/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/public/ace/assets/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="/public/ace/assets/ueditor/lang/zh-cn/zh-cn.js"></script>-->
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<!-- inline scripts related to this page -->
+<!-- time plug -->
+<script type="text/javascript">
+
+    //上传文章
+    var  apns, uid, msg, code, uri;
+    $('#buttonCancel').click(function(){
+        window.history.back();
+    })
+    
+    //当类型为5(消息)时
+    /*$("#apns").click(function () {
+        var $this = $(this);
+        if($this.attr("checked") == "checked") {
+            apns = true;
+        } else {
+            apns = false;
+        }
+    })*/
+    
+    $('#buttonAdd').click(function(){
+        apns = ($("#apns").attr("checked") == "checked") ? true : false;
+        uid= $('input#uid').val();
+        msg= $('input#msg').val();
+        code = $('input#code').val();
+        uri = $('input#uri').val();
+        if(uid == "") {
+            alert("uid不能为空!");
+        }else if(msg == ""){
+            alert("msg不能为空!");
+        }else if(code == "" && uri == "") {
+            alert("code与uri至少填一项!");
+        } else {
+            $.ajax({
+                type:'POST',
+                url:"/push/test",
+                dataType:'json',
+                data:{
+                    option:{
+                        APNS:apns,
+                        uid:uid,
+                        transmissionContent:{
+                            msg: msg,
+                            code:code,
+                            uri: uri
+                        }
+                    }
+                },
+                success:function(data){
+                    if (data.status == '10000') {
+                        alert("测试成功");
+                    }
+                    else {
+                        alert('POST error\n' + data.status);
+                    }
+                }
+            })
+        }
+        return false;
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <% if(job.channel_type == 3) {%>
+    <title><%=job.name%>校园招聘 － <%=company.name%>招聘 － 实习鸟</title>
+    <%}else{%>
+    <title><%=job.name%>实习生招聘 － <%=company.name%>招聘 － 实习鸟</title>
+    <%}%>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="实习鸟专注大学生实习就业，为全国大学生提供最全面、最及时、最靠谱的实习、工作、兼职、志愿者等职位信息，是国内最具影响力的实习生招聘网站之一。在实习鸟,你可以免费查询北京实习、上海实习、名企实习、寒暑期实习等信息，同时你可以免费发布实习招聘信息。薪资透明、拒绝面议,多平台多选择,大学生,实习,找实习,就业,大学生找靠谱实习首选实习鸟。">
+    <meta name="keywords" content="实习,实习生,找实习,大学生实习,实习鸟,大学生就业,大学生,实习生招聘,兼职">
+    <meta name="baidu-site-verification" content="ma1cMfraUp" />
+    <link href="<%=baseUrl%>/img/icon-title.ico" rel="shortcut icon" />
+    <script>
+        window.global = window.global || {};
+        global.account_host = 'http://<%=host.account%>';
+        var baseUrl = '<%=baseUrl%>';
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?5f6b35b51a25201f1ab8f0a8ce96e6ec";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link href="<%=baseUrl%>/css/page/position.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/employer/positionManage/IB_detail.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include ../../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+            <li class="curr"><span class="icon-curr-up"></span><a class="header-link-item" href="/job/list">职位管理</a></li>
+            <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/talentPool/list">人才库</a></li>
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<div class="container mb clearfix">
+    <%if(job&&job.jid){%>
+    <!--左边栏-->
+    <div class="w840 fl">
+        <div class="position-content">
+            <div class="title-area">
+                <div class="position-name"><%=job.name%><span class="icon-jops-show"></span></div>
+                <%
+                    var today = new Date();
+                   // console.log(today);
+                    today.setHours(0);
+                    today.setMinutes(0);
+                    today.setSeconds(0);
+                    var timestamp = +today;
+                %>
+                <% if(timestamp < job.create_time) {%>
+                <span class="position-date">发布于：<%=new Date(parseInt(job.create_time)).format("hh:mm")%></span>
+                <%}else if((timestamp-86400000)<job.create_time && job.create_time<timestamp) {%>
+                <span class="position-date">发布于：1天前</span>
+                <%}else if((timestamp-86400000*2)<job.create_time && job.create_time<(timestamp-86400000)) {%>
+                <span class="position-date">发布于：2天前</span>
+                <%}else if((timestamp-86400000*3)<job.create_time && job.create_time<(timestamp-86400000*2)) {%>
+                <span class="position-date">发布于：3天前</span>
+                <%}else {%>
+                <span class="position-date">发布于：<%=new Date(parseInt(job.create_time)).format("yyyy-MM-dd")%></span>
+                <%}%>
+            </div>
+            <div class="position-request-base">
+                <div class="position-request-base-list pb12">
+                    <span class="icon-locate"></span><%=job.city%>
+                    <%if(job.channel_type !=3){%>
+                    <span class="icon-calendar"></span>≥<%=job.workdays%>天
+                    <%}%>
+                    <span class="icon-degrees"></span>
+                    <%
+                        var edu = "";
+                        switch(parseInt(job.education)) {
+                            case 0:
+                                edu = "不限";
+                                break;
+                            case 1:
+                                edu = "大专";
+                                break;
+                            case 2:
+                                edu = "本科";
+                                break;
+                            case 3:
+                                edu = "硕士";
+                                break;
+                            case 4:
+                                edu = "博士及以上";
+                                break;
+                        }
+                    %>
+                    <%-edu%>
+                    <% if(job.recruitment > 0) {%>
+                    <span class="icon-numbers"></span>招聘<%=job.recruitment%>人
+                    <%}%>
+                    <% if(job.channel_type == 3) {%>
+                    <span class="icon-jpzx"></span>校招
+                    <%}else{%>
+                    <span class="icon-jpzx"></span>实习
+                    <%}%>
+                    </div>
+                    <div class="position-request-base-list">
+                    <%if(job.min_payment ==0 && job.max_payment ==0){%>
+                        <span class="icon-salary"></span><span class="position-salary">面议</span>
+                    <%}else{%>
+                        <%if(job.channel_type ==3) {%>
+                        <span class="icon-salary"></span><span class="position-salary"><%=job.min_payment/10000%>-<%=job.max_payment/10000%>万/年</span>
+                        <%}else{%>
+                        <span class="icon-salary"></span><span class="position-salary"><%=job.min_payment%>-<%=job.max_payment%>/天</span>
+                        <%}%>
+                    <%}%>
+                    <% if(job.regular == 1) {%>
+                    <span class="icon-regular"></span>提供转正机会
+                    <%}%>
+                </div>
+                <p>职位诱惑：<%=JSON.parse(job.remarks).attr%></p>
+            </div>
+
+
+            <div class="position-detail">
+                <div class="position-detail-title">招聘详情<span class="detail-line"></span></div>
+                <div class="position-detail-content">
+                    <%- job.content%>
+                </div>
+                <div class="position-detail-title mt20">截止日期<span class="detail-line"></span></div>
+                <p class="deadline"><%=new Date(parseInt(job.deadline)).format("yyyy-MM-dd")%></p>
+            </div>
+            <p class="position-info-inform">
+                用人单位以任何名义向应聘者收取费用都属于违法行为（如押金、资料费、代收体验费、代收淘宝信誉等）
+            </p>
+            <%if(+new Date()-parseInt(job.deadline)>0){%>
+            <span class="job-error job-overdue"></span>
+            <%}else if(job.state == 2){%>
+            <span class="job-error job-offline"></span>
+            <%}%>
+        </div>
+
+        <%if(job.user_id == employer.user_id){%>
+        <div class="position-deliver clearfix">
+            <a href="/job/edit/<%-job.jid%>" class="fr"><input class="position-deliver-btn on btn-outline" type="button" value="编辑职位"/></a>
+        </div>
+        <%}%>
+    </div>
+
+    <!--右边栏-->
+    <div class="w310 fr">
+        <!--公司详情列表-->
+        <div class="company-detail-item sideBox mb20">
+            <%if(company.avatar){%>
+            <div class="comlogo avatar" data-src="<%=company.avatar%>?imageView2/2/w/460/h/460" style="background-image:url('<%=company.avatar%>?imageView2/2/w/460/h/460') "></div>
+            <%}else{%>
+            <div class="comlogo avatar"></div>
+            <%}%>
+            <div class="comname">
+                <a href="/myCompany" target="_blank" title="<%=company.name%>"><%=company.name%></a>
+            </div>
+            <ul>
+                <li>领域:<span><%=company.type%></span></li>
+                <li>性质:
+                    <%
+                        var type = "";
+                        switch(parseInt(company.trade_type||0)){
+                            case 1: type ="国企"; break;
+                            case 2: type="私企"; break;
+                            case 3: type="外企"; break;
+                            case 4: type="合资企业"; break;
+                            case 5: type="其它"; break;
+                        }
+                    %>
+                    <span><%=type%></span>
+                </li>
+                <li>地点:<span><%=company.city%></span></li>
+                <li>规模:
+                    <%
+                        var scale = "";
+                        switch(parseInt(company.scale_type||0)){
+                            case 1: scale ="15人以下"; break;
+                            case 2: scale="15-50人"; break;
+                            case 3: scale="50-150人"; break;
+                            case 4: scale="150-500人"; break;
+                            case 5: scale="500-2000人"; break;
+                            case 6: scale="2000-5000人"; break;
+                            case 7: scale="5000人以上"; break;
+                        }
+                    %>
+                    <span><%=scale%></span>
+                </li>
+                <%if(company.homepage){%>
+                <li>主页:
+                    <%if(company.homepage.indexOf("http:")>-1 || company.homepage.indexOf("https:")>-1){%>
+                    <a href='<%= company.homepage%>' target='_blank' title="<%= company.homepage%>"><%= page=company.homepage.length>22?company.homepage.substr(0,18)+"...":company.homepage%></a>
+                    <%}else{%>
+                    <a href='http://<%= company.homepage%>' target='_blank' title="<%= company.homepage%>"><%= page=company.homepage.length>22?company.homepage.substr(0,18)+"...":company.homepage%></a>
+                    <%}%>
+                </li>
+                <%}%>
+            </ul>
+        </div>
+
+        <!--职位详情列表-->
+        <div class="jops-detail-item sideBox mb20">
+            <h4>职位相关数据</h4>
+            <ul>
+                <!--<li>职位浏览量:<span><%=job.view_num || 0%></span></li>-->
+                <li>投递查看率:<span><%= percent= parseInt(job.resume_treat_percent)?job.resume_treat_percent+"%":'&nbsp;?'%></span></li>
+                <li>简历处理用时:<span>
+                    <%if(parseInt(job.resume_treat_delay)>48){%>
+                        <%=parseInt(parseInt(job.resume_treat_delay)/24)+"天"%>
+                    <%}else{%>
+                        <%=parseInt(job.resume_treat_delay)? job.resume_treat_delay+"小时" : '&nbsp;?'%>
+                    <%}%>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!--公司位置信息-->
+        <div class="company-detail-locate sideBox">
+            <h4>工作地点</h4>
+            <%if(job.address && job.address!='undefined'){%>
+            <p><%=job.address%></p>
+            <div id="location" class="map" data-desc="<%=job.address%>"></div>
+            <%}else{%>
+            <p><%=JSON.parse(company.address)[0].desc%></p>
+            <div id="location" class="map" data-desc="<%=JSON.parse(company.address)[0].desc%>"></div>
+            <%}%>
+        </div>
+    </div>
+
+    <%}else{%>
+    <div class="no-job">
+        <div class="no-job-content">
+            <div class="title">职位好像被删除了</div>
+            <div class="btn-area">
+                <a href="/j/search">找找其他职位</a>
+                <a href="/">返回首页</a>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</div>
+<%include ../../common/footer.ejs%>
+<!--分享信息-->
+<div class="share-back w100 h100 none" data-title="【<%=job.name%>】&nbsp;<%=company.name%>&nbsp;|&nbsp;来自实习鸟,猛戳投递!" data-desc="<%=JSON.parse(job.remarks).attr%><%=job.address?('&nbsp;|&nbsp;'+job.address):''%>"></div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=http://api.map.baidu.com/api?v=2.0&ak=3q9TUK5ahFNyuealiblGt8OV"></script>
+<%include ../../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

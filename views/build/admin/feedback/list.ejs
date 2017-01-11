@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="header smaller lighter blue head-title">反馈列表
+                                    <p class="search-head">
+                                        <input type="text" id="search" placeholder="请输入搜索关键词"/> <a href="" class="btn button-search">搜索</a>
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="tabbable">
+                                            <ul class="nav nav-tabs" id="myTab">
+                                                <li class="active">
+                                                    <a href="/feedback/list?page=1">
+                                                        反馈列表
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane in active">
+                                                    <div class="table-responsive">
+                                                        <table id="sample-table-home" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                            <%if(feedbacks&&feedbacks.length){%>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>反馈时间</th>
+                                                                <th>视觉满意度/易用满意度/功能实用性/服务满意度</th>
+                                                                <th>平台信息</th>
+                                                                <th>留言内容</th>
+                                                                <th>联系方式</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <%for(var i= 0; i<feedbacks.length; i++){%>
+                                                            <tr data-id="<%=feedbacks[i].id%>">
+                                                                <td>
+                                                                    反馈ID:<%=feedbacks[i].id%> </br>
+                                                                    <%if(feedbacks[i].user_id){%>
+                                                                    用户ID:<%=feedbacks[i].user_id%>
+                                                                    <%}%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=new Date(feedbacks[i].create_time).format('yyyy-MM-dd hh:mm')%>
+                                                                </td>
+                                                                <td>
+                                                                    <%
+                                                                        var visualness="";
+                                                                        switch (parseInt(feedbacks[i].visualness)) {
+                                                                            case 1: visualness = "失望"; break;
+                                                                            case 2: visualness = "不满"; break;
+                                                                            case 3: visualness = "一般"; break;
+                                                                            case 4: visualness = "满意"; break;
+                                                                            case 5: visualness = "惊喜"; break;
+                                                                        }
+                                                                      %>
+                                                                    <%=visualness %>
+                                                                   &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <%
+                                                                        var easiness="";
+                                                                        switch (parseInt(feedbacks[i].easiness)) {
+                                                                            case 1: easiness = "失望"; break;
+                                                                            case 2: easiness = "不满"; break;
+                                                                            case 3: easiness = "一般"; break;
+                                                                            case 4: easiness = "满意"; break;
+                                                                            case 5: easiness = "惊喜"; break;
+                                                                        }
+                                                                    %>
+                                                                    <%=easiness %>
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <%
+                                                                        var practicability="";
+                                                                        switch (parseInt(feedbacks[i].practicability)) {
+                                                                            case 1: practicability = "失望"; break;
+                                                                            case 2: practicability = "不满"; break;
+                                                                            case 3: practicability = "一般"; break;
+                                                                            case 4: practicability = "满意"; break;
+                                                                            case 5: practicability = "惊喜"; break;
+                                                                        }
+                                                                    %>
+                                                                    <%=practicability %>
+                                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <%
+                                                                        var service="";
+                                                                        switch (parseInt(feedbacks[i].service)) {
+                                                                            case 1: service = "失望"; break;
+                                                                            case 2: service = "不满"; break;
+                                                                            case 3: service = "一般"; break;
+                                                                            case 4: service = "满意"; break;
+                                                                            case 5: service = "惊喜"; break;
+                                                                        }
+                                                                    %>
+                                                                    <%=service %>
+                                                                </td>
+                                                                <td>
+                                                                    <%=feedbacks[i].device_info%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=feedbacks[i].content%>
+                                                                </td>
+                                                                <td>
+                                                                    <% if(parseInt(feedbacks[i].phone) != 0) {%>
+                                                                        电话：<%=feedbacks[i].phone%><br />
+                                                                    <% }%>
+                                                                    <% if(feedbacks[i].email != ""){%>
+                                                                        邮箱：<%=feedbacks[i].email%><br />
+                                                                    <% }%>
+                                                                    <% if(feedbacks[i].qq != ""){%>
+                                                                        QQ：<%=feedbacks[i].qq%>
+                                                                    <% }%>
+                                                                </td>
+                                                            </tr>
+                                                            <%}}else{%>
+                                                            <p>该栏目下没有数据！</p>
+                                                            <%}%>
+                                                            </tbody>
+                                                        </table>
+                                                        <%include ../common/pages.ejs%>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="icon-double-angle-up icon-only bigger-110"></i>
+        </a>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //给sidebar加样式
+        var url = location.href;
+        if(url.indexOf('feedback')){
+            $('#othersMenu').addClass('active open');
+            $('#othersMenu ul li:eq(0)').addClass('active')
+        }
+        //分页绑定
+        fn.pagingBind();
+        //POST
+    })
+</script>
+</body>
+</html>

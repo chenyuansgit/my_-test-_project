@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/qrInvites.css?name=11"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/IB_qrInvites.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/userCenter" class="back left-icon"></a>
+        <span>我的快招</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="qr-join">
+        <%if(is_public){%>
+        <span class="btn-join on"></span>
+        <span class="qr-state">快招已开通</span>
+        <%}else{%>
+        <span class="btn-join off"></span>
+        <span class="qr-state">开通快招</span>
+        <%}%>
+    </div>
+    <div class="top-nav clearfix">
+        <a class="nav fll iblock" data-status=1 href="#1">
+            <span>待处理</span>
+        </a>
+        <a class="nav fll iblock" data-status=2 href="#2">
+            <span>已接受</span>
+        </a>
+        <a class="nav fll iblock" data-status=3 href="#3">
+            <span>已拒绝</span>
+        </a>
+        <a class="nav fll iblock" data-status=4 href="#4">
+            <span>已过期</span>
+        </a>
+    </div>
+    <div class="list w100" id="list"></div>
+</div>
+<%include ../footer.ejs%>
+<div class="overlay"></div>
+<div class="popBox popBox-qrClose animation">
+    <div class="title">关闭快招</div>
+    <div class="info">关闭快招将无法收到企业的邀约，错失一大波的实习机会。</div>
+    <div class="btn-area clearfix">
+        <span class="btn-cancel btn">取消</span>
+        <span class="btn-confirm btn">确认</span>
+    </div>
+</div>
+<script>
+    window.global = window.global || {};
+    global.rid = '<%=rid%>';
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+@import "../common/index";
+@import "../common/reconsitution";
+@import "../common/animation";
+.selector-top{
+  font-size: 1.6rem;
+  text-align: center;
+  border-bottom: 0.1rem solid #bbcacd;
+}
+.selector{
+  display: none;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  .sel-title{
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.5rem;
+    color: @mainColor;
+    text-align: center;
+    position: relative;
+    .btn-console{
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0 2rem;
+      background: url("@{baseUrl}/img/icon-left-blue.png") 0 0 no-repeat;
+      background-size: cover;
+      background-origin: content-box;
+      position: absolute;
+      left: 0;
+      top: 1.1rem;
+    }
+  }
+  .sel-content{
+    width: 100%;
+    .sel-tab{
+      box-sizing: border-box;
+      padding: 0 2rem;
+      height: 5.8rem;
+      line-height: 5.8rem;
+      font-size: 1.4rem;
+      color: #333;
+      border-bottom: 0.1rem solid #dbdbdb;
+      position: relative;
+      .sel-circle{
+        display: inline-block;
+        width: 1.4rem;
+        height: 1.4rem;
+        .borderRadius(999px);
+        background: #fff;
+        border: 0.1rem solid #dbdbdb;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        margin-top: -0.7rem;
+      }
+      &.curr{
+        .sel-circle{
+          background: @mainColor;
+        }
+      }
+    }
+    .blank-tips{
+      font-size: 1.4rem;
+      color: @mainColor;
+      padding: 1rem;
+    }
+  }
+}
+.selector-city{
+  display: none;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fff;
+  position: fixed;
+  z-index: 20000;
+  top:0;
+  left:0;
+  .sel-province{
+    position: relative;
+    .btn-close{
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      top: 0.5rem;
+      right: 2rem;
+      background: url("@{baseUrl}/img/icon-delete.png") 0 0 no-repeat;
+      background-size: cover;
+      z-index: 30000;
+    }
+    .province-block{
+      padding-top: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      &.pro-line{
+        border-top: 0.1rem solid #eee;
+        box-shadow: 0 -0.2rem 0.2rem #eff2f2;
+      }
+      .province-title{
+        font-size: 1.5rem;
+        color: #666;
+        padding-left: 1.5rem;
+      }
+      .provinces{
+        margin-top: 0.5rem;
+        li{
+          float: left;
+          width: 25%;
+          text-align: center;
+          height: 3.5rem;
+          line-height: 3.5rem;
+          font-size: 1.5rem;
+          color: #333;
+        }
+      }
+      .circle {
+        width: 2rem;
+        height: 2rem;
+        .borderRadius(999px);
+        position: absolute;
+        top: -1rem;
+        left: 50%;
+        margin-left: -1rem;
+        background: #fcffff;
+        &-1 {
+          box-shadow: 0 -0.1rem 0.1rem 0.1rem #eff2f2 inset;
+          z-index: 20001;
+        }
+        &-2 {
+          border: 0.1rem solid #fcffff;
+          margin-left: -1.1rem;
+          top: -2rem;
+          z-index: 20002;
+        }
+      }
+    }
+  }
+  .sel-city{
+    .city-overlay{
+      display: none;
+      width: 100%;
+      min-height: 100%;
+      background-color: #fcffff;
+      opacity: 0.8;
+      position: absolute;
+      z-index: 30002;
+      top: 0;
+      left: 0;
+    }
+    #city-wrapper{
+      display: none;
+      width: 80%;
+      height: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      margin-left: 20%;
+      border-left: 0.1rem solid #eff2f2;
+      box-shadow: -0.2rem  0 0.2rem #eff2f2; ;
+      background-color: #fcffff;
+      position: absolute;
+      z-index: 30003;
+      top: 0;
+      left: 0;
+      .cities{
+        .city{
+          position: relative;
+          box-sizing: border-box;
+          padding: 0 1rem;
+          height: 6rem;
+          line-height: 6rem;
+          font-size: 1.5rem;
+          border-bottom: 0.1rem solid #eff2f2;
+          .sel-circle{
+            display: inline-block;
+            width: 1.4rem;
+            height: 1.4rem;
+            .borderRadius(999px);
+            background: #fff;
+            border: 0.1rem solid #dbdbdb;
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            margin-top: -0.7rem;
+          }
+          &.curr{
+            .sel-circle{
+              background: @mainColor;
+            }
+          }
+        }
+      }
+      .iscroll {
+        z-index: 20001;
+        position: absolute;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        width: 100%;
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+        -o-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-text-size-adjust: none;
+        -moz-text-size-adjust: none;
+        -ms-text-size-adjust: none;
+        -o-text-size-adjust: none;
+        text-size-adjust: none;
+      }
+    }
+  }
+}
+
+.selector-mainCity{
+  display: none;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fcffff;
+  position: fixed;
+  z-index: 20000;
+  top:0;
+  left:0;
+  .sel-city{
+    position: relative;
+    .btn-close{
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      top: -0.5rem;
+      right: 1rem;
+      padding:1rem;
+      background: url("@{baseUrl}/img/icon-delete.png") 0 0 no-repeat;
+      background-size: cover;
+      background-origin: content-box;
+      z-index: 30000;
+    }
+    .city-block,.city-block-hot{
+      padding-top: 1rem;
+      margin-top: 1rem;
+      position: relative;
+      &.pro-line{
+        border-top: 0.1rem solid #eee;
+        box-shadow: 0 -0.2rem 0.2rem #eff2f2;
+      }
+      .city-title{
+        font-size: 1.5rem;
+        color: #666;
+        padding-left: 1.5rem;
+      }
+      .cities{
+        margin-top: 0.5rem;
+        display: none;
+        &-hot,&.curr{
+          display: block;
+        }
+
+        .city{
+          float: left;
+          width: 25%;
+          text-align: center;
+          height: 3.5rem;
+          line-height: 3.5rem;
+          font-size: 1.5rem;
+          color: #333;
+        }
+      }
+      .circle {
+        width: 2rem;
+        height: 2rem;
+        .borderRadius(999px);
+        position: absolute;
+        top: -1rem;
+        left: 50%;
+        margin-left: -1rem;
+        background: #fcffff;
+        &-1 {
+          box-shadow: 0 -0.1rem 0.1rem 0.1rem #eff2f2 inset;
+          z-index: 20001;
+        }
+        &-2 {
+          border: 0.1rem solid #fcffff;
+          margin-left: -1.1rem;
+          top: -2rem;
+          z-index: 20002;
+        }
+      }
+    }
+  }
+
+}

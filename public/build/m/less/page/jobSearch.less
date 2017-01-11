@@ -1,0 +1,139 @@
+@import "../common/reconsitution";
+@import "../common/index";
+@import "../module/jobList";
+@import "../plugins/selector";
+html,body{
+  background-color: #f6f6f6;
+}
+.main{
+  padding-bottom: 4.2rem;
+}
+.listone{
+  background: #fff;
+}
+.search{
+  height: 4rem;
+  border-bottom: 1px solid #dbdbdb;
+  background-color: #fff;
+  position:fixed;
+  left:0;
+  top:0;
+  z-index:10000;
+  box-sizing:border-box;
+  .city,.ct{
+    box-sizing: border-box;
+    width: 20.5%;
+    font-size: 1.5rem;
+    color:@mainColor;
+    border-right: 1px solid rgba(220,220,220,.5);
+    position: relative;
+    img{
+      width: 1rem;
+      height: 0.53rem;
+      position: absolute;
+      top:1.73rem;
+      right:0.8rem;
+    }
+    span{
+      margin: 1.25rem 0 0 1.2rem;
+      max-width: 60%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 100%;
+      height: 1.5rem;
+    }
+    .ct-selector{
+      display: none;
+      position: absolute;
+      z-index: 10000;
+      top:4rem;
+      margin-left: -1px;
+      width: 100%;
+      background: #fff;
+      border: 1px solid rgba(220,220,220,.5);
+      border-top: none;
+      .ct-option{
+        padding-left: 1.2rem;
+        line-height: 4rem;
+      }
+    }
+  }
+  .search-input{
+    box-sizing: border-box;
+    color:#666;
+    font-size: 1.4rem;
+    padding:0 2%;
+    width: 50%;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .search-confirm{
+    box-sizing: border-box;
+    width: 9%;
+    background: url('@{baseUrl}/img/search-icon.png') center no-repeat;
+    background-size: 60% auto;
+  }
+}
+.search-back{
+  box-sizing: border-box;
+  background-color: #fff;
+  position: fixed;
+  left:0;
+  top:4rem;
+  z-index: 2000;
+  .xx{
+    position:absolute;
+    right:1rem;
+    top:1rem;
+    background: url('@{baseUrl}/img/icon-delete.png') center  no-repeat;
+    background-size: 50% 50%;
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+  h3{
+    font-weight: normal;
+    color:#999;
+    font-size: 1.45rem;
+    padding: 1.2rem 0 1.2rem 1rem;
+  }
+  .hot-word{
+    padding:0 0 1rem 1rem;
+    border-bottom: 1px solid rgba(220,220,220,.5);
+    color:@mainColor;
+    li{
+      margin-right: 2rem;
+      font-size: 1.2rem;
+    }
+  }
+  .history-title{
+    border-bottom: 1px solid rgba(220,220,220,.5);
+  }
+  .history li{
+    box-sizing: border-box;
+    padding-left: 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+    color:#333;
+    height: 4.4rem;
+    padding-top:1.2rem;
+    border-bottom: 1px solid rgba(220,220,220,.5);
+    .del{
+      background: url('@{baseUrl}/img/icon-delete.png') center  no-repeat;
+      background-size: 50% 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin:0.4rem  2.5rem 0 0;
+    }
+  }
+}
+.none-job{
+  font-size:1.5rem;
+  color:#666;
+  padding-top:4rem;
+}
+
+
+
+

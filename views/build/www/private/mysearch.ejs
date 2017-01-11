@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/private/mysearch.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/private/IB_mySearch.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container mb20 clearfix">
+    <div class="sidebar fl">
+        <ul class="subscribe-nav">
+            <% if(channel_type == 3 || channel_type == 4) {%>
+            <li><a href="/jobCondition">实习求职</a></li>
+            <li class="cur"><a href="/jobCondition?ct=3">校招求职</a></li>
+            <%}else{%>
+            <li class="cur"><a href="/jobCondition">实习求职</a></li>
+            <li><a href="/jobCondition?ct=3">校招求职</a></li>
+            <%}%>
+        </ul>
+    </div>
+    <div class="content fr">
+        <div class="mysearch-nav inwrapBox mb20">
+            <ul class="clearfix">
+                <% if(channel_type == 3 || channel_type == 4) {%>
+                    <li class="nav nav-0"><a href="/jobCondition?ct=3">全部</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-1"><a href="/jobCondition?ct=3&status=1">投递成功</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-2"><a href="/jobCondition?ct=3&status=2">待沟通</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-3"><a href="/jobCondition?ct=3&status=3">通知面试</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-4"><a href="/jobCondition?ct=3&status=4">不合适</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-5"><a href="/detCondition?ct=4">外网投递</a></li>
+                <%}else{%>
+                    <li class="nav nav-0"><a href="/jobCondition">全部</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-1"><a href="/jobCondition?status=1">投递成功</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-2"><a href="/jobCondition?status=2">待沟通</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-3"><a href="/jobCondition?status=3">通知面试</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-4"><a href="/jobCondition?status=4">不合适</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-5"><a href="/detCondition?ct=2">外网投递</a></li>
+                <%}%>
+            </ul>
+        </div>
+        <div class="mysearch-success-area jobs-area">
+            <%if(jobs&&jobs.length){%>
+            <%for(var i = 0,len = jobs.length;i<len;++i){%>
+            <div class="job inwrapBox mb20">
+
+                <!--如果是快招-->
+                <%if(jobs[i].recruit_type==2){%>
+                    <span class="icon-quick-corner"></span>
+                <%}%>
+
+                <div class="job-logo">
+                    <%if(jobs[i].company_avatar){%>
+                    <div class="company-logo" style="background-image: url('<%=jobs[i].company_avatar%>?imageView2/2/w/192/h/192')"></div>
+                    <%}else{%>
+                    <div class="company-logo"></div>
+                    <%}%>
+                </div>
+                <div class="job-right">
+                    <div class="job-info-top clearfix">
+                        <div class="job-info-w398 fl">
+                            <a href="/job/detail/<%=jobs[i].jid%>" target="_blank"><%=jobs[i].name%></a>
+                        </div>
+                        <div class="job-info-w240 fr">
+                            <a href="/company/detail/<%=jobs[i].company_id%>" target="_blank"><%=jobs[i].company_name%></a>
+                        </div>
+                    </div>
+                    <div class="job-info-next">
+                        <span class="job-info-city"><span class="icon-locate"></span><%=jobs[i].city.length>12?jobs[i].city.substr(0,12)+"...":jobs[i].city%></span>
+                        <%if(jobs[i].channel_type ==1) {%>
+                        <span class="job-info-days"><span class="icon-calendar"></span>≥<%=jobs[i].workdays?jobs[i].workdays:1%>天</span>
+                        <%}%>
+                        <%if(jobs[i].min_payment ==0 && jobs[i].max_payment ==0){%>
+                            <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                        <%}else{%>
+                        <%if(jobs[i].channel_type ==3){%>
+                            <span class="job-info-money"><span class="icon-salary"></span><%=jobs[i].min_payment/10000%>-<%=jobs[i].max_payment/10000%>万/年</span>
+                        <%}else{%>
+                            <span class="job-info-money"><span class="icon-salary"></span><%=jobs[i].min_payment%>-<%=jobs[i].max_payment%>/天</span>
+                        <%}%>
+                        <%}%>
+                    </div>
+                    <div class="job-info-bottom clearfix">
+                        <div class="job-info-w398 fl">
+                            <%if(jobs[i].status==3){%>
+                                <%if(jobs[i].hr_phone || jobs[i].hr_email){%>
+                                <span class="icon-phone"></span><span class="icon-email"></span>
+                                <div class="phone-box pop-box"><%=jobs[i].hr_phone||""%><span class="triangle-1"></span><span class="triangle-2"></span></div>    <!--显示电话-->
+                                <div class="email-box pop-box"><%=jobs[i].hr_email||""%><span class="triangle-1"></span><span class="triangle-2"></span></div>    <!--显示邮箱-->
+                                <%}%>
+                            <%}%>
+                            <!--使用简历:<span class="cur-resume">简历2</span><span class="edit-resume">修改</span><span class="icon-doubt"></span>-->
+                        </div>
+                        <div class="job-info-w240 fr">
+                            <%if(jobs[i].status==3){%>
+                                <span class="deliver-time">面试时间：<%=new Date(jobs[i].interview_time).format('yyyy-MM-dd')%></span>
+                            <%}else{%>
+                                <span class="deliver-time">投递时间：<%=new Date(jobs[i].delivery_time).format('yyyy-MM-dd')%></span>
+                            <%}%>
+                            <span class="deliver-state" data-jid=<%=jobs[i].jid%> data-company=<%=jobs[i].company_name%> >
+                                <%if(jobs[i].status==1){%>
+                                <span>投递成功</span>
+                                <span class="icon-down-arrow"></span>
+                                <%}%>
+                                <%if(jobs[i].status==2){%>
+                                <span>待沟通</span>
+                                <span class="icon-down-arrow"></span>
+                                <%}%>
+                                <%if(jobs[i].status==3){%>
+                                <span>通知面试</span>
+                                <span class="icon-down-arrow"></span>
+                                <%}%>
+                                <%if(jobs[i].status==4){%>
+                                <span>不合适</span>
+                                <span class="icon-down-arrow"></span>
+                                <%}%>
+                                <%if(jobs[i].status==5){%>
+                                <span>已拒绝邀请</span>
+                                <span class="icon-down-arrow"></span>
+                                <%}%>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-box">
+                    <div class="loading"></div>
+                    <!--投递成功-->
+                    <!--<div class="process-box-text">
+                        <div class="process-icon">
+                            <div class="process-line"></div>
+                                <span class="icon-speed status-1 success"></span>
+                                <span class="icon-speed status-2"></span>
+                                <span class="icon-speed status-3"></span>
+                        </div>
+                        <div class="process-title">
+                            <span class="success status-1">投递成功</span>
+                            <span class="status-2">待沟通</span>
+                            <span class="status-3">邀请面试</span>
+                        </div>
+                        <div class="process-item-box">
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p><span class="company">图透教育HR</span>已经成功接收了您的简历</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--待沟通-->
+                    <!--<div class="process-box-text">
+                        <div class="process-icon">
+                            <div class="process-line"></div>
+                            <span class="icon-speed status-1 success"></span>
+                            <span class="icon-speed status-2 success"></span>
+                            <span class="icon-speed status-3"></span>
+                        </div>
+                        <div class="process-title">
+                            <span class="success status-1">投递成功</span>
+                            <span class="status-2">待沟通</span>
+                            <span class="status-3">邀请面试</span>
+                        </div>
+                        <div class="process-item-box">
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                   <p class="success">简历已通过初筛，三个工作日之内HR将与您沟通。</p>
+                                   <p>联系人：董小姐</p>
+                                   <p>联系邮箱：12345678@qq.com</p>
+                                </div>
+                            </div>
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle-gray"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="next"><span class="company">图透教育HR</span>已经成功接收了您的简历</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--邀请面试-->
+                    <!--<div class="process-box-text">
+                        <div class="process-icon">
+                            <div class="process-line"></div>
+                            <span class="icon-speed status-1 success"></span>
+                            <span class="icon-speed status-2 success"></span>
+                            <span class="icon-speed status-3 success"></span>
+                        </div>
+                        <div class="process-title">
+                            <span class="success status-1">投递成功</span>
+                            <span class="status-2">待沟通</span>
+                            <span class="status-3">邀请面试</span>
+                        </div>
+                        <div class="process-item-box">
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="success">HR给您发来面试通知</p>
+                                    <p>面试时间：2016.10.10 14：11 </p>
+                                    <p>面试地点：北京市朝阳区望京SOHO塔三B栋8层</p>
+                                    <p>联系人：董小姐</p>
+                                    <p>联系电话：董小姐</p>
+                                </div>
+                            </div>
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle-gray"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="next">简历已通过初筛，三个工作日之内HR将与您沟通。</p>
+                                    <p class="next">联系人：董小姐</p>
+                                    <p class="next">联系邮箱：12345678@qq.com</p>
+                                </div>
+                            </div>
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle-gray"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="next"><span class="company">图透教育HR</span>已经成功接收了您的简历</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--不合适-->
+                    <!--<div class="process-box-text">
+                        <div class="process-icon">
+                            <div class="process-line"></div>
+                            <span class="icon-speed status-1 success"></span>
+                            <span class="icon-speed status-2 success"></span>
+                            <span class="icon-corner status-3 fail"></span>
+                        </div>
+                        <div class="process-title">
+                            <span class="success status-1">投递成功</span>
+                            <span class="status-2">待沟通</span>
+                            <span class="status-3">不合适</span>
+                        </div>
+                        <div class="process-item-box">
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="success">HR觉得您的简历和该职位不匹配，感谢您的投递。</p>
+                                    <p>相关补充该简历与职位描述不相符和该简历与职该简历 与职位描述不相符。</p>
+                                </div>
+                            </div>
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle-gray"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="next">简历已通过初筛，三个工作日之内HR将与您沟通。</p>
+                                    <p class="next">联系人：董小姐</p>
+                                    <p class="next">联系邮箱：12345678@qq.com</p>
+                                </div>
+                            </div>
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle-gray"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="next"><span class="company">图透教育HR</span>已经成功接收了您的简历</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--不合适-->
+                    <!--<div class="process-box-text">
+                        <div class="process-icon">
+                            <div class="process-line"></div>
+                            <span class="icon-speed status-1 success"></span>
+                            <span class="icon-speed status-2 success"></span>
+                            <span class="icon-corner status-3 fail"></span>
+                        </div>
+                        <div class="process-title">
+                            <span class="success status-1">投递成功</span>
+                            <span class="status-2">待沟通</span>
+                            <span class="status-3">不合适</span>
+                        </div>
+                        <div class="process-item-box">
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="success">HR觉得您的简历和该职位不匹配，感谢您的投递。</p>
+                                    <p>相关补充该简历与职位描述不相符和该简历与职该简历 与职位描述不相符。</p>
+                                </div>
+                            </div>
+                            <div class="process-item">
+                                <div class="process-item-title">
+                                    <span class="circle-gray"></span>
+                                    2016-11-15
+                                </div>
+                                <div class="process-item-info">
+                                    <p class="next"><span class="company">图透教育HR</span>已经成功接收了您的简历</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <%}%>
+            <%include ../common/paging.ejs%>
+            <%}else{%>
+            <div class="empty-area">
+                <div class="no-deliver">
+                    目前没有符合条件的求职记录
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+    <!--<div class="w310 fr">
+      <div class="sideBox mysearch-assume">
+           <div class="mysearch-assume-title">
+               <span class="mysearch-assume-title-line"></span>猜你喜欢
+           </div>
+           <ul class="mysearch-assume-list">
+              <li>
+                  <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                  <h4><a href="#" target="_blank">运营实习生</a></h4>
+                  <p>￥&nbsp;100-160天</p>
+                  <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+              </li>
+               <li>
+                   <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                   <h4><a href="#" target="_blank">运营实习生</a></h4>
+                   <p>￥&nbsp;100-160天</p>
+                   <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+               </li>
+               <li>
+                   <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                   <h4><a href="#" target="_blank">运营实习生</a></h4>
+                   <p>￥&nbsp;100-160天</p>
+                   <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+               </li>
+               <li>
+                   <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                   <h4><a href="#" target="_blank">运营实习生</a></h4>
+                   <p>￥&nbsp;100-160天</p>
+                   <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+               </li>
+           </ul>
+           <div class="more-content">
+               <div class="btn-more"><a href="#">查看更多<span class="icon-more"></span></a></div>
+           </div>
+       </div>
+    </div>-->
+</div>
+
+<%include ../common/footer.ejs%>
+<%include ../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

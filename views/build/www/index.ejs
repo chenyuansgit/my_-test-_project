@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/home.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_index.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面顶部背景-->
+<div class="top-wrap"></div>
+<!--页面头部-->
+<div class="header">
+    <!--ie8以下浏览器进行判断-->
+    <div class="web-prompt" id="web-prompt">本站检测到你的浏览器版本比较低，请更换IE9+、Chrome10+、Firefox4+、Safari5+、Opera 11.1以上浏览器版本，以便获得更好浏览体验!<span class="close-prompt" onclick="closePrompt()"></span></div>
+    <%include common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item on" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container">
+    <!--大banner轮播-->
+    <div class="adv-large-area">
+        <%if(big_ads&&big_ads.length){%>
+        <div class="fullSlide">
+            <div class="bd">
+                <ul>
+                    <%
+                    for(var i= 0;i<big_ads.length;i++){
+                        var ad = JSON.parse(big_ads[i]);
+                        var ad_img = JSON.parse(ad.image).url;
+                    %>
+                    <%if(ad_img && ad_img !="undefined"){%>
+                        <li><a target="_blank" href="<%=ad.url||"/"%>"><img src="<%=ad_img%>" /></a></li>
+                    <%}%>
+                    <%}%>
+                </ul>
+            </div>
+            <%
+                var w = big_ads.length;
+                var ml;
+                switch (w){
+                    case 1:
+                        ml = "518px";
+                        break;
+                    case 2:
+                        ml = "458px";
+                        break;
+                    case 3:
+                        ml = "398px";
+                        break;
+                    case 4:
+                        ml = "338px";
+                        break;
+                    case 5:
+                        ml = "278px";
+                        break;
+                    case 6:
+                        ml = "218px";
+                        break;
+                    case 7:
+                        ml = "158px";
+                        break;
+                    case 8:
+                        ml = "98px";
+                        break;
+                }
+            %>
+            <div class="hd" style="left: <%=ml%>;">
+                <ul class="clearfix">
+                    <%
+                    for(var j= 0;j<big_ads.length;j++){
+                        var ad_title = JSON.parse(big_ads[j]).title;
+                    %>
+                    <%if(ad_title && ad_title !="undefined"){%>
+                    <% if(j ==0) {%>
+                    <li class="on"><span><%=ad_title%></span></li>
+                    <%} else {%>
+                    <li><span><%=ad_title%></span></li>
+                    <%}%>
+                    <%}%>
+                    <%}%>
+                </ul>
+            </div>
+            <span class="prev prev-btn"><span class="icon-prev-btn"></span></span>
+            <span class="next next-btn"><span class="icon-next-btn"></span></span>
+        </div>
+        <%}else{%>
+        <div class="fullSlide">
+            <div class="bd">
+                <ul>
+                    <li><a target="_blank" href="/company/detail/2609"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/56a185be5c196a020c76c9cca801907b.png?imageView2/1/w/2312/h/780" /></a></li>
+                    <li><a target="_blank" href="/company/detail/110"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/08da842b0afecb1ffcc8fc11c5dce7ef.png?imageView2/1/w/2312/h/780" /> </a></li>
+                    <li><a target="_blank" href="/company/detail/2983"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/60a72f709da6b2689586380c0cd14a96.png?imageView2/1/w/2312/h/780" /></a></li>
+                    <li><a target="_blank" href="/company/detail/8"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/8afc4c8e62c0ce89f30e14312d6a1cf6.png?imageView2/1/w/2312/h/780" /></a></li>
+                    <li><a target="_blank" href="http://www.zhzyw.cc/d/aindex/"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/e6e2b1d935b306c5d8e649cd6b5b158a.png?imageView2/1/w/2312/h/780" /></a></li>
+                    <li><a target="_blank" href="/company/detail/10"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/93d036c6691155155e7a33ba4205501b.png?imageView2/1/w/2312/h/780" /></a></li>
+                    <li><a target="_blank" href="/company/detail/24"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/b826fad1b08f8776c97544e63cbb5ad6.png?imageView2/1/w/2312/h/780" /></a></li>
+                </ul>
+            </div>
+            <div class="hd" style="margin-left: -480px;">
+                <!--<ul>
+                    <li class="on">测试一</li>
+                    <li>测试二</li>
+                    <li>测试三</li>
+                    <li>测试四</li>
+                    <li>测试五</li>
+                    <li>测试六</li>
+                    <li>测试七</li>
+                    <li>测试八</li>
+                </ul>-->
+            </div>
+            <span class="prev prev-btn"><span class="icon-prev-btn"></span></span>
+            <span class="next next-btn"><span class="icon-next-btn"></span></span>
+        </div>
+        <%}%>
+    </div>
+
+    <!--小图广告-->
+    <%if(small_ads&&small_ads.length >=8){%>
+    <div class="adv-small-area wrapBox clearfix">
+        <%
+        for(var i= 0;i<8;i++){
+            var ads = JSON.parse(small_ads[i]);
+            var ads_img = JSON.parse(ads.image).url;
+        %>
+        <%if(ads_img && ads_img !="undefined"){%>
+        <div class="adv-small adv-small-<%=i+1%>">
+            <a href="<%=ads.url||'/'%>" target="_blank">
+                <div class="adv-small-img" style="background-image: url('<%=ads_img%>?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis"><%=ads.title||""%></h2>
+                        <p title="<%=ads.sub_title||''%>"><%=ads.sub_title.length>16?ads.sub_title.substr(0,16):ads.sub_title||''%></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <%}%>
+        <%}%>
+    </div>
+    <%}else{%>
+    <div class="adv-small-area wrapBox clearfix">
+        <div class="adv-small adv-small-1">
+            <a href="/company/detail/2884" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/214cb7092ec59bc0dce937ef477ff2bd/980c4cc0e311d6ac27e9e0ea028056eb.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">宝马</h2>
+                        <p title="世界级高档汽车制造商">世界级高档汽车制造商</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small">
+            <a href="/company/detail/38" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/f032ed3bfd042270cd06336af1231601/a61e3a6ec00e903163f8f1733b3b4036.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">爱奇艺</h2>
+                        <p title="顶尖的互联网视频团队">顶尖的互联网视频团队</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small">
+            <a href="/company/detail/12" target="_blank">
+                <div class="adv-small-img" style="background-image: url('http://image.internbird.cn/6bc05d13c728a433d6985f78e09f68da/6e0ffa9493af94cc0c2757cbdd00291a.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">网易</h2>
+                        <p title="网聚人的力量">网聚人的力量</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small">
+            <a href="/company/detail/44" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/d1bebe8e513543a4785ce41d445a1b53/51a0fbf80cb4dcdc456d060c09e34304.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">百度</h2>
+                        <p title="中国最大的搜索引擎商">中国最大的搜索引擎商</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small">
+            <a href="/company/detail/243" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/7ebe28637ccde07408738c839641e50c/80bd6e44cc152019743ac9f30b8fffbc.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">腾讯</h2>
+                        <p title="鹅厂，中国最大的互联网综合服务提供商">鹅厂，中国最大的互联网综合服务提供商</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small">
+            <a href="/company/detail/3984" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/d7ec34d9ca98bc6f039595a0a69ea1af/375cf893a3fd2b31d5ebc10f0eccb8d6.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">掌阅iReader</h2>
+                        <p title="国内卓越的手机移动阅读品牌">国内卓越的手机移动阅读品牌</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small">
+            <a href="/company/detail/2983" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/41930650198ddcdc5a6fd7ade8679f47.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">回家吃饭</h2>
+                        <p title="全国最大的家庭厨房共享平台">全国最大的家庭厨房共享平台</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="adv-small adv-small-8">
+            <a href="/company/detail/3773" target="_blank">
+                <div class="adv-small-img" style="background-image:url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/ab1890965880e411fe8731eeb8b16ba1.png?imageView2/2/w/224/h/224')">
+                    <div class="adv-info">
+                        <h2 class="ellipsis">宋小菜</h2>
+                        <p title="全国最大的互联网农业交易平台">全国最大的互联网农业交易平台</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <%}%>
+
+    <!--搜索-->
+    <div class="index-search wrapBox">
+        <div class="index-search-box clearfix">
+            <div class="index-search-box-sel fl">
+                <!--<span class="index-search-box-type">职位分类</span>-->
+                <!--职位类别-->
+                <!--<div class="main-nav-content" id="main-nav-content">
+                    <ul class="main-nav-box clearfix"></ul>
+                </div>-->
+                <div class="intern-search-prev" data-type="1">实习</div>
+                <div class="intern-search-next" data-type="3">校招</div>
+                <span class="icon-drop-down"></span>
+            </div>
+            <div class="index-search-box-input"><input class="index-search-text" type="text" id="searchInput" placeholder="请输入期待的 实习岗位 或 企业名称 或 实习城市"/></div>
+            <div class="index-search-box-btn"><span class="icon-search"></span>搜索</div>
+        </div>
+
+        <%if(hotWords && hotWords.length>0){%>
+        <div class="hot-search">
+            <span>热门搜索</span>：
+            <%for(var i= 0,len=hotWords.length;i<len;i++){%>
+            <a href="/j/search?k=<%=encodeURIComponent(hotWords[i])%>" target="_blank"><%=hotWords[i]%></a>
+            <%}%>
+        </div>
+        <%}%>
+    </div>
+
+    <!--职位列表-->
+    <div class="jobs-area wrapBox">
+        <ul class="jobs-area-title clearfix">
+            <li class="title-option-hot title-option on"><span class="icon-hot"></span>精品推荐<span class="icon-sel-up"></span></li>
+            <li class="title-option-new title-option"><span class="icon-new"></span>最新职位</li>
+           <!-- <li class="title-option-youth title-option"><span class="icon-youth"></span>青年实习家</li>-->
+           <!-- <li class="title-option-abbr title-option"><span class="icon-abbr"></span>订阅职位</li>-->
+        </ul>
+        <!-- <span class="title-option title-option-hot on">热门职位</span>
+         <span class="title-option title-option-new">最新职位</span>-->
+
+        <!--热门职位/精品推荐-->
+        <%if(hotJobs&&hotJobs.length){%>
+        <div class="jobs-area-hot">
+            <div class="jobs-area-list clearfix">
+                <%for(var i = 0,len = hotJobs.length;i<len;++i){%>
+                <div class="job-box <%= (i%2)>0 ? "even" : "odd"%>">
+                    <div class="job-content">
+                        <div class="job-info-top">
+                            <% var hotJobs_channel_type = (hotJobs[i].channel_type==2 || hotJobs[i].channel_type==4)?"det":"job" %>
+                            <span class="job-info-name"><a href="/<%=hotJobs_channel_type%>/detail/<%=hotJobs[i].jid%>" target="_blank" title="<%=hotJobs[i].name%>"><%=hotJobs[i].name.length>14?hotJobs[i].name.substr(0,14)+"...":hotJobs[i].name%></a></span>
+                            <%
+                                var today = new Date();
+                                //console.log(today);
+                                today.setHours(0);
+                                today.setMinutes(0);
+                                today.setSeconds(0);
+                                var timestamp = +today;
+                            %>
+                            <% if(timestamp < hotJobs[i].refresh_time) {%>
+                                <span class="job-info-date"><%=new Date(parseInt(hotJobs[i].refresh_time)).format("hh:mm")%></span>
+                            <%}else if((timestamp-86400000)<hotJobs[i].refresh_time && hotJobs[i].refresh_time<timestamp) {%>
+                                <span class="job-info-date">1天前</span>
+                            <%}else if((timestamp-86400000*2)<hotJobs[i].refresh_time && hotJobs[i].refresh_time<(timestamp-86400000)) {%>
+                                <span class="job-info-date">2天前</span>
+                            <%}else if((timestamp-86400000*3)<hotJobs[i].refresh_time && hotJobs[i].refresh_time<(timestamp-86400000*2)) {%>
+                                <span class="job-info-date">3天前</span>
+                            <%}else {%>
+                                <span class="job-info-date"><%=new Date(parseInt(hotJobs[i].refresh_time)).format("yyyy-MM-dd")%></span>
+                            <%}%>
+                            <!--<span class="job-info-date"><%=new Date(hotJobs[i].refresh_time).format('yyyy-MM-dd')%></span>-->
+                        </div>
+                        <div  class="job-info-company"><a href="/company/detail/<%=hotJobs[i].company_id%>"  target="_blank" title="<%=hotJobs[i].company_name%>"><%=hotJobs[i].company_name.length>7?hotJobs[i].company_name.substr(0,7)+"...":hotJobs[i].company_name%></a> - <%=hotJobs[i].company_type%></div>
+                        <div class="job-info-bottom clearfix">
+                            <span class="job-info-city"><span class="icon-locate"></span><%=hotJobs[i].city.length>12?hotJobs[i].city.substr(0,12)+"...":hotJobs[i].city%></span>
+                            <%if(hotJobs[i].channel_type ==1 ||hotJobs[i].channel_type ==2){%>
+                                <span class="job-info-days"><span class="icon-calendar"></span>≥<%=hotJobs[i].workdays?hotJobs[i].workdays:1%>天</span>
+                            <%}%>
+                            <% if(hotJobs[i].min_payment == 0 && hotJobs[i].max_payment == 0) {%>
+                                <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                            <%}else{%>
+                                <% if(hotJobs[i].channel_type==3 || hotJobs[i].channel_type==4) {%>
+                                    <span class="job-info-money"><span class="icon-salary"></span><%=hotJobs[i].min_payment/10000%>-<%=hotJobs[i].max_payment/10000%>万/年</span>
+                                <%}else{%>
+                                    <span class="job-info-money"><span class="icon-salary"></span><%=hotJobs[i].min_payment%>-<%=hotJobs[i].max_payment%>/天</span>
+                                <%}%>
+                            <%}%>
+
+                        </div>
+                        <div class="job-logo">
+                            <%if(hotJobs[i].company_avatar){%>
+                            <span class="company-logo" style="background-image: url('<%=hotJobs[i].company_avatar%>?imageView2/2/w/152/h/152')"></span>
+                            <%}else{%>
+                            <span class="company-logo"></span>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+            </div>
+            <div class="more-content ">
+                <div class="btn-more"><a href="/j/search?lt=time">查看更多<span class="icon-more"></span></a></div>
+            </div>
+        </div>
+        <%}%>
+
+        <!--最新职位-->
+        <%if(newJobs&&newJobs.length){%>
+        <div class="jobs-area-new">
+            <div class="jobs-area-list clearfix">
+                <%for(var i = 0,len = newJobs.length;i<len;++i){%>
+                <div class="job-box <%=(i%2) > 0 ? "even" : "odd"%>">
+                    <div class="job-content">
+                        <div class="job-info-top">
+                            <% var newJobs_channel_type = (newJobs[i].channel_type==2 || newJobs[i].channel_type==4)?"det":"job" %>
+                            <span class="job-info-name"><a href="/<%=newJobs_channel_type%>/detail/<%=newJobs[i].jid%>" target="_blank" title="<%=newJobs[i].name%>"><%=newJobs[i].name.length>14?newJobs[i].name.substr(0,14):newJobs[i].name%></a></span>
+                            <%
+                                var today = new Date();
+                                //console.log(today);
+                                today.setHours(0);
+                                today.setMinutes(0);
+                                today.setSeconds(0);
+                                var timestamp = +today;
+                            %>
+                            <% if(timestamp < newJobs[i].refresh_time) {%>
+                                <span class="job-info-date"><%=new Date(parseInt(newJobs[i].refresh_time)).format("hh:mm")%></span>
+                            <%}else if((timestamp-86400000)<newJobs[i].refresh_time && newJobs[i].refresh_time<timestamp) {%>
+                                <span class="job-info-date">1天前</span>
+                            <%}else if((timestamp-86400000*2)<newJobs[i].refresh_time && newJobs[i].refresh_time<(timestamp-86400000)) {%>
+                                <span class="job-info-date">2天前</span>
+                            <%}else if((timestamp-86400000*3)<newJobs[i].refresh_time && newJobs[i].refresh_time<(timestamp-86400000*2)) {%>
+                                <span class="job-info-date">3天前</span>
+                            <%}else {%>
+                                <span class="job-info-date"><%=new Date(parseInt(newJobs[i].refresh_time)).format("yyyy-MM-dd")%></span>
+                            <%}%>
+                            <!--<span class="job-info-date"><%=new Date(newJobs[i].refresh_time).format('yyyy-MM-dd')%></span>-->
+                        </div>
+                        <div  class="job-info-company"><a href="/company/detail/<%=newJobs[i].company_id%>" target="_blank" title="<%=newJobs[i].company_name%>"><%=newJobs[i].company_name.length>7?newJobs[i].company_name.substr(0,7)+"...":newJobs[i].company_name%></a> - <%=newJobs[i].company_type%></div>
+                        <div class="job-info-bottom clearfix">
+                            <span class="job-info-city"><span class="icon-locate"></span><%=newJobs[i].city.length>12?newJobs[i].city.substr(0,12)+"...":newJobs[i].city%></span>
+                            <%if(newJobs[i].channel_type ==1 ||newJobs[i].channel_type ==2){%>
+                                <span class="job-info-days"><span class="icon-calendar"></span>≥<%=newJobs[i].workdays?newJobs[i].workdays:1%>天</span>
+                            <%}%>
+                            <% if(newJobs[i].min_payment == 0 && newJobs[i].max_payment == 0) {%>
+                                 <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                            <%}else{%>
+                                <% if(newJobs[i].channel_type==3 || newJobs[i].channel_type==4){%>
+                                    <span class="job-info-money"><span class="icon-salary"></span><%=newJobs[i].min_payment/10000%>-<%=newJobs[i].max_payment/10000%>万/年</span>
+                                <%}else{%>
+                                    <span class="job-info-money"><span class="icon-salary"></span><%=newJobs[i].min_payment%>-<%=newJobs[i].max_payment%>/天</span>
+                                <%}%>
+                            <%}%>
+                        </div>
+                        <!--企业Logo-->
+                        <div class="job-logo">
+                            <%if(newJobs[i].company_avatar){%>
+                            <div class="company-logo" style="background-image: url('<%=newJobs[i].company_avatar%>?imageView2/2/w/152/h/152')"></div>
+                            <%}else{%>
+                            <div class="company-logo"></div>
+                            <%}%>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+            </div>
+            <div class="more-content">
+                <div class="btn-more"><a href="/j/search?lt=time">查看更多<span class="icon-more"></span></a></div>
+            </div>
+        </div>
+        <%}%>
+
+        <!--青年实习家-->
+       <!-- <div class="jobs-area-youth">青年实习家</div>-->
+
+        <!--订阅职位-->
+       <!-- <div class="jobs-area-abbr">订阅职位</div>-->
+
+    </div>
+
+    <!--精品活动-->
+    <div class="index-event wrapBox">
+        <div class="index-event-title">
+            <div class="index-event-title-box">精品活动</div>
+        </div>
+        <ul class="index-event-list clearfix">
+            <%if(activities&&activities.length){%>
+                <%for(var i=0; i<3;i++){%>
+                <li class="<%= (i==1) ? "mc" : ""%>">
+                    <%if(activities[i].cover){%>
+                        <div class="index-event-img" style="background-image: url('<%=activities[i].cover%>?imageView2/2/w/600/h/360')">
+                            <span class="icon-event-up"></span>
+                        </div>
+                    <%}else{%>
+                        <div class="index-event-img" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/3409953922c708579ec5662392e02c48.png?imageView2/2/w/600/h/360')">
+                            <span class="icon-event-up"></span>
+                        </div>
+                    <%}%>
+                    <div class="index-event-info">
+                        <h4><a href="/activity/detail/<%=activities[i].id%>" target="_blank"><%=activities[i].title.length>14?activities[i].title.substr(0,14)+"...":activities[i].title%></a></h4>
+                        <p><%=activities[i].subtitle.length>20?activities[i].subtitle.substr(0,20)+"...":activities[i].subtitle%></p>
+                    </div>
+                </li>
+                <%}%>
+            <%}%>
+
+           <!-- <li>
+                <div class="index-event-img" style="background-image:url('<%=baseUrl%>/img/index-demo-img1.png')">
+                    <span class="icon-event-up"></span>
+                </div>
+                <div class="index-event-info">
+                    <p>实习鸟走进人大,</p>
+                    <p>正略集团董事长赵民对话青年</p>
+                </div>
+            </li>
+            <li>
+                <div class="index-event-img" style="background-image:url('<%=baseUrl%>/img/index-demo-img1.png')">
+                    <span class="icon-event-up"></span>
+                </div>
+                <div class="index-event-info">
+                    <p>实习鸟走进人大,</p>
+                    <p>正略集团董事长赵民对话青年</p>
+                </div>
+            </li>-->
+        </ul>
+        <div class="more-content ">
+            <div class="btn-more"><a href="/activity" target="_blank">更多活动<span class="icon-more"></span></a></div>
+        </div>
+    </div>
+
+    <!--内推专区-->
+    <!--<div class="index-promote wrapBox clearfix">
+        <div class="index-promote-title">
+            <div class="index-promote-title-box">内推专区</div>
+        </div>
+        <ul class="index-promote-list clearfix">
+            <li>
+                <div class="index-promote-img">
+                    <img src="<%=baseUrl%>/img/index-demo-img2.png" />
+                </div>
+            </li>
+            <li>
+                <div class="index-promote-img">
+                    <img src="<%=baseUrl%>/img/index-demo-img2.png" />
+                </div>
+            </li>
+            <li>
+                <div class="index-promote-img">
+                    <img src="<%=baseUrl%>/img/index-demo-img2.png" />
+                </div>
+            </li>
+        </ul>
+        <div class="more-content ">
+            <div class="btn-more"><a href="/j/search?lt=hot">更多内容<span class="icon-more"></span></a></div>
+        </div>
+    </div>-->
+
+</div>
+<%include common/footer.ejs%>
+<%include common/tucao.ejs%>
+<!--吐槽 end-->
+<%include ./common/statistics.ejs%>
+<!--[if lt IE 7]><script src="<%=baseUrl%>/js/plugin/IB_killie6.js"></script><![endif]-->
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<script type="text/javascript">
+    function closePrompt() {
+        var webPrompt = document.getElementById('web-prompt');
+        webPrompt.style.display = 'none';
+    }
+</script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,302 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../fonts";
+.container{
+  background: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .borderRadius(4px);
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.qrIntro {
+  width: 1024px;
+  margin: 0 auto;
+  .intro-head {
+    padding: 15px 0 35px;
+    text-align: center;
+    border-bottom: 1px dashed #eee;
+    .btn-tap{
+      padding: 6px 15px;
+      margin: 0 39px;
+      color: @mainColor;
+      border: 1px solid @mainColor;
+      border-radius: 3px;
+      &.curr{
+        background-color: @mainColor;
+        color: #fff;
+      }
+    }
+  }
+  .blocks-process{
+    .intro-block {
+      margin-top: 45px;
+      .arrow-up{
+        position: absolute;
+        z-index: 1000;
+        text-align: center;
+        left: 50%;
+        margin-left: -30px;
+        margin-top: 37px;
+        span,em{
+          display: block;
+          width: 82px;
+          height: 61px;
+          font-size: 89px;
+          overflow: hidden;
+          margin-left: 10px;
+          position: absolute;
+        }
+        em{
+          margin-top:-14px;
+          color:@mainColor;
+          font-style:normal;
+        }
+        span{
+          margin-top:-11px;
+          color:#fff;
+        }
+      }
+      .block-top{
+        text-align: center;
+        line-height: 45px;
+        em{
+          background: #00cccc;
+          color: #fff;
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          border-radius: 50%;
+          font-size: 18px;
+        }
+        span{
+          color: @mainColor;
+          font-size: 19px;
+          margin-left: 15px;
+        }
+      }
+      .block-content {
+        border: 2px solid @mainColor;
+        border-radius: 25px;
+        margin-top: 35px;
+        padding: 30px 0;
+        position: relative;
+        .circle{
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background-color: @mainColor;
+          position: absolute;
+          margin-left: 42px;
+        }
+        .line{
+          border: 1px solid @mainColor;
+          position: absolute;
+          margin-left: 48.5px;
+        }
+        .intro-text {
+          width: 850px;
+          margin: 15px auto;
+          line-height: 22px;
+          color: #666;
+          em{
+            color: @mainColor;
+          }
+        }
+        .intro-img {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+  .blocks-qa{
+    width: 800px;
+    margin: 0 auto;
+    display: none;
+    .qa{
+      p{
+        line-height: 25px;
+        text-align: justify;
+        em{
+          color: @mainColor;
+        }
+        &.q{
+          margin-top: 45px;
+          color: #333;
+        }
+        &.a{
+          color: #666;
+          font-size: 15px;
+          em.title{
+            font-size: 16px;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+  &.hr{
+    .intro-block{
+      width: 800px;
+      margin: 45px auto 0;
+      .block-content{
+        .intro-text{
+          width: 630px;
+        }
+        .circle{
+          &-1{
+            top: 47px;
+          }
+          &-2{
+            top: 555px;
+          }
+          &-3{
+            top: 947px;
+          }
+          &-4{
+            top: 1338px;
+          }
+        }
+        .line{
+          &-1{
+            height: 470px;
+            top: 73px;
+          }
+          &-2{
+            height: 355px;
+            top: 581px;
+          }
+          &-3{
+            height: 358px;
+            top: 970px;
+          }
+          &-4{
+            height: 404px;
+            top: 1363px;
+          }
+        }
+        .intro-img {
+          margin: 0 auto;
+          &-1 {
+            width: 569px;
+            height: 279px;
+            background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/277853e6ed6370169a6f477cdf40b9c9.png") 0 0 no-repeat;
+          }
+          &-2 {
+            width: 359px;
+            height: 336px;
+            background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/76f0e04cdce8a8974a6171d2e1a0ad14.png") 0 0 no-repeat;
+          }
+          &-3 {
+            width: 551px;
+            height: 455px;
+            background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/90081853557b9c7b3f569510daa9ae95.png") 0 0 no-repeat;
+          }
+          &-4 {
+            width: 552px;
+            height: 317px;
+            background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/a892d9c46d74c7098bd8f5e3c7fab8a2.png") 0 0 no-repeat;
+          }
+          &-5 {
+            width: 549px;
+            height: 319px;
+            background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/93914ea740ec27075381584b1c5afca6.png") 0 0 no-repeat;
+          }
+          &-6 {
+            width: 558px;
+            height: 382px;
+            background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/0dc1a77c3e8f20c2a251989712827fd8.png") 0 0 no-repeat;
+          }
+        }
+      }
+    }
+
+  }
+  &.user{
+    .block-content{
+      .circle{
+        &-1{
+          top: 47px;
+        }
+        &-2{
+          bottom: 91px;
+        }
+        &-3{
+          top: 47px;
+        }
+        &-4{
+          top: 539px;
+        }
+        &-5{
+          top: 1013px;
+        }
+        &-6{
+          bottom: 268px;
+        }
+      }
+      .line{
+        &-1{
+          height: 715px;
+          top: 73px;
+        }
+        &-2{
+          height: 452px;
+          top: 73px;
+        }
+        &-3{
+          height: 438px;
+          top: 563px;
+        }
+        &-4{
+          height: 393px;
+          bottom: 292px;
+        }
+        &-5{
+          height: 230px;
+          bottom: 30px;
+        }
+      }
+      .intro-img {
+        margin: 0 auto;
+        &-1 {
+          width: 582px;
+          height: 420px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/ef0b8bdab1fe78d6e47eacb49f7f3225.png") 0 0 no-repeat;
+        }
+        &-2 {
+          width: 586px;
+          height: 238px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/54d0c2240e2d7621d38429a695640f89.png") 0 0 no-repeat;
+        }
+        &-3 {
+          width: 833px;
+          height: 407px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/512ebc4db4bcd6f66f5330094d55b823.png") 0 0 no-repeat;
+        }
+        &-4 {
+          width: 580px;
+          height: 373px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/0dd68bf6d63b9e45710935011e1ca063.png") 0 0 no-repeat;
+        }
+        &-5 {
+          width: 580px;
+          height: 400px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/fefb9e0cc533d46b45688e8234f93a95.png") 0 0 no-repeat;
+        }
+        &-6 {
+          width: 583px;
+          height: 378px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/ce83b3480939effaea0e3192dc954dad.png") 0 0 no-repeat;
+        }
+        &-7 {
+          width: 586px;
+          height: 220px;
+          background: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/889c38d236e9b3c4d47b86b04137fc05.png") 0 0 no-repeat;
+        }
+
+      }
+    }
+  }
+}

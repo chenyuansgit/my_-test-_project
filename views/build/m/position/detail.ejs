@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <%if(account && account.uid){%>
+    <script>
+        var isLogin = true;
+    </script>
+    <%}else{%>
+    <script>
+        var isLogin = false;
+    </script>
+    <%}%>
+
+    <%
+    var clientFlag = platform == "client"?1:0;
+    if(!clientFlag){%>
+        <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_jobDetail.js"></script>
+    <%}%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/jobDetail.css"/>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main" style="<%=clientFlag?'padding-top:0':""%>">
+    <div class="header w100 tac" style="<%=clientFlag?'display:none':""%>">
+        <a href="javascript:" class="back left-icon"></a>
+        <span>职位详情</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100" id="content" data-jid = '<%=job.jid%>' data-job-user-id = '<%=job.user_id%>' data-job-company-id= '<%=job.company_id%>'>
+        <div class="job-top">
+            <div class="job-head clearfix">
+                <h3 class="iblock fll name ellipsis"><%=job.name%></h3>
+                <!--<a class="option reports flr iblock" href="javascript:">举报</a>-->
+                <%if(isWeixin){%>
+                <a href="javascript:" class="option share flr iblock" id="share" style="<%=clientFlag?'display:none':""%>"></a>
+                <%}%>
+            </div>
+            <div class="job-detail-area clearfix">
+                <div class="job-detail"><i class="icon icon-address"></i><span><%=job.city%></span></div>
+                <%if(job.channel_type == 3){%>
+                    <%if(job.min_payment==0 && job.max_payment==0){%>
+                    <div class="job-detail"><i class="icon icon-money"></i><span>面议</span></div>
+                    <%}else{%>
+                    <div class="job-detail"><i class="icon icon-money"></i><span><%=parseInt(job.min_payment/10000)%>-<%=parseInt(job.max_payment/10000)%>万/年</span></div>
+                    <%}%>
+                <div class="job-detail"><i class="icon icon-campus"></i><span>校招</span></div>
+                <%}else{%>
+                <div class="job-detail"><i class="icon icon-rili"></i><span>≥<%=job.workdays%>天</span></div>
+                    <%if(job.min_payment==0 && job.max_payment==0){%>
+                    <div class="job-detail"><i class="icon icon-money"></i><span>面议</span></div>
+                    <%}else{%>
+                    <div class="job-detail"><i class="icon icon-money"></i><span><%=job.min_payment%>-<%=job.max_payment%>/天</span></div>
+                    <%}%>
+                <%}%>
+                <%
+                var edu = "";
+                switch(parseInt(job.education)) {
+                    case 0:
+                        edu = "不限";
+                        break;
+                    case 1:
+                        edu = "大专";
+                        break;
+                    case 2:
+                        edu = "本科";
+                        break;
+                    case 3:
+                        edu = "硕士";
+                        break;
+                    case 4:
+                        edu = "博士及以上";
+                        break;
+                }
+                %>
+                <div class="job-detail"><i class="icon icon-xl"></i><span><%=edu%></span></div>
+                <%if(job.recruitment > 0){%>
+                <div class="job-detail"><i class="icon icon-rn"></i><span>招聘<%=job.recruitment%>人</span></div>
+                <%}%>
+                <% if(job.regular == 1) {%>
+                <div class="job-detail"><i class="icon icon-jh"></i><span>提供转正机会</span></div>
+                <%}%>
+            </div>
+            <p class="remarks">职位诱惑&nbsp;:&nbsp;<%=JSON.parse(job.remarks).attr%></p>
+            <%
+            var job_time;
+            var today = new Date();
+            today.setHours(0);
+            today.setMinutes(0);
+            today.setSeconds(0);
+            var today_timestamp = +today;
+            if(job.create_time > today_timestamp && job.create_time - today_timestamp < 24*60*60*1000){
+                var job_timestamp = +new Date() - job.create_time;
+                if(job_timestamp < 2 * 60 * 1000){
+                    job_time = "1分钟前"
+                }else if(job_timestamp <  60 * 60 * 1000){
+                    job_time = Math.ceil(job_timestamp/(1000*60)) +"分钟前"
+                }else if(job_timestamp < 24*60*60*1000){
+                    job_time = Math.ceil(job_timestamp/(1000*60*60)) +"小时前"
+                }
+            }else if(job.create_time > today_timestamp - 24*60*60*1000){
+                job_time = "1天前"
+            }else if(job.create_time > today_timestamp - 2*24*60*60*1000){
+                job_time = "2天前"
+            }else if(job.create_time > today_timestamp - 3*24*60*60*1000){
+                job_time = "3天前"
+            }else{
+                var year_now = parseInt(new Date().format("yyyy"));
+                var year_create = parseInt(new Date(parseInt(job.create_time)).format("yyyy"));
+                if(year_now > year_create){
+                    job_time = new Date(parseInt(job.create_time)).format("yyyy.MM.dd");
+                }else{
+                    job_time = new Date(parseInt(job.create_time)).format("MM月dd日");
+                }
+            }
+            %>
+            <p class="job-time">职位发布于<%=job_time%></p>
+        </div>
+        <div class="job-bottom">
+            <a href="/company/detail/<%=job.company_id%>?forward=<%=encodeOriginalUrl%>" class="company-detail clearfix w100">
+                <span style="background-image: url('<%= company.avatar %>')" data-src = "<%=company.avatar%>" class="fll iblock avatar"></span>
+                <div class="left iblock job-icon fll"></div>
+                <div class="right fll">
+                    <p class="j-info iblock clearfix">
+                        <span class="company_name fll ellipsis"><%=company.name%></span>
+                    </p>
+                    <%
+                    var scale = "";
+                    switch(parseInt(company.scale_type||0)){
+                        case 1: scale ="15人以下"; break;
+                        case 2: scale="15-50人"; break;
+                        case 3: scale="50-150人"; break;
+                        case 4: scale="150-500人"; break;
+                        case 5: scale="500-2000人"; break;
+                        case 6: scale="2000-5000人"; break;
+                        case 7: scale="5000人以上"; break;
+                    }
+                    %>
+                    <p class="company-info clearfix">
+                        <span class="company-city fll ellipsis"><%=company.city%></span><span class="fll">&nbsp;/&nbsp;</span>
+                        <span class="company-type fll"><%=company.type%></span><span class="fll">&nbsp;/&nbsp;</span>
+                        <span class="company-scale fll"><%=scale%></span>
+                    </p>
+                    <p class="j-title"><%=company.title.length>25?company.title.substr(0,25)+"...":company.title%></p>
+                </div>
+                <i class="iblock go-into"></i>
+            </a>
+            <div class="j-block">
+                <h3 class="title"><i class="icon-job icon-jc"></i>招聘详情</h3>
+                <div class="j-content">
+                    <%-job.content%>
+                </div>
+            </div>
+            <div class="j-block">
+                <h3 class="title dead-title"><i class="icon-job icon-address"></i>工作地点</h3>
+                <p class="deadline">
+                    <%=job.address||JSON.parse(company.address)[0].desc%>
+                </p>
+            </div>
+            <div class="j-block">
+                <h3 class="title dead-title"><i class="icon-job icon-deadline"></i>截止日期</h3>
+                <p class="deadline">
+                    <%=new Date(parseInt(job.deadline)).format('yyyy-MM-dd')%>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+    <%if(platform!="client"){%>
+        <%if(+new Date()-parseInt(job.deadline)>0){%>
+        <button class="delivery w100 off">该职位已过期</button>
+        <%}else if(job.state == 2){%>
+        <button class="delivery w100 off">该职位已下线</button>
+        <%}else if(owner==2){%>
+        <button class="delivery w100 off">一键投递</button>
+        <%}else{%>
+            <%if(isDelivered){%>
+        <button class="delivery w100 off">已投递</button>
+            <%}else{%>
+        <button class="delivery w100 on">一键投递</button>
+            <%}%>
+        <%}%>
+    <%}%>
+</div>
+<%var campus_mark = job.channel_type == 3?"的校招职位":"";%>
+<div class="share-back w100 h100 none" data-title="【<%=job.name%>】&nbsp;<%=company.name%>&nbsp;|&nbsp;来自实习鸟<%=campus_mark%>,猛戳投递!" data-desc="<%=JSON.parse(job.remarks).attr%><%=job.address?('&nbsp;|&nbsp;'+job.address):''%>"></div>
+<%include ../footer.ejs%>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/m/oauth.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            m: "http://<%=host.m%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/m/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/m/page/IB_bind.js"></script>
+</head>
+<body>
+<%include ../common/bodyHeader.ejs%>
+<div class="bg"></div>
+<div class="bg blur"></div>
+<div class="main">
+    <div class="page page-1">
+        <div class="info-area">
+            <div class="avatar"></div>
+            <div class="nick-name"></div>
+        </div>
+        <div class="option-area">
+            <p>已有实习鸟账号?</p>
+            <div class="btn-select-bind btn">关联已有账号</div>
+            <div class="ignore-area"><span class="btn-ignore">跳过绑定 <i class="arrow arrow-right"></i></span></div>
+        </div>
+    </div>
+    <div class="page page-2">
+        <div class="bind-area">
+            <p class="tac tips">关联实习鸟账号</p>
+            <div class="bird-account-area">
+                <div class="line line-1 bb clearfix">
+                    <span class="icon icon-bird"></span>
+                    <input class="account-name" type="text" placeholder="请输入手机号或邮箱" />
+                </div>
+                <div class="line line-2 clearfix">
+                    <span class="icon icon-pwd"></span>
+                    <input class="account-pwd" type="password" placeholder="请输入密码" />
+                </div>
+            </div>
+            <div class="btn btn-bind">确认关联</div>
+        </div>
+        <div class="tac step-leap-area">
+            <span class="step-leap-back"><i class="arrow arrow-left"></i>返回上一步</span>
+        </div>
+    </div>
+</div>
+<div class="popTips animation"></div>
+<%include ../common/footer.ejs%>
+</body>
+</html>

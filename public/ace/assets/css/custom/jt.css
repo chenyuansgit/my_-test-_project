@@ -1,0 +1,71 @@
+/*职位类型选择*/
+/*旋转*/
+/*左上角圆角*/
+/*右上角圆角*/
+/*左下角圆角*/
+/*右下角圆角*/
+/*圆角*/
+/*阴影*/
+.selector-jt {
+  border: 1px solid #eee;
+  width: 500px;
+  position: absolute;
+  z-index: 1000;
+  background: #fff;
+  color: #666;
+}
+.selector-jt .main-box {
+  border-right: 1px solid #eee;
+  text-align: center;
+}
+.selector-jt .main-box .jt-1st {
+  padding: 5px 8px;
+  cursor: pointer;
+  margin: 1px 0;
+}
+.selector-jt .main-box .jt-1st:hover,
+.selector-jt .main-box .jt-1st.curr {
+  background: #00d1ce;
+  color: #fff;
+}
+.selector-jt .sub-box {
+  width: 390px;
+  padding: 10px;
+}
+.selector-jt .sub-box .type-detail {
+  display: none;
+}
+.selector-jt .sub-box .type-detail.curr {
+  display: block;
+}
+.selector-jt .sub-box .type-detail dl {
+  position: relative;
+}
+.selector-jt .sub-box .type-detail dl dt {
+  position: absolute;
+  padding: 3px 5px;
+  cursor: pointer;
+  color: #333;
+}
+.selector-jt .sub-box .type-detail dl dt:hover,
+.selector-jt .sub-box .type-detail dl dt.selected {
+  background: #00d1ce;
+  color: #fff;
+  border-radius: 2px;
+}
+.selector-jt .sub-box .type-detail dl dd {
+  margin-left: 75px;
+}
+.selector-jt .sub-box .type-detail dl dd a {
+  padding: 3px 8px;
+  margin: 1px 3px;
+  color: #666;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.selector-jt .sub-box .type-detail dl dd a:hover,
+.selector-jt .sub-box .type-detail dl dd a.selected {
+  background: #00d1ce;
+  color: #fff;
+}

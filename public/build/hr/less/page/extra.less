@@ -1,0 +1,94 @@
+@import "../common/style";
+html {
+  overflow-y: scroll;
+}
+.container {
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.sidebar {
+  width: 240px;
+  float: left;
+}
+.content {
+  width: 880px;
+  float: right;
+}
+.extra-nav{
+  position: fixed;
+  background-color: #fff;
+  text-align: center;
+  width: 180px;
+  font-size: 16px;
+  padding: 20px 30px;
+  margin-top: 68px;
+  .borderRadius(3px);
+  >li{
+    padding: 10px 0;
+    border-bottom: 1px #eee dashed;
+    line-height: 30px;
+    position: relative;
+    a {
+      color: @mainColor;
+    }
+    .extra-arrow {
+      position: absolute;
+      right: 0;
+      top: 18px;
+      width: 16px;
+      height: 16px;
+      background: url("@{baseUrl}/img/extra-arrow.png") no-repeat;
+    }
+  }
+}
+.btn-back{
+  width: 240px;
+  position: fixed;
+  padding: 12px 0;
+  font-size: 18px;
+  text-align: center;
+  background: @mainColor;
+  color: #fff;
+  .borderRadius(3px);
+  i{
+    width: 14px;
+    height: 12px;
+    margin-right: 10px;
+    background: url("../../img/btn-back.png") 0 0 no-repeat;
+    background-size: cover;
+  }
+}
+.btn-back:hover {
+  color: #fff;
+}
+.extra{
+  background-color: #fff;
+  padding: 40px 60px;
+  color: #666;
+  .borderRadius(3px);
+  .title-area {
+    font-size: 20px;
+    color: @mainColor;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px #eee solid;
+    padding-left: 20px;
+  }
+  .extra-content{
+    color: @c2;
+    .text{
+      margin: 15px 25px;
+      line-height: 22px;
+      .title{
+        color: @mainColor;
+        margin-bottom: 5px;
+      }
+    }
+    .user-protocol,.privacy-policy{
+      padding: 15px 25px;
+      text-indent: 2rem;
+      line-height: 30px;
+      text-align: justify;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+/*职位列表及公司列表*/
+.jobs-area {
+  margin-bottom:20px;
+  &-title {
+    width: 360px;
+    margin: 0 auto 20px;
+    li {
+      width: 100px;
+      color: @c2;
+      float: left;
+      display: inline-block;
+      margin: 0 40px;
+      position: relative;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      padding-bottom:15px;
+      span.icon-new, span.icon-youth,span.icon-abbr,span.icon-hot {
+        display: block;
+        //font-weight:700;
+        font-size: 30px;
+      }
+      span.icon-sel-up {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        font-size: 14px;
+        width: 100px;
+      }
+    }
+    .on {
+      color: @mainColor;
+    }
+  }
+  &-list {
+    .job-box {
+      width: 482px;
+      .job-content {
+        padding: 15px 100px 15px 15px;
+        position: relative;
+        margin-bottom:12px;
+        .borderRadius(2px);
+        border: 1px #eee solid;
+        a {
+          color: @mainColor;
+        }
+        .job-info-top {
+          margin-bottom:10px;
+          span.job-info-name {
+            font-size:16px;
+          }
+          span.job-info-date {
+            color: #888;
+            padding-left:20px;
+          }
+        }
+        .job-info-company {
+          margin-bottom: 5px;
+          color: @c2;
+        }
+        .job-info-bottom {
+          color: #666;
+          height: 24px;
+          line-height: 24px;
+          .job-info-city, .job-info-days {
+            margin-right:20px;
+          }
+          .job-info-money {
+            color: @c1;
+          }
+          span.icon-locate, span.icon-calendar,span.icon-salary {
+            font-size:18px;
+            padding-right:4px;
+          }
+        }
+        .job-logo {
+          position: absolute;
+          right: 15px;
+          top: 15px;
+          .company-logo, .det-company-logo {
+            border: 1px #eee solid;
+            width: 76px;
+            height: 76px;
+            background-color: #fff;
+          }
+          .company-logo {
+            .background("@{baseUrl}/img/bird.png",contain);
+          }
+          .det-company-logo {
+            .background("http://image.internbird.com/21232f297a57a5a743894a0e4a801fc3/721f31d7a287e2af31e320a8cf654017.png?imageView2/1/w/152/h/152",contain);
+          }
+        }
+      }
+      .job-content:hover {
+        //border: 1px @mainColor solid;
+        .boxShadow(#eee);
+      }
+    }
+  }
+}

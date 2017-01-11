@@ -1,0 +1,126 @@
+   <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/nest.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item on" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container clearfix mb20">
+    <!--主体-->
+    <div class="wl840 fl">
+        <div class="nest-nav inwrapBox mb20">
+            <ul class="clearfix">
+                <% if(category_id ==1001) {%>
+                    <li class="nav" data-type="全部文章" data-link="/nest"><a href="/nest">全部</a></li>
+                    <li class="nav" data-type="干货" data-link="/nest?category_id=1003"><a href="/nest?category_id=1003">快讯</a></li>
+                    <li class="nav" data-type="好文" data-link="/nest?category_id=1002"><a href="/nest?category_id=1002">好文</a></li>
+                    <li class="nav" data-type="企业家说" data-link="/nest?category_id=1004"><a href="/nest?category_id=1004">企业家说</a></li>
+                    <li class="nav curr" data-type="经验" data-link="/nest?category_id=1001"><a href="/nest?category_id=1001">经验</a><span class="icon-sel-up"></span></li>
+                <%} else if(category_id==1002) {%>
+                    <li class="nav" data-type="全部文章" data-link="/nest"><a href="/nest">全部</a></li>
+                    <li class="nav" data-type="干货" data-link="/nest?category_id=1003"><a href="/nest?category_id=1003">快讯</a></li>
+                    <li class="nav curr" data-type="好文" data-link="/nest?category_id=1002"><a href="/nest?category_id=1002">好文</a><span class="icon-sel-up"></span></li>
+                    <li class="nav" data-type="企业家说" data-link="/nest?category_id=1004"><a href="/nest?category_id=1004">企业家说</a></li>
+                    <li class="nav" data-type="经验" data-link="/nest?category_id=1001"><a href="/nest?category_id=1001">经验</a></li>
+                <%} else if(category_id==1003) {%>
+                    <li class="nav" data-type="全部文章" data-link="/nest"><a href="/nest">全部</a></li>
+                    <li class="nav curr" data-type="干货" data-link="/nest?category_id=1003"><a href="/nest?category_id=1003">快讯</a><span class="icon-sel-up"></span></li>
+                    <li class="nav" data-type="好文" data-link="/nest?category_id=1002"><a href="/nest?category_id=1002">好文</a></li>
+                    <li class="nav" data-type="企业家说" data-link="/nest?category_id=1004"><a href="/nest?category_id=1004">企业家说</a></li>
+                    <li class="nav" data-type="经验" data-link="/nest?category_id=1001"><a href="/nest?category_id=1001">经验</a></li>
+                <%}else if(category_id==1004) {%>
+                    <li class="nav" data-type="全部文章" data-link="/nest"><a href="/nest">全部</a></li>
+                    <li class="nav" data-type="干货" data-link="/nest?category_id=1003"><a href="/nest?category_id=1003">快讯</a></li>
+                    <li class="nav" data-type="好文" data-link="/nest?category_id=1002"><a href="/nest?category_id=1002">好文</a></li>
+                    <li class="nav curr" data-type="企业家说" data-link="/nest?category_id=1004"><a href="/nest?category_id=1004">企业家说</a><span class="icon-sel-up"></span></li>
+                    <li class="nav" data-type="经验" data-link="/nest?category_id=1001"><a href="/nest?category_id=1001">经验</a></li>
+                <%} else {%>
+                    <li class="nav curr" data-type="全部文章" data-link="/nest"><a href="/nest">全部</a><span class="icon-sel-up"></span></li>
+                    <li class="nav" data-type="干货" data-link="/nest?category_id=1003"><a href="/nest?category_id=1003">快讯</a></li>
+                    <li class="nav" data-type="好文" data-link="/nest?category_id=1002"><a href="/nest?category_id=1002">好文</a></li>
+                    <li class="nav" data-type="企业家说" data-link="/nest?category_id=1004"><a href="/nest?category_id=1004">企业家说</a></li>
+                    <li class="nav" data-type="经验" data-link="/nest?category_id=1001"><a href="/nest?category_id=1001">经验</a></li>
+                <%}%>
+            </ul>
+        </div>
+
+        <div class="article-list">
+            <%if(articles&&articles.length){%>
+            <%for(var i=0,len=articles.length; i<len;i++){%>
+                <div class="article-preview inwrapBox mb20 clearfix">
+                    <%if(articles[i].cover){%>
+                        <div class="article-preview-img" style="background-image: url('<%=articles[i].cover%>?imageView2/2/w/560/h/320')"><span class="arrow-left"></span></div>
+                    <%}else{%>
+                         <div class="article-preview-img" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/3409953922c708579ec5662392e02c48.png?imageView2/2/w/560/h/320')"><span class="arrow-left"></span></div>
+                    <%}%>
+                    <div class="article-preview-right">
+                        <div class="article-preview-title"><a href="/nest/detail/<%=articles[i].id%>" target="_blank"><%=articles[i].title.length>24?articles[i].title.substr(0,24)+"...":articles[i].title%></a></div>
+                        <div class="article-preview-summary"><%=articles[i].summary.length>72?articles[i].summary.substr(0,72)+"...":articles[i].summary%><!--<a href="/nest/detail/<%=articles[i].id%>" target="_blank" class="article-link">[详情]</a>--></div>
+                        <div class="article-preview-bottom">
+                            <%if(articles[i].author){%>
+                                <span class="icon-author"></span><span class="nest-author"><%=articles[i].author%></span>
+                            <%}else{%>
+                            <%}%>
+                            <span class="icon-publish-time"></span><%=new Date(articles[i].create_time).format('yyyy-MM-dd hh:mm')%>
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+            <%include ../common/paging.ejs%>
+            <%}else{%>
+                <div class="empty-area">
+                当前分类无文章
+                </div>
+            <%}%>
+        </div>
+    </div>
+    <!--侧边栏-->
+    <div class="w310 fr">
+        <div class="sideBox nest mb20">
+            <div class="nest-logo"></div>
+            <div class="nest-qrcode"></div>
+            <p>微信号:internbird</p>
+        </div>
+        <div class="conn-article sideBox mb20">
+            <div class="conn-left">投稿邮箱</div>
+            <span class="conn-mail">info@internbird.com</span>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_nest.js"></script>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

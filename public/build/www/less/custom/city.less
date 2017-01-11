@@ -1,0 +1,85 @@
+/*城市选择*/
+/*
+.selector-city{
+  border: 1px solid #eee;
+  width: 470px;
+  padding:20px 15px;
+  padding-bottom: 10px;
+  position: absolute;
+  z-index: 1000;
+  background: #fff;
+  display: none;
+  dl{
+    dt{
+      position: absolute;
+      text-align: left;
+      letter-spacing: 2px;
+    }
+    dd{
+      margin-left: 95px;
+      span{
+        padding: 5px 8px;
+        background: #eee;
+        color: #666;
+        .borderRadius(1px);
+        margin: 0 10px 15px 0;
+        cursor: pointer;
+        &:hover,&.on{
+          background: @mainColor;
+          color: #fff;
+        }
+      }
+    }
+  }
+}*/
+.selector-city{
+  width:359px;
+  height: 160px;
+  position: absolute;
+  background: #fff;
+  color: #666;
+  font-size: 15px;
+  z-index: 1000;
+  border: 1px solid #eee;
+  display: none;
+  .province-list{
+    width: 95px;
+    height: 160px;
+    text-align: center;
+    overflow-y: auto;
+    .province{
+      padding: 3px 15px;
+      cursor: pointer;
+      &:hover{
+        background: #ddd;
+      }
+      &.curr{
+        background: @mainColor;
+        color: #fff;
+      }
+    }
+  }
+  .city-list{
+    width: 244px;
+    height: 140px;
+    padding: 10px;
+    display: none;
+    overflow-y: auto;
+    &.curr{
+      display: block;
+    }
+    .city{
+      padding: 3px 9px;
+      margin: 2px;
+      border-radius: 3px;
+      cursor: pointer;
+      &:hover{
+        background: #ddd;
+      }
+      &.selected{
+        background: @mainColor;
+        color: #fff;
+      }
+    }
+  }
+}

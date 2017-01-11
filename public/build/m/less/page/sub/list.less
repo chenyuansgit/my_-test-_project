@@ -1,0 +1,48 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+@import "../../module/jobList";
+
+html,body{
+  background-color: #f6f6f6;
+}
+.sub-title{
+  padding:1.5rem 1rem;
+  height: 5rem;
+  box-sizing: border-box;
+  background-color: #fff;
+  color:#333;
+  font-size:1.3rem;
+  line-height: 100%;
+  border-bottom: 1px solid #eee;
+  .sub{
+    margin-right: 0.5rem;
+    button{
+      text-decoration: none;
+      color: #fff;
+      background-color: @mainColor;
+      padding:0.35rem 1rem;
+      border-radius: 0.4rem;
+      min-width: 6rem;
+      max-width: 8rem;
+      font-size:1.3rem;
+      margin-top: -0.3rem;
+    }
+  }
+  span{
+    margin:0.2rem 0.5rem 0 0;
+    &.ellipsis{
+      min-width: 2rem;
+      max-width: 8rem;
+    }
+    &.icon{
+      width: 2px;
+      height: 1.3rem;
+      border-right:2px solid @mainColor;
+      margin-top: 0.2rem;
+      margin-right: 0.2rem;
+    }
+  }
+}
+.listone{
+  background:#fff;
+}

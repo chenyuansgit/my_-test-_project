@@ -1,0 +1,354 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../plugin/date";
+@import "../../common/overlay";
+@import "../../custom/city";
+@import "../../custom/jobTypeSelector";
+@import "../../custom/date";
+@import "../../fonts";
+@import "../../plugin/lightbox";
+
+.myresume {
+  //简历主体
+  &-main {
+    padding-bottom: 30px;
+    &-top {
+      height: 113px;
+      width: 100%;
+      background-image: url("@{baseUrl}/img/my-resume-top.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      -webkit-background-size: 100% 100%;
+    }
+    .pd {
+      padding: 20px 60px 0;
+    }
+    .resume-circle {
+      position: absolute;
+      left: 24px;
+      width: 8px;
+      height: 8px;
+      .borderRadius(8px);
+      background-color: @c1;
+    }
+    .resume-block {
+      &-title {
+        padding-top: 20px;
+        margin-top: 10px;
+        padding-bottom: 20px;
+        border-top: 1px #eee solid;
+        position: relative;
+        font-size: 16px;
+        span.icon {
+          font-size: 18px;
+          padding-right: 10px;
+          color: @c1;
+        }
+      }
+      &-self-state{
+        .resume-block-top {
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px #eee solid;
+        }
+        p.state {
+          text-align: center;
+          color: @mainColor;
+        }
+        &-con{
+          width:315px;
+          margin: 0 auto;
+          position: relative;
+          .self-state-con{
+            width: 315px;
+            height: 44px;
+            font-size: 18px;
+            background: @mainColor;
+            cursor: pointer;
+            position: relative;
+            &:hover,&:focus{
+              background: #65e2e4;
+              .self-state-btn,i{
+                background-color: #65e2e4;
+              }
+            }
+            .self-state-btn{
+              width:285px;
+              height: 44px;
+              border: none;
+              background:@mainColor ;
+              font-size: 16px;
+              text-align: left;
+              color: #fff;
+              padding-left: 15px;
+              outline: none;
+              cursor: pointer;
+            }
+          }
+          i{
+            width: 17px;
+            height: 13px;
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: url("@{baseUrl}/img/mr/icon-mr.png") 0 0 no-repeat;
+            background-position: -76px -108px;
+          }
+          .self-state-list{
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            z-index: 2;
+            width: 315px;
+            background-color: #65e2e4;
+            box-shadow: 2px 2px 4px #efefe4;
+            .ul-self-state{
+              list-style: none;
+              li{
+                padding: 5px 15px;
+                color: #fff;
+                cursor: pointer;
+                &:hover{
+                  background: @mainColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    //简历头部
+    .resume-header {
+      background-size: cover;
+      position: relative;
+      text-align: center;
+      .myname{
+        line-height: 20px;
+        padding-bottom: 30px;
+        font-size: 18px;
+        padding-top: 48px;
+      }
+      .avatar{
+        position: absolute;
+        z-index: 1000;
+        width: 122px;
+        height: 122px;
+        top: -80px;
+        left: 50%;
+        margin-left: -64px;
+        .background("@{baseUrl}/img/mr/icon-avatar.png",cover);
+        background-color: #fff;
+        .borderRadius(50%);
+        border: 3px solid #fff;
+        *{
+          width: 122px;
+          height: 122px;
+          border-radius: 50%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        #avatar-file{
+          opacity: 0;
+          filter: alpha(opacity=0);
+          cursor: pointer;
+        }
+        .avatar-mask{
+          background: url("@{baseUrl}/img/mr/head-mask.png") 0 0 no-repeat;
+          background-size: cover;
+          display: none;
+        }
+        &:hover{
+          .avatar-mask{
+            display: block;
+          }
+        }
+      }
+    }
+    //个人信息
+    .myresume-info {
+      position: relative;
+      ul {
+        padding-left: 26px;
+      }
+      ul li {
+        min-width: 218px;
+        float: left;
+        line-height: 30px;
+        text-align: left;
+        span {
+          color: @c2;
+          padding-left: 2px;
+        }
+      }
+    }
+    //教育背景   校园经历
+    .resume-edu, .resume-school, .resume-intern, .resume-project, .resume-skill, .resume-honor, .resume-self, .resume-works, .resume-attachment {
+      position: relative;
+      padding-bottom: 12px;
+      color: @c2;
+      line-height: 24px;
+      padding-left: 24px;
+      .btn-delete {
+        padding-left: 12px;
+      }
+      .resume-circle {
+        top: 8px;
+      }
+    }
+    .resume-edu, .resume-school, .resume-intern, .resume-project, .resume-honor {
+      .time {
+        /*position: absolute;
+        left: 38px;
+        top: 0;*/
+        padding: 0 20px;
+      }
+      .info {
+
+      }
+    }
+    .resume-skill {
+      .skill {
+        padding-left: 20px;
+      }
+    }
+    .resume-attachment {
+      .attachment {
+        padding-left: 20px;
+      }
+    }
+    .resume-attachment-blcok {
+      .upload-attach {
+        border: 1px @mainColor solid;
+        color: @mainColor;
+        width: 120px;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 6px 0;
+        text-align: center;
+        display: block;
+        .borderRadius(3px);
+        margin: 10px auto;
+      }
+      .upload-attach-tip {
+        color: @c2;
+        padding-top: 10px;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+    .resume-block-hope .resume-r {
+      top: 20px;
+    }
+    .resume-school, .resume-intern, .resume-project, .resume-honor {
+      .info {
+        span.exp-name,span.exp-role {
+          display: inline;
+          padding-left: 12px;
+        }
+        span.exp-name {
+          padding-right: 12px;
+        }
+      }
+    }
+    .resume-works{
+      .works-site a {
+        color: @mainColor;
+        line-height: 24px;
+      }
+      .works-img {
+        width: 572px;
+        height:auto !important;
+        height:572px;
+        max-height:572px;
+        overflow: hidden;
+        line-height: 0;
+        margin-bottom: 12px;
+        text-align: center;
+        .works-img-item {
+          width:auto !important;
+          width:572px;
+          max-width:572px;
+          height: auto;
+          border: none;
+        }
+        .works-img-item2 {
+          width:auto !important;
+          width:656px;
+          max-width:656px;
+          height: auto;
+          border: none;
+        }
+      }
+      .info, .works-site {
+        word-wrap:break-word;
+        word-break:break-all;
+      }
+    }
+    .resume-work-show {
+      .works-img {
+        width: 100%;
+      }
+    }
+    //期望实习
+    .resume-block-hope {
+      ul {
+        padding-left: 26px;
+      }
+      ul li {
+        float: left;
+        color: @c2;
+        width: 218px;
+        line-height: 30px;
+        .icon {
+          font-size: 18px;
+          padding-right: 8px;
+        }
+      }
+    }
+    //校园经历
+    .resume-block-school, .resume-block-intern, .resume-block-project {
+      .exp-content {
+        padding: 12px 0 0 12px;
+        color: @c2;
+        h1,h2,h3,h4,h5,h6 {
+          font-size: 14px;
+          color: #666;
+          font-weight: 600;
+        }
+      }
+    }
+    .resume-block-edu {
+      .resume-edu-info {
+        padding: 12px 0 0 12px;
+        color: @c2;
+        span.major {
+          padding-right: 12px;
+        }
+      }
+    }
+    //自我描述
+    .resume-self {
+      .self-content {
+      }
+      .btn-edit {
+        right: 0;
+      }
+      .add-area {
+        top: 0;
+      }
+    }
+    //简历作品预览
+    .resume-works-preview {
+      width: 100%;
+      text-align: center;
+      img {
+        max-width: 100%;
+        margin: 0 auto;
+        display: none;
+      }
+    }
+  }
+}

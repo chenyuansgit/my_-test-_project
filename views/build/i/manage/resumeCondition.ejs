@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./../common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/resumeList.css">
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/manage/IB_resume.js"></script>
+</head>
+<body>
+<%include ./../common/bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a class="back" href="/message"></a>
+        <span>简历动态</span>
+    </div>
+    <div class="tab-area clearfix">
+        <a href="#1" class="tab tab-1" data-id="1">待筛选</a>
+        <a href="#2" class="tab tab-2" data-id="2">待沟通</a>
+        <a href="#3" class="tab tab-3" data-id="3">已通知面试</a>
+        <a href="#4" class="tab tab-4" data-id="4">不合适</a>
+    </div>
+    <div class="resumes-area" id="list">
+
+    </div>
+</div>
+</body>
+</html>

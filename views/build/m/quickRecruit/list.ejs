@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <%if(account && account.uid){%>
+    <script>
+        var isLogin = true;
+    </script>
+    <%}else{%>
+    <script>
+        var isLogin = false;
+    </script>
+    <%}%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/IB_recruitList.js"></script>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/qr/recruitList.css"/>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main w100">
+    <div class="header w100 tac">
+        <a href="/" class="back left-icon"></a>
+        <span>往期回顾</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100">
+        <div class="list w100" id="list"></div>
+        <div class='w100 loading tac' id='loading'>
+            <img src='<%=baseUrl%>/img/loading.gif' class='loading_icon'>
+        </div>
+    </div>
+</div>
+</body>
+</html>

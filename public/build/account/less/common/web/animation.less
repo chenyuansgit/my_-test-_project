@@ -1,0 +1,168 @@
+.animationSet(@duration,@delay,@timing,@fileMode){
+  -webkit-animation-duration: @duration;
+  -webkit-animation-delay: @delay;
+  -webkit-animation-timing-function: @timing;
+  -webkit-animation-fill-mode: @fileMode;
+
+  -moz-animation-duration: @duration;
+  -moz-animation-delay: @delay;
+  -moz-animation-timing-function: @timing;
+  -moz-animation-fill-mode: @fileMode;
+
+  -ms-animation-duration: @duration;
+  -ms-animation-delay: @delay;
+  -ms-animation-timing-function: @timing;
+  -ms-animation-fill-mode: @fileMode;
+
+  animation-duration: @duration;
+  animation-delay: @delay;
+  animation-timing-function: @timing;
+  animation-fill-mode: @fileMode;
+}
+.transform(...){
+  -moz-transform: @arguments;
+  -ms-transform: @arguments;
+  -webkit-transform: @arguments;
+  transform: @arguments;
+}
+/*弹窗动画*/
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    .transform(scale(0.5,0.5));
+  }
+  to {
+    opacity: 0.75;
+    .transform(none);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    .transform(scale(0.5,0.5));
+  }
+  to {
+    opacity: 0.75;
+    .transform(none);
+  }
+}
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+/*弹窗动画 end*/
+
+/*selector动画*/
+//右侧滑入
+@-webkit-keyframes flipRight {
+  from {
+    opacity: 0;
+    .transform(translate3d(50px, 0, 0));
+  }
+  to {
+    opacity: 1;
+    .transform(none);
+  }
+}
+@keyframes flipRight {
+  from {
+    opacity: 0;
+    .transform(translate3d(50px, 0, 0));
+  }
+  to {
+    opacity: 1;
+    .transform(none);
+  }
+}
+.flipRight {
+  -webkit-animation-name: flipRight;
+  animation-name: flipRight;
+}
+//右侧滑出
+@-webkit-keyframes flipRightOut {
+  from {
+    opacity: 1;
+    .transform(none);
+  }
+  to {
+    opacity: 0;
+    .transform(translate3d(50px, 0, 0));
+
+  }
+}
+@keyframes flipRightOut {
+  from {
+    opacity: 1;
+    .transform(none);
+  }
+  to {
+    opacity: 0;
+    .transform(translate3d(50px, 0, 0));
+
+  }
+}
+.flipRightOut {
+  -webkit-animation-name: flipRightOut;
+  animation-name: flipRightOut;
+}
+
+//左侧滑入
+@-webkit-keyframes flipLeft {
+  from {
+    opacity: 0;
+    .transform(translate3d(-50px, 0, 0));
+  }
+  to {
+    opacity: 1;
+    .transform(none);
+  }
+}
+@keyframes flipLeft {
+  from {
+    opacity: 0;
+    .transform(translate3d(-50px, 0, 0));
+  }
+  to {
+    opacity: 1;
+    .transform(none);
+  }
+}
+.flipLeft {
+  -webkit-animation-name: flipLeft;
+  animation-name: flipLeft;
+}
+//右侧滑出
+@-webkit-keyframes flipLeftOut {
+  from {
+    opacity: 1;
+    .transform(none);
+  }
+  to {
+    opacity: 0;
+    .transform(translate3d(-50px, 0, 0));
+
+  }
+}
+@keyframes flipLeftOut {
+  from {
+    opacity: 1;
+    .transform(none);
+  }
+  to {
+    opacity: 0;
+    .transform(translate3d(-50px, 0, 0));
+
+  }
+}
+.flipLeftOut {
+  -webkit-animation-name: flipLeftOut;
+  animation-name: flipLeftOut;
+}
+/*selector动画 end*/
+
+.animation{
+  .animationSet(0.5s,0s,ease,both);
+}
+.animation_600{
+  .animationSet(0.6s,0s,ease,both);
+}

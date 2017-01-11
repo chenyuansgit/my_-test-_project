@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/favorite/favorite.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container mb20 clearfix">
+    <div class="sidebar fl">
+        <ul class="favorite-nav">
+            <!--<div class="title"><i></i>发布的职位</div>-->
+            <li><a href="/sub/list">我的订阅</a></li>
+            <li class="cur"><a href="/favorite/list?type=job">我的收藏</a></li>
+        </ul>
+    </div>
+    <div class="content fr">
+        <!--订阅列表-->
+        <div class="favorite-content">
+            <div class="favorite-top-nav inwrapBox mb20">
+                <ul class="clearfix">
+                    <li class="nav"><a href="/favorite/list?type=company">公司收藏</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav"><a href="/favorite/list?type=job">职位收藏</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav curr"><a href="/favorite/list?type=det">外网收藏</a><span class='icon-sel-up'></span></li>
+                </ul>
+            </div>
+            <!-- <div class="favorite-top">
+                 <div class="switch-favorite">
+                     <span class="switch-favorite-name">公司收藏</span>
+                     <span class="icon-drop-down"></span>
+                     <div class="switch-favorite-text"><a href="/private/favorite/list?type=job">职位收藏</a></div>
+                 </div>
+             </div>-->
+            <%if(favorites&&favorites.length){%>
+            <div class="favorite-list">
+                <%for(var i=0,len =favorites.length;i<len;i++){%>
+                <div class="favorite-list-box mb20">
+                    <!--校招判断-->
+                    <%if(favorites[i].channel_type == 4) {%>
+                    <div class="xiaozhao-icon"></div>
+                    <%}%>
+                    <%if(favorites[i].company_avatar){%>
+                    <div class="det-avatar" style="background-image: url('<%=favorites[i].company_avatar%>?imageView2/2/w/152/h/152')"></div>
+                    <%}else{%>
+                    <div class="det-avatar"></div>
+                    <%}%>
+                    <div class="list-top clearfix">
+                        <span class="job-name fl"><a href="/det/detail/<%=favorites[i].jid%>" target="_blank"><%=favorites[i].name%></a></span>
+                        <!--<%
+                            var timestamp = Date.parse(new Date(new Date().format("yyyy-MM-dd")));
+                        %>
+                        <% if(timestamp < favorites[i].refresh_time) {%>
+                        <span class="job-time fr"><%=new Date(parseInt(favorites[i].refresh_time)).format("hh:mm")%></span>
+                        <%}else if((timestamp-86400000)<favorites[i].refresh_time && favorites[i].refresh_time<timestamp) {%>
+                        <span class="job-time fr">1天前</span>
+                        <%}else if((timestamp-86400000*2)<favorites[i].refresh_time && favorites[i].refresh_time<(timestamp-86400000)) {%>
+                        <span class="job-time fr">2天前</span>
+                        <%}else if((timestamp-86400000*3)<favorites[i].refresh_time && favorites[i].refresh_time<(timestamp-86400000*2)) {%>
+                        <span class="job-time fr">3天前</span>
+                        <%}else {%>
+                        <span class="job-time fr"><%=new Date(favorites[i].refresh_time).format('yyyy-MM-dd')%></span>
+                        <%}%>-->
+                        <span class="job-time fr"><%=new Date(favorites[i].refresh_time).format('yyyy-MM-dd')%></span>
+                    </div>
+                    <div class="list-bottom">
+                        <% if(favorites[i].company_id ==0){%>
+                            <span class="job-company"><%=favorites[i].company_name%></span>
+                        <%}else{%>
+                            <span class="job-company"><a href="/company/detail/<%=favorites[i].company_id%>" target="_blank" title="<%=favorites[i].company_name%>"><%=favorites[i].company_name%></a></span>
+                        <%}%>
+                        /<span class="job-city"><%=favorites[i].city.length>12?favorites[i].city.substr(0,12)+"...":favorites[i].city%></span>/
+                        <%if(favorites[i].min_payment ==0 && favorites[i].max_payment ==0){%>
+                            <span class="job-payment">￥面议</span>
+                        <%}else{%>
+                            <%if(favorites[i].channel_type == 4){%>
+                                <span class="job-payment">￥<%=favorites[i].min_payment/10000%>-<%=favorites[i].max_payment/10000%>万/年</span>
+                            <%}else{%>
+                                <span class="job-payment">￥<%=favorites[i].min_payment%>-<%=favorites[i].max_payment%>/天</span>
+                            <%}%>
+                        <%}%>
+                        <%if(favorites[i].channel_type ==2){%>
+                            /<span class="job-workdays"><%=favorites[i].workdays%>天</span>
+                        <%}%>
+                        <div class="job-right">
+                            <span class="cancel-btn" data-type = "det" data-id = "<%=favorites[i].jid%>">取消收藏</span>
+                            <a href="/det/detail/<%=favorites[i].jid%>" class="delivery-resume" target="_blank">投递简历</a>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                <%include ../common/paging.ejs%>
+            </div>
+            <%}else{%>
+            <!--当前无订阅-->
+            <div class="empty-area">
+                <div class="empty-content">
+                    <h4>暂时没有您想要的职位。</h4>
+                    <a href="/j/search" class="favorite-setting favorite-btn">收藏职位</a>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs %>
+<!-- -------弹窗 end------ -->
+<script src="<%=baseUrl%>/js/lib/IB_require.js" data-main="<%=baseUrl%>/js/page/favorite/IB_favorite.js"></script>
+</body>
+</html>

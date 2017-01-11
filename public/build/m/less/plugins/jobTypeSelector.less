@@ -1,0 +1,103 @@
+@import "../var";
+@import "../common/animation";
+.selector-jt{
+  display: none;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  .selector-top{
+    line-height: 4rem;
+    color: #333;
+    position: relative;
+    border-bottom: 0.1rem solid #eee;
+    text-align: center;
+    background: #fff;
+    .top-title{
+      font-size: 1.7rem;
+    }
+    .btn-confirm{
+      font-size: 1.5rem;
+      position: absolute;
+      right: 0.2rem;
+      top: -0.25rem;
+      padding: 1.5rem;
+      line-height: normal;
+    }
+    .btn-back{
+      position: absolute;
+      left: 0.2rem;
+      top: -0.25rem;
+      padding: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: url('../../img/icon-left-blue.png') center no-repeat;
+      background-size: 50% auto;
+    }
+  }
+  .sub-title{
+    text-align: center;
+    font-size: 1.5rem;
+    color: @mainColor;
+    line-height: 4rem;
+    background: #fff;
+    border-bottom: 0.1rem solid #eee;
+  }
+  .main-selector{
+    height:100%;
+    .side-wrapper{
+      height: 60rem;
+      font-size: 1.5rem;
+      color: #333;
+      text-align: center;
+      position: relative;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      li{
+        line-height: 4rem;
+        border-bottom: 0.1rem solid #ddd;
+      }
+      >div{
+        width: 100%;
+        height: 20rem;
+      }
+
+      &-l{
+        width: 50%;
+        background-color: #e8e8e8;
+        float: left;
+        ul{
+          width: 100%;
+          height: 100%;
+          li{
+            &.curr{
+              background-color: #fff;
+            }
+          }
+        }
+      }
+      &-r{
+         width: 45%;
+         background-color: #fff;
+         float: right;
+         ul{
+           display: none;
+           width: 100%;
+           height: 100%;
+           &.curr{
+             display: block;
+           }
+           li{
+             border-color: #eee;
+             &.on{
+               color: @mainColor;
+             }
+           }
+         }
+       }
+    }
+  }
+}

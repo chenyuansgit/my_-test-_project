@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/jobCondition.css?name=11"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/deliverManage/IB_jobCondition.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/userCenter" class="back left-icon"></a>
+        <span>求职动态</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="top-nav clearfix">
+        <a class="nav fll iblock normal" data-status=1 href="#1">
+            <span>待筛选</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=2 href="#2">
+            <span>待沟通</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=3 href="#3">
+            <span>通知面试</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=4 href="#4">
+            <span>不合适</span>
+        </a>
+        <a class="nav fll iblock det" href="/private/det">
+            <span>外网投递</span>
+        </a>
+    </div>
+    <div class="list w100" id="list"></div>
+    <div class="selection none">
+        <span class="all fll" >全部面试</span>
+        <span class="doing flr active" data-interviewed = '0'>未面试</span>
+        <span class="done flr" data-interviewed = '1'>已面试</span>
+    </div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>

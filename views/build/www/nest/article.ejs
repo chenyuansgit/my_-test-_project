@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/nest.css" rel="stylesheet"/>
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item on" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container mb20 clearfix">
+    <!--主体-->
+    <div class="wl840 fl">
+        <div class="nest-nav inwrapBox mb20">
+            <ul class="clearfix">
+                <li class="curr" data-type="推荐" data-id="0">推荐<span class="icon-sel-up"></span></li>
+                <li data-type="定位" data-id="1">定位</li>
+                <li data-type="行业解读" data-id="2">行业解读</li>
+                <li data-type="简历"  data-id="3">简历</li>
+                <li data-type="面试"  data-id="4">面试</li>
+                <li data-type="实习故事" data-id="5">实习故事</li>
+                <li data-type="精品活动" data-id="6">精品活动</li>
+            </ul>
+        </div>
+
+        <!--正方-->
+        <div class="nest-text inwrapBox mb20">
+            <h3>推荐|看《太子妃升职记》你必须知道的事</h3>
+            <div class="nest-text-info">2016-01-23<span class="article-author">实习鸟</span></div>
+            <p><img src="http://t.s0.internbird.com/web/img/articles/32-1.ae00e3d0919d.png" /></p>
+            <p>据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦据说这部剧的制片人里有李小璐哦~</p>
+            <p>据说这部剧的演员都是50线的演员……</p>
+            <p>看完本期小公举收集的小八卦后，不知你如何感想，反正我是双眼含泪……</p>
+            <p>你看，在没有多少经费&没有明星带动光环甚至没有好的摄像师的前提下，一个导演带领一干人马凭借一双双拖鞋和淘宝风服装都能这样杀出重围，获得这样的喜爱！！</p>
+            <p>我们还有什么资格抱怨自己期末考试没有把握！（叫你平时偷懒！）</p>
+            <p>还有什么资格埋怨没有好的实习公司赏识你！（叫你不早点加入实习鸟大家庭）</p>
+            <p>看吧，梦想还是要有的！万一实现了呢！！</p>
+            <p>期末考试要好好准备！过过过！</p>
+            <p>寒假好好过新年！长志气！来年好好跟着实习鸟找大牛实习！</p>
+            <div class="nest-text-tag">标签:<a href="#">证书</a><a href="#">萌萌</a><a href="#">娘炮</a><a href="#">董小姐</a></div>
+            <div class="nest-text-share">
+                <span class="icon-view2"></span>阅读(10)
+                <span class="icon-likes"></span>赞(120)
+                <span class="icon-brake"></span>踩(120)
+            <div class="share-icon">
+                分享到: <a href="#"><span class="icon-weixin"></span></a><a href="#"><span class="icon-weibo"></span></a>
+            </div>
+            </div>
+        </div>
+
+        <!--分页-->
+        <div class="nest-next inwrapBox clearfix mb20">
+            <a href="#" class="fl" id="next-next-prev">上一篇:萌萌喜欢董小姐</a>
+            <a href="#" class="fr" id="next-next-next">下一篇:董小姐是伟娘</a>
+        </div>
+    </div>
+    <!--侧边栏-->
+    <div class="w310 fr">
+        <!--搜索-->
+        <div class="article-search sideBox mb20">
+            <div class="article-search-bg">
+                <input type="text" class="nest-search" placeholder="输入话题或关键字或标题" />
+                <span class="serach-btn"><span class="icon-search"></span>搜索</span>
+            </div>
+        </div>
+        <div class="conn-article sideBox mb20">
+            <!-- <div>您可以通过以下方式联系我们</div>
+             <div>
+                 <a href=""><i class="icon-type-3-sina icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-wechat icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-qq icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-wifi icon-type-3"></i></a>
+             </div>-->
+            <!--<div>如果您有推荐的文章，请将文章</div>
+            <div>发送至info@internbird.com</div>-->
+            <div class="conn-left">投稿邮箱</div>
+            <span class="conn-mail">info@internbird.com</span>
+        </div>
+        <div class="sideBox conn-icon mb20">
+            <a href="#"><span class="icon-weixin"></span></a>
+            <a href="#"><span class="icon-weibo"></span></a>
+            <a href="#"><span class="icon-black-qq"></span></a>
+            <a href="#"><span class="icon-rss"></span></a>
+        </div>
+        <div class="sideBox">
+            <%include ../nest/recommend.ejs%>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<%include ../common/statistics.ejs%>
+</body>
+</html>

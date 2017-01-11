@@ -1,0 +1,222 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../common/overlay";
+@import "../../fonts";
+.setting {
+  &-nav {
+    padding: 28px 58px;
+    text-align: center;
+    h4 {
+      font-size: 16px;
+      border-bottom: 1px #eee solid;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    ul li {
+      height: 36px;
+      font-size: 16px;
+      line-height: 36px;
+      cursor: pointer;
+      position: relative;
+      span.icon-sign {
+        position: absolute;
+        right: 20px;
+        top: 0;
+      }
+    }
+    ul li.curr, ul li.curr a {
+      color: @mainColor;
+    }
+  }
+
+  &-main {
+    padding: 64px 78px 120px 78px;
+    h3 {
+      font-size: 18px;
+      padding-bottom: 20px;
+    }
+    h4 {
+      font-size: 16px;
+      padding-bottom: 15px;
+      color: @c2;
+    }
+    .setting-edit-area, .setting-edit-mail, .setting-edit-phone, .setting-edit-avatar, .setting-edit-nickname {
+      height: auto;
+      .setting-input {
+        width: 300px;
+        border: 1px #eee solid;
+        height: 26px;
+        line-height: 26px;
+        padding: 5px 15px;
+        color: @c2;
+        font-size: 14px;
+        outline: none;
+      }
+      span.icon-edit, span.cancel {
+        padding-left: 12px;
+        cursor: pointer;
+        color: @mainColor;
+      }
+      span.icon-edit {
+        font-size: 20px;
+      }
+      span.cancel {
+        display: none;
+      }
+    }
+    .setting-edit-avatar {
+      .avatar {
+        width: 120px;
+        height: 120px;
+        border: 1px #eee solid;
+        padding: 3px;
+        position: relative;
+        .background2(contain);
+        background-image: url("@{baseUrl}/img/bird.png");
+        .avatar-file {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 9;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          filter: alpha(opacity=0);
+          cursor: pointer;
+        }
+        .avatar-text {
+          position: absolute;
+          z-index: 8;
+          height: 24px;
+          width: 126px;
+          bottom: 0;
+          left: 0;
+          line-height: 24px;
+          text-align: center;
+          background-color: rgba(0,0,0,.2);
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+    .input-tips {
+      padding-left: 68px;
+    }
+    .receive-mailbox .input-tips {
+      padding-left: 145px;
+    }
+    .success-edit {
+      color: @mainColor;
+    }
+
+    .btn-edit {
+      line-height: 38px;
+      width: 100px;
+      text-align: center;
+      margin: 36px auto 0;
+      display: block;
+      font-size: 16px;
+      .borderRadius(3px);
+    }
+  }
+}
+span.t, span.t2 {
+  font-size: 16px;
+  color: #999999;
+}
+span.t {
+  width: 64px;
+}
+span.t2 {
+  width: 138px;
+}
+.pos-block-prefix {
+  position: relative;
+  height: 38px;
+  margin-top: 20px;
+  .pos-item {
+    width: 440px;
+    cursor: pointer;
+  }
+
+  input[type="text"]{
+    height: 36px;
+    line-height: 36px;
+    width: 300px;
+    font-size: 14px;
+    padding: 0 15px;
+    border: 1px solid #eee;
+  }
+  span.icon-down-arrow, span.icon-up-arrow {
+    position: absolute;
+    left: 440px;
+    top: 4px;
+    width: 30px;
+    color: #00d1ce;
+    text-align: center;
+    font-size: 22px;
+  }
+  .selector{
+    width: 330px;
+    top: 38px;
+    left: 142px;
+    li{
+      color: #999;
+      padding:5px 0 5px 15px;
+      &:hover{
+        background: #ededed;
+        color: #666;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.popBox-prefix {
+  input[type="text"]{
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    padding: 0 10px;
+    border: 1px solid #eee;
+  }
+  .popBox-content {
+    padding: 25px 20px 20px 20px;
+    .custom-pop-prefix {
+      width: 418px;
+    }
+    p {
+      color: @c2;
+      padding: 20px 0;
+    }
+    .popBox-area-btn {
+      text-align: center;
+    }
+  }
+}
+.pos-block-prefix, .popBox-prefix {
+  input[type="button"]{
+    width: 120px;
+    height: 38px;
+    background: @mainColor;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    .borderRadius(3px);
+  }
+}
+//加载图片
+.loading{
+  width: 30px;
+  height: 30px;
+  background: url("@{baseUrl}/img/loading-s.gif") 0 0 no-repeat;
+  background-size: contain;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -15px;
+}

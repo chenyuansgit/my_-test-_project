@@ -1,0 +1,156 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+@import "../../custom/selector";
+@import "sideBlock";
+@import "../../common/animation";
+body{
+  position: relative;
+}
+.article-area{
+  margin-top: 1rem;
+  padding-bottom: 4rem;
+}
+.title{
+  margin:0.5rem 0 1rem 0;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color:#333;
+  font-weight: 500;
+}
+.tips{
+  font-size:1.2rem;
+  color:#666;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+  .ibird{
+    color:#46688a;
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+}
+.content{
+  padding:0 1rem;
+  font-size:1.2rem;
+  img{
+    margin: 0 auto;
+  }
+  word-break: break-all;
+  *{
+    word-break: break-all;
+    box-sizing: border-box!important;
+    max-width: 100%!important;
+  }
+}
+.int{
+  margin-bottom: 6rem;
+  .tip{
+    padding:1rem 10rem 0 1rem;
+    margin-top: 2rem;
+    position: relative;
+    p{
+      text-align: right;
+      line-height: 150%;
+      color:#999;
+      font-size: 1.2rem;
+    }
+  }
+  a{
+    text-decoration: none;
+    position: absolute;
+    right:2rem;
+    top:1.5rem;
+    button{
+      border-radius: 0.3rem;
+      width: 6rem;
+      height: 2.1rem;
+      background-color: #fff;
+      border: 1px solid @mainColor;
+      color: @mainColor;
+      font-size: 1.35rem;
+      &.blue{
+        background: @mainColor;
+        color: #fff;
+      }
+    }
+  }
+  img{
+    position: absolute;
+    right:2rem;
+    top:0;
+    width: 6rem;
+    height: 6rem;
+  }
+}
+.bottom{
+  position: absolute;
+  bottom: 0.5rem;
+  left:0;
+  box-sizing: border-box;
+  padding: 3rem 1rem 0.5rem 1rem;
+  color:#666;
+  font-size: 1.15rem;
+  .read{
+    color:#54c4f9;
+    margin-right: 0.8rem;
+    text-decoration: none;
+  }
+  .like-icon{
+    width: 1.3rem;
+    margin:0.25rem 0.3rem 0 1rem;
+  }
+}
+
+.option-area{
+  width: 100%;
+  height: 4rem;
+  line-height: 4rem;
+  border-top: 0.1rem solid #eee;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 1000;
+  font-size: 1.4rem;
+  color: #666;
+  text-align: center;
+  &.btn-invite{
+    .icon-invite{
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.14rem;
+      background-size: 100% auto;
+      background-image: url("@{baseUrl}/img/qr/icon-mail-blue.png");
+      position: absolute;
+      margin-top: 1.4rem;
+    }
+    .text{
+      margin-left: 2rem;
+    }
+  }
+}
+.sel-content{
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .scroll-wrapper {
+    height: 14rem;
+    ul{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.popTips{
+  z-index: 30000;
+}
+.share-back{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50000;
+  background: url('@{baseUrl}/img/qr/share-special.png') 0 0 no-repeat;
+  background-color: rgba(0,0,0,.9);
+  background-size: 100% auto;
+}

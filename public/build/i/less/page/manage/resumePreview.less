@@ -1,0 +1,47 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+@import "../../common/animation";
+@import "../resume";
+@import "../../custom/editBlock";
+@import "../../custom/timeScroller";
+
+.option-area{
+  width: 100%;
+  height: 4rem;
+  border-top: 0.1rem solid #eee;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 1000;
+  .option{
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: 0.5rem;
+    float: left;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    &.w100{
+      width: 100%;
+    }
+    &.w50{
+      width: 49%;
+    }
+    &.w30{
+      width: 33%;
+    }
+    &.br{
+      border-right: 0.1rem solid #eee;
+    }
+    .btn{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      color: @mainColor;
+      &.off{
+        color: #999;
+      }
+    }
+  }
+}

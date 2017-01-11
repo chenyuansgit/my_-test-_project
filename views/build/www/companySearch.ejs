@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/search.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_search.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面顶部背景-->
+<div class="top-wrap"></div>
+<!--页面头部-->
+<div class="header">
+    <%include common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item on" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+    </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!--滚动图片-->
+    <%if(ads && ads.length>=4){%>
+    <div class="jobs-roll wrapBox">
+
+        <div class="adv-medium-area clearfix">
+            <%for(var i=0;i<4;i++){
+                var ad = JSON.parse(ads[i]);
+                var ad_img = JSON.parse(ad.image).url;
+            %>
+            <div class="adv-medium adv-medium-<%=i+1%>">
+                <a href="<%=ad.url||"/"%>" target="_blank"><div class="adv-medium-img" style="background-image: url('<%=ad_img%>?imageView2/2/w/490/h/284');"></div></a>
+            </div>
+            <%}%>
+        </div>
+        <!--<span class="icon-left-arrow"></span>
+        <span class="icon-right-arrow"></span>-->
+    </div>
+    <%}%>
+
+    <!--搜索面板-->
+    <div class="intern-search wrapBox">
+        <!--职位搜索输入框-->
+        <div class="search-top">
+            <div class="intern-search-box clearfix">
+                <div class="intern-search-sel fl">
+                    <span class="icon-drop-down"></span>
+                    <div class="intern-search-prev">公司</div>
+                    <!--职位搜索-->
+                    <div class="intern-search-next"><a href="/j/search">职位</a></div>
+                </div>
+                <div class="intern-search-box-input"><input class="index-search-text" id="searchInput" type="text" placeholder="请输入您期望的 公司名 或 城市" value="<%=option.k?option.k:''%>"/></div>
+                <div class="intern-search-box-btn"><span class="icon-search"></span>搜索</div>
+            </div>
+            <!--选择搜索类型-->
+           <!-- <div class="intern-search-type">
+                <a href="/j/search" class="jops">职位</a>|<a href="/c/search" class="cur company">公司</a>
+            </div>-->
+        </div>
+
+        <!--公司搜索列表-->
+        <div class="intern-search-area">
+            <div class="intern-search-top">
+                <div class="line-select-wrap">
+                    <div class="item item-city">
+                        <ul class="active item-ul clearfix">
+                            <li class="title">实习地点:</li>
+                            <%if(!option.cid){%>
+                            <li class="company-city selected" data-city="" data-cid="">不限</li>
+                            <%}else{%>
+                            <li class="company-city" data-city="" data-cid="">不限</li>
+                            <%}%>
+                            <%for(var i= 0;i<16;++i){%>
+                            <%if(option.cid==hotCity[i].city_id){%>
+                            <li class="company-city selected" data-city="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}else{%>
+                            <li class="company-city" data-city="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}%>
+                            <%}%>
+                            <li class="btn-more">更多<i></i></li>
+                        </ul>
+                        <div class="more clearfix">
+                            <ul class="hot item-ul clearfix">
+                                <li class="title">实习地点:</li>
+                                <%if(!option.cid){%>
+                                <li class="company-city selected" data-city="">不限</li>
+                                <%}else{%>
+                                <li class="company-city" data-city="">不限</li>
+                                <%}%>
+                                <%for(var i= 0;i<16;++i){%>
+                                <%if(option.cid==hotCity[i].city_id){%>
+                                <li class="company-city selected" data-city="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}else{%>
+                                <li class="company-city" data-city="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}%>
+                                <%}%>
+                                <li class="btn-more">更多<i></i></li>
+                            </ul>
+                            <ul class="other item-ul clearfix">
+                                <%for(var i= 16;i<hotCity.length;++i){%>
+                                <%if(option.cid==hotCity[i].city_id){%>
+                                <li class="company-city selected" data-city="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}else{%>
+                                <li class="company-city" data-city="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                                <%}%>
+                                <%}%>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <ul class="item-ul clearfix">
+                            <li class="title">公司规模:</li>
+                            <%if(option.st==0){%>
+                            <li class="company-scale selected" data-scale="">不限</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="">不限</li>
+                            <%}%>
+                            <%if(option.st==1){%>
+                            <li class="company-scale selected" data-scale="1">15人以下</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="1">15人以下</li>
+                            <%}%>
+                            <%if(option.st==2){%>
+                            <li class="company-scale selected" data-scale="2">15-50人</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="2">15-50人</li>
+                            <%}%>
+                            <%if(option.st==3){%>
+                            <li class="company-scale selected" data-scale="3">50-150人</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="3">50-150人</li>
+                            <%}%>
+                            <%if(option.st==4){%>
+                            <li class="company-scale selected" data-scale="4">150人-500人</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="4">150人-500人</li>
+                            <%}%>
+                            <%if(option.st==5){%>
+                            <li class="company-scale selected" data-scale="5">500-2000人</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="5">500-2000人</li>
+                            <%}%>
+                            <%if(option.st==6){%>
+                            <li class="company-scale selected" data-scale="6">2000-5000人</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="6">2000-5000人</li>
+                            <%}%>
+                            <%if(option.st==7){%>
+                            <li class="company-scale selected" data-scale="7">5000人以上</li>
+                            <%}else{%>
+                            <li class="company-scale" data-scale="7">5000人以上</li>
+                            <%}%>
+                        </ul>
+                    </div>
+                    <div class="item item-type">
+                        <ul class="active item-ul clearfix">
+                            <li class="title">公司行业:</li>
+                            <%if(!option.ct){%>
+                            <li class="company-type selected" data-type="" data-type-id="">不限</li>
+                            <%}else{%>
+                            <li class="company-type" data-type="" data-type-id="">不限</li>
+                            <%}%>
+                            <%for(var i= 0;i<11;++i){%>
+                            <%if(option.ct==company_type[i].type_id){%>
+                            <li class="company-type selected" data-type="<%=company_type[i].type_name%>" data-type-id="<%=company_type[i].type_id%>"><%=company_type[i].type_name%></li>
+                            <%}else{%>
+                            <li class="company-type" data-type="<%=company_type[i].type_name%>" data-type-id="<%=company_type[i].type_id%>"><%=company_type[i].type_name%></li>
+                            <!--<%if(i==6 && parseInt(option.ct) >= 1007){%>
+                            <li class="company-type selected" data-type="<%=company_type[parseInt(option.ct.substr(1))].type_name%>" data-type-id="<%=company_type[parseInt(option.ct.substr(1))].type_id%>"><%=company_type[parseInt(option.ct.substr(1))].type_name%></li>
+                            <%}%>-->
+                            <%}%>
+                            <%}%>
+                            <li class="btn-more">更多<i></i></li>
+                        </ul>
+                        <div class="more clearfix">
+                            <ul class="hot item-ul clearfix">
+                                <li class="title">公司行业:</li>
+                                <%if(!option.ct){%>
+                                <li class="company-type selected" data-type="" data-type-id="">不限</li>
+                                <%}else{%>
+                                <li class="company-type" data-type="" data-type-id="">不限</li>
+                                <%}%>
+                                <%for(var i= 0;i<11;++i){%>
+                                <%if(option.ct==company_type[i].type_id){%>
+                                <li class="company-type selected" data-type="<%=company_type[i].type_name%>" data-type-id="<%=company_type[i].type_id%>"><%=company_type[i].type_name%></li>
+                                <%}else{%>
+                                <li class="company-type" data-type="<%=company_type[i].type_name%>" data-type-id="<%=company_type[i].type_id%>"><%=company_type[i].type_name%></li>
+                                <!--<%if(i==6 && parseInt(option.ct) >= 1007){%>
+                                <li class="company-type selected" data-type="<%=company_type[parseInt(option.ct.substr(1))].type_name%>" data-type-id="<%=company_type[parseInt(option.ct.substr(1))].type_id%>"><%=company_type[parseInt(option.ct.substr(1))].type_name%></li>
+                                <%}%>-->
+                                <%}%>
+                                <%}%>
+                                <li class="btn-more">更多<i></i></li>
+                            </ul>
+                            <ul class="other item-ul clearfix">
+                                <%for(var i= 11;i<company_type.length;++i){%>
+                                <%if(option.ct==company_type[i].type_id){%>
+                                <li class="company-type selected" data-type="<%=company_type[i].type_name%>" data-type-id="<%=company_type[i].type_id%>"><%=company_type[i].type_name%></li>
+                                <%}else{%>
+                                <li class="company-type" data-type="<%=company_type[i].type_name%>" data-type-id="<%=company_type[i].type_id%>"><%=company_type[i].type_name%></li>
+                                <%}%>
+                                <%}%>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--公司列表-->
+    <div class="company-area wrapBox">
+        <div class="clearfix">
+        <%if(companies&&companies.length){%>
+        <%for(var i=0;i<companies.length;i++){
+        if(!!companies[i].name && companies[i].name!= 0 ){%>
+        <div class="company <%=(i % 2) > 0 ? "even" : "odd"%>">
+            <div class="company-head">
+                <%if(companies[i].avatar){%>
+                <div class="company-logo" style="background-image:url('<%=companies[i].avatar%>?imageView2/2/w/260/h/260') "></div>
+                <%}else{%>
+                <div class="company-logo"></div>
+                <%}%>
+                <div class="company-detail">
+                    <div class="clearfix bl">
+                        <%
+                            var name =  companies[i].name.length>7?companies[i].name.substr(0,7)+"...":companies[i].name;
+                        %>
+                        <div class="fl"> <span class="company-name" title="<%=companies[i].name%>"><a href="/company/detail/<%=companies[i].cid%>" target="_blank"><%=name%></a></span><!--<span class="company-type">- <%=companies[i].type%></span>--></div>
+                    </div>
+                    <div class="company-info">
+                        <%=companies[i].city%>&nbsp;|&nbsp;<% var dataScale = companies[i].scale_type;
+                            var dataScaleType = "";
+                            switch (dataScale) {
+                                case 1:
+                                    dataScaleType = "15人以下";
+                                    break;
+                                case 2:
+                                    dataScaleType = "15-50人";
+                                    break;
+                                case 3:
+                                    dataScaleType = "50-150人";
+                                    break;
+                                case 4:
+                                    dataScaleType = "150人-500人";
+                                    break;
+                                case 5:
+                                    dataScaleType = "500-2000人";
+                                    break;
+                                case 6:
+                                    dataScaleType = "2000-5000人";
+                                    break;
+                                case 7:
+                                    dataScaleType = "5000人以上";
+                                    break;
+                            }
+                        %><%=dataScaleType%>&nbsp;|&nbsp;<%=companies[i].type%>
+                    </div>
+                    <div class="company-title">
+                        <%=companies[i].title.length>30?companies[i].title.substr(0,30)+"...":companies[i].title%>
+                    </div>
+                    <div class="company-tags">
+                        <% var tags = companies[i].tag.split(",");
+                        if(tags.length >3){
+                        for(var j=0;j<3;j++){
+                        if(!!tags[i]){%>
+                        <span><%=tags[j]%></span>
+                        <%}
+                        }
+                        }else{
+                        for(var k=0;k<tags.length;k++){
+                        if(!!tags[k]){%>
+                        <span><%=tags[k]%></span>
+                        <%}
+                        }
+                        }
+                        %>
+                    </div>
+                </div>
+            </div>
+            <div class="company-positions">
+                该公司共有<span><%=companies[i].job_num || 0%></span>个职位在招
+            </div>
+        </div>
+        <%}
+        }
+        }else{%>
+        <div class="empty-area">
+            <div class="empty-content">
+                <span class="pic fl"></span>
+                <div class="text fl">
+                    <div>暂时没有符合您搜索条件的公司</div>
+                    <span>要不修改搜索条件重新试试?</span>
+                </div>
+            </div>
+        </div>
+        <%}%>
+        </div>
+        <%include common/paging.ejs%>
+    </div>
+
+</div>
+
+<%include common/footer.ejs%>
+<%include ./common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/quickRecruit/process.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/IB_process.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include common/headerStu.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li class="curr">
+                    <span class="icon-curr-up"></span>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="center-content">
+        <div class="qrIntro user">
+            <div class="intro-head">
+                <span class="btn-tap btn curr" data-type="process">快招流程</span>
+                <span class="qa btn-tap btn"  data-type="qa">快招问答</span>
+            </div>
+            <div class="blocks-process blocks">
+                <div class="intro-block intro-block-1">
+                    <div class="arrow-up">
+                        <em>&#9670;</em>
+                        <span>&#9670;</span>
+                    </div>
+                    <div class="block-top">
+                        <em>1</em><span>快招</span>
+                    </div>
+                    <div class="block-content">
+                        <div class="circle circle-1"></div>
+                        <div class="circle circle-2"></div>
+                        <div class="line line-1"></div>
+                        <ul class="intro-text">
+                            <li>在<em>“快招－我的快招”</em>页面或<em>“我的简历”</em>可开通快招。快招开通后，即可将简历加入人才库，曝光给更多优质的企业。</li>
+                            <li>温馨提示&nbsp;:&nbsp;一份完整的简历有利于更好地吸引招聘官哦～</li>
+                            <li>只有招聘官才能够看到你人才库中展示的简历（隐藏联系方式）。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-1"></div>
+                        <div class="intro-img  intro-img-2"></div>
+                        <ul class="intro-text">
+                            <li>为了提高你在人才库的排名，你可以每天刷新一次简历；</li>
+                            <li>为了给优秀的学生提供更多的机会，我们每周会推出一至两期精选的快招。若当前可报名，学生可通过<em>“报名精选”</em>报名；</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="intro-block intro-block-2">
+                    <div class="arrow-up">
+                        <em>&#9670;</em>
+                        <span>&#9670;</span>
+                    </div>
+                    <div class="block-top">
+                        <em>2</em><span>人才库被查看</span>
+                    </div>
+                    <div class="block-content">
+                        <ul class="intro-text">
+                            <li>招聘官可在人才库中查看到学生的简历，学生的教育信息、期望实习和自我评价等重要信息将会展示给招聘官，并且招聘官可通过<em>“查看详情”</em>进一步了解学生，通过<em>“邀请”</em>向学生发出邀约。</li>
+                            <li> 只有你接受了招聘官的邀约，对方才可看到你的联系方式。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-3"></div>
+                    </div>
+                </div>
+                <div class="intro-block intro-block-3">
+                    <div class="arrow-up">
+                        <em>&#9670;</em>
+                        <span>&#9670;</span>
+                    </div>
+                    <div class="block-top">
+                        <em>3</em><span>查看邀约情况</span>
+                    </div>
+                    <div class="block-content">
+                        <div class="circle circle-3"></div>
+                        <div class="circle circle-4"></div>
+                        <div class="circle circle-5"></div>
+                        <div class="circle circle-6"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                        <div class="line line-4"></div>
+                        <div class="line line-5"></div>
+                        <ul class="intro-text">
+                            <li>接收到的所有邀约，都可以在<em>“我的快招－待处理”</em>列表中查看到，邀约的有效期为7天，请在有效期内回复，可接受或拒绝。</li>
+                            <li>若接受，招聘官可看到你的联系方式，同时你也可以得到招聘官的联系方式；若拒绝邀约，则双方均不能看到对方的联系方式。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-4"></div>
+                        <ul class="intro-text">
+                            <li>已接受的邀约，可在“已接受”中查看，并且在<em>“我的求职”</em>里跟踪求职的最近动态，已接受的邀约可查看到招聘官的联系方式，并可直接联系。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-5"></div>
+                        <ul class="intro-text">
+                            <li>已拒绝的邀约，可在<em>“已拒绝”</em>中查看，拒绝的邀约将无法查看招聘官的联系方式，同时对方也无法查看你的联系方式。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-6"></div>
+                        <ul class="intro-text">
+                            <li>7天字内未回应的邀约，可在<em>“已过期”</em>中查看，已过期的邀约同样双方无法查看对方的联系方式。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-7"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="blocks-qa blocks">
+                <div class="qa">
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>快招是什么？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>快招是求职者主动展示简历，招聘官一键邀请投递的快速招聘栏目。开通快招功能即可将简历放入人才库中（隐藏联系方式），每天最多可接收15家优质公司的实习邀请，由你自己决定是否接受邀请，并准许对方查看联系方式，快速拿到中意的offer。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>快招和普通的实习招聘流程有什么区别？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>普通的招聘流程，求职者需要投递职位，被动等待招聘官的回复；快招则变被动为主动，聚集了更多优质的企业，学生展示简历，招聘官可查看并邀请。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>如何参与实习鸟快招？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>在<em>“快招－我的快招”</em>中，开通快招即可将简历放入人才库，供合适的企业查看并邀请。为保证邀约质量，一份完整的简历是必须的。<br/>
+                        另外，实习鸟快招每周会推出一至两期的快招精选，学生可通过快招首页或我的快招页面“报名精选”入口报名参加。工作人员会在5个工作日内对报名申请作出反馈，若合适，将会主动联系并全程服务报名者；若本期不合适，还可以继续报名参加下一期。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>参加实习鸟快招，我需要做什么？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>你要做的，只需要完善你的个人简历，并且开通快招，即可等待优质公司的邀请。 </p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>没有通过实习鸟快招精选的申请，怎么办？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>目前的实习鸟快招精选每周推出一至两期，若本期申请失败，可继续申请下一期。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>实习鸟快招如何保护我的隐私？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>开通快招，系统会自动将电话、邮箱等私密信息屏蔽掉，企业邀请学生时，只有学生接受邀请，企业才可得到学生的联系方式，否则无法获取学生的联系方式。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>为什么要报名快招精选？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>快招精选头条置顶在快招页面，更大的曝光机会，在一周的时间内，你可以自由挑选向你发出邀约的企业。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>如何查看快招记录？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>学生可在<em>“快招－我的快招”</em>栏目查看新接收的邀约和邀约的反馈情况。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+</body>
+</html>

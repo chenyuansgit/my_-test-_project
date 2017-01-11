@@ -1,0 +1,209 @@
+@import "../common/reconsitution";
+@import "../common/index";
+@import "../common/animation";
+.main{
+  padding-top:0;
+  position: relative;
+}
+.tr-link{
+  font-size: 1.4rem;
+  color: #666;
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10000;
+}
+.account {
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+  .avatar, .file-avatar {
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    .borderRadius(999px);
+    background: @mainColor;
+    margin-top: 2rem;
+  }
+  .avatar {
+    background-image: url("@{baseUrl}/img/icon-avatar.png");
+    background-size: cover;
+    background-position: center;
+    background-color: #fff;
+    &.loading-img{
+      background-image: url("@{baseUrl}/img/loading.gif")!important;
+      background-size: 3rem 3rem;
+      background-position: center;
+      background-color: #fff;
+      background-repeat: no-repeat;
+    }
+  }
+  .file-avatar {
+    position: absolute;
+    margin-left: -10rem;
+    opacity: 0;
+  }
+}
+.sign{
+  margin:8rem 0;
+  font-size: 1.5rem;
+  color:@mainColor;
+  a{
+    text-decoration: none;
+    font-size: 1.5rem;
+    color:@mainColor;
+  }
+}
+.nick_name-area{
+  color:@mainColor;
+  font-size: 1.5rem;
+  margin:0 0 1.5rem;
+  position: relative;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  overflow: hidden;
+  .nick-name{
+    display: inline-block;
+    max-width: 70%;
+  }
+  .icon{
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    &-uname-edit{
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: 0.5rem;
+      background: 0 -.2rem no-repeat;
+      background-size: 100%;
+      background-image: url("@{baseUrl}/img/resume/icon-edit.png");
+    }
+  }
+}
+.link a{
+  box-sizing: border-box;
+  width: 45%;
+  padding: 1.8rem;
+  border: 0.1rem solid #00ced1;
+  text-align: center;
+  text-decoration: none;
+  float: left;
+  margin: 0 2.5% 1rem;
+  .icon{
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    margin: 0 auto 0.5rem;
+    &.jobCondition{
+      background: url('@{baseUrl}/img/job-condition-icon.png') 0 0 no-repeat;
+      background-size: 100% 100%;
+    }
+    &.resume{
+      background: url('@{baseUrl}/img/my-resume-icon.png') 0 0 no-repeat;
+      background-size: 100% 100%;
+    }
+    &.sub{
+      background: url('@{baseUrl}/img/my-sub-icon.png') 0 0 no-repeat;
+      background-size: 90% auto;
+    }
+    &.qr{
+      background: url('@{baseUrl}/img/icon-qr.png') 0 0 no-repeat;
+      background-size: 100% auto;
+    }
+  }
+  .text{
+    color:@mainColor;
+    font-size:1.4rem;
+  }
+  .toRight{
+    width: 0.6rem;
+    height: 1.2rem;
+    margin:0.4rem 0.2rem 0 0;
+    background: url('@{baseUrl}/img/icon-right.png') 0 0 no-repeat;
+    background-size: 100% auto;
+  }
+}
+.quit{
+  padding:1.8rem 0;
+  .quit-icon{
+     width:1.4rem;
+    height:1.4rem;
+    background: url('@{baseUrl}/img/icon-quit.png') 0 0 no-repeat;
+    background-size: 100% auto;
+    position: relative;
+    top:0.22rem;
+  }
+  .text{
+    color:#e11111;
+    font-size: 1.4rem;
+  }
+}
+
+.popBox{
+  display: none;
+  background: #fff;
+  color: #333;
+  font-size: 1.4rem;
+  border-radius: 0.3rem;
+  border: 1px solid #fafafa;
+  position: fixed;
+  z-index: 20001;
+  width: 68%;
+  left: 16%;
+  top: 50%;
+  margin-top: -8rem;
+  &-uname-change{
+    .title{
+      text-align: center;
+      padding: 1rem 0;
+      color: #000;
+    }
+    .info{
+      padding: 0 5%;
+      text-align: justify;
+      color: #888;
+      line-height: 1.5rem;
+    }
+    .input-line{
+      input{
+        border: none;
+        &.uname-set{
+          padding: 0.5rem 0;
+          width: 88%;
+          margin: 0 1rem;
+        }
+      }
+    }
+    .btn-area{
+      text-align: center;
+      padding: 0.6rem 0 1rem;
+      margin-top: 0.6rem;
+      border-top: 1px solid #eee;
+      .btn{
+        display: inline-block;
+        float: left;
+        color: @mainColor;
+        width: 49%;
+        padding: 0.3rem 0;
+        &-cancel{
+          border-right: 1px solid #eee;
+        }
+      }
+    }
+  }
+}
+.overlay{
+  display: none;
+  position: fixed;
+  z-index: 20000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+}
+.popTips{
+  z-index: 20002;
+  top: 50%;
+  margin-top: -2.5rem;
+}

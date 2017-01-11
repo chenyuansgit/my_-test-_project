@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <%if(account && account.uid){%>
+    <script>
+        var isLogin = true;
+    </script>
+    <%}else{%>
+    <script>
+        var isLogin = false;
+    </script>
+    <%}%>
+
+    <%
+    var clientFlag = platform == "client"?1:0;
+    if(!clientFlag){%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/deliverManage/IB_resumeCondition.js"></script>
+    <%}%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/resumeCondition.css"/>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main" style="<%=clientFlag?'padding-top:0':""%>">
+    <div class="header w100 tac" style="<%=clientFlag?'display:none':""%>">
+        <a href="javascript:" class="back left-icon"></a>
+        <span>投递记录</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100" id="content" >
+        <a href="javascript:" class="job-link">
+            <div class="job-info clearfix">
+                <div class="job-info-right fll">
+                    <div class="company-logo" style=""></div>
+                </div>
+                <div class="job-info-left fll">
+                    <div class="job-info-top">
+                        <span class="job-name ellipsis"></span>
+                        <span class="job-refresh-time"></span>
+                    </div>
+                    <div class="company-name ellipsis"></div>
+                    <div class="job-info-bottom clearfix">
+                        <div class="job-info-base fll ">
+                            <i class="icon icon-city"></i><span class="job-city ellipsis"></span>
+                        </div>
+                        <div class="job-info-base fll mgl">
+                            <i class="icon icon-days"></i><span class="job-days ellipsis"></span>
+                        </div>
+                        <div class="job-info-base fll mgl">
+                            <i class="icon icon-payment"></i><span class="job-payment ellipsis"></span>
+                        </div>
+                    </div>
+                </div>
+                <i class="icon-arrow"></i>
+            </div>
+        </a>
+        <%
+            var resume_status = resume_condition.status;
+
+            var interview_info;
+            var isInterviewed = 0;
+            if(resume_status == 3){
+                interview_info = JSON.parse(resume_condition.interview_info);
+                isInterviewed = parseInt(interview_info.interview_time) - (+new Date) > 0 ? 0 : 1;
+            }
+        %>
+        <div class="current-condition-area">
+            <%
+                var curr_condition = "";
+                switch(resume_status){
+                    case 1 : curr_condition = "待筛选"; break;
+                    case 2 : curr_condition = "待沟通"; break;
+                    case 3 : curr_condition = "通知面试"; break;
+                    case 4 : curr_condition = "不合适"; break;
+                }
+                if(isInterviewed && resume_status == 3){
+                    curr_condition = "已面试";
+                }
+            %>
+            <div class="fz">投递状态&nbsp;<span class="current-condition">【<%=curr_condition%>】</span></div>
+
+            <%if(resume_status == 3 && !isInterviewed){%>
+                <p class="current-condition-info">面试时间&nbsp;:&nbsp;<%=new Date(parseInt(interview_info.update_time)).format('yyyy.MM.dd hh:mm')%></p>
+                <p class="current-condition-info">面试地点&nbsp;:&nbsp;<%=interview_info.address%></p>
+                <p class="current-condition-info">联系人&nbsp;:&nbsp; <%=interview_info.hr_name%></p>
+                <p class="current-condition-info">联系电话&nbsp;:&nbsp; <%=interview_info.hr_phone%></p>
+            <%}else if(resume_status == 4){%>
+                <%if(resume_condition.improper_info){%>
+                    <%var improper_info = JSON.parse(resume_condition.improper_info);%>
+                    <%if(improper_info.reason_title){%>
+                    <p class="current-condition-info">补充说明&nbsp;:&nbsp; <%=improper_info.reason_title%></p>
+                    <%}%>
+                <%}%>
+            <%}%>
+        </div>
+        <div class="resume-condition-area">
+            <%if(resume_status == 1){%>
+            <div class="condition-line">
+                <div class="title">
+                    <span class="icon icon-receive"></span>
+                    <span class="time"><%=new Date(parseInt(resume_condition.create_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail">
+                    <p>HR已收到您的简历</p>
+                </div>
+            </div>
+            <%}else if(resume_status == 2){%>
+            <%if(resume_condition.contact_info){%>
+            <%var contact_info = JSON.parse(resume_condition.contact_info)%>
+            <div class="condition-line">
+                <div class="title">
+                    <span class="icon icon-seen"></span>
+                    <span class="time"><%=new Date(parseInt(contact_info.update_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <%if(contact_info.hr_name){%>
+                    <p>联系人&nbsp;:&nbsp;<%=contact_info.hr_name%></p>
+                    <p>联系方式&nbsp;:&nbsp; <%=contact_info.hr_email%></p>
+                    <%}else{%>
+                    <p>简历已通过初筛，三个工作日之内HR将与您沟通。若期限内，HR没有联系您，将在此开放HR联系方式。</p>
+                    <%}%>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="condition-line">
+                <div class="title">
+                    <span class="icon icon-seen"></span>
+                    <span class="time"><%=new Date(parseInt(resume_condition.create_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <p>简历已通过初筛，三个工作日之内HR将与您沟通。若期限内，HR没有联系您，将在此开放HR联系方式。</p>
+                </div>
+            </div>
+            <%}%>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-receive"></span>
+                    <span class="time"><%=new Date(parseInt(resume_condition.create_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail">
+                    <p>HR已收到您的简历</p>
+                </div>
+            </div>
+            <%}else if(resume_status == 3 && !isInterviewed){%>
+            <div class="condition-line">
+                <div class="title">
+                    <span class="icon icon-mail"></span>
+                    <span class="time"><%=new Date(parseInt(interview_info.update_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <p>收到面试邀请</p>
+                </div>
+            </div>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-seen"></span>
+                    <span class="time"><%=new Date(parseInt(interview_info.update_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <p>简历已通过初筛,三个工作日之内HR将与您沟通</p>
+                    <p>联系人&nbsp;:&nbsp;<%=interview_info.hr_name%></p>
+                    <p>联系方式&nbsp;:&nbsp; <%=interview_info.hr_phone%></p>
+                </div>
+            </div>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-receive"></span>
+                    <span class="time"><%=new Date(parseInt(resume_condition.create_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail">
+                    <p>HR已收到您的简历</p>
+                </div>
+            </div>
+            <%}else if(resume_status == 3 && isInterviewed){%>
+            <div class="condition-line">
+                <div class="title">
+                    <span class="icon icon-interview"></span>
+                    <span class="time"><%=new Date(parseInt(interview_info.interview_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <p>已进行面试</p>
+                </div>
+            </div>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-seen"></span>
+                    <span class="time"><%=new Date(parseInt(JSON.parse(resume_condition.contact_info).update_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <p>简历已通过初筛,三个工作日之内HR将与您沟通</p>
+                    <p>联系人&nbsp;:&nbsp;<%=interview_info.hr_name%></p>
+                    <p>联系方式&nbsp;:&nbsp; <%=interview_info.hr_phone%></p>
+                </div>
+            </div>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-receive"></span>
+                    <span class="time"><%=new Date(parseInt(resume_condition.create_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail">
+                    <p>HR已收到您的简历</p>
+                </div>
+            </div>
+            <%}else if(resume_status == 4){%>
+                <%
+                    var improper_info = JSON.parse(resume_condition.improper_info);
+                %>
+            <div class="condition-line">
+                <div class="title">
+                    <span class="icon icon-fail"></span>
+                    <span class="time"><%=new Date(parseInt(improper_info.update_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <p>简历被标记为不合适</p>
+                </div>
+            </div>
+            <%if(resume_condition.contact_info){%>
+                <%var contact_info = JSON.parse(resume_condition.contact_info)%>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-seen"></span>
+                    <span class="time"><%=new Date(parseInt(contact_info.update_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail bl">
+                    <%if(contact_info.hr_name){%>
+                    <p>联系人&nbsp;:&nbsp;<%=contact_info.hr_name%></p>
+                    <p>联系方式&nbsp;:&nbsp; <%=contact_info.hr_phone%></p>
+                    <%}else{%>
+                    <p>简历已通过初筛，三个工作日之内HR将与您沟通。若期限内，HR没有联系您，将在此开放HR联系方式。</p>
+                    <%}%>
+                </div>
+            </div>
+            <%}%>
+            <div class="condition-line condition-line-overdue">
+                <div class="title">
+                    <span class="icon icon-receive"></span>
+                    <span class="time"><%=new Date(parseInt(resume_condition.create_time)).format('yyyy.MM.dd hh:mm')%></span>
+                </div>
+                <div class="condition-detail">
+                    <p>HR已收到您的简历</p>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>

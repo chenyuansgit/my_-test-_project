@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/message.css">
+</head>
+<body>
+<%include ./common/bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <span>消息</span>
+    </div>
+    <div class="nav-area">
+        <a href="/resumeManage" class="nav">
+            <i class="icon icon-resume"></i>
+            <span>简历动态</span>
+            <i class="icon icon-next"></i>
+        </a>
+        <a href="/qrManage" class="nav">
+            <i class="icon icon-quick"></i>
+            <span>快招邀约</span>
+            <i class="icon icon-next"></i>
+        </a>
+    </div>
+    <div class="footer clearfix">
+        <a class="tab" href="/">
+            <i class="icon icon-quick"></i>
+            <p>快招</p>
+        </a>
+        <a class="tab curr" href="/message">
+            <i class="icon icon-message"></i>
+            <p>消息</p>
+        </a>
+        <a class="tab" href="/mine">
+            <i class="icon icon-index"></i>
+            <p>我的</p>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

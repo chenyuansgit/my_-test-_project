@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <script>
+        <%if(isSub){%>
+        var isSub = true;
+        <%}else{%>
+        var isSub = false;
+        <%}%>
+    </script>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/sub/IB_subList.js"></script>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/sub/list.css"/>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/userCenter" class="back left-icon"></a>
+        <span>我的订阅</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100">
+        <div class="sub-title clearfix">
+            <%if(account.uid&&(sub.city_id || sub.key || sub.education || sub.min_payment || sub.workdays)){%>
+                <span class="icon fll iblock"></span>
+                <%if(sub.city_id>0){%>
+                   <span class="city fll ellipsis iblock" data-city-id = '<%=sub.city_id%>'><%=sub.city%></span>
+                <%}%>
+                <%if(sub.key){%>
+                    <span class="key fll ellipsis iblock" data-key = '<%=sub.key%>'><%=sub.key%></span>
+                <%}%>
+                <%if(sub.education>0){%>
+                    <span class="education fll iblock" data-education-type = '<%=sub.education%>'><%=(sub.education == 1?'大专':(sub.education==2?'本科':(sub.education==3?'硕士':'博士及以上')))%></span>
+                <%}%>
+                <%if(sub.min_payment==500){%>
+                <span class="payment fll iblock" data-payment-type = 5>500元以上/天</span>
+                <%}else if(sub.min_payment==200){%>
+                    <span class="payment fll iblock" data-payment-type = 4>200-500元/天</span>
+                <%}else if(sub.min_payment==100){%>
+                    <span class="payment fll iblock" data-payment-type = 3>100-200元/天</span>
+                <%}else if(sub.min_payment==50){%>
+                    <span class="payment fll iblock" data-payment-type = 2>50-100元/天</span>
+                <%}else if(sub.min_payment==1){%>
+                    <span class="payment fll iblock" data-payment-type = 1>0-50元/天</span>
+                <%}%>
+                <%if(sub.workdays>0){%>
+                    <span class="workdays fll iblock" data-workdays = '<%=sub.workdays%>'><%=sub.workdays%>天</span>
+                <%}%>
+                <a href="/sub/setting" class="sub flr iblock">
+                    <button class="w100 h100">重新订阅</button>
+                </a>
+            <%}else{%>
+               <span class="fll">您还未订阅任何职位</span>
+                <a href="/sub/setting" class="sub flr iblock">
+                    <button class="w100 h100">订阅</button>
+                </a>
+            <%}%>
+        </div>
+        <div class="list w100" id="list"></div>
+    </div>
+</div>
+</body>
+</html>

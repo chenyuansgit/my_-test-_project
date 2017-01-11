@@ -1,0 +1,191 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+
+html,body{
+  background-color: #f5f5f5;
+}
+.content {
+  box-sizing: border-box;
+  font-size: 1.3rem;
+  line-height: 150%;
+  padding-bottom: 4rem;
+  .job-link{
+    display: block;
+    .job-info{
+      color: #333;
+      background: #fff;
+      padding: 1.5rem 1rem 1rem;
+      position: relative;
+      .job-info-right{
+        .company-logo{
+          width: 6rem;
+          height: 6rem;
+          background-image: url('@{baseUrl}/img/default-back.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: #fff;
+          border: 1px solid #eee;
+        }
+      }
+      .job-info-left{
+        margin-left: 1.5rem;
+        .job-info-top{
+          position: relative;
+          min-width: 10rem;
+          .job-name{
+            font-size: 1.4rem;
+            display: inline-block;
+            max-width: 13rem;
+          }
+          .job-refresh-time{
+            font-size: 1rem;
+            color: #999;
+            position: absolute;
+            right: 0;
+            bottom: 0.2rem;
+          }
+        }
+        .company-name{
+          font-size: 1.2rem;
+          color: #666;
+          margin-top: 0.5rem;
+          max-width: 15rem;
+        }
+        .job-info-bottom{
+          margin-top: 0.5rem;
+          font-size: 1rem;
+          color: #999;
+          .job-info-base{
+            float: left;
+            &.mgl{
+              margin-left: 2rem;
+            }
+            .icon{
+              display: inline-block;
+              vertical-align: middle;
+              width: 1rem;
+              height: 1rem;
+              margin-right: 0.25rem;
+              background: 0 0 no-repeat;
+              background-size: contain;
+              background-position: center;
+              &-city{
+                background-image: url("@{baseUrl}/img/icon-address-gray.png");
+              }
+              &-days{
+                background-image: url("@{baseUrl}/img/icon-rili-gray.png");
+              }
+              &-payment{
+                background-image: url("@{baseUrl}/img/icon-money-gray.png");
+              }
+            }
+            .ellipsis{
+              display: inline-block;
+              vertical-align: middle;
+            }
+            .job-city{
+              max-width: 3rem;
+            }
+          }
+        }
+      }
+      .icon-arrow{
+        display: inline-block;
+        width: 1.8rem;
+        height: 1.8rem;
+        position: absolute;
+        background: url("@{baseUrl}/img/icon-right.png") 0 0 no-repeat;
+        background-size: contain;
+        right: 0.8rem;
+        top: 50%;
+        margin-top: -0.9rem;
+      }
+    }
+  }
+  .current-condition-area{
+    padding: 1rem;
+    background-color: #fff;
+    margin-top: 1.5rem;
+    .fz{
+      font-size: 1.4rem;
+    }
+    .current-condition{
+      color: @mainColor;
+    }
+    .current-condition-info{
+      color: #666;
+      margin-top: 0.5rem;
+    }
+  }
+  .resume-condition-area{
+    background-color: #fff;
+    margin-top: 1.5rem;
+    padding: 2rem 1.5rem 0.5rem;
+    .condition-line{
+      color: #666;
+      .title{
+        line-height: 2rem;
+        .time{
+          font-size: 1.2rem;
+          margin-left: 1rem;
+        }
+      }
+      .icon{
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        background: 0 0 no-repeat;
+        background-size: contain;
+        background-position: center;
+        vertical-align: middle;
+        &-receive{
+          background-image: url("@{baseUrl}/img/condition/icon-succ-bright.png");
+        }
+        &-seen{
+          background-image: url("@{baseUrl}/img/condition/icon-notice-bright.png");
+        }
+        &-mail{
+          background-image: url("@{baseUrl}/img/condition/icon-mail-bright.png");
+        }
+        &-fail{
+          background-image: url("@{baseUrl}/img/condition/icon-fail-bright.png");
+        }
+        &-interview{
+          background-image: url("@{baseUrl}/img/condition/icon-smile-bright.png");
+        }
+      }
+      .condition-detail{
+        padding: 0.2rem 1rem 2rem 2.3rem;
+        margin-left: 0.9rem;
+        &.bl{
+          border-left: 1px solid @mainColor;
+          margin: 0.3rem 0 0.3rem 0.9rem;
+        }
+      }
+      &-overdue{
+        color: #999;
+        .icon{
+          &-receive{
+            background-image: url("@{baseUrl}/img/condition/icon-succ-gray.png");
+          }
+          &-seen{
+            background-image: url("@{baseUrl}/img/condition/icon-notice-gray.png");
+          }
+          &-mail{
+            background-image: url("@{baseUrl}/img/condition/icon-mail-gray.png");
+          }
+          &-fail{
+            background-image: url("@{baseUrl}/img/condition/icon-fail-gray.png");
+          }
+          &-interview{
+            background-image: url("@{baseUrl}/img/condition/icon-smile-gray.png");
+          }
+        }
+        .condition-detail.bl{
+          border-color: #ddd;
+        }
+      }
+    }
+  }
+}

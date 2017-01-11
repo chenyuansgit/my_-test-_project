@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/private/create.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="resume-create">
+    <div class="step-content">
+    <!--上传图像-->
+    <div class="upload-avatar">
+        <div class="title">我的简历</div>
+        <div class="resume-pic">
+            <input type="file" class="avatar input-transparent" id="avatar" name="avatar"/>
+            <span class="avatar-mask"></span>
+        </div>
+        <div class="upload-tip">上传头像</div>
+    </div>
+
+    <!--第一步-->
+    <div class="step-content-0">
+        <div class="step-center clearfix">
+            <div class="center-l">
+                <!--<div class="title">我的简历</div>
+                <div class="resume-pic">
+                    <input type="file" class="avatar input-transparent" id="avatar" name="avatar"/>
+                    <span class="avatar-mask"></span>
+                </div>
+                <div class="upload-tip">上传头像</div>-->
+            </div>
+        </div>
+        <div class="step-r"></div>
+
+        <div class="step-r clearfix" data-step="1">
+            <span style="line-height: 50px;">开始创建</span><span class="icon-right-arrow"></span>
+        </div>
+
+        <div class="step-bottom">
+            <span class="icon-circle cur"></span><span class="icon-circle"></span><span class="icon-circle"></span><span class="icon-circle"></span>
+        </div>
+    </div>
+
+    <!--第二步-->
+    <div class="step-content-1">
+        <div class="step-center clearfix">
+            <div class="center-l fl">
+                <!--<div class="title">我的简历</div>
+                <div class="resume-pic">
+                    <input type="file" class="avatar input-transparent" name="avatar"/>
+                    <span class="avatar-mask"></span>
+                </div>
+                <div>点击上传头像</div>-->
+                <div class="remind-step">第1步（共3步）</div>
+            </div>
+            <div class="center-r fr">
+                <div>
+                    <input type="text" class="input-l required name" placeholder="姓名"/>
+                </div>
+                <div>
+                    <span class="tab on" data-sex="1">男</span>
+                    <span class="tab" data-sex="0">女</span>
+                </div>
+                <div class="clearfix">
+                    <div class="fl">
+                        <span class="selector-input address-wrap"><input type="button" class="input-s required address" maxlength="10"  value="籍贯"/></span>
+                        <span class="selector-city"></span>
+                    </div>
+                    <div class="fl mg15">
+                        <input type="button" class="input-s required birthday" id="birthday" value="出生日期" readonly/>
+                    </div>
+                </div>
+                <div>
+                    <input type="text" class="input-l required phone" placeholder="电话"/>
+                </div>
+                <div>
+                    <input type="text" class="input-l required email" placeholder="邮箱"/>
+                </div>
+            </div>
+        </div>
+        <div class="step-r"></div>
+        <div class="step-r clearfix" data-step="2">
+            下一步<br />教育信息
+            <span class="icon-right-arrow"></span>
+        </div>
+        <div class="step-bottom">
+            <span class="icon-circle"></span><span class="icon-circle cur"></span><span class="icon-circle"></span><span class="icon-circle"></span>
+        </div>
+    </div>
+
+    <!--第三步-->
+    <div class="step-content-2">
+        <div class="step-center clearfix">
+            <div class="center-l fl">
+                <!--<div class="title">我的简历</div>
+                <div class="resume-pic">
+                    <input type="file" class="avatar input-transparent" name="avatar"/>
+                    <span class="avatar-mask"></span>
+                </div>
+                <div>点击上传头像</div>-->
+                <div class="remind-step">第2步（共3步）</div>
+            </div>
+            <div class="center-r fr">
+                <div>
+                    <input type="text" class="input-l required school" placeholder="学校名称"/>
+                </div>
+                <div>
+                    <input type="text" class="input-l required major" placeholder="专业"/>
+                </div>
+                <div>
+                    <span class="btn-selector">
+                        <input type="button" class="input-s btn btn-outline required stage"  value="学历"/>
+                    </span>
+                    <ul class="selector selector-s">
+                        <li data-type="1">大专</li>
+                        <li data-type="2">本科</li>
+                        <li data-type="3">硕士</li>
+                        <li data-type="4">博士</li>
+                        <li data-type="5">其他</li>
+                    </ul>
+                </div>
+                <div class="clearfix">
+                    <div class="fl">
+                        <input type="button" id="edu-start" class="input-s  required start_time" value="入学时间"/>
+                    </div>
+                    <div class="fl mg15">
+                        <input type="button" id="edu-end"  class="input-s  required end_time" value="毕业时间"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step-r"></div>
+        <div class="step-l clearfix" data-step="1">
+            上一步<br/>基本信息
+            <span class="icon-left-arrow"></span>
+        </div>
+        <div class="step-r clearfix" data-step="3">
+            下一步<br />期望实习
+            <span class="icon-right-arrow"></span>
+        </div>
+        <div class="step-bottom">
+            <span class="icon-circle"></span><span class="icon-circle"></span><span class="icon-circle cur"></span><span class="icon-circle"></span>
+        </div>
+    </div>
+
+    <!--第四步-->
+    <div class="step-content-3">
+        <div class="step-center clearfix">
+            <div class="center-l fl">
+                <!--<div class="title">我的简历</div>
+                <div class="resume-pic">
+                    <input type="file" class="avatar input-transparent" name="avatar"/>
+                    <span class="avatar-mask"></span>
+                </div>
+                <div>点击上传头像</div>-->
+                <div class="remind-step">第3步（共3步）</div>
+            </div>
+            <div class="center-r fr">
+                <div>
+                    <span class="selector-input hope-city-wrap"><input type="button" class="input-l required hope-city" value="期待实习城市"/></span>
+                    <span class="selector-city"></span>
+                </div>
+                <div>
+                    <input type="text" class="input-l required position" placeholder="期待职位名称"/>
+
+                </div>
+                <div>
+                    <span class="selector-input hope-position-type-wrap"><input type="button" class="input-l required position-type" value="期待职位类型"/></span>
+                </div>
+                <div>
+                    <span class="btn-selector">
+                        <input type="button" class="btn-l btn btn-outline required days" value="每周实习时间"/>
+                    </span>
+                    <ul class="selector selector-l">
+                        <li data-type="1">1-2天/周</li>
+                        <li data-type="2">3天/周</li>
+                        <li data-type="3">4天/周</li>
+                        <li data-type="4">5天/周</li>
+                        <li data-type="5">6-7天/周</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="btn-selector">
+                        <input type="button" class="btn-l btn btn-outline required duration" value="连续实习时间"/>
+                    </span>
+                    <ul class="selector selector-l">
+                        <li data-type="1">1个月以下</li>
+                        <li data-type="2">2个月以下</li>
+                        <li data-type="3">3个月以下</li>
+                        <li data-type="4">3个月以上</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="btn-selector">
+                        <input type="button" class="btn-l btn btn-outline  required payment" value="期待日薪"/>
+                    </span>
+                    <ul class="selector selector-l">
+                        <li data-type="0">不限</li>
+                        <li data-type="1">50以下</li>
+                        <li data-type="50">50-100</li>
+                        <li data-type="100">100-200</li>
+                        <li data-type="200">200-500</li>
+                        <li data-type="500">500以上</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="step-r"></div>
+        <div class="step-l clearfix" data-step="2">
+            上一步<br/>教育信息
+            <span class="icon-left-arrow"></span>
+        </div>
+        <div class="step-r clearfix btn btn-complete" style="line-height: 50px;" data-step="4">
+            完成创建
+        </div>
+        <div class="step-bottom">
+            <span class="icon-circle"></span><span class="icon-circle"></span><span class="icon-circle"></span><span class="icon-circle cur"></span>
+        </div>
+    </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.uid = '<%=uid%>';
+    global.forward = '<%=forward%>';
+</script>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/private/IB_createResume.js"></script>
+<%include ../../common/statistics.ejs%>
+</body>
+</html>

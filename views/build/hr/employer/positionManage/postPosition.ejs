@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/employer/position.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+            <li class="curr"><span class="icon-curr-up"></span><a class="header-link-item" href="/job/list">职位管理</a></li>
+            <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/talentPool/list">人才库</a></li>
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container post-position clearfix">
+    <div class="sidebar fl">
+        <div class="btn-add-position"><span class="icon-r-add"></span><a href="/job/add">发布新职位</a></div>
+        <dl class="company-position-nav">
+            <!--<div class="title"><i></i>发布的职位</div>-->
+            <dd class="btn-state"><a href="/job/list">有效职位</a></dd>
+            <dd class="btn-state-2"><a href="/job/list?by=state&state=2">已下线职位</a></dd>
+        </dl>
+    </div>
+    <div class="content fr">
+        <div class="add-area" data-uid="<%=account.uid%>">
+            <div class="title-area">
+                <div class="title">发布新职位</div>
+            </div>
+            <div class="release-tips">今日已发布&nbsp;<span><%=10-remaining_pub_times%></span>&nbsp;个职位，还可发布&nbsp;<span><%=remaining_pub_times%></span>&nbsp;个职位</div>
+            <div class="pos-top pos-block">
+
+                <!--实习与校招判断-->
+                <div class="is-check mt20">
+                    <em class="req">*</em>
+                    <span class="first-of-type">发布职位类型</span>
+                    <span class="cur sel-btn" id="sx-det">实习</span>
+                    <span class="sel-btn" id="xz-det">校招</span>
+                </div>
+
+                <div>
+                    <em class="req">*</em>
+                    <span class="first-of-type">职位分类</span>
+                    <span class="pos-type-list pos-drop-down">
+                        <input class="pos-type pos-item" type="text" placeholder="请选择职位类别" readonly/>
+                        <span class="icon-down-arrow"></span>
+                    </span>
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请输入职位类别</div>
+                </div>
+                <div>
+                    <em class="req">*</em>
+                    <span class="first-of-type">职位名称</span>
+                    <span><input class="pos-name pos-item" maxlength="24" type="text" placeholder="请填写职位名称"/></span>
+                    <span class="pos-item-tip">(此处可进一步修改和完善职位名称,限24字)</span>
+                    <div class="note warning input-error job-name-error"><span class="icon-prompt"></span>请输入职位名称</div>
+                </div>
+            </div>
+            <div class="pos-base pos-block">
+                <div class="pos-payment">
+                    <em class="req">*</em>
+                    <span class="first-of-type payment-type">薪水范围</span>
+                   <span>
+                       <input class="pos-payment-l pos-item" data-type="int" type="text" placeholder="最低薪水"/>
+                       <span class="mlr20">—</span>
+                       <input class="pos-payment-h pos-item" data-type="int" type="text" placeholder="最高薪水"/><span class="pos-item-tip unit-payment">元/天</span><span class="tip-my">(0-0为面议)</span>
+                   </span>
+
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请输入薪水范围</div>
+                    <div class="note warning input-error input-error-payment"><span class="icon-prompt"></span>最高薪水不能大于最低薪水的2倍</div>
+                    <div class="note warning input-error input-error-zero"><span class="icon-prompt"></span>最低薪水或最高薪水不能为零</div>
+                </div>
+                <div class="is-check-time">
+                    <em class="req">*</em>
+                    <span class="first-of-type">实习时间</span>
+                    <span class="btn-selector btn-selector-days pos-drop-down">
+                        <input class="pos-time-request pos-item" type="text" placeholder="请选择每周至少实习时间" readonly/>
+                        <span class="icon-down-arrow"></span>
+                    </span>
+                    <ul class="selector selector-days">
+                        <li>1天</li>
+                        <li>2天</li>
+                        <li>3天</li>
+                        <li>4天</li>
+                        <li>5天</li>
+                        <li>6天</li>
+                        <li>7天</li>
+                    </ul>
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请选择每周至少实习时间</div>
+                </div>
+                <div class="hr-pos-city">
+                    <em class="req">*</em>
+                    <span class="first-of-type">实习城市(可多选)</span>
+                    <span class="selector-input city-wrap pos-drop-down">
+                        <input class="pos-city pos-item" type="text" placeholder="请选择实习城市" readonly/>
+                        <span class="icon-down-arrow"></span>
+                    </span>
+                    <div class="selector-city"></div>
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请选择实习城市</div>
+                </div>
+                <div>
+                    <em class="req">*</em>
+                    <span class="first-of-type">学历要求</span>
+                    <span class="btn-selector btn-selector-days pos-drop-down">
+                        <input class="pos-education pos-item" type="text" placeholder="请选择最低学历要求" readonly/>
+                        <span class="icon-down-arrow"></span>
+                    </span>
+                    <ul class="selector">
+                        <li>不限</li>
+                        <li>大专</li>
+                        <li>本科</li>
+                        <li>硕士</li>
+                        <li>博士及以上</li>
+                    </ul>
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请选择最低学历要求</div>
+                </div>
+                <div>
+                    <span class="first-of-type">专业要求</span>
+                    <span><input class="pos-profession" type="text" placeholder="请输入专业要求"/></span>
+                    <!-- <div class="note warning input-error"><i></i>请输入专业要求</div>-->
+                </div>
+                <div>
+                    <span class="first-of-type">招聘人数</span>
+                    <span><input class="pos-recruitment" data-type="int" type="text" placeholder="请输入招聘人数"/></span><span class="pos-item-tip">人</span>
+                    <!-- <div class="note warning input-error"><i></i>请输入专业要求</div>-->
+                </div>
+                <div class="jobs-chance">
+                    <em class="req">*</em>
+                    <span class="first-of-type">是否提供转正机会</span>
+                    <span class="btn" data-type="1">是</span><span class="btn" data-type="0">否</span>
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请选择是否提供转正机会</div>
+                </div>
+            </div>
+            <div class="pos-more pos-block">
+                <div>
+                    <em class="req">*</em>
+                    <span class="first-of-type">职位诱惑</span>
+                    <span><input class="pos-attr pos-item" type="text" placeholder="20字以内描述该职位的诱惑"/></span>
+
+                    <div class="note warning input-error"><span class="icon-prompt"></span>20字以内描述该职位的诱惑</div>
+                </div>
+                <div>
+                    <em class="req" style="margin-top:3px;">*</em>
+                    <span class="first-of-type">职位描述</span>
+                    <span>（请勿输入公司邮箱、电话、薪资面议或其他链接，否则将会被删除，不可恢复）</span>
+
+                    <div class="pos-content-area">
+                        <!-- 加载编辑器的容器 -->
+                        <textarea id="pos-content" class="pos-content" name="content"></textarea>
+                    </div>
+                    <div class="note warning input-error input-error-content"><span class="icon-prompt"></span>请输入岗位职责，任职要求等，尽量使用短句并分条列出
+                    </div>
+                </div>
+                <div>
+                    <em class="req">*</em>
+                    <span class="first-of-type">工作地址</span>
+                    <%if(company.address){%>
+                    <%try{
+                        var address = JSON.parse(company.address);
+                    %>
+                    <span><input class="pos-address pos-item" type="text" placeholder="请输入详细的工作地址" value="<%=address[0].desc%>"/></span>
+                    <%if(address.length>1){%>
+                    <ul class="addresses">
+                        <%for(var i= 0,len=address.length;i<len;i++){%>
+                        <li class="address"><%=address[i].desc%></li>
+                        <%}%>
+                    </ul>
+                    <%}%>
+                    <%}catch(e){}%>
+                    <%}else{%>
+                    <span><input class="pos-address pos-item" type="text" placeholder="请输入详细的工作地址"/></span>
+                    <%}%>
+                    <div class="note warning input-error"><span class="icon-prompt"></span>请输入详细的工作地址</div>
+                    <div class="mg20">
+                        <span class="prompt">我们将在职位详情页以地图的方式展示给用户</span>
+                        <span class="map-preview">预览地图</span>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="pos-block pos-mail-area">
+                 <div>
+                     <span>接收简历邮箱</span>
+                     <span>hr@internbird.com</span>
+                 </div>
+                 <div>
+                     <span>简历自动转发邮箱（仅一个）</span>
+                     <span><input class="pos-mail-2" type="text"/></span>
+                 </div>
+             </div>-->
+            <div class="pos-block pos-bottom">
+                <div class="pos-block-date">
+                    <em class="req">*</em>
+                    <span class="first-of-type">投递截止日期</span>
+                    <span class="selector-input pos-drop-down">
+                        <input class="pos-deadline pos-item" id="deadline" type="text" placeholder="" value="<%=new Date(+new Date()+2*30*24*60*60*1000).format("yyyy-MM-dd")%>" readonly/>
+                        <!--<span class="icon-down-arrow"></span>-->
+                    </span>
+                    <span class="pos-item-tip">(一次职位招聘周期最大为6个月)</span>
+                    <div class="note warning input-error" style="margin-left: 100px"><span class="icon-prompt"></span>请选择截止日期</div>
+                </div>
+                <!--<div class="pos-block-prefix">
+                    <span class="first-of-type">邮件发送前缀</span>
+                    <span class="btn-selector pos-drop-down">
+                        <input class="pos-prefix pos-item" id="prefix" type="text" placeholder="选择或自定义邮件发送前缀" readonly/>
+                        <span class="icon-down-arrow"></span>
+                    </span>
+                    <ul class="selector">
+                        <li>姓名-性别-学校-最高学历-专业-职位名称</li>
+                        <li>姓名/性别/学校/最高学历/专业/职位名称</li>
+                        <li>姓名+性别+学校+最高学历+专业+职位名称</li>
+                        <li>姓名|性别|学校|最高学历|专业|职位名称</li>
+                        <li class="custom-prefix">自定义</li>
+                    </ul>
+                </div>-->
+                <div class="pos-bottom-btn">
+                    <input class="btn-add-preview" type="button" value="预览"/>
+                    <input class="btn-add-pos btn" type="button" value="发布"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../../common/footer.ejs %>
+<!-- -------弹窗------ -->
+<div class="overlay"></div>
+<div class="popBox popBox-address">
+    <div class="popBox-title">公司地址</div>
+    <div class="popBox-content">
+        <div class="address-area">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+<div class="popBox popBox-upperLimit">
+    <div class="popBox-title">发布失败</div>
+    <div class="popBox-content">
+        <div class="deliver-upperLimit">
+            <div>每天最多发布10个职位(包括修改职位)</div>
+            <div class="btn-area">
+                <a href="/job/list?type=all" class="btn-link">去管理职位</a> <a href="/resume/list" class="btn-link">去查看简历</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--自定义邮件标题-->
+<!--<div class="popBox popBox-prefix">
+    <div class="popBox-title">自定义邮件标题</div>
+    <div class="popBox-content">
+        <div class="popBox-area">
+            <input class="custom-pop-prefix" type="text" placeholder="输入自宝义发送邮件前缀" />
+        </div>
+        <p>自定义邮件前缀包括：姓名、性别、学校、最高学历、专业、职位名称</p>
+        <div class="popBox-area-btn">
+            <input class="confirm" type="button" value="确定"/>
+            <input class="cancel" type="button" value="取消"/>
+        </div>
+    </div>
+</div>-->
+<!-- -------弹窗 end------ -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=3q9TUK5ahFNyuealiblGt8OV"></script>
+<script type="text/javascript" src="<%=baseUrl%>/js/plugin/IB_laydate.js"></script>
+<script type="text/javascript">
+    //日期选择插件加载
+    !function () {
+        //时间戳格式化
+        Date.prototype.format = function(format) {
+            var o = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S": this.getMilliseconds()
+            };
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+        //限制截止的最大日期
+        var max = new Date(new Date(laydate.now()).getTime() + 3*60 * 24 * 60 * 60 * 1000).format("yyyy-MM-dd");
+        var data_limit = {
+            elem: '#deadline',
+            format: 'YYYY-MM-DD',
+            min: laydate.now(), //设定最小日期为当前日期
+            max: max, //最大日期
+            istoday: false
+        };
+        laydate(data_limit);
+    }();
+</script>
+<%include ../../common/ueditor_script.ejs%>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" data-main="<%=baseUrl%>/js/page/employer/positionManage/IB_postPosition.js"></script>
+<%include ../../common/statistics.ejs%>
+</body>
+</html>

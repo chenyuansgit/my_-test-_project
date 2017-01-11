@@ -1,0 +1,151 @@
+@charset "utf-8";
+@import "../../var";
+//解决IE7以下兼容性
+a {
+  hidefocus:true;
+}
+.HideFocus {
+  outline:none;
+}
+a:focus {outline-style:none; -moz-outline-style: none;}
+.header-link-item {
+  cursor: pointer;
+}
+img {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.clearfix { clear: both; }
+/*替换字体图标*/
+.fullSlide .prev, .fullSlide .next, .title-option-new .icon-new, .icon-youth, .icon-abbr, .icon-hot, .icon-search, .icon-more, .icon-locate, .icon-degrees, .icon-calendar, .job-info-money .icon-salary, .position-content .position-request-base-list span.icon-salary, .company-jobs .jobs-item .job-info-bottom span.icon-salary, .icon-days, .icon-sel-up, .icon-drop-down,.icon-drop-up, .icon-weixin, .icon-weibo, .icon-job-deliver, .icon-r-add, .icon-r-edit,
+.icon-r-del, .icon-work-show,.icon-self-des, .icon-my-skill, .icon-project-exper, .icon-internship, .icon-school-exper, .icon-expecte-practice, .icon-education, .resume-hope .icon-new, .resume-hope .icon-job-type, .resume-hope .icon-salary, .resume-hope .icon-locate, .resume-hope .icon-calendar, .resume-hope .icon-r-time,
+.icon-edit, .icon-locate2, .icon-company-nature, .icon-company-nature2, .company-base-info ul li span.icon-locate, .icon-company-nums, .icon-company-site, .post-position span.icon-down-arrow, .post-position span.icon-up-arrow, .icon-speed, .icon-prompt, .icon-author, .icon-publish-time, .icon-email, .icon-phone, .icon-right-arrow {
+  width: 640px;
+  height: 640px;
+  background-image: url("@{baseUrl}/img/ie7-icon.png");
+  background-repeat: no-repeat;
+}
+.post-position .selector {
+  left: 62px;
+}
+.post-position .selector-city, .post-position .add-area .pos-block > div .selector-jt {
+  margin-left: 62px;
+}
+.laydate_body .laydate_table td {
+  color: #00d1ce;
+}
+.adv-small-area {
+  overflow: hidden;
+}
+.fullSlide .prev, .fullSlide .next {
+  width: 42px;
+  height: 42px;
+  background-color: #000;
+}
+.fullSlide .prev {
+  background-position: -2px -0px;
+}
+.fullSlide .next {
+  background-position: -2px -42px;
+}
+.adv-large-area .fullSlide .prev-btn:hover,
+.adv-large-area .fullSlide .next-btn:hover {
+  background-color: #000;
+}
+.title-option-new .icon-new, .icon-hot {
+  width: 30px;
+  height: 39px;
+  margin: 0 auto;
+}
+.icon-drop-down, .icon-drop-up {
+  width: 16px;
+  height: 32px;
+  vertical-align: middle;
+}
+.intern-search .search-top .intern-search-sel .icon-drop-down, .intern-search .search-top .intern-search-sel .icon-drop-up {
+  padding-left: 0;
+}
+.icon-work-show,.icon-self-des, .icon-my-skill, .icon-project-exper, .icon-internship, .icon-school-exper, .icon-expecte-practice, .icon-education {
+  width: 30px;
+  height: 30px;
+  vertical-align: bottom;
+}
+.position-content .position-request-base-list span.icon-calendar, .position-content .position-request-base-list span.icon-degrees, .position-content .position-request-base-list span.icon-salary, .company-jobs .jobs-item .job-info-bottom span.icon-calendar, .company-jobs .jobs-item .job-info-bottom span.icon-salary {
+  padding-left: 0;
+}
+.icon-education { background-position: 2px -204px; }
+.icon-expecte-practice { background-position: 2px -240px; }
+.icon-school-exper { background-position: 2px -272px; }
+.icon-internship { background-position: 2px -304px; }
+.icon-project-exper { background-position: 2px -335px; }
+.icon-my-skill { background-position: 2px -366px; }
+.icon-self-des { background-position: 2px -396px; }
+.icon-work-show { background-position: 2px -430px; }
+.icon-search, .post-position span.icon-down-arrow, .post-position span.icon-up-arrow { width: 20px;height: 24px; vertical-align: middle; }
+.jobs-area-title li span.icon-sel-up { width: 30px; height: 16px; left: 50%;  margin-left: -8px; }
+.icon-locate, .icon-calendar, .job-info-money .icon-salary, .position-content .position-request-base-list span.icon-salary, .company-jobs .jobs-item .job-info-bottom span.icon-salary, .icon-degrees { width: 20px; height: 20px; padding-right: 0; }
+.position-content .title-area .position-name { display: inline; }
+.icon-more { width: 20px; height: 20px; margin-left: 6px; }
+.footer-content .top-r span.icon-weixin { padding-right: 0; margin-right: 12px; }
+.icon-weixin, .icon-weibo { width: 32px; height: 32px; }
+.resume-hope .icon-new, .resume-hope .icon-job-type, .resume-hope .icon-salary, .resume-hope .icon-locate, .resume-hope .icon-calendar, .resume-hope .icon-r-time { width: 22px; height: 22px; vertical-align: text-bottom; }
+.resume-hope .icon-new { background-position: -165px -6px; }
+.resume-hope .icon-job-type { background-position: -165px -36px; }
+.resume-hope .icon-locate { background-position: -165px -64px; }
+.resume-hope .icon-salary { background-position: -165px -94px; }
+.resume-hope .icon-calendar { background-position: -165px -124px; }
+.resume-hope .icon-r-time { background-position: -165px -158px; }
+.icon-job-deliver { background-position: -165px -193px; }
+.icon-r-add, .icon-r-edit, .icon-r-del, .icon-job-deliver, .icon-edit, .icon-locate2, .icon-speed, .icon-prompt { width: 24px; height: 24px; }
+.icon-speed, .icon-prompt, .icon-r-add { vertical-align: text-bottom; }
+.icon-author, .icon-publish-time { width: 16px; height: 16px; vertical-align: middle; padding-left: 0; padding-right: 0; }
+.icon-author { background-position: -38px -212px; }
+.icon-publish-time { background-position: -38px -235px; }
+.icon-speed { background-position: -132px -118px; }
+.icon-prompt { background-position: -102px -118px; }
+.icon-edit { background-position: -78px -92px; }
+.icon-locate2 { background-position: -78px -118px; }
+.h3-title { padding-bottom: 0; margin-bottom: 20px; }
+.icon-company-nature2, .icon-company-nature, .company-base-info ul li span.icon-locate, .icon-company-nums, .icon-company-site { width: 28px; height: 28px; padding-right: 0; }
+.icon-company-nature2 { background-position: -198px 0; }
+.icon-company-nature { background-position: -198px -32px; }
+.company-base-info ul li span.icon-locate { background-position: -198px -62px; }
+.icon-company-nums { background-position: -198px -92px; }
+.icon-company-site { background-position: -198px -122px; }
+.post-position span.icon-down-arrow { background-position: -108px -100px;}
+.post-position span.icon-up-arrow { background-position: -136px -100px; }
+
+/*20160530*/
+.title-option-new .icon-new { background-position: -2px -125px; }    //最新职位
+.on .icon-new { background-position: -2px -90px;  }
+.icon-hot { background-position: -42px -123px; }    //最热职位
+.on .icon-hot { background-position: -42px -87px; }
+.icon-search { background-position: -40px -30px; }    //搜索
+.icon-more { background-position: -70px -30px; margin-left: 6px; }    //查看更多
+.icon-locate { background-position: -50px -59px; }    //定位
+.icon-calendar {background-position: -78px -59px;}    //日历
+.job-info-money .icon-salary, .company-jobs .jobs-item .job-info-bottom span.icon-salary { background-position: -102px -61px; }    //薪资
+.position-content .position-request-base-list span.icon-salary { background-position: -102px -61px; }
+.icon-sel-up { background-position: -95px -2px; }    //选择向上箭头
+.icon-drop-down { background-position: -50px 2px;}    //下拉选项
+.icon-drop-up { background-position: -72px 2px; }    //下拉选项
+.icon-weixin { background-position: -2px -165px;}    //微信
+.icon-weibo {background-position: -40px -166px;}    //微博
+.icon-degrees { background-position: -102px -32px; }    //学历
+.icon-r-edit { background-position: -130px -4px;}   //编辑
+.icon-r-del { background-position: -130px -34px;}   //删除
+.icon-r-add { background-position: -130px -64px; }   //添加
+.works-img a { width: 572px; display: inline; }
+.icon-email, .icon-phone { width: 26px; height: 26px; vertical-align: middle; }
+#resume-manage .content .resume-manage-content .resume-box .resume-box-text ul li span { padding: 0; }
+.mysearch-success-area .job-right .job-info-bottom span.icon-phone { margin-right: 0; }
+.icon-email { background-position: -132px -150px; }
+.icon-phone { background-position: -102px -150px; }
+.footer-content .top-r .wehchat-qrcode-wrap { right: 60px; }
+#resume-manage .sidebar .resume-manage-side ul li.active span.icon-right-arrow { width: 16px; height: 22px; background-position: -80px -148px; }
+#resume-manage .content .resume-manage-content .resume-box { height: 146px; }
+span.icon-locate,span.icon-calendar, span.icon-salary { vertical-align: text-bottom; }
+.popBox-wrap .tucao-main-right .tucao-text-wrap { z-index: 2; border: none; }
+.popBox-wrap .tucao-main-right .tucao-text-wrap .tucao-text { width: 398px; border: 1px #eee solid; height: 118px; z-index: 1; }
+.post-position span.icon-down-arrow, .post-position span.icon-up-arrow { right: 10px; top: 10px; }

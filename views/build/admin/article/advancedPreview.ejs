@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="stylesheet" href="/public/ace/assets/css/page/article/preview.css" />
+</head>
+<body>
+<!--页面主体-->
+<div class="container mb20 clearfix">
+    <!--主体-->
+    <div class="wl840 fl">
+        <!--正方-->
+        <div class="nest-text mt20 inwrapBox mb20">
+            <h3 class="ellipsis article-title"><%=%></h3>
+            <div class="nest-text-info"><%=new Date().format('yyyy-MM-dd hh:mm')%><span class="article-author"><%=%></span></div>
+            <div class="article-content"></div>
+        </div>
+    </div>
+    <!--侧边栏-->
+    <div class="w310 fr">
+    </div>
+</div>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var article = fn.storage("admin_article");
+        if(article){
+            article = JSON.parse(article);
+            var title = article.title;
+            var author = article.author;
+            var content = article.content;
+            $(".article-title").text(title);
+            $(".article-author").text(author);
+            $(".article-content").html(content);
+        }
+    })
+</script>
+</body>
+</html>

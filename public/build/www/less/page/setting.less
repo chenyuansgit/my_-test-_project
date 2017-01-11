@@ -1,0 +1,183 @@
+@import "../common/style";
+@import "../common/header";
+@import "../common/footer";
+@import "../fonts";
+
+.setting{
+  &-nav {
+    padding: 28px 78px;
+    text-align: center;
+    h4 {
+      font-size: 16px;
+      border-bottom: 1px #eee solid;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    ul li {
+      height: 36px;
+      font-size: 16px;
+      line-height: 36px;
+      position: relative;
+      span.icon-sign {
+        position: absolute;
+        right: 30px;
+        top: 0;
+      }
+    }
+    ul li.curr, ul li.curr a {
+      color: @mainColor;
+    }
+  }
+  &-main {
+    padding: 28px 78px 120px 78px;
+    h4 {
+      font-size: 16px;
+      padding: 36px 0 12px;
+      span {
+        font-size: 14px;
+        color: @c2;
+      }
+    }
+    .remind-succ {
+      color: @mainColor;
+    }
+    .remind-err {
+      color: @errorColor;
+    }
+    .remind-succ, .remind-err {
+      span {
+        font-size: 16px;
+        padding-right: 6px;
+      }
+    }
+    .setting-input-area, .setting-edit-area {
+      height: 38px;
+      .setting-input-text {
+        width: 460px;
+        height: 36px;
+        line-height: 36px;
+        position: relative;
+        border: 1px #eee solid;
+        .setting-email, .setting-phone {
+          width: 360px;
+          height: 26px;
+          line-height: 26px;
+          color: @c2;
+          font-size: 14px;
+          border: none;
+          background: transparent;
+          position: absolute;
+          left: 15px;
+          top: 6px;
+          padding: 0;
+          outline: none;
+        }
+        .remind {
+          position: absolute;
+          top: 0;
+          right: 15px;
+        }
+      }
+      .btn-info-change {
+        width: 180px;
+      }
+      .remind-resend {
+        display: none;
+      }
+      .setting-input {
+        width: 480px;
+        border: 1px #eee solid;
+        height: 26px;
+        line-height: 26px;
+        padding: 5px 15px;
+        font-size: 14px;
+        outline: none;
+      }
+    }
+    .remind-succ, .remind-err-email-2, .remind-err-email-3, .remind-err-phone-2, .remind-err-phone-3, .remind-err-phone-4 {
+      display: none;
+      line-height: 36px;
+    }
+    .btn-info-change, .send-code {
+      height: 38px;
+      line-height: 38px;
+      text-align: center;
+      background-color: @mainColor;
+      color: #fff;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      .borderRadius(3px);
+    }
+    .code-area {
+      display: none;
+      margin-top: 12px;
+      .phone-code {
+        font-size: 14px;
+        outline: none;
+        width: 200px;
+        margin-right: 20px;
+        border: 1px #eee solid;
+        height: 24px;
+        line-height: 24px;
+        padding: 6px 10px;
+      }
+      .send-code {
+        width: 72px;
+      }
+    }
+
+    .verifyCode-area {
+      position: relative;
+      margin: 15px 0;
+      .reg-code-machine {
+        border: 1px #eee solid;
+        outline: none;
+        height: 36px;
+        line-height:36px;
+        font-size:14px;
+        padding: 0 9px;
+        width: 145px;
+      }
+      .machine-code{
+        position: absolute;
+        top: -1px;
+        left: 165px;
+        width: 100px;
+        height: 39px;
+      }
+      .btn-refresh {
+        position: absolute;
+        left: 280px;
+        top: 9px;
+        width: 19px;
+        cursor: pointer;
+        height: 21px;
+        background: url("@{baseUrl}/img/refresh.jpg") no-repeat;
+      }
+    }
+
+  }
+}
+
+.setting-area-btn {
+  margin-top: 20px;
+  text-align: center;
+  .setting-sub, .setting-console {
+    padding: 0 24px;
+    height: 36px;
+    border: none;
+    margin: 0 12px;
+    line-height: 36px;
+    font-size: 16px;
+    .borderRadius(3px);
+    outline: none;
+  }
+  .setting-sub {
+    background-color: @mainColor;
+    color: #fff;
+  }
+  .setting-console {
+    background-color: #dddddd;
+  }
+}

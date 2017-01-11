@@ -1,0 +1,333 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../common/paging";
+@import "../../custom/jt";
+@import "../../custom/city";
+@import "../../common/paging";
+@import "../../fonts";
+
+//我的订阅
+.subscribe-nav {
+  .borderRadius(4px);
+  background-color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  li {
+    height: 21px;
+    line-height: 21px;
+    text-align: center;
+    padding: 15px 30px;
+    cursor: pointer;
+    a {
+      display: block;
+      color: @mainColor;
+    }
+  }
+  li.cur {
+    background-color: @mainColor;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+//订阅列表
+.subscribe-content {
+  .subscribe-top {
+    height: 30px;
+    position: relative;
+    .refresh-subscribe {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .subscribe-title {
+      position: relative;
+      line-height: 30px;
+      padding-left: 40px;
+      color: @c2;
+      font-size: 16px;
+      margin-bottom: 20px;
+      span{
+        padding: 0 4px;
+        color: #666;
+      }
+      span.sub-select {
+        font-weight: 600;
+      }
+      /* h3 {
+         font-size: 18px;
+         a {
+           color: @mainColor;
+         }
+       }
+       span.time {
+         color: @c2;
+         position: absolute;
+         right: 0;
+         bottom: 0;
+       }*/
+    }
+  }
+  .subscribe-list {
+    margin-top: 20px;
+    .job-box {
+      background-color: #fff;
+      padding: 20px 40px;
+      height: 78px;
+      position: relative;
+      .job-info-top {
+        height: 48px;
+        color: @c2;
+        line-height: 48px;
+        a {
+          color: @mainColor;
+          font-size: 16px;
+          padding-right: 12px;
+        }
+      }
+      .job-info-bottom {
+        height: 30px;
+        line-height: 30px;
+        color: @c2;
+        span {
+          padding: 0 6px;
+        }
+        span.job-info-company {
+          padding-left: 0;
+          a {
+            color: @mainColor;
+          }
+        }
+      }
+      .job-logo {
+        position: absolute;
+        right: 40px;
+        top: 20px;
+        .company-logo {
+          border: 1px #eee solid;
+          width: 76px;
+          height: 76px;
+          .background("@{baseUrl}/img/bird.png",contain);
+          background-color: #fff;
+        }
+      }
+    }
+  }
+}
+
+//添加订阅
+.subscribe-box {
+  h3 {
+    font-size: 18px;
+    border-bottom: 1px #eee solid;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+  .sub-item {
+    line-height:32px;
+    margin-bottom: 25px;
+    position: relative;
+    &-left {
+      width: 80px;
+      padding-left: 15px;
+      position: relative;
+      span.req {
+        color: @errorColor;
+        position: absolute;
+        left: 0;
+        top: 3px;
+        font-size: 16px;
+      }
+    }
+    &-input {
+      position: relative;
+      .input-text, .input-text2, .input-text3 {
+        height: 30px;
+        font-size: 14px;
+        line-height: 30px;
+        padding: 0 10px;
+        border: 1px solid #eee;
+        outline: none;
+      }
+      .input-text {
+        width: 340px;
+      }
+      .input-text2 {
+        width: 145px;
+      }
+      .input-text3 {
+        width: 280px;
+      }
+      .mlr20 {
+        width: 20px;
+        text-align: center;
+        color: @c2;
+      }
+      .yuan {
+        color: @c2;
+        padding-left: 10px;
+      }
+      .send-cycle {
+        border: 1px #eee solid;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 5px;
+        color: @c2;
+        margin-left: 12px;
+        cursor: pointer;
+      }
+      span.icon-down-arrow, span.icon-up-arrow {
+        position: absolute;
+        left: 330px;
+        top: 0;
+        width: 30px;
+        color: @mainColor;
+        text-align: center;
+        font-size: 22px;
+      }
+      .input-error {
+        //display: none;
+        color: @errorColor;
+        margin-left: 20px;
+        span.icon-prompt {
+          font-size: 16px;
+          padding-right: 8px;
+        }
+      }
+    }
+  }
+  .send-mail {
+    .cur {
+      border: 1px @mainColor solid;
+    }
+  }
+  .save-btn {
+    margin: 80px auto 40px;
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    width: 96px;
+    text-align: center;
+    background-color: @mainColor;
+    color: #fff;
+    .borderRadius(4px);
+    cursor: pointer;
+    padding: 0 20px;
+  }
+
+  .selector-jt {
+    display: none;
+    line-height: 24px;
+    .main-box .jt-1st {
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    .sub-box {
+      width: 380px;
+      .type-detail dl dd {
+        margin-left: 60px;
+        a {
+          padding: 0 8px;
+        }
+      }
+    }
+  }
+  .selector-days, .selector-city, .selector-education, .selector-payment-min {
+    width: 360px;
+    li {
+      line-height: 24px;
+    }
+  }
+  .selector-city {
+    z-index: 11;
+  }
+  .selector-days {
+    z-index: 10;
+  }
+  .selector-education {
+    z-index: 9;
+  }
+  .selector-city {
+    position: absolute;
+    left: 95px;
+    top: 32px;
+  }
+
+}
+//订阅按钮
+.subscribe-btn {
+  color: #fff;
+  background-color: @mainColor;
+  font-size: 16px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  padding: 0 8px;
+  .borderRadius(3px);
+  &:hover {
+    color: #fff;
+  }
+}
+
+/*无订阅*/
+.empty-area{
+  .borderRadius(4px);
+  width: 520px;
+  padding: 100px 200px;
+  background-color: #fff;
+  text-align: center;
+  .empty-content {
+    height: 218px;
+    padding-left: 200px;
+    background: url("@{baseUrl}/img/empty/empty.png") left top no-repeat;
+    h4 {
+      padding-top: 50px;
+      color: @c2;
+      line-height: 30px;
+      font-size: 16px;
+    }
+    .subscribe-setting {
+      margin-top: 12px;
+    }
+  }
+}
+
+/*订阅职位为空*/
+.empty-area2{
+  margin: 0 auto;
+  margin-top: 25px;
+  background-color: #fff;
+  height: 318px;
+  .empty-content{
+    zoom:1;
+    width: 528px;
+    margin: 0 auto;
+    padding-top: 50px;
+    &:before,&:after{
+      content: "";
+      display: table;
+    }
+    &:after{
+      clear: both;
+    }
+    .pic{
+      width: 189px;
+      height: 218px;
+      .background("@{baseUrl}/img/empty/empty.png",cover);
+    }
+    .text{
+      line-height: 35px;
+      margin: 65px 0 0 35px;
+      color: @c2;
+      text-align: center;
+      span{
+        color: @mainColor;
+      }
+      .subscribe-setting {
+        margin: 12px auto 0;
+      }
+    }
+  }
+}

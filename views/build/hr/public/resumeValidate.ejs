@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/employer/resumeManage/IB_resumeValidate.js"></script>
+    <link href="<%=baseUrl%>/css/page/employer/resumeList.css" rel="stylesheet"/>
+    <style>
+        .popBox-forever .input-area {
+            margin-top: 15px;
+        }
+
+        .popBox-forever input {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+        }
+
+        .popBox-forever .submit {
+            background: #00ced1;
+            color: #fff;
+            padding: 4px 10px;
+            margin-left: 15px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<!---------弹窗----------->
+<div class='overlay-forever' style="display: block"></div>
+<!--转发-->
+<div class='popBox-forever' style="display: block">
+    <div class='pop-title tc'>查看简历</div>
+    <div class="no-suitable-text">
+        <div>输入邮箱内的6位验证码，查看简历</div>
+        <div class="input-area">
+            <span><input type="text" class="code" data-type="int"/></span>
+            <a href="javascript:" class="submit">提交</a>
+        </div>
+    </div>
+</div>
+<!--------弹窗end------------->
+</body>
+</html>

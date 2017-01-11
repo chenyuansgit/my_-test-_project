@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/companyDetail.css"/>
+    <%
+        var clientFlag = platform == "client"?1:0;
+    %>
+    <%if(!clientFlag){%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_companyDetail.js"></script>
+    <%}%>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main" style="<%=clientFlag?'padding-top:0':""%>">
+    <div class="header w100 tac" style="<%=clientFlag?'display:none':""%>">
+        <a href="javascript:" class="back left-icon"></a>
+        <span>公司职位</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100">
+        <%if(company){%>
+        <div class="company-top">
+            <%if(isWeixin){%>
+            <a href="javascript:" class="option share flr iblock" id="share" style="<%=clientFlag?'display:none':""%>">分享</a>
+            <%}%>
+            <%if(company.avatar){%>
+            <div class="company-logo" data-src="<%=company.avatar%>" style="background-image:url('<%=company.avatar%>')"></div>
+            <%}else{%>
+            <div class="company-logo"></div>
+            <%}%>
+            <div class="info-area">
+                <div>
+                    <span class="company-name ellipsis"><%=company.name%></span>
+                </div>
+                <%
+                    var scale = "";
+                    switch(parseInt(company.scale_type||0)){
+                        case 1: scale ="15人以下"; break;
+                        case 2: scale="15-50人"; break;
+                        case 3: scale="50-150人"; break;
+                        case 4: scale="150-500人"; break;
+                        case 5: scale="500-2000人"; break;
+                        case 6: scale="2000-5000人"; break;
+                        case 7: scale="5000人以上"; break;
+                    }
+                %>
+                <div class="company-info">
+                    <span class="company-city"><%=company.city%></span><span>&nbsp;|&nbsp;</span>
+                    <span class="company-type"><%=company.type%></span><span>&nbsp;|&nbsp;</span>
+                    <span class="company-scale"><%=scale%></span>
+                </div>
+                <%if(company.homepage && !clientFlag){%>
+                <%if(company.homepage.indexOf("http:")>-1 ||company.homepage.indexOf("https:")>-1){%>
+                <div class="company-website"><a href="<%= company.homepage%>" target="_blank"><%= page=company.homepage.length>22?company.homepage.substr(0,22)+"...":company.homepage%></a></div>
+                <%}else{%>
+                <div class="company-website"><a href="http://<%= company.homepage%>" target="_blank"><%= page=company.homepage.length>22?company.homepage.substr(0,22)+"...":company.homepage%></a></div>
+                <%}%>
+                <%}%>
+            </div>
+            <ul class="top-nav clearfix">
+                <li class="nav curr" data-for="info"><i class="icon icon-com"></i>公司信息</li>
+                <li class="nav" data-for="jobs"><i class="icon icon-job"></i>在招职位</li>
+            </ul>
+        </div>
+        <div class="info-area cBlock">
+            <%if(company.title && company.title!="undefined"){%>
+            <div class="title-area">
+                <div class="title">公司简述</div>
+                <div class="company-title"><%=company.title%></div>
+            </div>
+            <%}%>
+            <%if(company.tag && company.tag!="undefined"){%>
+            <div class="label-area">
+                <div class="title">公司标签</div>
+                <div class="clearfix">
+                    <%for(var j = 0,tag = company.tag.split(','),len1 = tag.length>5?5:tag.length;j<len1;++j){%>
+                    <%if(tag[j].replace(/(^s*)|(s*$)/g, "")!=''){%>
+                    <span class="label"><%=tag[j].replace(/(^s*)|(s*$)/g, "")%></span>
+                    <%}%>
+                    <%}%>
+                </div>
+            </div>
+            <%}%>
+            <div class="company-center">
+                <%if(company.introduction){%>
+                <div class="company-intro-area">
+                    <div class="title">公司介绍</div>
+                    <div class="company-intro">
+                        <%-company.introduction%>
+                    </div>
+                    <!--<div class="arrow-down"></div>-->
+                </div>
+                <%}%>
+            </div>
+            <%if(company.address){%>
+            <%try{
+                var address = JSON.parse(company.address);
+            %>
+            <%if(address.length>0){%>
+            <div class="address-area">
+                <div class="title">公司地址</div>
+                <ul class="addresses">
+                    <%for(var i= 0,len=address.length;i<len;i++){%>
+                    <li class="address"><%=address[i].desc%></li>
+                    <%}%>
+                </ul>
+            </div>
+            <%}%>
+            <%}catch(e){}%>
+            <%}%>
+        </div>
+        <%}else{%>
+            <p class="fail-tips">链接失效,该公司不存在</p>
+        <%}%>
+
+        <%if(jobs&&jobs.length){%>
+        <div class="jobs-area cBlock">
+            <div class="jobs">
+                <%for(var i = 0,len = jobs.length;i<len;++i){
+                if(!(+new Date()-parseInt(jobs[i].deadline)>0 || jobs[i].state == 2)){
+                %>
+                <%
+                    var job_time;
+                    var refresh_timestamp = parseInt(jobs[i].refresh_time);
+                    var today = new Date();
+                    today.setHours(0);
+                    today.setMinutes(0);
+                    today.setSeconds(0);
+                    var today_timestamp = +today;
+                    if(refresh_timestamp > today_timestamp && refresh_timestamp - today_timestamp < 24*60*60*1000){
+                        var job_timestamp = +new Date() - refresh_timestamp;
+                        if(job_timestamp < 2 * 60 * 1000){
+                            job_time = "1分钟前"
+                        }else if(job_timestamp <  60 * 60 * 1000){
+                            job_time = Math.ceil(job_timestamp/(1000*60)) +"分钟前"
+                        }else if(job_timestamp < 24*60*60*1000){
+                            job_time = Math.ceil(job_timestamp/(1000*60*60)) +"小时前"
+                        }
+                    }else if(refresh_timestamp > today_timestamp - 24*60*60*1000){
+                        job_time = "1天前"
+                    }else if(refresh_timestamp > today_timestamp - 2*24*60*60*1000){
+                        job_time = "2天前"
+                    }else if(refresh_timestamp > today_timestamp - 3*24*60*60*1000){
+                        job_time = "3天前"
+                    }else{
+                        var year_now = parseInt(new Date().format("yyyy"));
+                        var year_create = parseInt(new Date(parseInt(refresh_timestamp)).format("yyyy"));
+                        if(year_now > year_create){
+                            job_time = new Date(parseInt(refresh_timestamp)).format("yyyy.MM.dd");
+                        }else{
+                            job_time = new Date(parseInt(refresh_timestamp)).format("MM月dd日");
+                        }
+                    }
+                %>
+                <%
+                    var jobURl = "/job/detail/";
+                    if(jobs[i].channel_type == 2 || jobs[i].channel_type == 4){
+                        jobURl = "/det/detail/";
+                    }
+                %>
+                <a class="job" href="<%=jobURl%><%=jobs[i].jid%>?forward=<%=encodeOriginalUrl%>">
+                    <%if(jobs[i].channel_type == 3 || jobs[i].channel_type == 4){%>
+                    <span class="icon-corner icon-corner-campus"></span>
+                    <%}%>
+                    <div>
+                        <span class="job-name ellipsis"><%=jobs[i].name%></span>
+                        <span class="job-time"><%=job_time%></span>
+                    </div>
+                    <div class="job-bottom clearfix">
+                        <div class="job-info"><i class="icon icon-city"></i><span class="city ellipsis"><%=jobs[i].city||''%></span></div>
+                        <%if(jobs[i].channel_type !=3 && jobs[i].channel_type!=4){%>
+                        <div class="job-info"><i class="icon icon-days"></i><span class="days">≥<%=jobs[i].workdays?jobs[i].workdays:1%>天</span></div>
+                        <%}%>
+                        <%if(!jobs[i].min_payment && !jobs[i].max_payment){%>
+                        <div class="job-info"><i class="icon icon-payment"></i><span class="payment">面议</span></div>
+                        <%}else if(jobs[i].channel_type == 3 || jobs[i].channel_type == 4){%>
+                        <div class="job-info"><i class="icon icon-payment"></i><span class="payment"><%=parseInt(jobs[i].min_payment/10000)%>-<%=parseInt(jobs[i].max_payment/10000)%>万/年</span></div>
+                        <%}else{%>
+                        <div class="job-info"><i class="icon icon-payment"></i><span class="payment"><%=jobs[i].min_payment%>-<%=jobs[i].max_payment%>/天</span></div>
+                        <%}%>
+                    </div>
+                </a>
+                <%}
+                }%>
+            </div>
+            <!--<div class="get-more">
+                加载更多
+            </div>-->
+        </div>
+        <%}else{%>
+        <div class="jobs-area cBlock">
+            <p class="tac fail-tips">该公司暂时没有在招职位</p>
+        </div>
+        <%}%>
+    </div>
+</div>
+<div class="share-back w100 h100 none" data-title="<%=company.name%>实习生招聘&nbsp;|&nbsp;适合你的岗位都在这里,快进来看看吧" data-desc="<%=company.title%><%=jobs.length?(',共有'+jobs.length+'个在招职位'):''%>"></div>
+<%include ../footer.ejs%>
+<%if(clientFlag){%>
+<script type="text/javascript" src="http://cdn.s1.internbird.com/js/zepto.min.js"></script>
+<script type="text/javascript" src="http://cdn.s1.internbird.com/js/fastclick.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    FastClick.attach(document.body);
+
+    $(".top-nav .nav").click(function(){
+        var $this = $(this);
+        var _area = $this.attr("data-for");
+        $(".top-nav .nav.curr").removeClass("curr");
+        $this.addClass("curr");
+        $(".cBlock").hide();
+        $("."+_area+"-area").show();
+    });
+});
+</script>
+<%}%>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+    <link rel="stylesheet" href="/public/ace/assets/css/page/det/position.css" />
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <!--职位-->
+                <div class="content">
+                    <p style="text-align: center;font-size: 16px;margin: 20px 0;">您还没有使用该模块权限,如需权限请向管理员申请</p>
+                </div>
+            </div><!-- /.main-content -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div><!-- /.main-container -->
+    </div>
+</div>
+
+<%include ../common/footer.ejs%>
+
+</body>
+</html>

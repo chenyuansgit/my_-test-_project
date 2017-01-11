@@ -1,0 +1,254 @@
+a:hover {
+  text-decoration: none;
+}
+.icon-logo {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+}
+#sidebar-shortcuts,
+#sidebar-shortcuts-large,
+#ib-icon-dashboard��#id-file-format {
+  display: none;
+}
+.ib-btn {
+  background-color: #01a9e1;
+  width: 12rem;
+  height: 12rem;
+  color: white;
+  font-size: 15px;
+  float: left;
+  padding: 1rem;
+  margin: 4rem;
+}
+.ib-logo {
+  background-image: url("/public/ace/assets/images/internbird/icon-logo.png");
+}
+/*article manage*/
+.ib-operation {
+  color: #00ccff;
+}
+.ib-top {
+  margin-left: 20%;
+}
+.ib-top ::-webkit-input-placeholder {
+  font-size: 40%;
+}
+.ib-article-add,
+.ib-table-search {
+  padding: .5rem;
+  color: white;
+  background-color: #009dd9;
+  position: absolute;
+  right: 1%;
+}
+#id-file-format {
+  background-color: red;
+}
+.form-group {
+  position: relative;
+  left: 0rem;
+}
+.ib-how-module,
+.ib-how {
+  margin-top: 80px;
+}
+.ib-how-module span,
+.ib-how span {
+  margin: 2rem;
+  margin-left: 10%;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  border: thin solid;
+  border-radius: 0.5rem;
+}
+.ib-how-module .active,
+.ib-how .active {
+  background-color: #009dd9;
+}
+/* article-module*/
+.module-add {
+  width: 6rem;
+  margin-left: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  background-color: #009dd9;
+  border-radius: 0.5rem;
+}
+.recommend {
+  font-size: 1.5rem;
+  width: 10rem;
+  height: 10rem;
+  margin: 2rem;
+  border: thin solid;
+  text-align: center;
+  display: inline-block;
+}
+.recommend .top-container {
+  width: 7rem;
+  margin-top: 20%;
+  margin-bottom: 10%;
+  margin-left: 2rem;
+  color: #2a99ff;
+  border-bottom: thin solid black;
+}
+.recommend .top-container .above {
+  top: 30%;
+  position: relative;
+}
+.recommend .down {
+  color: black;
+}
+.module-detail {
+  width: 20rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+  display: none;
+  padding-left: 1rem;
+  border: thin solid;
+}
+/* table pane  */
+.tab-pane {
+  position: relative;
+  width: 98%;
+}
+/* table pages  */
+input.select-page {
+  width: 4rem;
+  margin: 2rem;
+}
+input.select-page {
+  margin-left: 1rem;
+  border: thin solid;
+}
+.skip-page {
+  border: thin solid;
+  padding: .7rem;
+  color: black;
+  background-color: gainsboro;
+  border-radius: .2rem;
+}
+span.warning {
+  color: red;
+}
+/* һ��ѡ��ť  */
+#ib-select {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: thin solid;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.select-current {
+  background-color: black;
+}
+/* ����*/
+.dot {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  border-bottom: thin dashed;
+}
+.kw-input {
+  outline: none;
+  border-top: none;
+  width: 30%;
+  margin-right: 50px;
+  margin-left: -20px;
+}
+.kw-change {
+  color: #0099ff;
+}
+.input-transparent {
+  position: absolute;
+  display: none;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  /*-webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;*/
+  border: none;
+  padding: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.company-pic {
+  width: 50%;
+  height: 0;
+  padding-top: 17%;
+  -webkit-border-radius: 3%;
+  -moz-border-radius: 3%;
+  border-radius: 3%;
+  border: solid;
+  background: no-repeat;
+  background: url("/public/ace/assets/images/internbird/input-picture.png");
+  background-size: 100% auto;
+  background-position: center;
+  position: relative;
+}
+.ad-small-pic {
+  width: 20%;
+  height: 0;
+  padding-top: 20%;
+  -webkit-border-radius: 3%;
+  -moz-border-radius: 3%;
+  border-radius: 3%;
+  border: solid;
+  background: no-repeat;
+  background: url("/public/ace/assets/images/internbird/input-picture.png");
+  background-size: 100% 100%;
+  background-position: center;
+  position: relative;
+}
+.quick-recruit-pic,
+.article-recruit-pic,
+.activity-recruit-pic {
+  width: 300px;
+  height: 0;
+  padding-top: 200px;
+  -webkit-border-radius: 3%;
+  -moz-border-radius: 3%;
+  border-radius: 3%;
+  border: solid;
+  background: no-repeat;
+  background: url("/public/ace/assets/images/internbird/input-picture.png");
+  background-size: 100% auto;
+  background-position: center;
+  position: relative;
+}
+.picture {
+  width: 100px;
+  height: 40px;
+}
+.recommend-flag {
+  background: url("/public/ace/assets/images/internbird/star.png") no-repeat;
+  margin-left: 100px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+.head-title {
+  font-size: 20px;
+}
+.head-title .search-head {
+  float: right;
+}
+.head-title .search-head #search {
+  width: 300px;
+}
+.quick-resume {
+  display: none;
+}
+.ib-warning {
+  color: red;
+}
+.view-detail {
+  display: block;
+  color: #428bca;
+  cursor: pointer;
+}

@@ -1,0 +1,162 @@
+@import "../../plugins/dateScroller";
+@import "../../plugins/selector";
+@import "../../plugins/jobTypeSelector";
+/*@import "../plugins/scroller";*/
+html,body,.main{
+  background-color: #fff;
+}
+.step {
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 8rem;
+  .btn-block {
+    width: 100%;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+    background: @mainColor;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  .btn-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    .btn-half {
+      width: 50%;
+      text-align: center;
+      height: 5rem;
+      line-height: 5rem;
+      font-size: 1.6rem;
+    }
+    .btn-pre {
+      color: @mainColor;
+      background: #e0f5f5;
+    }
+    .btn-next {
+      color: #fff;
+      background: @mainColor;
+    }
+  }
+  .mr-info {
+    width: 100%;
+    .mr-line {
+      height: 6.8rem;
+      line-height: 6.8rem;
+      border-bottom: 0.1rem solid #eee;
+      font-size: 1.5rem;
+      color: #333;
+      position: relative;
+      > span:first-of-type {
+        display: inline-block;
+        width: 10rem;
+        margin: 0 0.5rem 0 1.5rem;
+        float: left;
+      }
+      .btn-sel{
+        display: inline-block;
+        width: 0.8rem;
+        height: 1.6rem;
+        background: url("@{baseUrl}/img/icon-next.png") 0 0 no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 50%;
+        margin-top: -0.8rem;
+        right: 2rem;
+      }
+      .required{
+        border: none;
+        display: inline-block;
+        width: 50%;
+        font-size: 1.5rem;
+        height: 100%;
+        background: #fff;
+      }
+      .input-error {
+        position: absolute;
+        right: 2rem;
+        top: 0;
+        color: #ff2525;
+      }
+    }
+  }
+  &.step-0 {
+    .pic-text {
+      width: 90%;
+      height: 0;
+      margin: 1.5rem auto 0;
+      padding-top: 87.9%;
+      box-sizing: border-box;
+      background: url("@{baseUrl}/img/text-mr.png");
+      background-size: 100% 100%;
+    }
+  }
+  &.step-1 {
+    display: none;
+    .avatar-area {
+      text-align: center;
+      position: relative;
+      padding-bottom: 1rem;
+      border-bottom: 0.1rem solid #eee;
+      .avatar, .file-avatar {
+        display: inline-block;
+        width: 10rem;
+        height: 10rem;
+        .borderRadius(999px);
+        background: @mainColor;
+        margin-top: 1rem;
+      }
+      .avatar {
+        background: url("@{baseUrl}/img/icon-avatar.png");
+        background-size: cover;
+        background-position: center;
+        &.loading-img{
+          background-image: url("@{baseUrl}/img/loading.gif")!important;
+          background-size: 3rem 3rem;
+          background-position: center;
+          background-color: #fff;
+          background-repeat: no-repeat;
+        }
+      }
+      .file-avatar {
+        position: absolute;
+        margin-left: -10rem;
+        opacity: 0;
+      }
+    }
+    .sex-area {
+      .sex {
+        margin-right: 1rem;
+        color: #999;
+        .icon-sex {
+          display: inline-block;
+          width: 0.75rem;
+          height: 0.75rem;
+          .borderRadius(999px);
+          border: 0.1rem solid #999;
+          margin-right: 0.5rem;
+        }
+        &.curr {
+          color: #333;
+          .icon-sex {
+            background: @mainColor;
+            border-color: @mainColor;
+          }
+        }
+      }
+    }
+  }
+  &.step-2 {
+    display: none;
+  }
+  &.step-3 {
+    display: none;
+  }
+}
+.popTips{
+  top:50%;
+}

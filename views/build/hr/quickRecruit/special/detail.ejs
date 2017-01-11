@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <% include ../../common/head.ejs %>
+    <link href="<%= baseUrl %>/css/page/quickRecruit/special/detail.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/special/IB_detail.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include ../common/headerHr.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+                <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+                <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+                <li class="curr">
+                    <span class="icon-curr-up"></span>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/talentPool/list">人才库</a></li>
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<a title="回到顶部" id="back-top" href="javascript:" rel="nofollow"></a>
+<div class="container mb20">
+    <div class="center-content clearfix">
+        <div class="article w800 fl">
+                <div class="article-content">
+                    <div class="article-top">
+                        <div class="article-title"> <%=quick_recruit.title%></div>
+                        <div class="article-info">
+                            <span class="article-info-time"><%=new Date(quick_recruit.release_time).format("yyyy-MM-dd")%></span>
+                            作者:<span class="author">实习鸟</span>
+                        </div>
+                    </div>
+                    <div class="article-text">
+                        <%-quick_recruit.content%>
+                    </div>
+                    <div class="article-remind">（转载时请注明出处）</div>
+                </div>
+        </div>
+        <div class="right w330 fr">
+            <div class="quick-recruit-bar">
+                <div class="tc">
+                    <span class="btn btn-invite" data-content-id="<%=path.substr(path.lastIndexOf("/")+1)%>">邀请</span>
+                </div>
+                <div class="tc">
+                    <a href="/quickRecruit/process" target="_blank" class="btn-more btn">了解快招精选</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="share-back w100 h100 none" data-title="<%=quick_recruit.title%>" data-desc="<%=quick_recruit.summary%>" data-img = "<%=quick_recruit.img%>"></div>
+
+<% include ../../common/footer.ejs %>
+<!-----------弹窗----------->
+<div class="overlay"></div>
+<%include ../common/popBox/invite.ejs%>
+
+<!--------弹窗 end---------->
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.term_id = '<%=quick_recruit_term.term_id?quick_recruit_term.term_id:-1%>';
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+@import "../var";
+@import "../common/animation";
+.selector-mainCity{
+  display: none;
+  width: 100%;
+  min-height: 100%;
+  background-color: #fcffff;
+  position: fixed;
+  z-index: 20000;
+  top:0;
+  left:0;
+  .sel-city{
+    position: relative;
+    .btn-close{
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      top: -0.5rem;
+      right: 1rem;
+      padding:1rem;
+      background: url("@{baseUrl}/img/icon-delete.png") 0 0 no-repeat;
+      background-size: cover;
+      background-origin: content-box;
+      z-index: 30000;
+    }
+    .city-block,.city-block-hot{
+      padding-top: 1rem;
+      margin-top: 1rem;
+      position: relative;
+      &.pro-line{
+        border-top: 0.1rem solid #eee;
+        box-shadow: 0 -0.2rem 0.2rem #eff2f2;
+      }
+      .city-title{
+        font-size: 1.5rem;
+        color: #666;
+        padding-left: 1.5rem;
+      }
+      .cities{
+        margin-top: 0.5rem;
+        display: none;
+        &-hot,&.curr{
+          display: block;
+        }
+
+        .city{
+          float: left;
+          width: 25%;
+          text-align: center;
+          height: 3.5rem;
+          line-height: 3.5rem;
+          font-size: 1.5rem;
+          color: #333;
+          &.active{
+            color: #00ced1;
+          }
+        }
+      }
+      .circle {
+        width: 2rem;
+        height: 2rem;
+        .borderRadius(999px);
+        position: absolute;
+        top: -1rem;
+        left: 50%;
+        margin-left: -1rem;
+        background: #fcffff;
+        &-1 {
+          box-shadow: 0 -0.1rem 0.1rem 0.1rem #eff2f2 inset;
+          z-index: 20001;
+        }
+        &-2 {
+          border: 0.1rem solid #fcffff;
+          margin-left: -1.1rem;
+          top: -2rem;
+          z-index: 20002;
+        }
+      }
+    }
+  }
+
+}

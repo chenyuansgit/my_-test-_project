@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%= baseUrl %>/css/page/employer/position.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+            <li class="curr"><span class="icon-curr-up"></span><a class="header-link-item" href="/job/list">职位管理</a></li>
+            <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/talentPool/list">人才库</a></li>
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container company-position mb20 clearfix">
+    <div class="sidebar fl">
+                <div class="btn-add-position"><span class="icon-r-add"></span><a href="/job/add">发布新职位</a></div>
+                <dl class="company-position-nav">
+                    <!--<div class="title"><i></i>发布的职位</div>-->
+                    <dd class="btn-state"><a href="/job/list">有效职位</a></dd>
+                    <dd class="btn-state-2"><a href="/job/list?by=state&state=2">已下线职位</a></dd>
+                </dl>
+    </div>
+    <div class="content fr">
+        <div class="position-list">
+            <div class="title-area">
+                <div class="title">全部职位(<span id="position-nums"><%= count || 0 %></span>)</div>
+            </div>
+            <% if(jobs && jobs.length){ %>
+            <div class="all-position">
+                <% for(var i = 0, len = jobs.length;i < len;++i){ %>
+                <div class="position-detail" data-jid="<%= jobs[i].jid %>" data-deadline="<%= jobs[i].deadline %>">
+                    <% var jobs_type = (jobs[i].channel_type==2 || jobs[i].channel_type==4)?"det":"job" %>
+                    <a class="position-detail-top" href="/<%=jobs_type%>/detail/<%= jobs[i].jid %>" target="_blank">
+                        <span class="position-name"><%= jobs[i].name %></span>
+                    </a>
+
+                    <div class="position-detail-info">
+                        <span class="job-info-city"><span class="icon-locate"></span><%=jobs[i].city.length>36?jobs[i].city.substr(0,36)+"...":jobs[i].city%></span>
+                        <%if(jobs[i].min_payment ==0 && jobs[i].max_payment ==0){%>
+                            <span class="job-info-days"><span class="icon-salary"></span>面议</span>
+                        <%}else{%>
+                        <%if(jobs[i].channel_type ==3 || jobs[i].channel_type ==4){%>
+                            <span class="job-info-days"><span class="icon-salary"></span><%= jobs[i].min_payment/10000 %>-<%= jobs[i].max_payment/10000 %>万/年</span>
+                        <%}else{%>
+                            <span class="job-info-days"><span class="icon-salary"></span><%= jobs[i].min_payment %>-<%= jobs[i].max_payment %>/天</span>
+                        <%}%>
+                        <%}%>
+                        <%if(jobs[i].channel_type ==1 || jobs[i].channel_type ==2){%>
+                            <span class="job-info-money"><span class="icon-calendar"></span>≥<%= jobs[i].workdays %>天</span>
+                        <%}%>
+                        <!--<span class="position-city position-info"><%= jobs[i].city %></span>
+                        <span class="position-money position-info"><%= jobs[i].min_payment %>
+                            -<%= jobs[i].max_payment %>/天</span>
+                        <span class="position-days position-info">≥<%= jobs[i].workdays %>天</span>-->
+                    </div>
+                    <div class="position-update-time">
+                        刷新时间: <%= new Date(parseInt(jobs[i].refresh_time)).format('yyyy-MM-dd hh:mm') %>
+                    </div>
+                    <div class="position-option">
+                        <%if(jobs[i].state == 1) {%>
+                        <% if(+new Date - jobs[i].refresh_time > 60 * 60 * 24 * 7 * 1000){ %>
+                        <a href="javascript:" class="position-refresh btn" title="每个职位7天内只能刷新一次">刷新</a>
+                        <% }else{ %>
+                        <a href="javascript:" style="color:#999;" title="每个职位7天内只能刷新一次">已刷新</a>
+                        <% }}%>
+                        <a href="/job/edit/<%= jobs[i].jid %>" class="position-edit">编辑</a>
+                        <% if(jobs[i].state == 1){ %>
+                        <a href="javascript:" class="position-offline btn">下线</a>
+                        <% }else{ %>
+                        <a href="javascript:" class="position-online btn">上线</a>
+                        <% } %>
+                        <a href="javascript:" class="position-delete btn">删除</a>
+                    </div>
+                    <div class="btn-position-resume"><a href="/resume/list?job_id=<%=jobs[i].jid%>">查看简历(<%=jobs[i].resumes || 0 %>)</a>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <% }else{ %>
+            <div class="empty-area">
+                <div class="no-position">
+                    没有找到符合条件的职位信息
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <% include ../../common/paging.ejs %>
+    </div>
+</div>
+<% include ../../common/footer.ejs %>
+<!-----------弹窗----------->
+<div class="overlay"></div>
+<!--上线-->
+<div class='popBox popBox-online'>
+    <div class='popBox-title tc'>职位上线</div>
+    <div class="popBox-content">
+        <div class="online-top"></div>
+        <div class="online-center">
+            <span>投递截止日期&nbsp;:</span><span class="timepicker"><i class="icon-down"></i><input type="text" class="online-time" id="online-time" readonly/></span>
+        </div>
+        <div class="online-bottom">
+            <a href="javascript:" class="btn-online btn">发布职位</a>
+            <a href="javascript:" class="btn-edit btn">编辑职位</a>
+        </div>
+    </div>
+</div>
+<%include ../../quickRecruit/common/popBox/invite.ejs%>
+<!--------弹窗 end---------->
+<script type="text/javascript" src="<%=baseUrl%>/js/plugin/IB_laydate.js"></script>
+<script type="text/javascript">
+    //日期选择插件加载
+    !function () {
+        //时间戳格式化
+        Date.prototype.format = function(format) {
+            var o = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S": this.getMilliseconds()
+            };
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+        //限制截止的最大日期
+        var max = new Date(new Date(laydate.now()).getTime() + 3 * 60 * 24 * 60 * 60 * 1000).format("yyyy-MM-dd");
+        var data_limit = {
+            elem: '#online-time',
+            format: 'YYYY-MM-DD',
+            min: laydate.now(), //设定最小日期为当前日期
+            max: max, //最大日期
+            istoday: false
+        };
+        laydate(data_limit);
+    }();
+
+</script>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/employer/positionManage/IB_companyPosition.js"></script>
+<%include ../../common/statistics.ejs%>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<script>
+    (function () {
+        var html = document.getElementsByTagName("html")[0], width = document.body.clientWidth, size;
+        if (width <= 319) {
+            size = 8;
+        } else if (width <= 339) {
+            size = 9;
+        } else if (width <= 359) {
+            size = 10;
+        } else if (width <= 379) {
+            size = 11;
+        } else if (width <= 479) {
+            size = 12;
+        } else if (width <= 639) {
+            size = 13;
+        } else if (width <= 719) {
+            size = 14;
+        } else if (width <= 1439) {
+            size = 16;
+        } else {
+            size = 18;
+        }
+        html.style.fontSize = size + "px";
+    })()
+</script>

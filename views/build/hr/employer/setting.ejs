@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/employer/setting.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/employer/IB_setting.js"></script>
+</head>
+<body>
+<div class="header">
+    <%include ../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+                <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+                <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/talentPool/list">人才库</a></li>
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container clearfix mb20">
+    <div class="w310 fl">
+        <div class="setting-nav sideBox">
+            <h4>招聘设置</h4>
+            <ul>
+                <li class="curr">招聘官个人信息<span class="icon-sign"></span></li>
+                <li>接收简历邮箱</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wl840 fr">
+        <div class="setting-main inwrapBox">
+            <div class="setting-box">
+                <h3>修改招聘官个人信息</h3>
+                <div class="setting-edit-avatar mb20 clearfix">
+                    <span class="t fl">头像：</span>
+                    <div class="avatar fl" data-avatar="<%=employer.avatar%>"  style="background-image:url('<%=employer.avatar%>?imageView2/2/w/240/h/240')">
+                        <input type="file" id="avatar-file" name="file" class="avatar-file" title="支持jpg、jpeg、gif、png格式，文件小于5M"/>
+                        <div class="avatar-text">上传新的图像</div>
+                    </div>
+                    <!--<input class="new-hr-avatar setting-input" type="file" title="支持jpg、jpeg、gif、png格式，文件小于5M" id="avatar-file"  />-->
+                    <!--<span class="icon-edit"></span>
+                    <span class="cancel">取消</span>-->
+                </div>
+                <!--<h4>昵称：<%=employer.nick_name%></h4>-->
+                <div class="setting-edit-mail mb20">
+                    <span class="t">昵称：</span>
+                    <input class="new-hr-nickname setting-input" value="<%=employer.nick_name%>" type="text" />
+                    <!--<span class="icon-edit"></span>
+                    <span class="cancel">取消</span>-->
+                </div>
+                <!--<h4 class="mt20">电话：<%=employer.phone%></h4>-->
+                <div class="setting-edit-phone">
+                    <span class="t">电话：</span>
+                    <input class="new-hr-phone setting-input" value="<%=employer.phone%>" type="text" />
+                   <!-- <span class="icon-edit"></span>
+                    <span class="cancel">取消</span>-->
+                </div>
+                <input type="button" class="btn btn-outline btn-blue btn-edit" value="修改"/>
+            </div>
+            <div class="setting-box receive-mailbox" style="display: none;">
+                <h3>修改接收简历邮箱</h3>
+                <h4>修改完成后，新收到的简历将被发送到新的邮箱</h4>
+                <div class="setting-edit-area">
+                    <span class="t2">接收简历邮箱：</span>
+                    <input class="new-hr-email setting-input" value = '<%=employer.notice_email%>' type="text"/>
+                    <!--<input class="pwd-old setting-input" type="password" placeholder="请输入原密码..."/>-->
+                </div>
+                <div class="pos-block-prefix">
+                    <span class="btn-selector pos-drop-down">
+                        <span class="t2">邮件主题名称：</span>
+                        <%try{%>
+                        <%
+                            var template = employer.email_subject_template;
+                            var dataType = (template.indexOf("job")>=0?"职位名称-":"") + (template.indexOf("male")>=0?"性别-":"") + (template.indexOf("name")>=0?"姓名-":"") + (template.indexOf("school")>=0?"学校-":"") + (template.indexOf("education")>=0?"最高学历-":"") + (template.indexOf("major")>=0?"专业-":"");
+                            var dataTypePrefix = dataType.substring(0,dataType.length-1);
+                        %>
+                        <%if(employer.email_subject_template.length> 0) {%>
+                            <input class="pos-prefix pos-item" id="prefix" data-type="" value="<%=dataTypePrefix%>" type="text" placeholder="默认主题模板" readonly/>
+                        <%}else {%>
+                            <input class="pos-prefix pos-item" id="prefix" data-type="" type="text" placeholder="默认主题模板" readonly/>
+                        <%}%>
+                        <span class="icon-down-arrow"></span>
+                        <%}catch(e){%>
+                        <input class="pos-prefix pos-item" id="prefix" data-type="" type="text" placeholder="默认主题模板" readonly/>
+                        <span class="icon-down-arrow"></span>
+                        <%}%>
+                    </span>
+                    <ul class="selector">
+                        <li data-type="">默认主题模板</li>
+                        <li data-type="job-name">职位名称-姓名</li>
+                        <li data-type="job-name-school">职位名称-姓名-学校</li>
+                        <li data-type="job-name-school-major">职位名称-姓名-学校-专业</li>
+                        <li data-type="job-name-school-major-education">职位名称-姓名-学校-专业-最高学历</li>
+                        <li class="custom-prefix">自定义</li>
+                    </ul>
+                    <!--<input class="btn-info-change btn-change-prefix btn" type="button" value="更新邮件前缀">-->
+                </div>
+                <input type="button" class="btn btn-outline btn-blue btn-edit" value="修改"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay"></div>
+<!--自定义邮件标题-->
+<div class="popBox popBox-prefix">
+    <div class="popBox-title">自定义接收邮箱前缀</div>
+    <div class="popBox-content">
+        <div class="popBox-area">
+            <input class="custom-pop-prefix" type="text" placeholder="姓名、性别、学校、最高学历、专业、职位名称" />
+        </div>
+        <p>自定义邮件前缀包括：职位名称、性别、姓名、学校、最高学历、专业，中间用'-'分隔。</p>
+        <div class="popBox-area-btn">
+            <input class="confirm" type="button" value="确定"/>
+            <input class="cancel" type="button" value="取消"/>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<!-- 弹出层-->
+<div class="overlay"></div>
+<div class="popBox">
+    <div class="popBox-title"></div>
+</div>
+<!--弹出层 end-->
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.hr_email = "<%=employer.notice_email%>";
+    global.uid = "<%=employer.user_id%>";
+</script>
+<%include ../common/statistics.ejs%>
+</body>
+</html>

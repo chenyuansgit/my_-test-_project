@@ -1,0 +1,18 @@
+[
+  {
+    "name": "经验",
+    "category_id": 1001
+  },
+  {
+    "name": "好文",
+    "category_id": 1002
+  },
+  {
+    "name": "快讯",
+    "category_id": 1003
+  },
+  {
+    "name": "企业家说",
+    "category_id": 1004
+  }
+]

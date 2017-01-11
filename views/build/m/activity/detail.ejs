@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/activity.css"/>
+    <%
+    var clientFlag = platform == "client"?1:0;
+    if(!clientFlag){%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/activity/IB_detail.js"></script>
+    <%}%>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main w100" style="<%=clientFlag?'padding-top:0':""%>">
+    <div class="header w100 tac" style="<%=clientFlag?'display:none':""%>">
+        <a href="/activity" class="back left-icon"></a>
+        <span>精品活动</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+
+    <div class="content w100">
+        <%if(activity){ %>
+        <% var timestamp = +new Date;%>
+        <div class="detail">
+            <h3><%=activity.title%></h3>
+            <p class="activity-info"><span class="sponsor"><%=activity.sponsor%></span><span><%= new Date(activity.create_time).format('yyyy-MM-dd')%></span></p>
+            <div class="activity-content">
+                <%-activity.content%>
+            </div>
+            <h4>活动开始时间：<span><%= new Date(activity.start_time).format('yyyy-MM-dd hh:mm')%></span></h4>
+            <h4>活动结束时间：<span><%= new Date(activity.end_time).format('yyyy-MM-dd hh:mm')%></span></h4>
+           <!-- <p class="last-update">最后更新于：<span><%= new Date(activity.update_time).format('yyyy-MM-dd hh:mm')%></span></p>-->
+            <%if(timestamp > activity.end_time) {%>
+                <span class="activity-over">活动已结束</span>
+            <%}%>
+            <%if(!clientFlag){%>
+            <div class="qrcode"><img src="<%=baseUrl%>/img/qrcode-bird.jpg" /></div>
+            <%}%>
+        </div>
+        <%}%>
+    </div>
+</div>
+<div class="share-back w100 h100 none" data-cover="<%=activity.cover%>" data-title="<%=activity.title%>" data-desc="<%=activity.subtitle.substr(0,36)%>"></div>
+<%include ../footer.ejs%>
+</body>
+</html>

@@ -1,0 +1,114 @@
+[
+  {
+    "type_id": 1000,
+    "type_name": "互联网"
+  },
+  {
+    "type_id": 1001,
+    "type_name": "通信/电子"
+  },
+  {
+    "type_id": 1002,
+    "type_name": "机械/制造"
+  },
+  {
+    "type_id": 1003,
+    "type_name": "材料/化工"
+  },
+  {
+    "type_id": 1004,
+    "type_name": "日用/消费"
+  },
+  {
+    "type_id": 1005,
+    "type_name": "零售/贸易"
+  },
+  {
+    "type_id": 1006,
+    "type_name": "生物/医药"
+  },
+  {
+    "type_id": 1007,
+    "type_name": "汽车"
+  },
+  {
+    "type_id": 1008,
+    "type_name": "能源"
+  },
+  {
+    "type_id": 1009,
+    "type_name": "银行"
+  },
+  {
+    "type_id": 1010,
+    "type_name": "基金/证券"
+  },
+  {
+    "type_id": 1011,
+    "type_name": "保险"
+  },
+  {
+    "type_id": 1012,
+    "type_name": "投资/期货"
+  },
+  {
+    "type_id": 1013,
+    "type_name": "财务/会计/审计"
+  },
+  {
+    "type_id": 1014,
+    "type_name": "教育/培训"
+  },
+  {
+    "type_id": 1015,
+    "type_name": "建筑/土木"
+  },
+  {
+    "type_id": 1016,
+    "type_name": "房地产"
+  },
+  {
+    "type_id": 1017,
+    "type_name": "物流/仓储"
+  },
+  {
+    "type_id": 1018,
+    "type_name": "医疗/卫生"
+  },
+  {
+    "type_id": 1019,
+    "type_name": "专业服务/咨询"
+  },
+  {
+    "type_id": 1020,
+    "type_name": "酒店餐饮/旅游"
+  },
+  {
+    "type_id": 1021,
+    "type_name": "公众服务"
+  },
+  {
+    "type_id": 1022,
+    "type_name": "影视传媒"
+  },
+  {
+    "type_id": 1023,
+    "type_name": "广告"
+  },
+  {
+    "type_id": 1024,
+    "type_name": "公关/会展"
+  },
+  {
+    "type_id": 1025,
+    "type_name": "文化/娱乐"
+  },
+  {
+    "type_id": 1026,
+    "type_name": "政府/公共事业"
+  },
+  {
+    "type_id": 1027,
+    "type_name": "其他行业"
+  }
+]

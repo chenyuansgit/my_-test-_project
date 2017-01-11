@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/company/auth.css" rel="stylesheet"/>
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li class="curr"><span class="icon-curr-up"></span><a class="header-link-item on" href="/myCompany">我的公司</a></li>
+            <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+            <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/talentPool/list">人才库</a></li>
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<div class="container mb30">
+    <div class="wrapBox">
+        <div class="mycompany step-2">
+            <div class="mycompany-top">
+                <div class="remind"><span class="remind-title">开通招聘服务</span>(<span class="remind-tip"><i class="req">*</i>为必填项目</span>)</div>
+                <div class="auth-title-area">
+                    <span class="title">公司联系方式<span class="title-step">01</span></span>
+                    <span class="title curr mlr120">验证企业邮箱<span class="title-step">02</span></span>
+                    <span class="title">填写公司信息<span class="title-step">03</span></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="mycompany-info">
+                <div class="email-validate">
+                    <div>
+                        <span class="email-icon"></span>
+                    </div>
+                    <div class="big">验证邮件已发送到</div>
+                    <div class="big"><%=employer.enterprise_email||(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(account.account_name)?account.account_name:"")%></div>
+                    <div class="small">请登录邮箱，点击邮箱中链接完成企业邮箱的验证</div>
+                </div>
+                <div class="tips">
+                    <p class="tips-title">没有收到验证邮件，怎么办？</p>
+                    <p>1. 邮箱地址填写错误？<a href="/company/validate?step=1">重新填写邮箱地址</a></p>
+                    <p>2. 邮件有时会调皮进入垃圾信箱、广告信箱，请留意</p>
+                    <p>3. 稍等几分钟，若还未收到验证邮件， <a class="email-resend" href="javascript:">重新发送验证邮件</a></p>
+                    <p>4. 还未收到验证邮件，请联系我们：service@internbird.com，010-57460009</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../../common/footer.ejs%>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.step = 2;
+    global.address = "<%=employer.enterprise_email||(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(account.account_name)?account.account_name:"")%>";
+    global.phone = "<%=employer.phone||(/^0?1[3|4|5|6|7|8][0-9]\d{8}$/.test(account.account_name)?account.account_name:'')||(/^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/.test(account.account_name)?account.account_name:'')%>";
+</script>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/company/IB_validate.js"></script>
+<%include ../../common/statistics.ejs%>
+</body>
+</html>

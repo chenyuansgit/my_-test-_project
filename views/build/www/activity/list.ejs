@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/activity/activity.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item on" href="/activity">活动</a></li>
+            <li><a class="header-link-item" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<!--页面主体-->
+<div class="container mb clearfix">
+    <!--左侧列表-->
+    <div class="w840 fl">
+        <div class="more-list">
+            <!--列表块-->
+            <%if(activities&&activities.length){%>
+            <% var timestamp = Date.parse(new Date());%>
+            <!--第一条数据-->
+            <div class="more-item clearfix">
+                <div class="more-item-box fr">
+                    <span class="triangleLeft"></span>
+                    <span class="triangleLeft2"></span>
+                    <div class="more-item-box-info">
+                        <h4>
+                            <a href="/activity/detail/<%=activities[0].id%>" target="_blank"><%=activities[0].title.length>30?activities[0].title.substr(0,30)+"...":activities[0].title%></a>
+                        </h4>
+                        <p class="subtitle"><%=activities[0].subtitle.length>38?activities[0].subtitle.substr(0,38)+"...":activities[0].subtitle%></p>
+                       <!-- <p>开始时间：<%= new Date(activities[0].start_time).format('yyyy-MM-dd hh:mm')%></p>
+                        <p>结束时间：<%= new Date(activities[0].end_time).format('yyyy-MM-dd hh:mm')%></p>-->
+                        <%if(timestamp < activities[0].end_time){%>
+                            <a href="/activity/detail/<%=activities[0].id%>" target="_blank" class="btn fr">查看详情</a>
+                        <%}else{%>
+                            <a href="/activity/detail/<%=activities[0].id%>" target="_blank" class="grayBtn fr">查看详情</a>
+                        <%}%>
+                    </div>
+                    <%if(activities[0].cover){%>
+                    <div class="more-item-box-img" style="background-image: url('<%=activities[0].cover%>?imageView2/2/w/600/h/360')"></div>
+                    <%}else{%>
+                    <div class="more-item-box-img" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/3409953922c708579ec5662392e02c48.png?imageView2/2/w/600/h/360')"></div>
+                    <%}%>
+                    <%if(timestamp > activities[0].end_time){%>
+                         <!--<span class="more-item-box-signBg"></span>
+                         <span class="more-item-box-sign-2"></span>
+                         <span class="sign-2-angle"></span>
+                         <span class="sign-text">活动已结束</span>-->
+                    <%}%>
+                </div>
+                <%if(timestamp < activities[0].end_time){%>
+                    <span class="online-t"></span>
+                    <span class="online"><%=new Date(activities[0].start_time).format('MM')%>/<%=new Date(activities[0].start_time).format('dd')%></span>
+                <%}else{%>
+                    <span class="offline-t"></span>
+                    <span class="offline"><%=new Date(activities[0].start_time).format('MM')%>/<%=new Date(activities[0].start_time).format('dd')%></span>
+                <%}%>
+            </div>
+
+            <!--中间的数据-->
+            <%for(var i=1,len=activities.length-1; i<len;i++){%>
+            <div class="more-item clearfix">
+                <div class="more-item-box fr">
+                    <span class="triangleLeft"></span>
+                    <span class="triangleLeft2"></span>
+                    <div class="more-item-box-info">
+                        <h4 class="eclipse">
+                            <a href="/activity/detail/<%=activities[i].id%>" target="_blank"><%=activities[i].title.length>30?activities[i].title.substr(0,30)+"...":activities[i].title%></a>
+                        </h4>
+                        <p class="subtitle"><%=activities[i].subtitle.length>38?activities[i].subtitle.substr(0,38)+"...":activities[i].subtitle%></p>
+                       <!-- <p>开始时间：<%= new Date(activities[i].start_time).format('yyyy-MM-dd hh:mm')%></p>
+                        <p>结束时间：<%= new Date(activities[i].end_time).format('yyyy-MM-dd hh:mm')%></p>-->
+                        <%if(timestamp < activities[i].end_time){%>
+                        <a href="/activity/detail/<%=activities[i].id%>" target="_blank" class="btn fr">查看详情</a>
+                        <%}else{%>
+                        <a href="/activity/detail/<%=activities[i].id%>" target="_blank" class="grayBtn fr">查看详情</a>
+                        <%}%>
+                    </div>
+                    <%if(activities[i].cover){%>
+                        <div class="more-item-box-img" style="background-image: url('<%=activities[i].cover%>?imageView2/2/w/600/h/360')"></div>
+                    <%}else{%>
+                        <div class="more-item-box-img" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/3409953922c708579ec5662392e02c48.png?imageView2/2/w/600/h/360')"></div>
+                    <%}%>
+                    <%if(timestamp > activities[i].end_time){%>
+                       <!-- <span class="more-item-box-signBg"></span>
+                        <span class="more-item-box-sign-2"></span>
+                        <span class="sign-2-angle"></span>
+                        <span class="sign-text">活动已结束</span>-->
+                    <%}%>
+                </div>
+                <%if(timestamp < activities[i].end_time){%>
+                    <span class="online-c"></span>
+                    <span class="online"><%=new Date(activities[i].start_time).format('MM')%>/<%=new Date(activities[i].start_time).format('dd')%></span>
+                <%}else{%>
+                    <span class="offline-c"></span>
+                    <span class="offline"><%=new Date(activities[i].start_time).format('MM')%>/<%=new Date(activities[i].start_time).format('dd')%></span>
+                <%}%>
+            </div>
+            <%}%>
+
+            <!--最后一条数据-->
+            <div class="more-item clearfix">
+                <div class="more-item-box fr">
+                    <span class="triangleLeft"></span>
+                    <span class="triangleLeft2"></span>
+                    <div class="more-item-box-info">
+                        <h4 class="eclipse">
+                            <a href="/activity/detail/<%=activities[activities.length-1].id%>" target="_blank"><%=activities[activities.length-1].title.length>30?activities[activities.length-1].title.substr(0,30)+"...":activities[activities.length-1].title%></a>
+                        </h4>
+                        <p class="subtitle"><%=activities[activities.length-1].subtitle.length>38?activities[activities.length-1].subtitle.substr(0,38)+"...":activities[activities.length-1].subtitle%></p>
+                       <!-- <p>开始时间：<%= new Date(activities[activities.length-1].start_time).format('yyyy-MM-dd hh:mm')%></p>
+                        <p>结束时间：<%= new Date(activities[activities.length-1].end_time).format('yyyy-MM-dd hh:mm')%></p>-->
+                        <%if(timestamp < activities[activities.length-1].end_time){%>
+                            <a href="/activity/detail/<%=activities[activities.length-1].id%>" target="_blank" class="btn fr">查看详情</a>
+                        <%}else{%>
+                            <a href="/activity/detail/<%=activities[activities.length-1].id%>" target="_blank" class="grayBtn fr">查看详情</a>
+                        <%}%>
+                    </div>
+                    <%if(activities[activities.length-1].cover){%>
+                    <div class="more-item-box-img" style="background-image: url('<%=activities[activities.length-1].cover%>?imageView2/2/w/600/h/360')"></div>
+                    <%}else{%>
+                    <div class="more-item-box-img" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/3409953922c708579ec5662392e02c48.png?imageView2/2/w/600/h/360')"></div>
+                    <%}%>
+                    <%if(timestamp > activities[activities.length-1].end_time){%>
+                        <!--<span class="more-item-box-signBg"></span>
+                        <span class="more-item-box-sign-2"></span>
+                        <span class="sign-2-angle"></span>
+                        <span class="sign-text">活动已结束</span>-->
+                    <%}%>
+                </div>
+                <%if(timestamp < activities[activities.length-1].end_time){%>
+                    <span class="online-b"></span>
+                    <span class="online"><%=new Date(activities[activities.length-1].start_time).format('MM')%>/<%=new Date(activities[activities.length-1].start_time).format('dd')%></span>
+                <%}else{%>
+                    <span class="offline-b"></span>
+                    <span class="offline"><%=new Date(activities[activities.length-1].start_time).format('MM')%>/<%=new Date(activities[activities.length-1].start_time).format('dd')%></span>
+                <%}%>
+            </div>
+
+            <%include ../common/paging.ejs%>
+            <%}else{%>
+                <div class="empty-area">
+                    当前分类无文章
+                </div>
+            <%}%>
+
+        </div>
+    </div>
+    <!--右侧-->
+    <div class="w310 fr">
+        <div class="sideBox mb20">
+            <div class="sideBox-logo"></div>
+            <div class="sideBox-qrcode"></div>
+            <p>微信号:internbird</p>
+        </div>
+        <div class="sideBox mb20">
+            <h4>若有活动合作，可联系邮箱</h4>
+            <p>info@internbird.com</p>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/activity/IB_activity.js"></script>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

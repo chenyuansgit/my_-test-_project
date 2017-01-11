@@ -1,0 +1,104 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+@import "../../common/animation";
+@import "sideBlock";
+@import "../../custom/selector";
+@import "../resume";
+.tw{
+  display: inline-block;
+  width: 2.5rem;
+}
+.main {
+  position: relative;
+}
+
+
+.option-area{
+  width: 100%;
+  height: 4rem;
+  border-top: 0.1rem solid #eee;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  z-index: 1000;
+  .option{
+    width: 49%;
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: 0.5rem;
+    float: left;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    &.br{
+      border-right: 0.1rem solid #eee;
+    }
+    .btn{
+      position: relative;
+      &-blcok{
+        width: 100%;
+        height: 100%;
+      }
+      &-like{
+        .icon-like{
+          display: inline-block;
+          width: 1.5rem;
+          height: 1.5rem;
+          background-size: 100%;
+          position: absolute;
+          margin-top: 0.7rem;
+        }
+        .text{
+          margin-left: 2rem;
+        }
+        &.off{
+          .icon-like{
+            background-image: url("@{baseUrl}/img/qr/icon-like.png");
+          }
+        }
+        &.on{
+          .icon-like{
+            background-image: url("@{baseUrl}/img/qr/icon-like-blue.png");
+          }
+        }
+      }
+      &-invite{
+        .icon-invite{
+          display: inline-block;
+          width: 1.5rem;
+          height: 1.14rem;
+          background-size: 100% auto;
+          background-image: url("@{baseUrl}/img/qr/icon-mail-blue.png");
+          position: absolute;
+          margin-top: 0.9rem;
+        }
+        .text{
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+}
+.sel-content{
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .scroll-wrapper {
+    height: 14rem;
+    ul{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.share-back{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50000;
+  background: url('@{baseUrl}/img/qr/share-talent.png') 0 0 no-repeat;
+  background-color: rgba(0,0,0,.9);
+  background-size: 100% auto;
+}

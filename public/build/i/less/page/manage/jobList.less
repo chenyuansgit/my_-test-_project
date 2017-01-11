@@ -1,0 +1,81 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+
+.main{
+  padding-bottom: 3rem;
+  .tab-area{
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    border-top: 0.1rem solid #eee;
+    background: #fff;
+    .tab{
+      width: 50%;
+      float: left;
+      text-align: center;
+      color: #666;
+      font-size: 1.4rem;
+      &.curr{
+        color: @mainColor;
+      }
+    }
+  }
+  .jobs-area{
+    .job{
+      display: block;
+      width: 90%;
+      margin: 1rem auto 0;
+      font-size: 1.4rem;
+      background-color: #fff;
+      padding: 1rem 1.5rem;
+      box-sizing: border-box;
+      border-radius: 0.3rem;
+      color: #333;
+      .job-line{
+        line-height: 2.5rem;
+        position: relative;
+        &.job-top{
+          .job-name{
+            display: inline-block;
+            max-width: 18rem;
+          }
+          .time{
+            position: absolute;
+            right: 0;
+            color: #999;
+          }
+        }
+        &.job-center{
+          font-size: 1.3rem;
+          color: #666;
+          .job-info{
+            margin-right: 1rem;
+            display: inline-block;
+            &.job-city{
+              max-width: 9rem;
+            }
+          }
+        }
+        &.job-bottom{
+          text-align: right;
+          color: @mainColor;
+          .job-option{
+            margin-left: 1.5rem;
+          }
+          .off{
+            color: #999;
+          }
+        }
+      }
+    }
+    .blank-tips{
+      margin-top: 1rem;
+      padding: 1.5rem 0;
+      font-size: 1.3rem;
+      line-height: 1.5rem;
+      color: #999;
+      background-color: #f6f6f6;
+      overflow: hidden;
+    }
+  }
+}

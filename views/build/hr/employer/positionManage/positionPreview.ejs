@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/position.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/employer/positionManage/IB_positionPreview.js"></script>
+</head>
+<body>
+
+<div class="container mb mt20">
+    <div class="w840" style="margin: 50px auto 0">
+        <div class="position-content">
+            <div class="title-area">
+                <div class="position-name"><span class="icon-jops-show"></span><span class="title name"></span></div>
+            </div>
+            <div class="position-request-base">
+                <div class="position-request-base-list pb12">
+                    <span class="icon-locate"></span><span class="city"></span>
+                    <span class="icon-calendar"></span><span class="days"></span>
+                    <span class="icon-degrees"></span><span class="education"></span>
+                </div>
+                <div class="position-request-base-list">
+                    <span class="icon-salary"></span><span class="position-salary"><span class="payment_l"></span><span class="payment_h"></span></span>
+                    <span class="regular"></span>
+                    <span class="position-salary"></span>
+                </div>
+                <p>职位诱惑：<span class="attr"></span></p>
+            </div>
+            <div class="position-detail">
+                <div class="position-detail-title">招聘详情<span class="detail-line"></span></div>
+                <div class="position-detail-content intern-content"></div>
+
+                <div class="position-detail-title">截止日期<span class="detail-line"></span></div>
+                <p class="deadline"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/web/enter.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            www: "http://<%=host.www%>",
+            hr : "http://<%=host.hr%>",
+            account: "http://<%=host.account%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/web/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/web/page/IB_login.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/web/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/web/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            background: url("<%=baseUrl%>/img/web/bg.png") center top repeat-y transparent;
+        }
+    </style>
+</head>
+<body>
+<div class="user-login">
+    <div class="user-login-box">
+        <div class="login-head clearfix">
+            <a class="logo fl" href="http://<%=host.www%>/"></a>
+            <!--<span class="slogan fl"></span>-->
+        </div>
+        <div class="login-wrap" data-view="email">
+            <div class="login-wrap-username">
+                <input type="text" class="enter-name enter-input" placeholder="请输入邮箱/手机号"/>
+            </div>
+            <div class="login-wrap-password">
+                <input type="password" class="enter-pwd enter-pwd-login enter-input" placeholder="请输入密码"/>
+            </div>
+            <div class="login-wrap-findPass">
+                <a href="/findPwd">忘记密码?</a>
+            </div>
+            <div class="login-wrap-btn">
+                <input type="button" class="btn-login btn-block btn-blue btn-outline btn" value="登录"/>
+            </div>
+            <div class="third-login third-user-login">
+                第三方账号登录：
+                <span class="icon-weixin third-type" data-type="wechat"></span>
+                <!--<span class="icon-weibo third-type" data-type="weibo"></span>
+                <span class="icon-black-qq third-type" data-type="qq"></span>-->
+            </div>
+            <div class="login-wrap-noAccount">
+                没有账号? <a href="/register">马上注册</a>
+            </div>
+            <div class="qrcode-title">扫一扫下载实习鸟手机APP</div>
+            <div class="qrcode"></div>
+        </div>
+    </div>
+</div>
+<!--<div id="wxLogContainer"></div>-->
+<div class="overlay"></div>
+<%include ./common/statistics.ejs%>
+</body>
+</html>

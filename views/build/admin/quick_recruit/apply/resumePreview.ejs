@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link href="/public/ace/assets/css/page/recruit/resume_preview.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="center-content">
+        <div class="resume resume-preview">
+            <div class="resume-content">
+                <%if(resume){ %>
+                <div class="resume-header resume-block">
+                    <% if(resume.avatar && resume.avatar!="undefined"){
+                    %>
+                    <div class="avatar" style="background-image:url('<%=resume.avatar%>')"></div>
+                    <%}else{%>
+                    <div class="avatar"></div>
+                    <%}%>
+                    <div class="info show-state">
+                        <span class="name"> <%=resume.name%></span>
+                        <span>|</span>
+                        <%
+                            var sex = resume.male?"男":"女";
+                        %>
+                        <span class="sex"><%=sex%></span>
+                    </div>
+                </div>
+                <div class="resume-inner">
+                    <div class="resume-block resume-block-base">
+                        <ul class="resume-base clearfix show-state">
+                            <li><i class="icon icon-address"></i><span><%=resume.address%></span></li>
+                            <li><i class="icon icon-birth"></i><span><%=new Date(resume.birthday).format("yyyy-MM-dd")%></span></li>
+                            <li><i class="icon icon-email"></i><span><%=resume.email%></span></li>
+                            <li><i class="icon icon-phone"></i><span><%=resume.phone%></span></li>
+                        </ul>
+                    </div>
+                    <%try{
+                        var edu_list = JSON.parse(resume.education_detail);
+                    if(edu_list.length >0){
+                    %>
+                    <div class="resume-block resume-block-edu">
+                        <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">教育背景</span><span class="line"></span></div>
+                        <%for(var j = 0;j<edu_list.length;j++){%>
+                        <div class="resume-edu show-state">
+                            <span class="time"><%=edu_list[j].start_time%>~<%=edu_list[j].end_time%></span>
+                            <span class="school"><%=edu_list[j].school%></span>
+                            <span class="major"><%=edu_list[j].major%></span>
+                            <span class="stage"><%=edu_list[j].stage%></span>
+                        </div>
+                        <%}%>
+                    </div>
+                    <% }}catch(e){}%>
+                    <%try{
+                        var expect = JSON.parse(resume.intern_expect);
+                    %>
+                    <div class="resume-block resume-block-hope">
+                        <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">期望实习</span><span class="line"></span></div>
+                        <div class="resume-hope clearfix show-state">
+                            <ul>
+                                <li><i class="icon icon-position"></i><span><%=expect.position%></span></li>
+                                <li><i class="icon icon-location"></i><span><%=expect.city%></span></li>
+                                <li><i class="icon icon-payment"></i><span><%=expect.payment%></span></li>
+                                <li><i class="icon icon-days"></i><span><%=expect.days%></span></li>
+                                <li><i class="icon icon-duration"></i><span><%=expect.duration%></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <%}catch(e){}%>
+
+                    <%try{
+                        var skill_list = JSON.parse(resume.skill);
+                    if(skill_list.length>0){
+                    %>
+                    <div class="resume-block resume-block-skill">
+                        <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">技能展示</span><span class="line"></span></div>
+                        <%
+                        for(var j=0;j<skill_list.length;j++){
+                        %>
+                        <div class="resume-skill show-state">
+                            <div><%=skill_list[j].skill%></div>
+                        </div>
+                        <%}%>
+                    </div>
+                    <%}}catch(e){}%>
+
+                    <%try{
+                        var exp_list = JSON.parse(resume.project_exp);
+                    if(exp_list.length>0){
+                    %>
+                    <div class="resume-block resume-block-project">
+                        <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">项目经历</span><span class="line"></span></div>
+                        <%
+                        for(var j = 0;j < exp_list.length;j++){
+                        %>
+                        <div class="resume-project resume-exp show-state">
+                            <div class="exp-top">
+                                <span class="exp-name"><%=exp_list[j].name%></span>
+                                <span class="exp-role"><%=exp_list[j].role%></span>
+                            </div>
+                            <div class="exp-time"><%=exp_list[j].startTime%>~<%=exp_list[j].endTime%></div>
+                            <div class="exp-content">
+                                <%-exp_list[j].content%>
+                            </div>
+                        </div>
+                        <% }%>
+                    </div>
+                    <%}}catch(e){}%>
+
+                    <%try{
+                        var exp_list = JSON.parse(resume.school_exp);
+                    if(exp_list.length>0){
+                    %>
+                    <div class="resume-block resume-block-school">
+                         <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">校园经历</span><span class="line"></span></div>
+                        <%
+                        for(var j = 0;j < exp_list.length;j++){
+                        %>
+                        <div class="resume-school resume-exp show-state">
+                            <div class="exp-top">
+                                <span class="exp-name"><%=exp_list[j].name%></span>
+                                <span class="exp-role"><%=exp_list[j].role%></span>
+                            </div>
+                            <div class="exp-time"><%=exp_list[j].startTime%>~<%=exp_list[j].endTime%></div>
+                            <div class="exp-content">
+                                <%-exp_list[j].content%>
+                            </div>
+                        </div>
+                        <% }%>
+                    </div>
+                    <%}}catch(e){}%>
+
+                    <%try{
+                        var exp_list = JSON.parse(resume.inter_exp);
+                    if(exp_list.length>0){
+                    %>
+                    <div class="resume-block resume-block-intern">
+                        <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">实习经历</span><span class="line"></span></div>
+                        <%
+                        for(var j = 0;j < exp_list.length;j++){
+                        %>
+                        <div class="resume-intern resume-exp show-state"  data-id="<%=exp_list[j].id%>">
+                            <div class="exp-top">
+                                <span class="exp-name"><%=exp_list[j].name%></span>
+                                <span class="exp-role"><%=exp_list[j].role%></span>
+                            </div>
+                            <div class="exp-time"><%=exp_list[j].startTime%>~<%=exp_list[j].endTime%></div>
+                            <div class="exp-content">
+                                <%-exp_list[j].content%>
+                            </div>
+                        </div>
+                        <% }%>
+                    </div>
+                    <%}}catch(e){}%>
+                    <%if(resume.self_desc){%>
+                    <div class="resume-block resume-block-self">
+                        <div class="resume-block-title"><i class="icon-diamond"></i><span class="title">自我描述</span><span class="line"></span></div>
+                        <div class="resume-self show-state">
+                            <div class="self-content">
+                                <%-resume.self_desc%>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                    <div class="resume-state">
+                        <%
+                            var state = ""
+                            switch(resume.work_state){
+                                case 0: state ="我在学校，可来公司实习"; break;
+                                case 1: state ="我在实习，考虑换个公司"; break;
+                                case 2: state ="我在公司所在城市，可来实习"; break;
+                                case 3: state ="我暂时无法实习"; break;
+                            }
+                        %>
+                        <i></i><span class="state"><%=state%></span><i></i>
+                    </div>
+                    <% }%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

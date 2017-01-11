@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/private/mysearch.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/private/IB_mySearchdet.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<!--页面主体-->
+<div class="container mb20 clearfix">
+    <div class="sidebar fl">
+        <ul class="subscribe-nav">
+            <% if(channel_type == 3 || channel_type == 4) {%>
+                <li><a href="/jobCondition">实习求职</a></li>
+                <li class="cur"><a href="/jobCondition?ct=3">校招求职</a></li>
+            <%}else{%>
+                <li class="cur"><a href="/jobCondition">实习求职</a></li>
+                <li><a href="/jobCondition?ct=3">校招求职</a></li>
+            <%}%>
+        </ul>
+    </div>
+    <div class="content fr">
+        <div class="mysearch-nav inwrapBox mb20">
+            <ul class="clearfix">
+                <% if(channel_type == 3 || channel_type == 4) {%>
+                    <li class="nav nav-0"><a href="/jobCondition?ct=3">全部</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-1"><a href="/jobCondition?ct=3&status=1">投递成功</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-2"><a href="/jobCondition?ct=3&status=2">待沟通</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-3"><a href="/jobCondition?ct=3&status=3">通知面试</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-4"><a href="/jobCondition?ct=3&status=4">不合适</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-5 curr"><a href="/detCondition?ct=4">外网投递</a><span class="icon-sel-up"></span></li>
+                <%}else{%>
+                    <li class="nav nav-0"><a href="/jobCondition">全部</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-1"><a href="/jobCondition?status=1">投递成功</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-2"><a href="/jobCondition?status=2">待沟通</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-3"><a href="/jobCondition?status=3">通知面试</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-4"><a href="/jobCondition?status=4">不合适</a></li>
+                    <li><span class="li-line"></span></li>
+                    <li class="nav nav-5 curr"><a href="/detCondition?ct=2">外网投递</a><span class="icon-sel-up"></span></li>
+                <%}%>
+            </ul>
+        </div>
+        <div class="mysearch-success-area jobs-area">
+            <%if(dets&&dets.length){%>
+            <%for(var i = 0,len = dets.length;i<len;++i){%>
+            <div class="job inwrapBox mb20">
+
+                <div class="job-logo">
+                    <%if(dets[i].company_avatar){%>
+                    <div class="det-company-logo" style="background-image: url('<%=dets[i].company_avatar%>?imageView2/2/w/192/h/192')"></div>
+                    <%}else{%>
+                    <div class="det-company-logo"></div>
+                    <%}%>
+                </div>
+                <div class="job-right">
+                    <div class="job-info-top clearfix">
+                        <div class="job-info-w398 fl">
+                            <a href="/det/detail/<%=dets[i].jid%>" target="_blank"><%=dets[i].name%></a>
+                        </div>
+                        <div class="job-info-w240 fr">
+                            <% if(dets[i].company_id && dets[i].company_id !="undefined") {%>
+                                <a href="/company/detail/<%=dets[i].company_id%>" target="_blank" title="<%=dets[i].company_name%>"><%=dets[i].company_name%></a>
+                            <%}else{%>
+                                <span class="dets-company-name"><%=dets[i].company_name%></span>
+                            <%}%>
+                        </div>
+                    </div>
+                    <div class="job-info-next">
+                        <span class="job-info-city"><span class="icon-locate"></span><%=dets[i].city.length>12?dets[i].city.substr(0,12)+"...":dets[i].city%></span>
+                        <%if(dets[i].channel_type ==2){%>
+                            <span class="job-info-days"><span class="icon-calendar"></span>≥<%=dets[i].workdays?dets[i].workdays:1%>天</span>
+                        <%}%>
+                        <%if(dets[i].min_payment ==0 && dets[i].max_payment ==0){%>
+                            <span class="job-info-money"><span class="icon-salary"></span>面议</span>
+                        <%}else{%>
+                            <%if(dets[i].channel_type == 4){%>
+                                <span class="job-info-money"><span class="icon-salary"></span><%=dets[i].min_payment/10000%>-<%=dets[i].max_payment/10000%>万/年</span>
+                            <%}else{%>
+                                <span class="job-info-money"><span class="icon-salary"></span><%=dets[i].min_payment%>-<%=dets[i].max_payment%>/天</span>
+                            <%}%>
+                        <%}%>
+                    </div>
+                    <div class="job-info-bottom clearfix">
+                        <div class="job-info-w398 fl">
+                        </div>
+                        <div class="job-info-w240 fr">
+                            <span class="deliver-time">投递时间：<%=new Date(dets[i].delivery_time).format('yyyy-MM-dd')%></span>
+                            <span class="deliver-det-state">已投递</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+            <%include ../common/paging.ejs%>
+            <%}else{%>
+            <div class="empty-area">
+                <div class="no-deliver">
+                    目前没有符合条件的求职记录
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+    <!--<div class="w310 fr">
+        <div class="sideBox mysearch-assume">
+            <div class="mysearch-assume-title">
+                <span class="mysearch-assume-title-line"></span>猜你喜欢
+            </div>
+            <ul class="mysearch-assume-list">
+               <li>
+                   <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                   <h4><a href="#" target="_blank">运营实习生</a></h4>
+                   <p>￥&nbsp;100-160天</p>
+                   <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+               </li>
+                <li>
+                    <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                    <h4><a href="#" target="_blank">运营实习生</a></h4>
+                    <p>￥&nbsp;100-160天</p>
+                    <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+                </li>
+                <li>
+                    <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                    <h4><a href="#" target="_blank">运营实习生</a></h4>
+                    <p>￥&nbsp;100-160天</p>
+                    <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+                </li>
+                <li>
+                    <div class="leftImg" style="background-image: url('http://image.internbird.cn/14466cf61fd977df099e6ffd4ced2629/2aedcf5dec0b2102ed3ba0a2607d785c.png')"></div>
+                    <h4><a href="#" target="_blank">运营实习生</a></h4>
+                    <p>￥&nbsp;100-160天</p>
+                    <p class="clearfix"><span class="fl">豌豆荚</span><span class="fr">[北京]</span></p>
+                </li>
+            </ul>
+            <div class="more-content">
+                <div class="btn-more"><a href="#">查看更多<span class="icon-more"></span></a></div>
+            </div>
+        </div>
+    </div>-->
+</div>
+
+<%include ../common/footer.ejs%>
+<%include ../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

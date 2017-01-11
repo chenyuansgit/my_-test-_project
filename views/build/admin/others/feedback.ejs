@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%include ../common/head.ejs%>
+</head>
+
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="header smaller lighter blue">用户反馈
+                                </h3>
+                                <div class="table-responsive">
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover table-sort table-sort-search">
+                                        <thead>
+                                        <tr>
+                                            <th class="table-sort">ID</th>
+                                            <th class="table-sort">用户名</th>
+                                            <th class="hidden-480">反馈信息</th>
+                                            <th class="hidden-480">联系方式</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="#">10001</a>
+                                            </td>
+                                            <td>
+                                                189**
+                                            </td>
+                                            <td class="hidden-480">
+                                                产品很好，不过有些问题
+                                            </td>
+                                            <td>
+                                                <p>邮箱：<span class="ib-email">dongwei57@126.com</span></p>
+                                                <p>QQ：<span class="ib-qq">535755948</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">10001</a>
+                                            </td>
+                                            <td>
+                                                189**
+                                            </td>
+                                            <td class="hidden-480">
+                                                产品很好，不过有些问题
+                                            </td>
+                                            <td>
+                                                <p>邮箱：<span class="ib-email">dongwei57@126.com</span></p>
+                                                <p>QQ：<span class="ib-qq">535755948</span></p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                <a href="#">10001</a>
+                                            </td>
+                                            <td>
+                                                189**
+                                            </td>
+                                            <td class="hidden-480">
+                                                产品很好，不过有些问题
+                                            </td>
+                                            <td>
+                                                <p>邮箱：<span class="ib-email">dongwei57@126.com</span></p>
+                                                <p>QQ：<span class="ib-qq">535755948</span></p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('table.table-sort').tablesort();
+    });
+</script>
+
+</body>
+</html>

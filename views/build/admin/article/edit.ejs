@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="title"> 文章标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="title" placeholder="请输入文章标题" class="col-xs-12 col-sm-8" value="<%=article.title%>" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 文章类型 </div>
+                                <div class="col-sm-11">
+                                    <!--<input type="number" id="term" placeholder="请输入快照期数,只支持数字,表示第几期(一经确认不能修改)" class="col-xs-12 col-sm-8" />-->
+                                    <select class="form-control col-xs-12 col-sm-8" id="category_id" style="max-width: 300px;">
+                                        <%if(article.category_id ==0){%>
+                                        <option value="0" selected="selected">暂无选择</option>
+                                        <%}else{%>
+                                        <option value="0">暂无选择</option>
+                                        <%}%>
+                                        <%if(article.category_id == 1001){%>
+                                        <option value="1001" selected="selected">经验</option>
+                                        <%}else{%>
+                                        <option value="1001">经验</option>
+                                        <%}%>
+                                        <%if(article.category_id == 1002){%>
+                                        <option value="1002" selected="selected">好文</option>
+                                        <%}else{%>
+                                        <option value="1002">好文</option>
+                                        <%}%>
+                                        <%if(article.category_id == 1003){%>
+                                        <option value="1003" selected="selected">干货</option>
+                                        <%}else{%>
+                                        <option value="1003">干货</option>
+                                        <%}%>
+                                        <%if(article.category_id == 1004){%>
+                                        <option value="1004" selected="selected">企业家说</option>
+                                        <%}else{%>
+                                        <option value="1004">企业家说</option>
+                                        <%}%>
+                                    </select>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="title"> 封面 </label>
+                                <div class="col-sm-11">
+                                    <p>图片大小不超过3M,上传图片的比例为7:4,如280:160</p>
+
+                                    <div class="article-recruit-pic"
+                                         <% if(article.cover){ %>style="background-image: url('<%= article.cover %>')"
+                                            <% } %>
+                                    >
+                                        <input type="file" class="avatar input-transparent" id="avatar" name="avatar"/>
+                                        <span class="avatar-mask"></span>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="summary"> 文章概要 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="summary" placeholder="请输入文章概要" class="col-xs-12 col-sm-8" value="<%=article.summary%>"/>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="content"> 文章图片</div>
+                                <div class="col-sm-11">
+                                    <input type="file" id="article-pic" class="article-pic"/>
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="content"> 文章内容</label>
+                                <div class="col-sm-11"  style="padding-bottom: 20px">
+                                    <textarea id="article-content"><%=article.content%></textarea>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="author"> 文章作者 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="author" value="<%=article.author%>" placeholder="请输入文章作者" class="col-xs-12 col-sm-8" />
+                                </div>
+                            </div>
+                        </form>
+                            <div class="ib-how">
+                                <a href=""> <span class="ib-release" id="buttonAdd">提交</span></a>
+                                <a href="/article/list?page=1&status=1"> <span>取消</span></a>
+                                <span class="ib-preview">预览</span>
+                            </div>
+                            <!-- PAGE CONTENT ENDS -->
+
+                    </div>
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div><!-- /.main-container -->
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<%include ../common/ueditor_script.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/ueditor.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    $(".ui_timepicker").datetimepicker({
+        //showOn: "button",
+        //buttonImage: "./css/images/icon_calendar.gif",
+        //buttonImageOnly: true,
+        showSecond: true,
+        timeFormat: 'hh:mm:ss',
+        stepHour: 1,
+        stepMinute: 1,
+        stepSecond: 1
+    })
+</script>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.id = '<%= article.id %>';
+    global.status = '<%= article.status %>';
+</script>
+<script type="text/javascript">
+$(function() {
+    function showErrorAlert(reason, detail) {
+        var msg = '';
+        if (reason === 'unsupported-file-type') {
+            msg = "Unsupported format " + detail;
+        }
+        else {
+            console.log("error uploading file", reason, detail);
+        }
+        $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+    }
+
+    //图片上传
+    var cover_img;
+    var ue = ueUtil.getFullEditor("article-content", 800, 500, 20000);
+    fileUpload("admin", "article-pic", function (error, pic) {
+        if (!error) {
+            ue.focus();
+            ue.execCommand('inserthtml',"<p><img src='" + pic + "'/></p>");
+        }
+    })
+    //封面上传
+    fileUpload("admin", "avatar", function (error, avatar) {
+        if (!error) {
+            $(".article-recruit-pic").css({"background-image": "url('" + avatar + "')"});
+            cover_img = avatar;
+        }
+    })
+    //上传文章
+    var  title,content, summary, author, url, id = global.id, status = global.status, category_id;
+    $('#buttonCancel').click(function(){
+        window.history.back();
+    })
+    $(".ib-preview").click(function(){
+        content = $.trim(ue.getContent());//获取格式化后的内容
+        title= $.trim($('input#title').val());
+        author= $('input#author').val();
+        var admin_article = {
+            content:content,
+            title:title,
+            author:author
+        };
+        fn.storage("admin_article",JSON.stringify(admin_article));
+        window.open("/article/preview");
+    });
+    $('#buttonAdd').click(function(){
+        content = ue.getContent();
+        //alert('content=' + content);
+        $('#contentEdit').html(content);
+        title= $('input#title').val();
+        summary= $('input#summary').val();
+        category_id = $('#category_id option:selected').val();
+        //summary
+        author= $('input#author').val();
+        //imageUrl = avatar;
+        url = '/article/edit/';
+        url = url  + id;
+        $.ajax({
+            type:'POST',
+            url:url,
+            dataType:'json',
+            data:{
+                option:{
+                    title:title,
+                    author:author,
+                    category_id:category_id,
+                    cover:cover_img,
+                    summary:summary,
+                    content: content,
+                    status:status
+                }
+            },
+            success:function(data){
+                if (data.status == '10000') {
+                    //alert('POST success');
+                    window.location.href='/article/list?status=1&page=1&category_id='+category_id;
+                }
+                else {
+                    alert('POST error\n' + data.status);
+                }
+            }
+        })
+        return false;
+    })
+})
+</script>
+</body>
+</html>

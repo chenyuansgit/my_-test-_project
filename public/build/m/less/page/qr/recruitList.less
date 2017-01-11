@@ -1,0 +1,60 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+html,body{
+  background-color: #f6f6f6;
+}
+
+.listone{
+  display:block;
+  box-sizing: border-box;
+  padding: 0.5rem 1rem;
+  position:relative;
+  text-decoration: none;
+  overflow-x: hidden;
+  background-color: #fff;
+  margin-bottom: 1rem;
+  *,*:hover{
+    text-decoration: none;
+    outline:none;
+  }
+  .time{
+    color: @mainColor;
+    text-align: left;
+    font-size: 1.35rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+  .recruit_icon{
+    width:35%;
+    height:0;
+    padding-top:28%;
+    background-image: url('@{baseUrl}/img/default-back.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat ;
+    background-position: center;
+    background-color: #fff;
+    border:1px solid #eee;
+    margin-right: 4%;
+  }
+  .detail{
+    line-height: 150%;
+    .right{
+      width:60%;
+    }
+    .title{
+      font-size: 1.2rem;
+      color:#333;
+      margin:0.8rem 0 1.2rem 0;
+      max-height: 3rem;
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+    }
+    .summary{
+      font-size: 1.2rem;
+      color:#999;
+      max-height: 3rem;
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

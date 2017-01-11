@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/company/auth.css" rel="stylesheet"/>
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li class="curr"><span class="icon-curr-up"></span><a class="header-link-item on" href="/myCompany">我的公司</a></li>
+            <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+            <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/talentPool/list">人才库</a></li>
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<div class="container mb30">
+    <div class="wrapBox">
+        <div class="mycompany step-1">
+            <div class="mycompany-top">
+                <div class="remind"><span class="remind-title">开通招聘服务</span>(<span class="remind-tip"><i class="req">*</i>为必填项目</span>)</div>
+                <div class="auth-title-area">
+                    <span class="title curr">公司联系方式<span class="title-step">01</span></span>
+                    <span class="title mlr120">验证企业邮箱<span class="title-step">02</span></span>
+                    <span class="title">填写公司信息<span class="title-step">03</span></span>
+                    <span class="line"></span>
+                </div>
+            </div>
+            <div class="mycompany-info">
+                <div class="info-item">
+                    <i class="req">*</i>
+                    <span class="title">HR号码</span>
+                      <input class="hr-phone mg required" type="text" value="<%=employer.phone||(/^(\(\d{3,4}\)|\d{3,4}-)?\d{7,8}$/.test(account.account_name)?account.account_name:'')||(/^0?1[3|4|5|6|7|8][0-9]\d{8}$/.test(account.account_name)?account.account_name:'')%>" placeholder="请填写HR手机号码或座机号(座机号的区号和号码用'-'分隔)"/>
+                </div>
+                <div class="tip">（手机号码或座机号(座机号的区号和号码用'-'分隔)应真实有效，方便系统校验）</div>
+                <div class="info-item">
+                    <i class="req">*</i>
+                    <span class="title">HR邮箱</span>
+                    <input class="hr-email mg required" type="text" value = "<%=employer.enterprise_email||(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(account.account_name)?account.account_name:'')%>" placeholder="请填写企业邮箱"/>
+                </div>
+                <div class="tip">（该邮箱将作为默认接收简历邮箱，若要更换简历接收邮箱，可在企业版招聘设置中修改）</div>
+                <div class="info-item mb20">
+                    <span class="btn btn-blue btn-next">下一步</span><a href="http://<%=host.www%>/public/static/extra/help_2.html" target="_blank" class="info-help">没有企业邮箱怎么办？</a>
+                </div>
+                <div class="tips">
+                    <p>1.为了保证学生利益，所有的注册均需要用企业邮箱进行注册；</p>
+                    <p>2.如果你有任何问题，可以通过电话:&nbsp;<a href="javascript:">010-57460009</a>&nbsp;或&nbsp;邮箱:&nbsp;<a href="javascript:">service@internbird.com</a>联系我们，我们将尽快为你解决。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../../common/footer.ejs%>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.step = 1;
+</script>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/company/IB_validate.js"></script>
+<%include ../../common/statistics.ejs%>
+</body>
+</html>

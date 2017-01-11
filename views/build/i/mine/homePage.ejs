@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/companyDetail.css"/>
+    <%
+        var platform = "weixin";
+        var clientFlag = platform == "client"?1:0;
+    %>
+    <%if(!clientFlag){%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/mine/IB_companyDetail.js"></script>
+    <%}%>
+</head>
+<body>
+<%include ../common/bodyHeader.ejs%>
+<div class="main" style="<%=clientFlag?'padding-top:0':""%>">
+    <div class="header w100 tac" style="<%=clientFlag?'display:none':""%>">
+        <a href="/mine" class="back left-icon"></a>
+        <span>公司主页</span>
+    </div>
+    <div class="content w100">
+        <%if(company){%>
+        <div class="company-top">
+            <!--<a href="javascript:" class="option share flr iblock" id="share" style="<%=clientFlag?'display:none':""%>">分享</a>-->
+            <%if(company.avatar){%>
+            <div class="company-logo" data-src="<%=company.avatar%>" style="background-image:url('<%=company.avatar%>')"></div>
+            <%}else{%>
+            <div class="company-logo"></div>
+            <%}%>
+            <div class="info-area">
+                <div>
+                    <span class="company-name ellipsis"><%=company.name%></span>
+                </div>
+                <%
+                    var scale = "";
+                    switch(parseInt(company.scale_type||0)){
+                        case 1: scale ="15人以下"; break;
+                        case 2: scale="15-50人"; break;
+                        case 3: scale="50-150人"; break;
+                        case 4: scale="150-500人"; break;
+                        case 5: scale="500-2000人"; break;
+                        case 6: scale="2000-5000人"; break;
+                        case 7: scale="5000人以上"; break;
+                    }
+                %>
+                <div class="company-info">
+                    <span class="company-city"><%=company.city%></span><span>&nbsp;|&nbsp;</span>
+                    <span class="company-type"><%=company.type%></span><span>&nbsp;|&nbsp;</span>
+                    <span class="company-scale"><%=scale%></span>
+                </div>
+            </div>
+        </div>
+        <div class="info-area cBlock">
+            <%if(company.title && company.title!="undefined"){%>
+            <div class="title-area">
+                <div class="title">公司简述</div>
+                <div class="company-title"><%=company.title%></div>
+            </div>
+            <%}%>
+            <%if(company.tag && company.tag!="undefined"){%>
+            <div class="label-area">
+                <div class="title">公司标签</div>
+                <div class="clearfix">
+                    <%for(var j = 0,tag = company.tag.split(','),len1 = tag.length>5?5:tag.length;j<len1;++j){%>
+                    <%if(tag[j].replace(/(^s*)|(s*$)/g, "")!=''){%>
+                    <span class="label"><%=tag[j].replace(/(^s*)|(s*$)/g, "")%></span>
+                    <%}%>
+                    <%}%>
+                </div>
+            </div>
+            <%}%>
+            <div class="company-center">
+                <div class="company-intro-area">
+                    <div class="title">公司介绍</div>
+                    <div class="company-intro">
+                        <%if(company.introduction){%>
+                        <%-company.introduction%>
+                        <%}%>
+                    </div>
+                    <!--<div class="arrow-down"></div>-->
+                </div>
+            </div>
+            <%if(company.address){%>
+            <%try{
+                var address = JSON.parse(company.address);
+            %>
+            <%if(address.length>0){%>
+            <div class="address-area">
+                <div class="title">公司地址</div>
+                <ul class="addresses">
+                    <%for(var i= 0,len=address.length;i<len;i++){%>
+                    <li class="address"><%=address[i].desc%></li>
+                    <%}%>
+                </ul>
+            </div>
+            <%}%>
+            <%}catch(e){}%>
+            <%}%>
+            <%}%>
+        </div>
+    </div>
+</div>
+<div class="share-back w100 h100 none" data-cid="<%=company.cid%>" data-title="<%=company.name%>实习生招聘&nbsp;|&nbsp;适合你的岗位都在这里,快进来看看吧" data-desc="<%=company.title%><%=company.job_online_num?(',共有'+company.job_online_num+'个在招职位'):''%>"></div>
+<%include ../common/footer.ejs%>
+<%if(clientFlag){%>
+<script type="text/javascript" src="http://cdn.s1.internbird.com/js/zepto.min.js"></script>
+<script type="text/javascript" src="http://cdn.s1.internbird.com/js/fastclick.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        FastClick.attach(document.body);
+
+        $(".top-nav .nav").click(function(){
+            var $this = $(this);
+            var _area = $this.attr("data-for");
+            $(".top-nav .nav.curr").removeClass("curr");
+            $this.addClass("curr");
+            $(".cBlock").hide();
+            $("."+_area+"-area").show();
+        });
+    });
+</script>
+<%}%>
+</body>
+</html>

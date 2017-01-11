@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../../common/head.ejs %>
+</head>
+<body>
+<% include ../../common/header.ejs %>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <!--<%= JSON.stringify(option.operation) %>-->
+
+        <% include ../../common/sidebar.ejs %>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="header smaller lighter blue head-title">简历管理
+                            <p class="search-head">
+                                <input type="text" id="search" placeholder="请输入要搜索的人名"/> <a href=""
+                                                                                            class="btn button-search">搜索</a>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li
+                                                <% if(option.operation != 1 && option.operation != 0){ %>
+                                                class="active<% } %>">
+                                            <a href="/resume/list?status=1&page=1&lt=time">
+                                                全部简历
+                                            </a>
+                                        </li>
+                                        <li
+                                                <% if(option.operation == 1){ %>
+                                                class="active<% } %>">
+                                            <a id="isOperate" href="/resume/list?status=1&page=1&lt=time&&operation=1">
+                                                已操作
+                                            </a>
+                                        </li>
+                                        <li
+                                                <% if(option.operation == 0){ %>
+                                                class="active<% } %>">
+                                            <a id="noOperate" href="/resume/list?status=1&page=1&lt=time&&operation=0">
+                                                未操作
+                                            </a>
+                                        </li>
+
+                                        <% if(lt == 'time'){ %>
+                                        &nbsp;排序：<input type="radio" class="refresh" name="refresh" id="" value="time"
+                                                        checked="checked">更新时间 &nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="deliveries">投递数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="invites">被邀请数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="accepts">接受邀请数&nbsp;
+                                        <% }else if(lt == 'deliveries'){ %>
+                                        &nbsp;排序：<input type="radio" class="refresh" name="refresh" id="" value="time">更新时间
+                                        &nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="deliveries"
+                                               checked="checked">投递数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="invites">被邀请数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="accepts">接受邀请数&nbsp;
+                                        <% }else if(lt == 'invites'){ %>
+                                        &nbsp;排序：<input type="radio" class="refresh" name="refresh" id="" value="time">更新时间
+                                        &nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="deliveries">投递数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="invites"
+                                               checked="checked">被邀请数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="accepts">接受邀请数&nbsp;
+                                        <% }else{ %>
+                                        &nbsp;排序：<input type="radio" class="refresh" name="refresh" id="" value="time">更新时间
+                                        &nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="deliveries">投递数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="invites">被邀请数&nbsp;
+                                        <input type="radio" class="refresh" name="refresh" id="" value="accepts"
+                                               checked="checked">接受邀请数&nbsp;
+                                        <% } %>
+                                        <button id="button-refresh">确定</button>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane in active">
+                                            <table id="sample-table-home"
+                                                   class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>简历人</th>
+                                                    <th>基本信息</th>
+                                                    <th>是否已加入人才库</th>
+                                                    <th>统计</th>
+                                                    <th style="text-align: center;">操作</th>
+                                                </tr>
+                                                </thead>
+                                                <% if(resumes.length > 0){ %>
+                                                <tbody>
+                                                <% for(var i = 0; i < resumes.length; i++)
+                                                { %>
+                                                <tr data-rid="<%= resumes[i].rid %>" data-uid="<%= resumes[i].user_id %>">
+                                                    <td>
+                                                        <%= resumes[i].rid %>
+                                                    </td>
+                                                    <td>
+                                                        <a target="_blank"
+                                                           href="/resume/detail/<%= resumes[i].rid %>"><span
+                                                                    class="ib-operation "><%= resumes[i].name %></span></a>
+                                                        <p>手机:<%= resumes[i].phone %></p>
+                                                        <p>邮箱:<%= resumes[i].email %></p>
+                                                        <p>期待职位:<%= resumes[i].intern_expect_position || '' %></p>
+                                                    </td>
+                                                    <td>
+                                                        <p><%= resumes[i].male > 0 ? '男' : '女' %></p>
+                                                        <% try{ %>
+                                                        <p>
+                                                            <span><%= JSON.parse(resumes[i].education_detail)[0].school %> </span>
+                                                            <span><%= JSON.parse(resumes[i].education_detail)[0].major %> </span>
+                                                            <span><%= JSON.parse(resumes[i].education_detail)[0].stage %> </span>
+                                                        </p>
+                                                        <% }catch (e) {
+                                                        } %>
+                                                        <p>
+                                                            更新时间:<%= new Date(resumes[i].update_time).format("yyyy-MM-dd hh:mm") %></p>
+                                                        <!-- <p>举报次数:111 </p>-->
+                                                    </td>
+                                                    <td>
+                                                        <p><%= resumes[i].is_public > 0 ? '是' : '否' %></p>
+                                                    </td>
+                                                    <td>
+                                                        <p>简历投递数：<a href="javascript:"><%= resumes[i].count || 0 %></a>
+                                                            <%if(resumes[i].count > 0) {%>
+                                                                <a href="#modal-detail" data-toggle="modal"><span class="view-detail">查看详情</span></a>
+                                                            <%}%>
+                                                        </p>
+                                                        <p>快招被邀请数：<a href="javascript:"><%= resumes[i].invites || 0 %></a>
+                                                        <%if(resumes[i].invites > 0) {%>
+                                                        <a href="#modal-invites-detail" data-toggle="modal"><span class="view-invites-detail">查看详情</span></a>
+                                                        <%}%>
+                                                        </p>
+                                                        <p>快招接受邀请：<a href="javascript:"><%= resumes[i].accepts || 0 %></a>
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <% if(resumes[i].status == 1){ %>
+                                                        <a href="#modal-shield" data-toggle="modal"><span
+                                                                    class="ib-shield">屏蔽</span></a></br>
+                                                        <% }else{ %>
+                                                        <a href="#modal-unshield" data-toggle="modal"><span
+                                                                    class="ib-shield">取消屏蔽</span></a></br>
+                                                        <% } %>
+                                                        <a href="#modal-edit" data-toggle="modal"><span
+                                                                    class="ib-operation">编辑实习类别</span></a>
+                                                        <p class="intern_expect_position_type"
+                                                           data-id= <%= resumes[i].intern_expect_position_type.split(",") %>>
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                                </tbody>
+                                                <% }else{ %>
+                                                <p>该栏目下没有数据！</p>
+                                                <% } %>
+                                            </table>
+                                            <% include ../../common/pages.ejs %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--模态框-->
+<!--编辑实习类别-->
+<div id="modal-edit" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header blue" data-target="#modal-step-contents">编辑实习类别</div>
+            <div class="modal-body step-content">
+                <p>请选择实习类别:</p>
+                <p>温馨提示:<span class="tip-prompt">实习类别不能超过三个</span></p>
+                <p id="sel-jobType"></p>
+                <div class="job_type" id="job_type">
+                    <div class="main-type-list">
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer wizard-actions">
+                <button class="btn btn-success btn-sm btn-next button-jobType" data-dismiss="modal">确定<i
+                            class="icon-arrow-right icon-on-right"></i></button>
+                <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--查看简历投递详情-->
+<div id="modal-detail" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header blue" data-target="#modal-step-contents">查看简历投递详情</div>
+            <div class="modal-body step-content">
+                <div class="resume-item">
+                    <ul></ul>
+                    <div class="pages delivery"></div>
+                </div>
+            </div>
+            <div class="modal-footer wizard-actions">
+               <!-- <button class="btn btn-success btn-sm btn-next button-jobType" data-dismiss="modal">确定<i
+                            class="icon-arrow-right icon-on-right"></i></button>-->
+                <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-invites-detail" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header blue" data-target="#modal-step-contents">查看快招被邀请详情</div>
+            <div class="modal-body step-content">
+                <div class="resume-item">
+                    <ul></ul>
+                    <div class="pages invites"></div>
+                </div>
+            </div>
+            <div class="modal-footer wizard-actions">
+                <!-- <button class="btn btn-success btn-sm btn-next button-jobType" data-dismiss="modal">确定<i
+                             class="icon-arrow-right icon-on-right"></i></button>-->
+                <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-shield" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header blue" data-target="#modal-step-contents">
+                屏蔽操作
+            </div>
+            <div class="modal-body step-content">
+                <p>你确定要将简历屏蔽吗？</p>
+            </div>
+            <div class="modal-footer wizard-actions">
+                <button class="btn btn-success btn-sm btn-next shield-button" data-dismiss="modal">确定<i
+                            class="icon-arrow-right icon-on-right"></i></button>
+                <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-unshield" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header blue" data-target="#modal-step-contents">取消屏蔽</div>
+            <div class="modal-body step-content">
+                <p>取消屏蔽之后，简历将在人才库中显示</p>
+            </div>
+            <div class="modal-footer wizard-actions">
+                <button class="btn btn-success btn-sm btn-next unshield-button" data-dismiss="modal ">确定<i
+                            class="icon-arrow-right icon-on-right"></i></button>
+                <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../../common/footer.ejs %>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jobType.js"></script>
+<script>
+    window.global = window.global || {};
+    global.env = '<%= env %>' || '';
+    global.page = parseInt('<%= page %>') || 1;
+</script>
+<script type="text/javascript">
+    $(function () {
+        //加载实习类别
+        var job_type = $("#job_type");
+        for (var i in jobType) {
+            //var currFlag = i==0?"curr":"";
+            //console.log(jobType[i].parent_type_name);
+            var mainType = "<li class='main-type' data-id='" + jobType[i].parent_type_id + "'>" + jobType[i].parent_type_name + "</li>";
+            job_type.find(".main-type-list ul").append(mainType);
+            job_type.append("<ul class='sub-type-list'></ul>");
+            var subTypeList = jobType[i].sub_types;
+            for (var j = 0; j < subTypeList.length; j++) {
+                //console.log((subTypeList)[j].group_name);
+                //console.log((subTypeList)[j].group_id);
+                var subType = "<li class='sub-type' data-id='" + subTypeList[j].group_id + "'>" + subTypeList[j].group_name + "</li>";
+                job_type.find(".sub-type-list").eq(i).append(subType);
+            }
+        }
+
+        //遍历类别
+        for (var t1 = 0; t1 < $(".intern_expect_position_type").length; t1++) {
+            var position_detail = [];
+            var positionType = $(".intern_expect_position_type").eq(t1).attr("data-id").split(",");
+            if (positionType.toString().length > 0) {
+                for (var t2 = 0; t2 < positionType.length; t2++) {
+                    var curId = positionType[t2];
+                    var ss = $(".sub-type[data-id='" + curId + "']").text();
+                    position_detail.push(ss);
+                }
+                ($(".intern_expect_position_type").eq(t1)).text(position_detail.toString());
+            } else
+                continue;
+        }
+
+    });
+
+    //URL判断
+    var env = global.env;
+    var viewUrl;
+    if(env == "local") {
+        viewUrl = "http://localhost:8088"
+    } else if( env == "development") {
+        viewUrl = "http://www.dev.internbird.com/"
+    } else if ( env == "prod") {
+        viewUrl = "http://www.internbird.com"
+    }
+    //分页绑定
+    fn.pagingBind();
+    var url = location.href;
+    var page = global.page;
+    var key = fn.getUrlPara('k');//获取参数k
+    var operation_type = parseInt(fn.getUrlPara('operation'));  //操作类型
+    //时间戳格式转换
+    Date.prototype.format = function (format) {
+        var o = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S": this.getMilliseconds()
+        };
+        if (/(y+)/.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            }
+        }
+        return format;
+    };
+    //给sidebar加样式
+    if (url.indexOf('job')) {
+        $('#recruitMenu').addClass('active open');
+        $('#recruitMenu ul li:eq(2)').addClass('active')
+    }
+    //简历搜索
+    $('.button-search').click(function () {
+        var searchText = $('#search').val();
+        url = "/resume/list?"
+        url = url + "k=" + searchText + '&page=1';
+        location.href = url;
+        return false;
+    })
+
+    //排序关键词选择
+    var lt = fn.getUrlPara("lt");
+    $('#button-refresh').click(function () {
+        var $sort = $(".refresh");
+        for (var i = 0; i < $sort.length; i++) {
+            if ($sort.eq(i).is(':checked') == true) {
+                location.href = url.replace('lt=' + lt, 'lt=' + $sort.eq(i).val()).replace('page=' + page, 'page=1');
+                break;
+            }
+        }
+    });
+
+
+    //选择主类别
+    $(document).on("click", ".main-type", function () {
+        if ($(".main-type.cur").length > 0)
+            $(".main-type").removeClass("cur");
+        $(this).addClass("cur");
+        var index = $(this).index();
+        $(".sub-type-list").css("display", "none");
+        $(".sub-type-list").eq(index).css("display", "block");
+    });
+
+    //选择子类别
+    $(document).on("click", ".sub-type", function () {
+        if ($(".sel-sub-type").length >= 3 || $(this).hasClass("cur"))
+            return;
+        var jobType = $("#sel-jobType");
+        //$(".sub-type").removeClass("cur");
+        $(this).addClass("cur");
+        var subType = $(this).text();
+        var dataId = $(this).attr("data-id");
+        jobType.append("<span class='sel-sub-type' data-id='" + dataId + "'>" + subType + "<span class='sub-type-delete'>x</span></span>");
+    });
+
+    //删除子类别
+    $(document).on("click", ".sub-type-delete", function (e) {
+        var dataId = $(this).parent().attr("data-id");
+        $(".sub-type[data-id='" + dataId + "']").removeClass("cur");
+        $(this).parent().remove();
+        e.stopPropagation();
+    });
+
+    //弹出框
+    $(".ib-operation").click(function () {
+        if ($(".ib-operation.active").length > 0)
+            $(".ib-operation").removeClass("active");
+        $(this).addClass("active");
+        //先清空默认值
+        $("#sel-jobType").text("");
+        $(".sub-type-list").css("display", "none");
+        $(".main-type, .sub-type").removeClass("cur");
+        var subTypeList = $(this).parent().next().attr("data-id").split(",");
+        if (subTypeList.toString().length > 0) {
+            //$(".job_type").prev().append("<p id='sel-jobType'></p>");
+            for (var i = 0; i < subTypeList.length; i++) {
+                var ss = $(".sub-type[data-id='" + subTypeList[i] + "']");
+                ss.addClass("cur");
+                $("#sel-jobType").append("<span class='sel-sub-type' data-id='" + subTypeList[i] + "'>" + ss.text() + "<span class='sub-type-delete'>x</span></span>");
+            }
+            var j1 = $(".sel-sub-type").first().attr("data-id");
+            var j2 = $(".sub-type[data-id='" + j1 + "']").parent().index();
+            $(".main-type").eq(j2 - 1).addClass("cur");
+            $(".sub-type-list").eq(j2 - 1).css("display", "block");
+        }
+    });
+
+    //提交按钮
+    $('.button-jobType').click(function () {
+        var jid = $('.ib-operation.active').parents("tr").attr("data-rid");
+        /*var jid = $('.ib-operation.active').closest('tr').attr('data-jid');*/
+        var jop_type = [];
+        for (var i = 0; i < $("#sel-jobType .sel-sub-type").length; i++) {
+            var dataId = $("#sel-jobType .sel-sub-type").eq(i).attr("data-id");
+            jop_type.push(dataId);
+        }
+        $.ajax({
+            type: 'POST',
+            url: "/resume/operate/" + jid,
+            dataType: 'json',
+            data: {
+                option: {
+                    intern_expect_position_type: jop_type.toString()
+                }
+            },
+            success: function (data) {
+                if (data.status == '10000') {
+                    location.reload();
+                   // console.log("success");
+                }
+                else {
+                    alert('POST error\n' + data.status);
+                }
+
+            }
+        });
+    })
+
+    //简历投递详情
+    $(".view-detail").click(function () {
+        var uid = $(this).parents("tr").attr("data-uid");
+        $.ajax({
+            type: 'GET',
+            url: "/resume/delivery/list",
+            dataType: 'json',
+            data: {
+                uid: uid,
+                page: 1
+            },
+            success: function (data) {
+                if (data.status == '10000') {
+                    $(".resume-item ul li").remove();
+                    $(".resume-item .pages span").remove();
+                    var detailList = data.data.details;
+                    var total = data.data.total;
+                    $(".resume-item").attr("data-uid", uid);
+                    for(var i = 0; i < detailList.length; i++) {
+                        var status = detailList[i].status;
+                        var statusName;
+                        switch (status) {
+                            case 1: statusName = "投递成功"; break;
+                            case 2: statusName = "待沟通"; break;
+                            case 3: statusName = "通知面试"; break;
+                            case 4: statusName = "不合适"; break;
+                            case 5: statusName = "已拒绝邀请"; break;
+                        }
+                        $(".resume-item ul").append("<li>投递职位：<a href='"+viewUrl+"/job/detail/"+detailList[i].job_id+"' target='_blank'>"+detailList[i].job_name+"</a>投递公司：<a href='"+viewUrl+"/company/detail/"+detailList[i].company_id+"' target='_blank'>"+detailList[i].company_name+"</a>投递状态：<span class='status'>"+statusName+"</span></li>");
+                    }
+                    if(total > 1) {
+                        for(var j = 1; j <= total; j ++) {
+                            if(j == 1) {
+                                $(".resume-item .pages").append("<span class='curr' data-page='"+j+"'>"+j+"</span>");
+                            }else {
+                                $(".resume-item .pages").append("<span data-page='"+j+"'>"+j+"</span>");
+                            }
+                        }
+                    }
+                }
+                else {
+                    alert('GET error\n' + data.status);
+                }
+
+            }
+        });
+    });
+
+    //快招邀请详情
+    $(".view-invites-detail").click(function () {
+        var uid = $(this).parents("tr").attr("data-uid");
+        $.ajax({
+            type: 'GET',
+            url: "/quick_recruit_invite/list",
+            dataType: 'json',
+            data: {
+                uid: uid,
+                page: 1
+            },
+            success: function (data) {
+                if (data.status == '10000') {
+                    $(".resume-item ul li").remove();
+                    $(".resume-item .pages span").remove();
+                    var detailList = data.data.quick_recruit_applies;
+                    var total = data.data.total;
+                    $(".resume-item").attr("data-uid", uid);
+                    for(var i = 0; i < detailList.length; i++) {
+                        var status = detailList[i].status;
+                        var statusName;
+                        switch (status) {
+                            case 1: statusName = "未处理"; break;
+                            case 2: statusName = "已接受"; break;
+                            case 3: statusName = "已拒绝"; break;
+                            case 4: statusName = "已过期"; break;
+                        }
+                        $(".resume-item ul").append("<li>投递职位：<a href='"+viewUrl+"/job/detail/"+detailList[i].jid+"' target='_blank'>"+detailList[i].job_name+"</a>投递公司：<a href='"+viewUrl+"/company/detail/"+detailList[i].cid+"' target='_blank'>"+detailList[i].company_name+"</a>投递状态：<span class='status'>"+statusName+"</span></li>");
+                    }
+                    if(total > 1) {
+                        for(var j = 1; j <= total; j ++) {
+                            if(j == 1) {
+                                $(".resume-item .pages").append("<span class='curr' data-page='"+j+"'>"+j+"</span>");
+                            }else {
+                                $(".resume-item .pages").append("<span data-page='"+j+"'>"+j+"</span>");
+                            }
+                        }
+                    }
+                }
+                else {
+                    alert('GET error\n' + data.status);
+                }
+
+            }
+        });
+    });
+
+    //查看详情分页
+    $(document).on("click",".delivery span", function () {
+        if($(this).hasClass("curr"))
+            return;
+        else {
+            $(".pages span").removeClass("curr");
+            $(this).addClass("curr");
+            var uid = $(this).parents(".resume-item").attr("data-uid");
+            var p  = parseInt($(this).attr("data-page"));
+            $.ajax({
+                type: 'GET',
+                url: "/resume/delivery/list",
+                dataType: 'json',
+                data: {
+                    uid: uid,
+                    page: p
+                },
+                success: function (data) {
+                    if (data.status == '10000') {
+                        $(".resume-item ul li").remove();
+                        var detailList = data.data.details;
+                        for(var i = 0; i < detailList.length; i++) {
+                            var status = detailList[i].status;
+                            var statusName;
+                            switch (status) {
+                                case 1: statusName = "投递成功"; break;
+                                case 2: statusName = "待沟通"; break;
+                                case 3: statusName = "通知面试"; break;
+                                case 4: statusName = "不合适"; break;
+                                case 5: statusName = "已拒绝邀请"; break;
+                            }
+                            $(".resume-item ul").append("<li>投递职位：<a href='"+viewUrl+"/job/detail/"+detailList[i].job_id+"' target='_blank'>"+detailList[i].job_name+"</a>投递公司：<a href='"+viewUrl+"/company/detail/"+detailList[i].company_id+"' target='_blank'>"+detailList[i].company_name+"</a>投递状态：<span class='status'>"+statusName+"</span></li>");
+                        }
+                    }
+                    else {
+                        alert('GET error\n' + data.status);
+                    }
+
+                }
+            });
+        }
+    });
+
+    $(document).on("click",".invites span", function () {
+        if($(this).hasClass("curr"))
+            return;
+        else {
+            $(".pages span").removeClass("curr");
+            $(this).addClass("curr");
+            var uid = $(this).parents(".resume-item").attr("data-uid");
+            var p  = parseInt($(this).attr("data-page"));
+            $.ajax({
+                type: 'GET',
+                url: "/quick_recruit_invite/list",
+                dataType: 'json',
+                data: {
+                    uid: uid,
+                    page: p
+                },
+                success: function (data) {
+                    if (data.status == '10000') {
+                        $(".resume-item ul li").remove();
+                        var detailList = data.data.quick_recruit_applies;
+                        for(var i = 0; i < detailList.length; i++) {
+                            var status = detailList[i].status;
+                            var statusName;
+                            switch (status) {
+                                case 1: statusName = "未处理"; break;
+                                case 2: statusName = "已接受"; break;
+                                case 3: statusName = "已拒绝"; break;
+                                case 4: statusName = "已过期"; break;
+                            }
+                            $(".resume-item ul").append("<li>投递职位：<a href='"+viewUrl+"/job/detail/"+detailList[i].jid+"' target='_blank'>"+detailList[i].job_name+"</a>投递公司：<a href='"+viewUrl+"/company/detail/"+detailList[i].cid+"' target='_blank'>"+detailList[i].company_name+"</a>投递状态：<span class='status'>"+statusName+"</span></li>");
+                        }
+                    }
+                    else {
+                        alert('GET error\n' + data.status);
+                    }
+
+                }
+            });
+        }
+    });
+
+
+    //屏蔽学生简历,在快招人才库中不展示
+    $('.ib-shield').on('click', function () {
+        var rid = $(this).closest('tr').attr('data-rid');
+        $('.shield-button').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/resume/shield/' + rid,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == '10000') {
+                        //alert('POST success');
+                        location.reload();
+                    }
+                    else {
+                        alert('POST error\n' + data.status);
+                    }
+                }
+            });
+        })
+        $('.unshield-button').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/resume/unshield/' + rid,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == '10000') {
+                        //alert('POST success');
+                        location.reload();
+                    }
+                    else {
+                        alert('POST error\n' + data.status);
+                    }
+
+                }
+            });
+        })
+
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/nest.css"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/article/IB_list.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main w100">
+    <div class="header w100 tac">
+        <a href="/" class="back left-icon"></a>
+        <span>求职头条</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100">
+        <div class="nav-content">
+            <div class="right-arrow"></div>
+            <ul class="nav clearfix">
+                <li category_id="0" class="cur"><span>全部</span></li>
+                <li category_id="1001"><span>经验</span></li>
+                <li category_id="1002"><span>好文</span></li>
+                <li category_id="1003"><span>快讯</span></li>
+                <li category_id="1004"><span>企业家说</span></li>
+            </ul>
+        </div>
+        <div class="list" id="list"></div>
+        <div class='w100 loading tac' id='loading'>
+            <img src='<%=baseUrl%>/img/loading.gif' class='loading_icon'>
+        </div>
+    </div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>

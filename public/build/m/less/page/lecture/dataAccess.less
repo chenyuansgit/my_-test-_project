@@ -1,0 +1,128 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+@import "../../common/animation";
+html,body{
+  background-color: #f9f9f9;
+}
+.main {
+  padding-top: 0;
+  background: #f9f9f9;
+}
+
+a {
+  color: @mainColor;
+}
+.nav{
+  margin-top: 1rem;
+  border-bottom: 0.1rem solid #eee;
+  li{
+    float: left;
+    width: 50%;
+    height: 3.5rem;
+    line-height: 3.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #666;
+    &.curr{
+      color: @mainColor;
+    }
+  }
+}
+.validate-area {
+  margin-top: 1rem;
+  &-email{
+    display: none;
+  }
+  .validate-line {
+    height: 4rem;
+    line-height: 4rem;
+    position: relative;
+    &.download-link{
+      text-align: center;
+      font-size: 1.4rem;
+      color: #666;
+    }
+    &.input-area {
+      width: 90%;
+      margin: 0 auto 1rem;
+      input {
+        background: #fff;
+        height: 3rem;
+        padding-left: 1rem;
+      }
+      .code {
+        width: 11rem;
+      }
+    }
+    .input-validate {
+      border: none;
+      outline: none;
+      font-size: 1.4rem;
+      display: inline-block;
+      width: 85%;
+      margin-left: 2rem;
+    }
+    .btn-sendCode{
+      background: @mainColor;
+      color: #fff;
+      padding: 0 1rem;
+      height: 3rem;
+      .borderRadius(0.3rem);
+      font-size: 1.4rem;
+      position: absolute;
+      margin-top: 0.45rem;
+      right: 1rem;
+    }
+    .btn-resendCode{
+      display: none;
+      background: #ddd;
+      color: #999;
+      padding: 0.4rem 1rem;
+      .borderRadius(0.3rem);
+      font-size: 1.4rem;
+      position: absolute;
+      margin-top: 0.45rem;
+      right: 1rem;
+    }
+    &.btn-area {
+      height: 4rem;
+      line-height: 4rem;
+      text-align: center;
+      margin-top: 1rem;
+      .btn-get{
+        display: inline-block;
+        border: none;
+        width: 90%;
+        height: 4rem;
+        .borderRadius(0.3rem);
+        font-size: 1.6rem;
+        color: #fff;
+        background: @mainColor;
+      }
+    }
+    .input-error{
+      display: none;
+      color: #ff2525;
+      position: absolute;
+      right: 1rem;
+    }
+  }
+  .notice {
+    font-size: 1.4rem;
+    margin: 1rem auto 0;
+    width: 88%;
+    color: #666;
+  }
+}
+
+.tips{
+  padding: 0 2rem;
+  margin-top: 1.5rem;
+  text-align: justify;
+  line-height: 1.6rem;
+  font-size: 1.3rem;
+  color: #666;
+  em{
+    color: @mainColor;
+  }
+}

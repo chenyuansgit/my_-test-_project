@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="sponsor">主办方</label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="sponsor" placeholder="请输入活动主办方或发起者" class="col-xs-12 col-sm-8" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="title"> 活动标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="title" placeholder="请输入活动标题" class="col-xs-12 col-sm-8" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="subtitle"> 副标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="subtitle" placeholder="请输入活动副标题" class="col-xs-12 col-sm-8" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="start-time"> 开始时间 </div>
+                                <div class="col-sm-11">
+                                    <input type="text" id="start-time" placeholder="请选择活动的开始时间" class="col-xs-12 col-sm-8"/>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="end-time"> 结束时间 </div>
+                                <div class="col-sm-11">
+                                    <input type="text" id="end-time" placeholder="请选择活动的结束时间" class="col-xs-12 col-sm-8"/>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="addImage"> 封面</div>
+                                <div class="col-sm-11">
+                                    <p>图片大小不超过3M,上传图片的比例为5:3,如300:180</p>
+                                    <div class="article-recruit-pic" style="padding-top: 180px;width: 300px;height: 0;">
+                                        <input type="file" class="avatar input-transparent" id="avatar" name="avatar"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="content"> 文章图片</div>
+                                <div class="col-sm-11">
+                                    <input type="file" id="activity-pic" class="activity-pic"/>
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="content"> 活动内容</label>
+                                <div class="col-sm-11"  style="padding-bottom: 20px">
+                                    <textarea id="activity-content"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="ib-how">
+                            <a href=""> <span class="ib-release" id="buttonAdd">发布</span></a>
+                            <a href=""> <span class="ib-quit">取消</span></a>
+                            <a href="javascript:"><span class="ib-preview">预览</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<%include ../common/ueditor_script.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/ueditor.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<!-- time plug -->
+<script type="text/javascript">
+    jQuery(function($) {
+        $("#start-time,#end-time").datetimepicker({
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        })
+        function showErrorAlert(reason, detail) {
+            var msg = '';
+            if (reason === 'unsupported-file-type') {
+                msg = "Unsupported format " + detail;
+            }
+            else {
+                console.log("error uploading file", reason, detail);
+            }
+            $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                    '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+        }
+
+        var ue = ueUtil.getFullEditor("activity-content", 800, 500, 20000);
+
+        //封面上传
+        var cover_img;
+        fileUpload("admin", "avatar", function (error, avatar) {
+            if (!error) {
+                $(".article-recruit-pic").css({"background-image": "url('" + avatar + "')"});
+                cover_img = avatar;
+            }
+        })
+        //文章图片
+        fileUpload("admin", "activity-pic", function (error, pic) {
+            if (!error) {
+                ue.focus();
+                ue.execCommand('inserthtml',"<p><img src='" + pic + "'/></p>");
+            }
+        })
+
+        //上传活动
+        var  title,content, subtitle, sponsor,start_time,end_time;
+        $('#buttonCancel').click(function(){
+            window.history.back();
+        })
+        $(".ib-preview").click(function(){
+            content = $.trim(ue.getContent());//获取格式化后的内容
+            title= $.trim($('input#title').val());
+            sponsor= $.trim($('input#sponsor').val());
+            start_time = parseInt(Date.parse($("input#start-time").val()));
+            end_time = parseInt(Date.parse($("input#end-time").val()));
+            var admin_activity = {
+                content:content,
+                title:title,
+                sponsor:sponsor,
+                start_time:start_time,
+                end_time:end_time
+            };
+            fn.storage("admin_activity",JSON.stringify(admin_activity));
+            window.open("/activity/preview");
+        });
+        $('#buttonAdd').click(function(){
+            content = $.trim(ue.getContent());//获取格式化后的内容
+            title= $.trim($('input#title').val());
+            subtitle= $.trim($('input#subtitle').val())
+            sponsor= $.trim($('input#sponsor').val());
+            addurl = '/activity/add';
+            start_time = parseInt(Date.parse($("input#start-time").val()));
+            end_time = parseInt(Date.parse($("input#end-time").val()));
+            $.ajax({
+                type:'POST',
+                url:addurl,
+                dataType:'json',
+                data:{
+                    option:{
+                        title:title,
+                        sponsor:sponsor,
+                        cover:cover_img,
+                        subtitle:subtitle,
+                        content: content,
+                        status:1,
+                        start_time:start_time,
+                        end_time:end_time
+                    }
+                },
+                success:function(data){
+                    if (data.status == '10000') {
+                        alert('POST success');
+                        window.location.href='/activity/list?status=1&page=1';
+                    }
+                    else {
+                        alert('POST error\n' + data.status);
+                    }
+                }
+            })
+            return false;
+        })
+    })
+</script>
+</body>
+</html>

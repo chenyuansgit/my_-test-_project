@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/nest.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_nest.js"></script>
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item on" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container clearfix mb20">
+    <!--主体-->
+    <div class="wl840 fl">
+        <div class="nest-nav inwrapBox mb20">
+            <ul class="clearfix">
+                <li class="nav curr" data-type="推荐" data-id="0">推荐<span class="icon-sel-up"></span></li>
+                <li class="nav" data-type="定位" data-id="1">定位</li>
+                <li class="nav" data-type="行业解读" data-id="2">行业解读</li>
+                <li class="nav" data-type="简历"  data-id="3">简历</li>
+                <li class="nav" data-type="面试"  data-id="4">面试</li>
+                <li class="nav" data-type="实习故事" data-id="5">实习故事</li>
+                <li class="nav" data-type="精品活动" data-id="6">精品活动</li>
+            </ul>
+        </div>
+
+        <div class="article-list article-list-0">
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-zd"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <!--<div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/31-1.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=31" target="_blank">芈月：菜鸟实习生的逆袭秘笈</a><span class="article-time">2016-02-18</span></div>
+                    <div class="article-preview-summary">最近一部《芈月传》又将不少人的闲暇时间抢了去，小公举也是她的忠实小粉丝儿~...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                        &lt;!&ndash; <span class="article-preview-read-num">阅读(10)</span>
+                         <span class="article-preview-like-num"><span class="icon icon-zan"></span>赞(120)</span>
+                         <span class="article-preview-dislike-num"><span class="icon icon-cai"></span>踩(12)</span>&ndash;&gt;
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/30-5.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=30" target="_blank">花千骨其实是一名没有毕业的女博士....</a><span class="article-time">2016-02-17</span></div>
+                    <div class="article-preview-summary">花千骨是学霸，本科通过清虚道长自主招生上的蜀山，转校到长留，后通过努力在仙剑大会考中获得第二...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                        &lt;!&ndash; <span class="article-preview-read-num">阅读(10)</span>
+                         <span class="article-preview-like-num"><span class="icon icon-zan"></span>赞(120)</span>
+                         <span class="article-preview-dislike-num"><span class="icon icon-cai"></span>踩(12)</span>&ndash;&gt;
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/2.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=3" target="_blank">怎样寻找实习机会</a><span class="article-time">2016-02-16</span></div>
+                    <div class="article-preview-summary">关于实习我想从一次面试开始聊起，参加X公司校招一面，一面是群面，我和北航、北大的两个硕士一起，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                        &lt;!&ndash; <span class="article-preview-read-num">阅读(10)</span>
+                         <span class="article-preview-like-num"><span class="icon icon-zan"></span>赞(120)</span>
+                         <span class="article-preview-dislike-num"><span class="icon icon-cai"></span>踩(12)</span>&ndash;&gt;
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/arrow.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=7" target="_blank">实习究竟要学什么</a><span class="article-time">2016-02-14</span></div>
+                    <div class="article-preview-summary">实习期一般一个月到半年不等，年轻最难的就是沉不住气，职场上的不公平，热脸贴冷屁股，努力很久的方案被否决...<a href="/nest/article?id=7" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/stanford.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=9" target="_blank">在斯坦福读书和国内读书有什么区别？</a><span class="article-time">2016-02-15</span></div>
+                    <div class="article-preview-summary">他们的出色不在于他们有多么聪明，更不在于他们有多么勤奋——和大多数人所设想的不同...<a href="/nest/article?id=9" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/3.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=10" target="_blank">大学生创业能享受什么优惠政策</a><span class="article-time">2016-02-10</span></div>
+                    <div class="article-preview-summary">他们的出色不在于他们有多么聪明，更不在于他们有多么勤奋——和大多数人所设想的不同...<a href="/nest/article?id=10" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div class="article-list article-list-1" style="display:none;">
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-zd"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <!--<div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/4.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article" target="_blank">读研三年vs工作三年的人生比较</a><span class="article-time">2016-02-19</span></div>
+                    <div class="article-preview-summary">大学四年后，毕业生都做出了自己的选择，一部分人就业，一部分人选择继续深造，不同的路径，同样的都是在探索自己的生涯之路。...<a href="/nest/article" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/5.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=5" target="_blank">实习了没?和我一起选择创业公司吧!</a><span class="article-time">2016-02-18</span></div>
+                    <div class="article-preview-summary">鸟叔：现在很多同学都梦想着一份名企的实习。但是有没有想过，名企第一竞争对手激烈，第二内部制度森严。常见的现象就是，“你杀个片甲不留拿...<a href="/nest/article?id=5" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/6.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=11" target="_blank">我才20岁,我该把时间花在哪里</a><span class="article-time">2016-02-17</span></div>
+                    <div class="article-preview-summary">我22岁的时候，大部分时间都是在和朋友们鬼混，哄女朋友开心和抽烟。真的是一个彻头彻尾的混蛋...<a href="/nest/article?id=11" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/challence.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=12" target="_blank">就业都没能力，何谈创业！万众创新葬送多少人...</a><span class="article-time">2016-02-15</span></div>
+                    <div class="article-preview-summary">没有能力的、没有经验的、没有人脉的、家里没有钱的，老老实实工作。创业是一件厚积薄发的事情，...<a href="/nest/article?id=12" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/upper_floor.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=13" target="_blank" >不给自己设限，人生才会有更多可能</a><span class="article-time">2016-02-15</span></div>
+                    <div class="article-preview-summary">我最大的正能量源泉是一个肤白貌美的勤奋姑娘。她就读于北京某高校，两年制的金融学硕士，现在已经...<a href="/nest/article?id=13" target="_blank"  class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/yellow_person.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=19" target="_blank" >如何知道自己喜欢做什么职业</a><span class="article-time">2016-02-12</span></div>
+                    <div class="article-preview-summary">人长大了，开始工作了，都要面对一件事情：工作。面对工作的时候，人们往往要面对两个选择：是满足生理要求，还是满足心理要求...<a href="/nest/article?id=19" target="_blank"  class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div class="article-list article-list-2" style="display:none;">
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <!--<div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/7.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=8" target="_blank">2015就业压力分析</a><span class="article-time">2016-02-18</span></div>
+                    <div class="article-preview-summary">经过了去年严峻的就业形势，大家对2015年大学生就业形势，格外关注。去年全国大学毕业生达727万，被一些人...<a href="/nest/article?id=8" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/8.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=26" target="_blank">为什么我们一定要去名企实习？</a><span class="article-time">2016-02-16</span></div>
+                    <div class="article-preview-summary">让我们以宝洁为例，看一看如何使名企实习做到真正意义上的“有所收获”!有目的...<a href="/nest/article?id=26" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/9.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=27" target="_blank">如何用买买买来提高实际效能</a><span class="article-time">2016-02-15</span></div>
+                    <div class="article-preview-summary">喜欢重复买一些外观精巧, 功能上却与一般商品别无二致的小玩意? 仅仅因为商...<a href="/nest/article?id=27" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/11.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=28" target="_blank">我们喜欢这样的实习生</a><span class="article-time">2016-02-14</span></div>
+                    <div class="article-preview-summary">每个人观察的角度不同，在一个人眼里的优点在另一个人眼里就是缺点，做实习生真难...<a href="/nest/article?id=28" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/impor1.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=29" target="_blank">职业生涯里,你需要寻找至关重要的三种人</a><span class="article-time">2016-02-12</span></div>
+                    <div class="article-preview-summary">在职业探索的过程中，偶像不可或缺，偶像正如茫茫大海中的灯塔，为我们指明了最初的方向，带给我们模糊的希望和神往...<a href="/nest/article?id=29" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div class="article-list article-list-3" style="display:none;">
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <!--<div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/12.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=4" target="_blank">这样的简历,HR会抢着要你</a><span class="article-time">2016-02-18</span></div>
+                    <div class="article-preview-summary">刚毕业那会也曾写简历写到脑袋崩溃，投简历投到手指残废，可就是死活接不到面试的通知。...<a href="/nest/article?id=4" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/13.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=23" target="_blank">一位早中晚看500封简历的HR讲的简历筛选之道</a><span class="article-time">2016-02-17</span></div>
+                    <div class="article-preview-summary">最近，看到国家下文告诉社会07年有XXX万，08年还有XXX万，09年还有600多万大学生等待找工作...<a href="/nest/article?id=23" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/bigorsmall.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=22" target="_blank">为何一页的本科简历可以打败研究生</a><span class="article-time">2016-02-16</span></div>
+                    <div class="article-preview-summary">为何一页的本科简历可以打败研究生?阅读核心提示：这份简历很短，不到一页，为什么让一个本科生打败那么多的研究生？...<a href="/nest/article?id=22" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/tucao1.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=25" target="_blank">HR吐槽的简历</a><span class="article-time">2016-02-15</span></div>
+                    <div class="article-preview-summary">很多同学无论是在找工作还是找实习的过程中，都会遇到一个尴尬的情况，那就是简历石沉大海...<a href="/nest/article?id=25" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+        <div class="article-list article-list-4" style="display:none;">
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-zd"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <!--<div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/14.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=2" target="_blank">2014IT产品暑期实习经验</a><span class="article-time">2016-02-18</span></div>
+                    <div class="article-preview-summary">无论失败了多少次，都不要放弃，不要怀疑自己做不到，有的时候并不是你不够优秀...<a href="/nest/article?id=2" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/15.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=14" target="_blank">如何提问能让面试官对你刮目相看</a><span class="article-time">2016-02-16</span></div>
+                    <div class="article-preview-summary">面试官问完你所有问题，不代表这场面试就结束了。如何发问，能让面试官对你刮目相看呢...<a href="/nest/article?id=14" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/pic10.png" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=15" target="_blank">这一定是最完美的面试自我介绍</a><span class="article-time">2016-02-15</span></div>
+                    <div class="article-preview-summary">去面试就是要征服面试官呗，想征服面试官光长得漂亮没用（好吧，其实有用╮(╯▽╰)╭）...<a href="/nest/article?id=15" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/16.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=16" target="_blank">想进外企?好好准备升级下你的面试技巧吧~</a><span class="article-time">2016-02-14</span></div>
+                    <div class="article-preview-summary">实习鸟君无意间找到了一个免费提供针对个人简历和面试技巧的公开课，主讲人曾是哈佛大学招生院的工作人员...<a href="/nest/article?id=16" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/17.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=17" target="_blank">我的"求职时代"</a><span class="article-time">2016-02-12</span></div>
+                    <div class="article-preview-summary">11月初，林妮从兰州的学校到北京某家媒体实习，在离单位很远的地方租了一个小房间，她算了算，在比较...<a href="/nest/article?id=17" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/18.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=24" target="_blank">作为HR实习生筛选面试实习生的总结</a><span class="article-time">2016-02-10</span></div>
+                    <div class="article-preview-summary">同学作为HR实习生，负责了实习生的简历筛选、面试等，最后写的一份小结。转过来，希望对大家...<a href="/nest/article?id=24" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div class="article-list article-list-5" style="display:none;">
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-zd"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-zd"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-zd"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+                <div class="nest-tj"></div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview inwrapBox mb20 clearfix">
+                <div class="article-preview-img" style="background-image: url('<%=baseUrl%>/img/articles/32-1.png')">
+                    <span class="arrow-left"></span>
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=32" target="_blank">看《太子妃升职记》你必须知道的事……</a></div>
+                    <div class="article-preview-summary">最近有个剧超级火，火到什么程度呢，有人说它比《芈月传》好看百倍，豆瓣的评分更是以双倍的分数力压《芈月传》达到了8.2，...<a href="/nest/article?id=3" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="icon-author"></span>作者:实习鸟
+                        <span class="icon-view2"></span>阅读(10)
+                        <span class="icon-publish-time"></span>2016-02-18
+                        <span class="icon-likes"></span>赞(120)
+                        <span class="icon-brake"></span>踩(120)
+                    </div>
+                </div>
+            </div>
+           <!-- <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/19.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=1" target="_blank">鸟叔:实习面面观</a><span class="article-time">2016-02-19</span></div>
+                    <div class="article-preview-summary">实习是工作中的重要一步，如何正确理解其中的关系(转载)下文主要根据我自己读书的经历和在一家外企HR部门的见闻写成。...<a href="/nest/article?id=1" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/20.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=6" target="_blank">在香港普华永道的实习经历</a><span class="article-time">2016-02-18</span></div>
+                    <div class="article-preview-summary">这个冬天注定是特别的。作为一个会计专业方向的学生，非常荣幸可以到香港去实习、可以亲身体验四大的工作氛围...<a href="/nest/article?id=6" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/21.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=18" target="_blank">大四旅行还是实习</a><span class="article-time">2016-02-16</span></div>
+                    <div class="article-preview-summary">四一年没什么课，时间充裕。选择实习还是旅行，哪样更有益？如果此时你正在迷茫，开始在网上搜索寻求“过来人...<a href="/nest/article?id=18" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/22.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=20" target="_blank">没有一份工作是你一直喜欢的</a><span class="article-time">2016-02-16</span></div>
+                    <div class="article-preview-summary">没有人能对一份工作一直保持热情，当做厌烦了，年轻时还可以随心所欲的换工作，但是一旦有了责任，总是要向生活妥协...<a href="/nest/article?id=20" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+            <div class="article-preview">
+                <div class="article-preview-img">
+                    <img src="<%=baseUrl%>/img/articles/23.jpg" />
+                </div>
+                <div class="article-preview-right">
+                    <div class="article-preview-title"><a href="/nest/article?id=21" target="_blank">实习去哪儿？大公司还是创业公司？</a><span class="article-time">2016-02-12</span></div>
+                    <div class="article-preview-summary">一位年轻的工程师最近问我如何从几个工作机会中选择。是应该接受更成熟的高科技公司，像谷歌或Facebook的软件工程师职位...<a href="/nest/article?id=21" target="_blank" class="article-link">[详情]</a></div>
+                    <div class="article-preview-bottom">
+                        <span class="article-preview-author">作者:实习鸟</span>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+    </div>
+    <!--侧边栏-->
+    <div class="w310 fr">
+        <!--搜索-->
+        <div class="article-search sideBox mb20">
+            <div class="article-search-bg">
+                <input type="text" class="nest-search" placeholder="输入话题或关键字或标题" />
+                <span class="serach-btn"><span class="icon-search"></span>搜索</span>
+            </div>
+        </div>
+        <div class="conn-article sideBox mb20">
+            <!-- <div>您可以通过以下方式联系我们</div>
+             <div>
+                 <a href=""><i class="icon-type-3-sina icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-wechat icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-qq icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-wifi icon-type-3"></i></a>
+             </div>-->
+            <!--<div>如果您有推荐的文章，请将文章</div>
+            <div>发送至info@internbird.com</div>-->
+            <div class="conn-left">投稿邮箱</div>
+            <span class="conn-mail">info@internbird.com</span>
+        </div>
+        <div class="sideBox conn-icon mb20">
+            <a href="#"><span class="icon-weixin"></span></a>
+            <a href="#"><span class="icon-weibo"></span></a>
+            <a href="#"><span class="icon-black-qq"></span></a>
+            <a href="#"><span class="icon-rss"></span></a>
+        </div>
+        <div class="sideBox">
+            <%include nest/recommend.ejs%>
+        </div>
+    </div>
+</div>
+<%include common/footer.ejs%>
+<%include ./common/statistics.ejs%>
+</body>
+</html>

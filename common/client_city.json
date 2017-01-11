@@ -1,0 +1,238 @@
+{
+  "hot": [
+    {
+      "city_id": 0,
+      "city_name": "不限"
+    },
+    {
+      "city_id": 1,
+      "city_name": "北京"
+    },
+    {
+      "city_id": 73,
+      "city_name": "上海"
+    },
+    {
+      "city_id": 197,
+      "city_name": "广州"
+    },
+    {
+      "city_id": 199,
+      "city_name": "深圳"
+    },
+    {
+      "city_id": 87,
+      "city_name": "杭州"
+    },
+    {
+      "city_id": 169,
+      "city_name": "武汉"
+    }
+  ],
+  "char": {
+    "ABCDEF": [
+      {
+        "city_id": 1,
+        "city_name": "北京"
+      },
+      {
+        "city_id": 235,
+        "city_name": "成都"
+      },
+      {
+        "city_id": 38,
+        "city_name": "大连"
+      },
+      {
+        "city_id": 213,
+        "city_name": "东莞"
+      },
+      {
+        "city_id": 183,
+        "city_name": "长沙"
+      },
+      {
+        "city_id": 51,
+        "city_name": "长春"
+      },
+      {
+        "city_id": 234,
+        "city_name": "重庆"
+      },
+      {
+        "city_id": 202,
+        "city_name": "佛山"
+      },
+      {
+        "city_id": 115,
+        "city_name": "福州"
+      },
+      {
+        "city_id": 344,
+        "city_name": "澳门"
+      }
+    ],
+    "GHIJ": [
+      {
+        "city_id": 197,
+        "city_name": "广州"
+      },
+      {
+        "city_id": 87,
+        "city_name": "杭州"
+      },
+      {
+        "city_id": 98,
+        "city_name": "合肥"
+      },
+      {
+        "city_id": 232,
+        "city_name": "海口"
+      },
+      {
+        "city_id": 135,
+        "city_name": "济南"
+      },
+      {
+        "city_id": 220,
+        "city_name": "桂林"
+      },
+      {
+        "city_id": 256,
+        "city_name": "贵阳"
+      },
+      {
+        "city_id": 60,
+        "city_name": "哈尔滨"
+      },
+      {
+        "city_id": 207,
+        "city_name": "惠州"
+      }
+    ],
+    "KLMN": [
+      {
+        "city_id": 74,
+        "city_name": "南京"
+      },
+      {
+        "city_id": 124,
+        "city_name": "南昌"
+      },
+      {
+        "city_id": 298,
+        "city_name": "兰州"
+      },
+      {
+        "city_id": 88,
+        "city_name": "宁波"
+      },
+      {
+        "city_id": 265,
+        "city_name": "昆明"
+      },
+      {
+        "city_id": 218,
+        "city_name": "南宁"
+      },
+      {
+        "city_id": 79,
+        "city_name": "南通"
+      }
+    ],
+    "OPQR": [
+      {
+        "city_id": 136,
+        "city_name": "青岛"
+      },
+      {
+        "city_id": 5,
+        "city_name": "秦皇岛"
+      }
+    ],
+    "STUV": [
+      {
+        "city_id": 73,
+        "city_name": "上海"
+      },
+      {
+        "city_id": 199,
+        "city_name": "深圳"
+      },
+      {
+        "city_id": 2,
+        "city_name": "天津"
+      },
+      {
+        "city_id": 4,
+        "city_name": "唐山"
+      },
+      {
+        "city_id": 78,
+        "city_name": "苏州"
+      },
+      {
+        "city_id": 3,
+        "city_name": "石家庄"
+      },
+      {
+        "city_id": 14,
+        "city_name": "太原"
+      },
+      {
+        "city_id": 37,
+        "city_name": "沈阳"
+      },
+      {
+        "city_id": 233,
+        "city_name": "三亚"
+      }
+    ],
+    "WXYZ": [
+      {
+        "city_id": 169,
+        "city_name": "武汉"
+      },
+      {
+        "city_id": 288,
+        "city_name": "西安"
+      },
+      {
+        "city_id": 152,
+        "city_name": "郑州"
+      },
+      {
+        "city_id": 343,
+        "city_name": "香港"
+      },
+      {
+        "city_id": 200,
+        "city_name": "珠海"
+      },
+      {
+        "city_id": 75,
+        "city_name": "无锡"
+      },
+      {
+        "city_id": 116,
+        "city_name": "厦门"
+      },
+      {
+        "city_id": 89,
+        "city_name": "温州"
+      },
+      {
+        "city_id": 76,
+        "city_name": "徐州"
+      },
+      {
+        "city_id": 140,
+        "city_name": "烟台"
+      },
+      {
+        "city_id": 83,
+        "city_name": "扬州"
+      }
+    ]
+  }
+}

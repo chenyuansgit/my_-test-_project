@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/jobRecommend.css"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_jobRecommend.js"></script>
+    <script>
+        var userAgent = navigator.userAgent,platform = {
+            isMobile:userAgent.toLowerCase().match(/android|webos|iphone|ipad|ipod|blackberry|windows phone/i),
+            isAndroid:userAgent.toLowerCase().match(/android/i),
+            isIOS:userAgent.toLowerCase().match(/iphone|ipad|ipod/i),
+            isWeixin:userAgent.toLowerCase().match(/micromessenger/i),
+            isWeb:!userAgent.toLowerCase().match(/android|webos|iphone|ipad|ipod|blackberry|windows phone/i)
+        };
+    </script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+<!--    <div class="header w100 tac">
+        <span>职位推荐</span>
+    </div>-->
+    <div class="top-banner">
+
+    </div>
+    <!--<div class="nav w100 bb">
+        <a class="iblock  all tac bb fll" href="#a" data-recommend-id="0">
+            <span class="iblock">全部职位</span>
+        </a>
+        <a class="iblock tac rec bb fll" href="#b" data-recommend-id="1">
+            <span class="iblock">精品推荐</span>
+        </a>
+        <a class="iblock tac interpolation bb fll" href="#c">
+            <span class="iblock">内推职位</span>
+        </a>
+    </div>-->
+    <%if(ads && ads.length ){%>
+    <div class="ad-list swiper-container">
+        <div class="swiper-wrapper">
+            <%for(var i=0,len=ads.length;i<len;i++){%>
+            <div class="swiper-slide">
+                <%
+                    var ad = JSON.parse(ads[i]);
+                    var ad_img = JSON.parse(ad.image).url;
+                %>
+                <a href="<%=ad.url%>" style="background-image: url('<%=ad_img+'?imageView2/2/w/750'%>')"></a>
+            </div>
+            <%}%>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <%}%>
+    <div class="nav-list clearfix">
+        <a href="/" class="curr">
+            <i class="icon icon-job"></i>
+            <span>实习</span>
+        </a>
+        <a href="/campus">
+            <i class="icon icon-campus"></i>
+            <span>校招</span>
+        </a>
+        <a href="/activity">
+            <i class="icon icon-activity"></i>
+            <span>活动</span>
+        </a>
+        <a href="/nest">
+            <i class="icon icon-nest"></i>
+            <span>求职头条</span>
+        </a>
+    </div>
+    <div class="content w100">
+        <div class="interpolation-list none">
+            <a href="/company/detail/2983?forward=<%=encodeOriginalUrl%>" class="block bb w100 link">
+                <img src="<%=baseUrl%>/img/interpolation/hjcf.jpg" alt="" class="w100"/>
+            </a>
+            <a href="/company/detail/110?forward=<%=encodeOriginalUrl%>" class="block bb w100 link ">
+                <img src="<%=baseUrl%>/img/interpolation/zl.jpg" alt="" class="w100"/>
+            </a>
+            <a href="/company/detail/2609?forward=<%=encodeOriginalUrl%>" class="block bb w100 link ">
+                <img src="<%=baseUrl%>/img/interpolation/ts.jpg" alt="" class="w100"/>
+            </a>
+        </div>
+        <div class="list w100" id="list"></div>
+        <div class='w100 loading tac' id='loading'>
+            <img src='<%=baseUrl%>/img/loading.gif' class='loading_icon'>
+        </div>
+    </div>
+</div>
+<!--下载App-->
+<div class="download-app none" id="download">
+    <!--<img src="<%=baseUrl%>/img/downApp/m-appLogo.png" class="downApp-logo">
+    <a href="#"><img src="<%=baseUrl%>/img/downApp/m-downApp.png" class="download-btn" /> </a>-->
+    <!--<a href="#"><img src="<%=baseUrl%>/img/downApp/m-close.png" class="download-close" /></a>-->
+    <span class="download-logo"></span>
+    <a class="download-btn" href="http://www.internbird.com/app/download"></a>
+    <span class="download-close"></span>
+</div>
+<div id="foot" class="w100 footer block">
+    <a class="tab iblock fll tac job-tab active" href="javascript:">
+        <span class="tab-icon iblock"></span>
+        <span>首页</span>
+    </a>
+    <a class="tab iblock fll search-tab tac" href="/job/search">
+        <span class="tab-icon iblock"></span>
+        <span>搜索</span>
+    </a>
+    <a class="tab iblock fll user-tab tac" href="/userCenter">
+        <span class="tab-icon iblock"></span>
+        <span>我的</span>
+    </a>
+</div>
+<%include ../footer.ejs%>
+<!--<script>
+    //安卓用户尝试直接打开客户端
+    if(platform.isAndroid){
+        setTimeout(function(){
+            location.href = 'internbird://m.internbird.com/home';
+        },500);
+    }
+</script>-->
+</body>
+</html>

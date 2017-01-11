@@ -1,0 +1,703 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../common/paging";
+@import "../../custom/jobs";
+@import "../../common/overlay";
+@import "../../page/quickRecruit/popBox";
+@import "../../fonts";
+.pages{
+  span{
+    background: #fff;
+  }
+}
+
+.center-nav{
+  .refresh{
+    float:right;
+    margin-right: 30%;
+    font-size: 18px;
+  }
+}
+.quickRecruit{
+  .left{
+    background-color: #fff;
+    .borderRadius(4px);
+    padding: 40px 0;
+    .left-content{
+      width: 720px;
+      margin: 0 auto;
+      .control-panel{
+        width: 720px;
+        min-height: 178px;
+        margin: 0 auto 36px;
+        background-color: #fff;
+        color: #666;
+        .top-banner{
+          width: 100%;
+          height: 83px;
+          background: url("../../../img/talentPool/bg-head.png") 0 0 no-repeat;
+        }
+        .avatar,.logo{
+          width: 88px;
+          height: 88px;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          margin: -55px auto 10px;
+          position: relative;
+          z-index: 1000;
+
+        }
+        .avatar{
+          .background("@{baseUrl}/img/company/resume-avatar.jpg",cover);
+        }
+        .logo{
+          .background("@{baseUrl}/img/bird.png",cover);
+        }
+        h3{
+          font-size: 17px;
+          text-align: center;
+          margin-top: 8px;
+        }
+        .bottom-bar{
+          height: 60px;
+          border-top: 1px dashed #eee;
+          margin-top: 15px;
+          .bar-content{
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            .join-tips{
+              position: absolute;
+              top: 18px;
+              left: 102px;
+              text-align: center;
+              color: @mainColor;
+              .btn-join{
+                width: 52px;
+                height: 23px;
+                background: url("../../../img/talentPool/icon-btn.png") 0 0 no-repeat;
+                margin-right: 3px;
+                vertical-align: middle;
+                cursor: pointer;
+                &.off{
+                  background-position: 0 0;
+                }
+                &.on{
+                  background-position: 0 -36px;
+                }
+              }
+              @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+                .btn-join {
+                  background-image: url('../../../img/talentPool/icon-btn_3x.png');
+                  background-size: cover;
+                  &.on{
+                    background-position: 0 -25px;
+                  }
+                  &.off{
+                    background-position: 0 0;
+                  }
+                }
+              }
+            }
+            .btn-update{
+              padding: 5px 0;
+              width: 108px;
+              position: absolute;
+              top: 14px;
+              left: 50%;
+              margin-left: -54px;
+              text-align: center;
+              border-radius: 3px;
+              &.on{
+                background: @mainColor;
+                color: #fff;
+              }
+              &.off{
+                background: #e5e5e5;
+                color: #999;
+                cursor: auto;
+              }
+              .update-tips{
+                display: none;
+                width: 200px;
+                text-align: justify;
+                line-height: 22px;
+                color: #666;
+                font-size: 15px;
+                padding: 10px 15px;
+                background: #ececec;
+                position: absolute;
+                z-index: 999;
+                box-shadow: 0 3px 3px #eee;
+                left: -56px;
+                top: 45px;
+                i{
+                  width: 0;
+                  height: 0;
+                  border-left: 16px solid transparent;
+                  border-right: 16px solid transparent;
+                  border-bottom: 16px solid #ececec;
+                  position: absolute;
+                  top: -10px;
+                  left: 50%;
+                  margin-left: -23px;
+                }
+              }
+              &.on:hover{
+                .update-tips{
+                  display: block;
+                }
+              }
+            }
+            .btn-apply{
+              padding: 5px 0;
+              width: 108px;
+              position: absolute;
+              top: 14px;
+              right: 102px;
+              background: @mainColor;
+              color: #fff;
+              text-align: center;
+              border-radius: 3px;
+            }
+          }
+        }
+      }
+      .top-nav{
+        margin: 0 auto;
+        .nav-list{
+          a{
+            font-size: 16px;
+            color: @c2;
+          }
+          li{
+            position: relative;
+            float: left;
+            margin-right: 50px;
+            &.curr{
+              a{
+                color:@mainColor;
+              }
+            }
+          }
+        }
+      }
+      .jobs-area{
+        float: none;
+        margin: 20px auto 0;
+        .job{
+          width: auto;
+          padding: 18px 25px;
+          margin-bottom: 12px;
+          &:hover{
+            box-shadow: 0 5px 5px #eee;
+          }
+          &-quickRecruit{
+            border: 1px #eee solid;
+            background: #fff;
+            .icon-quick-corner{
+              width: 43px;
+              height: 18px;
+              display: none;
+              background: url("@{baseUrl}/img/quickRecruit/icon-quickCorner.png") 0 0 no-repeat;
+              background-size: cover;
+              position: absolute;
+              margin-left: 8px;
+              margin-top: 3px;
+            }
+            .invite-info{
+              padding-bottom: 10px;
+              margin-bottom: 10px;
+              border-bottom: 1px dashed #eee;
+              color: #666;
+              font-size: 15px;
+              em{
+                color: #f29b76
+              }
+              .invite-time {
+                color: #666;
+              }
+              .invite-term{
+                margin-right: 15px;
+              }
+            }
+            .bottom-info{
+              padding-top: 10px;
+              margin-top: 10px;
+              border-top: 1px dashed #eee;
+              /*display: none;*/
+              &.company-info{
+                color: @c2;
+                text-align: center;
+                .company-contact{
+                  color: @mainColor;
+                }
+              }
+              &.interview-info{
+                font-size: 15px;
+                color: #666;
+                >div{
+                  margin-left: 5px;
+                  position: relative;
+                  padding-left: 26px;
+                  &:first-of-type{
+                    margin-bottom: 8px;
+                  }
+                  .icon{
+                    width: 16px;
+                    height: 16px;
+                    background: url("@{baseUrl}/img/quickRecruit/icon-interview-info.png") 0 0 no-repeat;
+                    position: absolute;
+                    left: 2px;
+                    top: 3px;
+                    &.icon-hr{
+                      background-position: 0 0;
+                    }
+                    &.icon-address{
+                      background-position: 0 -29px;
+                    }
+                  }
+                }
+              }
+            }
+            .job-l{
+              position: relative;
+              height: 62px;
+              .avatar {
+                width: 60px;
+                height: 60px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                .background("@{baseUrl}/img/bird.png",contain);
+                border: 1px solid #eee;
+              }
+              .job-info-top, .job-info-bottom {
+                line-height: 30px;
+                height: 30px;
+                padding-left: 72px;
+              }
+              .job-info-top {
+                 span, a {
+                   font-size: 16px;
+                   color: @mainColor;
+                 }
+              }
+              .job-info-bottom {
+                color: @c2;
+                span.icon-locate, span.icon-salary, span.icon-calendar {
+                  font-size: 18px;
+                  padding-right: 6px;
+                }
+                span.icon-salary, span.icon-calendar {
+                  padding-left: 12px;
+                }
+              }
+              .invite-state{
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 148px;
+                text-align: center;
+                font-size: 15px;
+                >span{
+                  margin-top: 12px;
+                  padding: 3px 8px;
+                  color: @mainColor;
+                  display: inline-block;
+                  border: 1px solid @mainColor;
+                  border-radius: 3px;
+                }
+                .btn{
+                  border: 1px solid @mainColor;
+                  &-refuse{
+                    margin-left: 10px;
+                   //margin-top: 20px;
+                  }
+                }
+                .accepted{
+                  border-color: #f29b76;
+                  color: #f29b76;
+                }
+                .refused{
+                  border-color: #bfbfbf;
+                  color: #bfbfbf;
+                }
+              }
+              .apply-state{
+                position: absolute;
+                top: 55px;
+                right: 0;
+                cursor:pointer;
+                .icon{
+                  width: 16px;
+                  height: 16px;
+                  background: url("@{baseUrl}/img/quickRecruit/icon-interview-info.png") 0 0 no-repeat;
+                  &-down{
+                    background-position: -31px 7px;
+                    margin-left: 10px;
+                  }
+                }
+              }
+            }
+          }
+          .job-logo{
+            float: left;
+            display: none;
+            margin-right: 6px;
+          }
+          .job-l{
+            width: 100%;
+          }
+          .job-info-name {
+            padding-right: 4px;
+          }
+          .job-info-company{
+            padding-left: 4px;
+          }
+          .deliver-state,.deliver-time{
+            float: right;
+            font-size:16px;
+            width: 172px;
+          }
+        }
+
+      }
+      .resume-area{
+        margin-top: 20px;
+        .resume-box {
+          padding: 12px 15px;
+          margin-top: 20px;
+          border: 1px #eee solid;
+         // border-left: 3px solid @mainColor;
+          background: #fff;
+          color: #666;
+          position: relative;
+          &:hover{
+            box-shadow: 0 5px 5px #eee;
+          }
+          &-quickRecruit{
+            //border-left: 3px solid #f29b76;
+            .icon-quick-corner{
+              width: 43px;
+              height: 18px;
+              display: none;
+              background: url("@{baseUrl}/img/quickRecruit/icon-quickCorner.png") 0 0 no-repeat;
+              background-size: cover;
+              position: absolute;
+              margin-left: 8px;
+              margin-top: 3px;
+            }
+            .invite-state{
+              position: absolute;
+              right: 12px;
+              bottom: 35px;
+              padding: 5px 8px;
+              color: #fff;
+              &-0{
+                background: #bfbfbf;
+              }
+              &-1{
+                background: @mainColor;
+              }
+              &-2{
+                background: #f29b76;
+              }
+            }
+          }
+          .resume-box-top {
+            line-height: 24px;
+            height: 24px;
+            padding: 0 0 8px 5px;
+            position: relative;
+            color: @c2;
+            border-bottom: 1px dashed #eee;
+            span.position-name {
+              color: #666;
+              font-weight: 600;
+              padding-left: 20px;
+            }
+            span.deliver-time {
+              font-size: 15px;
+              position: absolute;
+              right: 0;
+              top: 4px;
+            }
+          }
+          .resume-info {
+            margin-top: 15px;
+            height: 96px;
+            position: relative;
+            .resume-head {
+              height: 96px;
+              width: 96px;
+              border: 1px #eee solid;
+              position: absolute;
+              left: 0;
+              right: 0;
+              .background("@{baseUrl}/img/company/resume-avatar.jpg",contain);
+              /*img {
+                height: 96px;
+                width: 96px;
+              }*/
+            }
+            ul {
+              height: 72px;
+              padding-top: 12px;
+              padding-left: 120px;
+              li {
+                line-height: 36px;
+                overflow: hidden;
+                color: @c2;
+                a, .btn-contact, .btn-reject, .btn-interview, .view-resume, .down-resume, .btn-delete {
+                  color: #00ced1;
+                  cursor: pointer;
+                }
+                .no-view-resume, .other-reason {
+                  margin-right: 30px;
+                  display: inline;
+                  color: @c2;
+                }
+                .resume-name {
+                  font-weight: 600;
+                  color: #666;
+                }
+              }
+            }
+            .btn-share {
+              position: absolute;
+              right: 100px;
+              top: 36px;
+              cursor: pointer;
+              color: #00ced1;
+            }
+          }
+        }
+      }
+      .empty-area{
+        width: 100%;
+        height: 268px;
+        background: #fff;
+        .btn{
+          padding: 8px 15px;
+          background: @mainColor;
+          color: #fff;
+          border-radius: 3px;
+        }
+        &-apply{
+          height: 400px;
+          margin-bottom: 10px;
+          .no-apply{
+            padding: 50px 0 0 150px;
+            position: relative;
+            .bg{
+              width: 397px;
+              height: 300px;
+              background: url("@{baseUrl}/img/empty/notice.png") 0 0 no-repeat;
+              background-size: cover;
+            }
+            .notice-word{
+              position: absolute;
+              width: 190px;
+              top: 74px;
+              left: 335px;
+              color: @c2;
+              line-height: 25px;
+            }
+            .btn-apply{
+              position: absolute;
+              top: 195px;
+              left: 433px;
+            }
+          }
+        }
+        &-invite{
+          margin-bottom: 10px;
+          .no-invite{
+            padding: 50px 150px 0 0;
+            position: relative;
+            .bg{
+              position: absolute;
+              width: 285px;
+              height: 178px;
+              left: -19px;
+              background: url("@{baseUrl}/img/empty/loudspeakers.png") 0 0 no-repeat;
+              background-size: cover;
+            }
+            .notice-word{
+              position: absolute;
+              top: 74px;
+              left: 335px;
+              color: #999;
+              line-height: 25px;
+            }
+            .btn-invite{
+              position: absolute;
+              top: 119px;
+              left: 479px;
+            }
+          }
+        }
+      }
+      .load-tips{
+        text-align: center;
+        margin-top: 20px;
+        .btn-load{
+          color: #666;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .right{
+    .jump-area{
+      background-color: #fff;
+      padding: 25px;
+      margin-bottom: 20px;
+      .borderRadius(4px);
+      a{
+        padding: 3px 10px;
+        border: 1px solid @mainColor;
+        border-radius: 3px;
+      }
+    }
+    .quick-recruit-record{
+      .borderRadius(4px);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      background: #fff;
+      color: #666;
+      text-align: center;
+      .list-title{
+        height: 35px;
+        line-height: 35px;
+        letter-spacing: 1px;
+        background: #ececec;
+        color: #666;
+      }
+      .record{
+        border-bottom: 1px dashed #eee;
+        padding: 15px 0;
+        margin: 0 25px;
+        font-size: 15px;
+        .title{
+          letter-spacing: 1px;
+          float: left;
+          color: #666;
+        }
+        .status{
+          float: right;
+          &-1{
+            color: #f29b76;
+          }
+          &-2{
+            color: @mainColor;
+          }
+          &-3{
+            color: #999;
+          }
+        }
+      }
+      .no-apply{
+        padding: 5px 10px;
+        margin-top: 3px;
+        color: #999;
+      }
+    }
+    .viewed-record{
+      padding-bottom: 15px;
+      background: #fff;
+      .borderRadius(4px);
+      color: #666;
+      .list-title{
+        height: 35px;
+        line-height: 35px;
+        letter-spacing: 1px;
+        background: #ececec;
+        color: #666;
+        text-align: center;
+      }
+      .views-info{
+        font-size: 15px;
+        padding: 15px 0 10px;
+        margin: 0 15px;
+        color: #999;
+        >div{
+          line-height: 25px;
+          em{
+            color: #f29b76;
+          }
+        }
+      }
+      .no-viewed{
+        padding: 5px 10px;
+        margin-top: 3px;
+        text-align: center;
+        color: #999;
+      }
+      .record{
+        border-top: 1px dashed #eee;
+        padding: 10px 0;
+        margin: 0 15px;
+        font-size: 15px;
+        color: #666;
+        >div{
+          line-height: 25px;
+          .company-name{
+            display: block;
+            max-width: 200px;
+          }
+          .viewed-num{
+            color: #f29b76;
+          }
+          .viewed-time{
+            color: #999;
+          }
+        }
+      }
+    }
+    .connect-tips{
+      margin: 35px auto 0;
+      padding-bottom: 15px;
+      background: #fff;
+      .borderRadius(4px);
+      color: #666;
+      .list-title{
+        height: 35px;
+        line-height: 35px;
+        letter-spacing: 1px;
+        background: #ececec;
+        color: #666;
+        text-align: center;
+      }
+      .methods{
+        font-size: 13px;
+        margin-top: 15px;
+        p{
+          line-height: 25px;
+          padding: 0 10px;
+        }
+      }
+      .bottom{
+        border-top: 1px dashed #eee;
+        margin-top: 10px;
+        .qrcode{
+          width: 110px;
+          height: 110px;
+          margin: 10px auto 0;
+          background: url("../../../img/qrcode-service.png") 0 0 no-repeat;
+          background-size: 100% auto;
+        }
+        .info{
+          text-align: center;
+          font-size: 13px;
+          color: #ddc01d;
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}
+

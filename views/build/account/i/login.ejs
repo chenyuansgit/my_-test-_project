@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/i/sign.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            i: "http://<%=host.i%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/i/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/i/page/IB_sign.js"></script>
+</head>
+<body>
+<%include ./common/bodyHeader.ejs%>
+<div class="main">
+    <div class="login-area sign-area">
+        <div class="sign-line input-area">
+            <i class="icon-user"></i><input type="text" class="user input-sign" placeholder="请输入邮箱/手机号码"/>
+            <span class="input-error">请输入有效账号</span>
+        </div>
+        <div class="sign-line input-area">
+            <i class="icon-pwd"></i><input type="password" class="password input-sign" placeholder="请输入密码"/>
+            <span class="input-error">6-20位密码</span>
+        </div>
+        <div class="tar notice">
+            <a href="/findPwd?type=companyMobile">忘记密码?</a>
+        </div>
+        <div class="sign-line btn-area">
+            <button class="btn-login btn">登&nbsp;&nbsp;录</button>
+        </div>
+        <p class="tips tac mg15">若没有招聘账号，请用电脑登录实习鸟官网（<a href="http://www.internbird.com">www.internbird.com</a>）免费注册并查看简历。</p>
+    </div>
+</div>
+<div class="popTips animation"></div>
+<%include ./common/footer.ejs%>
+</body>
+</html>

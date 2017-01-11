@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/quickRecruit/process.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/IB_process.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include common/headerHr.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+                <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+                <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+                <li class="curr">
+                    <span class="icon-curr-up"></span>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/talentPool/list">人才库</a></li>
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="center-content">
+        <div class="qrIntro hr">
+            <div class="intro-head">
+                <span class="btn-tap btn curr" data-type="process">快招流程</span>
+                <span class="qa btn-tap btn"  data-type="qa">快招问答</span>
+            </div>
+            <div class="blocks-process blocks">
+                <div class="intro-block intro-block-1">
+                    <div class="arrow-up">
+                        <em>&#9670;</em>
+                        <span>&#9670;</span>
+                    </div>
+                    <div class="block-top">
+                        <em>1</em><span>查看人才库</span>
+                    </div>
+                    <div class="block-content">
+                        <ul class="intro-text">
+                            <li>进入人才库，并挑选中意的学生简历。通过“查看详情”可以进一步了解对应的学生简历情况，以及邀约和面试情况。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-1"></div>
+                    </div>
+                </div>
+                <div class="intro-block intro-block-2">
+                    <div class="arrow-up">
+                        <em>&#9670;</em>
+                        <span>&#9670;</span>
+                    </div>
+                    <div class="block-top">
+                        <em>2</em><span>邀约候选人</span>
+                    </div>
+                    <div class="block-content">
+                        <ul class="intro-text">
+                            <li>在邀请界面，可以勾选希望发出的邀请职位，若没有职位，可创建职位。创建完职位后，刷新页面才可显示刚创建的职位。别忘记，贴上你诚挚的邀请信哦～为提高沟通效率，发出的邀约最好和学生的期望实习相一致。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-2"></div>
+                    </div>
+                </div>
+                <div class="intro-block intro-block-3">
+                    <div class="arrow-up">
+                        <em>&#9670;</em>
+                        <span>&#9670;</span>
+                    </div>
+                    <div class="block-top">
+                        <em>3</em><span>后续沟通</span>
+                    </div>
+                    <div class="block-content">
+                        <div class="circle circle-1"></div>
+                        <div class="circle circle-2"></div>
+                        <div class="circle circle-3"></div>
+                        <div class="circle circle-4"></div>
+                        <div class="line line-1"></div>
+                        <div class="line line-2"></div>
+                        <div class="line line-3"></div>
+                        <div class="line line-4"></div>
+                        <ul class="intro-text">
+                            <li>所有发出的邀约，会展示在<em>“我的快招－等待回应”</em>列表中</li>
+                        </ul>
+                        <div class="intro-img  intro-img-3"></div>
+                        <ul class="intro-text">
+                            <li>学生已接受的邀请，可通过<em>“点击查看简历”</em>查看具体的简历和联系方式，与学生进一步电话或邮件沟通。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-4"></div>
+                        <ul class="intro-text">
+                            <li>已被学生拒绝的邀约在<em>“我的快招－已拒绝邀请”</em>查看，招聘官将无法看到其联系方式，不要放弃，继续邀请其他人吧。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-5"></div>
+                        <ul class="intro-text">
+                            <li>若学生用户7天之内未对企业的邀请做出任何回应，则这一条邀约默认过期，无法再做处理，可在<em>“过期未回应”</em>里查看具体列表。</li>
+                        </ul>
+                        <div class="intro-img  intro-img-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="blocks-qa blocks">
+                <div class="qa">
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>快招是什么？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>快招是求职者主动展示简历，招聘官一键邀请投递的快速招聘栏目。招聘官可查看并邀请自己中意的学生，并且向其发出邀约，若学生接受邀请，招聘官即可得到其联系方式，进一步沟通面试信息。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>快招和普通的实习招聘流程有什么区别？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>普通的招聘流程，招聘官需要被动等待学生的投递；快招则变被动为主动，聚集了更多优质的学生，招聘官可主动筛选并一键邀请其参加实习。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>如何参与实习鸟快招？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>在实习鸟平台上验证通过的企业，均可在快招栏目查看并邀请学生。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>参加实习鸟快招，我需要做什么？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>向学生发出邀约的前提是，企业在实习鸟平台已发布相应的实习职位。</p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>邀请学生会不会泄露招聘官的信息？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>对学生发出邀约时，在学生接受前，招聘官的联系方式不会展示给对方，只有对方接受邀约才可得到联系邮箱，双方进一步沟通。 </p>
+
+                    <p class="q"><em>Q&nbsp;:&nbsp;</em>如何查看已发出的邀约记录？</p>
+                    <p class="a"><em class="title">A&nbsp;:&nbsp;</em>招聘官可在<em>“快招－我的快招”</em>栏目查看已发出的邀约和邀约的反馈情况，并在简历管理中处理接受邀约的学生。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+</body>
+</html>

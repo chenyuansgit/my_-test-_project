@@ -1,0 +1,38 @@
+{
+    "appenders": [
+        {
+            "type": "console"
+        },
+        {
+            "type": "dateFile",
+            "absolute": false,
+            "filename": "logs/access.logs",
+            "maxLogSize": 20480,
+            "backup": 3,
+            "pattern": "-yyyy-MM-dd",
+            "alwaysIncludePattern": true,
+            "category": "normal"
+        },
+        {
+            "type": "dateFile",
+            "absolute": false,
+            "filename": "logs/index.logs",
+            "maxLogSize": 20480,
+            "backup": 3,
+            "pattern": "-yyyy-MM-dd",
+            "alwaysIncludePattern": true,
+            "category": "index"
+        },
+        {
+            "type": "dateFile",
+            "absolute": false,
+            "filename": "logs/schedule.logs",
+            "maxLogSize": 20480,
+            "backup": 3,
+            "pattern": "-yyyy-MM-dd",
+            "alwaysIncludePattern": true,
+            "category": "schedule"
+        }
+    ],
+    "replaceConsole": true
+}

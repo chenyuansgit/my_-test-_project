@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <title>简历管理</title>
+    <link href="<%=baseUrl%>/css/page/employer/resumeList.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.original_status = '<%=status%>';
+        global.uid = '<%=account.uid%>';
+        global.nick_name = '<%=employer.nick_name%>'
+    </script>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/employer/resumeManage/IB_manage.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include ../../common/headerCompany.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+                <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+                <li class="curr"><span class="icon-curr-up"></span><a class="header-link-item" href="/resume/list">简历管理</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/talentPool/list">人才库</a></li>
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container mb20">
+    <div id="resume-manage" class="clearfix">
+        <div class="sidebar fl">
+            <div class="resume-manage-side">
+                <div class="title-area">
+                    <%if(job_name){%>
+                     <span class="title"><%=job_name%></span>
+                    <%}else{%>
+                     <span class="title">我收到的简历</span>
+                    <%}%>
+                </div>
+                <ul>
+                    <%if(status == 2){%>
+                    <li><a href="<%=job_id?('/resume/list?job_id='+job_id):'/resume/list'%>">待筛选简历</a></li>
+                    <li class="active"><a href="<%=job_id?('/resume/list?status=2&job_id='+job_id):'/resume/list?status=2'%>">待沟通简历</a><span class="icon-right-arrow"></span></li>
+                    <li><a href="<%=job_id?('/resume/list?status=3&job_id='+job_id):'/resume/list?status=3'%>">已通知面试</a></li>
+                    <li><a href="<%=job_id?('/resume/list?status=4&job_id='+job_id):'/resume/list?status=4'%>">不合适简历</a></li>
+                    <%}else if(status == 3){%>
+                    <li><a href="<%=job_id?('/resume/list?job_id='+job_id):'/resume/list'%>">待筛选简历</a></li>
+                    <li><a href="<%=job_id?('/resume/list?status=2&job_id='+job_id):'/resume/list?status=2'%>">待沟通简历</a></li>
+                    <li class="active"><a href="<%=job_id?('/resume/list?status=3&job_id='+job_id):'/resume/list?status=3'%>">已通知面试</a><span class="icon-right-arrow"></span></li>
+                    <li><a href="<%=job_id?('/resume/list?status=4&job_id='+job_id):'/resume/list?status=4'%>">不合适简历</a></li>
+                    <%}else if(status == 4){%>
+                    <li><a href="<%=job_id?('/resume/list?job_id='+job_id):'/resume/list'%>">待筛选简历</a></li>
+                    <li><a href="<%=job_id?('/resume/list?status=2&job_id='+job_id):'/resume/list?status=2'%>">待沟通简历</a></li>
+                    <li><a href="<%=job_id?('/resume/list?status=3&job_id='+job_id):'/resume/list?status=3'%>">已通知面试</a></li>
+                    <li class="active"><a href="<%=job_id?('/resume/list?status=4&job_id='+job_id):'/resume/list?status=4'%>">不合适简历</a><span class="icon-right-arrow"></span></li>
+                    <%}else{%>
+                    <li class="active"><a href="<%=job_id?('/resume/list?job_id='+job_id):'/resume/list'%>">待筛选简历</a><span class="icon-right-arrow"></span></li>
+                    <li><a href="<%=job_id?('/resume/list?status=2&job_id='+job_id):'/resume/list?status=2'%>">待沟通简历</a></li>
+                    <li><a href="<%=job_id?('/resume/list?status=3&job_id='+job_id):'/resume/list?status=3'%>">已通知面试</a></li>
+                    <li><a href="<%=job_id?('/resume/list?status=4&job_id='+job_id):'/resume/list?status=4'%>">不合适简历</a></li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+        <div class="content fr">
+            <div class="resume-manage-content">
+                <div class="resume-manage-content-tip">
+                    友情提示：<span>15天内</span>未处理的简历，将自动标记为不合适。
+                </div>
+                <!-- <div class="resume-manage-select">
+                     <span class="icon icon-no-select" id="allSelect"></span>全选<a href="javascript:">不适合</a>
+                 </div>
+                 <div class="resume-manage-nav">
+                     <span class="cur">不限</span><span>未阅读</span><span>已阅读</span><span>已转发</span><span>标记</span>
+                 </div>-->
+                <%if(status == 1 && resumes && resumes.length){%>
+                <%for(var i = 0,len = resumes.length;i<len;++i){ %>
+                <div class="resume-box"  data-rid="<%=resumes[i].rid%>" data-name="<%=resumes[i].name%>"  data-jid="<%=resumes[i].job_id%>" data-jname = "<%=resumes[i].job_name%>" >
+                    <div class="resume-box-t1">
+                        <!--<span class="icon icon-no-select"></span>-->应聘<span class="resume-box-title"><%=resumes[i].job_name%></span><span class="resume-box-time"><%=new Date(resumes[i].delivery_time).format('yyyy-MM-dd hh:mm')%>&nbsp;投递</span>
+                    </div>
+                    <div class="resume-box-text">
+                        <%if(resumes[i].avatar && resumes[i].avatar !='undefined'){%>
+                        <div class="resume-head" style="background-image:url('<%=resumes[i].avatar%>?imageView2/2/w/192/h/192') "></div>
+                        <%}else{%>
+                        <div class="resume-head"></div>
+                        <%}%>
+                        <ul>
+                            <%try{%>
+                            <li><span class="resume-user"><%=resumes[i].name%></span>|<span><%=resumes[i].male?'男':'女'%></span></li>
+                            <li><span><%=JSON.parse(resumes[i].education_detail)[0].school||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].major||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].stage||''%></span></li>
+                            <%}catch(e){%>
+                            <li><span class="resume-user"><%=resumes[i].name%></span><span><%=resumes[i].male?'男':'女'%></span></li>
+                            <li></li>
+                            <%}%>
+                            <li><a class="view-btn" data-rid="<%=resumes[i].rid%>" href="/resume/detail/<%=resumes[i].rid%>?jid=<%=resumes[i].job_id%>" target="_blank">点击查看简历</a><!--<span class="icon-phone"></span><span class="icon-email"></span>--></li>
+                        </ul>
+                        <!--<div class="phone-box pop-box"><%=resumes[i].phone%><span class="triangle-1"></span><span class="triangle-2"></span></div>-->    <!--显示电话-->
+                        <!--<div class="email-box pop-box"><%=resumes[i].email%><span class="triangle-1"></span><span class="triangle-2"></span></div>-->    <!--显示邮箱-->
+                        <span class="btn-contact">联系ta</span>
+                        <span class="btn-reject">不合适</span>
+                        <span class="btn-share">转发</span>
+                    </div>
+                </div>
+                <%}%>
+                <%include ../../common/paging.ejs%>
+                <%}else if(status == 2 && resumes && resumes.length){%>
+                <%for(var i = 0,len = resumes.length;i<len;++i){%>
+
+                <div class="resume-box <%=resumes[i].recruit_type==2?'resume-box-quickRecruit':''%>"  data-rid="<%=resumes[i].rid%>" data-name="<%=resumes[i].name%>" data-jid="<%=resumes[i].job_id%>" data-jname ="<%=resumes[i].job_name%>" data-email="<%=resumes[i].email%>">
+                    <div class="resume-box-t1">
+                        <!--<span class="icon icon-no-select"></span>-->
+                        应聘<span class="resume-box-title"><%=resumes[i].job_name%></span>
+                        <span class="resume-box-time"><%=new Date(resumes[i].delivery_time).format('yyyy-MM-dd hh:mm')%></span>
+                        <%if(resumes[i].recruit_type==2){%>
+                        <i class="icon-quick-corner"></i>
+                        <%}%>
+                    </div>
+                    <div class="resume-box-text">
+                        <%if(resumes[i].avatar && resumes[i].avatar !='undefined'){%>
+                        <div class="resume-head" style="background-image:url('<%=resumes[i].avatar%>?imageView2/2/w/192/h/192') "></div>
+                        <%}else{%>
+                        <div class="resume-head"></div>
+                        <%}%>
+                        <ul>
+                            <%try{%>
+                                <li><span class="resume-user"><%=resumes[i].name%></span>|<span><%=resumes[i].male?'男':'女'%></span></li>
+                                <li><span><%=JSON.parse(resumes[i].education_detail)[0].school||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].major||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].stage||''%></span></li>
+                            <%}catch(e){%>
+                                <li><span class="resume-user"><%=resumes[i].name%></span>|<span><%=resumes[i].male?'男':'女'%></span></li>
+                                <li></li>
+                            <%}%>
+                            <li><a class="view-btn" data-rid="<%=resumes[i].rid%>" href="/resume/detail/<%=resumes[i].rid%>?jid=<%=resumes[i].job_id%>" target="_blank">点击查看简历</a><span class="icon-phone"></span><span class="icon-email"></span></li>
+                        </ul>
+                        <div class="phone-box pop-box"><%=resumes[i].phone%><span class="triangle-1"></span><span class="triangle-2"></span></div>    <!--显示电话-->
+                        <div class="email-box pop-box"><%=resumes[i].email%><span class="triangle-1"></span><span class="triangle-2"></span></div>    <!--显示邮箱-->
+                        <span class="btn-interview">面试</span>
+                        <span class="btn-reject">不合适</span>
+                        <span class="btn-share">转发</span>
+                    </div>
+                </div>
+                <%}%>
+                <%include ../../common/paging.ejs%>
+                <%}else if(status == 3 && resumes && resumes.length){%>
+                <%for(var i = 0,len = resumes.length;i<len;++i){ %>
+                <div class="resume-box <%=resumes[i].recruit_type==2?'resume-box-quickRecruit':''%> clearfix" data-id="<%=resumes[i].rid%>" data-name="<%=resumes[i].name%>" data-jname = "<%=resumes[i].job_name%>">
+                    <div class="resume-box-t1">
+                        <!--<span class="icon icon-no-select"></span>-->
+                        应聘<span class="resume-box-title"><%=resumes[i].job_name%></span>
+                        <%if(resumes[i].recruit_type==2){%>
+                        <i class="icon-quick-corner"></i>
+                        <%}%>
+                        <span class="resume-box-time"><%=new Date(resumes[i].delivery_time).format('yyyy-MM-dd hh:mm')%></span>
+                    </div>
+                    <div class="resume-box-date fl">
+                        <p><%=resumes[i].interview_info?new Date(parseInt(JSON.parse(resumes[i].interview_info).interview_time)).format("yyyy-MM-dd"):""%></p>
+                        <%
+                            var weekday ;
+                            try {
+                                switch(new Date(parseInt(JSON.parse(resumes[i].interview_info).interview_time)).getDay()){
+                                    case 0 : weekday = "周日";break;
+                                    case 1 : weekday = "周一";break;
+                                    case 2 : weekday = "周二";break;
+                                    case 3 : weekday = "周三";break;
+                                    case 4 : weekday = "周四";break;
+                                    case 5 : weekday = "周五";break;
+                                    case 6 : weekday = "周六";break;
+                                }
+                            }catch (e){
+
+                            }
+                        %>
+                        <p><%=weekday?weekday+"/":""%><%=resumes[i].interview_info?new Date(parseInt(JSON.parse(resumes[i].interview_info).interview_time)).format("hh:mm"):""%></p>
+                    </div>
+                    <div class="resume-box-text2 fr">
+                        <%if(resumes[i].avatar && resumes[i].avatar !='undefined'){%>
+                        <div class="resume-head" style="background-image:url('<%=resumes[i].avatar%>?imageView2/2/w/192/h/192') "></div>
+                        <%}else{%>
+                        <div class="resume-head"></div>
+                        <%}%>
+                        <ul>
+                            <%try{%>
+                                <li><span class="resume-user"><%=resumes[i].name%></span>|<span><%=resumes[i].male?'男':'女'%></span><span></span><span class="icon-phone"></span><%=resumes[i].phone%><span class="icon-star"></span></li>
+                                <li><span><%=JSON.parse(resumes[i].education_detail)[0].school%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].major||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].stage||''%></span></li>
+                            <%}catch(e){%>
+                                <li><span class="resume-user"><%=resumes[i].name%></span>| <span><%=resumes[i].male?'男':'女'%></span><span></span><span class="icon-phone"></span><%=resumes[i].phone%><span class="icon-star"></span></li>
+                                <li></li>
+                            <%}%>
+                            <li><a class="view-btn" data-rid="<%=resumes[i].rid%>" href="/resume/detail/<%=resumes[i].rid%>?jid=<%=resumes[i].job_id%>" target="_blank">预览简历</a> <!--<span class="fr down-resume">下载简历</span> </li>-->
+                        </ul>
+
+                    </div>
+                </div>
+                <%}%>
+                <%include ../../common/paging.ejs%>
+                <%}else if(status == 4 && resumes && resumes.length){%>
+                <%for(var i = 0,len = resumes.length;i<len;++i){%>
+                <div class="resume-box <%=resumes[i].recruit_type==2?'resume-box-quickRecruit':''%>"  data-jid="<%=resumes[i].job_id%>" data-rid="<%=resumes[i].rid%>" data-name="<%=resumes[i].name%>" data-jname = "<%=resumes[i].job_name%>">
+                    <div class="resume-box-t1">
+                        <!--<span class="icon icon-no-select"></span>-->
+                        应聘<span class="resume-box-title"><%=resumes[i].job_name%></span>
+                        <%if(resumes[i].recruit_type==2){%>
+                        <i class="icon-quick-corner"></i>
+                        <%}%>
+                        <span class="resume-box-time"><%=new Date(resumes[i].delivery_time).format('yyyy-MM-dd hh:mm')%></span>
+                    </div>
+                    <div class="resume-box-text">
+                        <%if(resumes[i].avatar && resumes[i].avatar !='undefined'){%>
+                        <div class="resume-head" style="background-image:url('<%=resumes[i].avatar%>?imageView2/2/w/192/h/192') "></div>
+                        <%}else{%>
+                        <div class="resume-head"></div>
+                        <%}%>
+                        <ul>
+                            <%try{%>
+                                <li><span class="resume-user"><%=resumes[i].name%></span>|<span><%=resumes[i].male?'男':'女'%></span></li>
+                                <li><span><%=JSON.parse(resumes[i].education_detail)[0].school||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].major||''%></span>|<span><%=JSON.parse(resumes[i].education_detail)[0].stage||''%></span></li>
+                            <%}catch(e){%>
+                                <li><span class="resume-user"><%=resumes[i].name%></span>|<span><%=resumes[i].male?'男':'女'%></span></li>
+                                <li></li>
+                            <%}%>
+                                <li><a class="view-btn" data-rid="<%=resumes[i].rid%>" href="/resume/detail/<%=resumes[i].rid%>?jid=<%=resumes[i].job_id%>" target="_blank">点击查看简历</a><!--<span class="other-reason fr">能力不符</span>--> </li>
+                        </ul>
+                        <span class="btn-delete">删除</span>
+                    </div>
+                </div>
+                <%}%>
+                <%include ../../common/paging.ejs%>
+                <%}else{%>
+                <div class="empty-area">
+                    <div class="no-resume">
+                        没有找到符合条件的简历信息
+                    </div>
+                </div>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../../common/footer.ejs%>
+<!---------弹窗----------->
+<div class='overlay'></div>
+<!--转发-->
+<div class='popBox popBox-forward'>
+    <div class='pop-title tc'>转发给</div>
+    <div class="no-suitable-text">
+        <ul class='forward-ul'>
+            <li><span>收件人：</span><input type='text'  class='forward-inputText email req' placeholder="请填写转发的电子邮箱号码" /></li>
+            <li><span>主题：</span><input type='text'  class='forward-inputText email-theme req'/></li>
+            <li><span>邮件正文：</span><textarea class="forward-textareaText email-content req"></textarea></li>
+        </ul>
+    </div>
+    <div class='pop-btn'>
+        <a href='javascript:' class='send btn'>发送</a><a href='javascript:' class='cancel'>取消</a>
+    </div>
+</div>
+<!--联系他-->
+<div class='popBox popBox-contact'>
+    <div class='pop-title'>联系ta</div>
+    <div class='pop-content'>
+        <strong>确认后候选人将收到消息通知，建议您尽快与其沟通，3天后您的联系方式将展示给该候选人，若候选人因未收到沟通而进行举报，您的职位曝光率将受到影响，甚至封禁。</strong> </div>
+    <!--<ul class='pop-ul'>
+        <li><span>HR姓名：</span><input type='text' class='pop-inputText hr_name req' value="HR"/></li>
+        <li><span>HR邮箱：</span><input type='text'  class='pop-inputText hr_email req' value="<%=employer.notice_email%>" /></li>
+    </ul>-->
+    <div class='pop-btn'>
+        <a href='javascript:' class='send  btn'>确认查看</a><a href='javascript:' class='cancel'>取消</a>
+    </div>
+</div>
+<!--不合适-->
+<div class='popBox popBox-improper'>
+    <div class='pop-title tc'>确认简历不合适</div>
+    <div class='no-suitable-text'>
+        <h4><span class='icon icon-box-tip'></span>确定简历不合适吗？</h4>
+        <p>确认后，系统将自动发送不合适邮件到用户的邮箱。</p>
+        <div class='no-suitable-wrap clearfix'>
+            <span class='fl'>不合适原因：</span><div class='no-suitable-list fl'><input type="text" class="pop-inputText reason-s req"/></div>
+        </div>
+        <div class='no-suitable-reason'>
+            <textarea class="reason-l req">非常荣幸收到你的简历，经过评估，我们认为你与该职位的条件暂时不太匹配，无法进入面试阶段。相信更好的机会一定还在等待着你，赶快调整心态，做好充足的准备重新出发吧！</textarea>
+        </div>
+        <div class='pop-btn'>
+            <a href='javascript:' class='send btn'>确认不合适</a><a href='javascript:' class='cancel'>取消</a>
+        </div>
+    </div>
+</div>
+<!--面试通知-->
+<div class='popBox popBox-interview'>
+    <div class='pop-title tc'>通知面试</div>
+    <div class='no-suitable-text'>
+       <!-- <ul class='tab-ui clearfix'>
+            <li class='active'>发面试通知</li><li>已安排面试</li>
+        </ul>-->
+        <div class='notice-box' id='notice'>
+            <ul class='notice-ul'>
+                <li><span>收件人：</span><input type='text' class='forward-inputText req email' readonly/></li>
+                <li><span>主题：</span><input type='text' class='forward-inputText req theme' value="面试通知" /></li>
+                <li><span>面试时间：</span><input type='text' id='time-1' class='forward-inputText req' readonly /></li>
+                <li class="interview-address"><span>面试地点：</span><input type='text' class='forward-inputText req place' />
+                <ul class="sel-address">
+                    <% var addressArr = JSON.parse(company.address);%>
+                    <%for(var i = 0,len = addressArr.length;i<len;++i){%>
+                        <li><%=addressArr[i].desc%></li>
+                    <%}%>
+                </ul>
+                </li>
+                <li><span>联系人：</span><input type='text'  class='forward-inputText req interviewer-1' /></li>
+                <li><span>联系电话：</span><input type='text' value="<%=employer.phone%>" class='forward-inputText req phone-1' /></li>
+                <li><span>补充内容：</span> <textarea class='forward-textareaText req notice-content'>您的简历已通过我们的筛选，很高兴通知您参加我们的面试。</textarea></li>
+            </ul>
+        </div>
+        <!--<div class='notice-box' id='arrange' style='display: none; '>
+            <p>如果已通过电话或邮件通知求职者面试，可以将简历标为“已安排面试”，需要您提供面试时间，标记后，简历会进入已安排面试列表，待沟通名额立即释放</p>
+            <ul class='notice-ul'>
+                <li><span>面试时间：</span><input type='text' id='time-2' class='forward-inputText req' readonly  /></li>
+                <li><span>联系人：</span><input type='text' class='forward-inputText req interviewer-2' /></li>
+                <li><span>联系电话：</span><input type='text' value="<%=employer.phone%>"  class='forward-inputText req phone-2' /></li>
+            </ul>
+        </div>-->
+    </div>
+    <div class='pop-btn'>
+        <a href='javascript:' class='send btn' data-type="0">发送</a><a href='javascript:' class='cancel' >取消</a>
+    </div>
+</div>
+<!--刷新-->
+<div class='popBox'>
+    <div class='pop-title'>刷新简历</div>
+    <div class='pop-content'>此简历将会重新放到待筛选选项中，请尽快查看并对面试者做出反馈。</div>
+    <div class='pop-btn'>
+        <a href='javascript:' class='send'>刷新</a><a href='javascript:' class='cancel' id='cancel'>取消</a>
+    </div>
+</div>
+<!--删除-->
+<div class='popBox popBox-delete'>
+    <div class='pop-title'>删除简历</div>
+    <div class='pop-content'>此简历将会被删除，删除之后，简历将不再出现在不合适选项中。</div>
+    <div class='pop-btn'>
+        <a href='javascript:' class='send btn'>删除</a><a href='javascript:' class='cancel' id='cancel'>取消</a>
+    </div>
+</div>
+<!----------弹窗end-------->
+<!--Js-->
+<%include ../../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

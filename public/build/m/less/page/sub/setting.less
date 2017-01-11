@@ -1,0 +1,46 @@
+@import "../../plugins/selector";
+
+.footer{
+  height: 4.2rem;
+  background-color: @mainColor;
+  font-size:1.5rem;
+  font-weight: 600;
+  color:#fff;
+  z-index: 2000;
+  &.ing{
+    background-color: #ddd;
+    color: #999
+  }
+}
+
+.selector .sel-content .sel-tab{
+  height: 5.5rem;
+}
+.subList{
+  padding-bottom:4.5rem;
+  li{
+    display: block;
+    margin:0.8rem 15%;
+    width: 70%;
+    padding:0.85rem 0;
+    text-align: center;
+    &.label{
+      color:#666;
+      font-size: 1.2rem;
+    }
+    &.selection{
+      font-size: 1.35rem;
+      line-height: 100%;
+      background-color: #daf4f4;
+      opacity: 0.9;
+      border-radius: 0.4rem;
+      color: #333;
+      input{
+        outline: none;
+        border: none;
+        background-color: #daf4f4;
+        text-align: center;
+      }
+    }
+  }
+}

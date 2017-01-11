@@ -1,0 +1,30 @@
+@import "../common/reconsitution";
+@import "../common/index";
+
+body{
+  background: url("@{baseUrl}/img/bg.png") 0 0 no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+.main{
+  background: none;
+  .info{
+    text-align: center;
+    margin-top: 10rem;
+    .icon-notice{
+      display: inline-block;
+      width: 4.5rem;
+      height: 4.5rem;
+      background: url("@{baseUrl}/img/icon-notice.png") 0 0 no-repeat;
+      background-size: 100%;
+    }
+    .info-text{
+      font-size: 1.4rem;
+      color: #333;
+      width: 15rem;
+      text-align: justify;
+      line-height: 1.8rem;
+      margin: 1rem auto 0;
+    }
+  }
+}

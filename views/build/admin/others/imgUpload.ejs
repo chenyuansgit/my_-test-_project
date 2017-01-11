@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%include ../common/head.ejs%>
+<style type="text/css">
+    .imgUrl{
+        width:400px;
+    }
+    .rows{
+        margin-top: 20px;
+    }
+</style>
+</head>
+
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="rows">
+                    <div class="header smaller lighter blue head-title">第三方图片上传</div>
+                </div>
+                <div class="rows">
+                    <input type="text" class="imgUrl" placeholder="请输入有效的图片地址"/><span class="btn-upload btn" style="padding:0;margin-left: 10px">上传</span>
+                </div>
+                <div class="rows"><span>实习鸟图片服务器地址:</span><span><a href="" target="_blank" class="url-callback"></a></span></div>
+            </div>
+        </div>
+    </div>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('table.table-sort').tablesort();
+        var can_request = true;
+        $(".btn-upload").click(function(){
+            var url = $.trim($(".imgUrl").val());
+            if(url){
+                can_request = false;
+                $.ajax({
+                   type:"post",
+                   url:"/api/upload/img",
+                   dataType:"json",
+                   data:{
+                       option:{
+                           url:url
+                       }
+                   },
+                   success:function(data){
+                       can_request = true;
+                       if(data.status == 10000){
+                           var imgData = data.data;
+                           $(".imgUrl").val("")
+                           $(".url-callback").text(imgData.url).attr("href",imgData.url);
+                       }else if(data.status == 10010){
+                           alert("图片上传失败");
+                       }else if(data.status ==10005){
+                           alert("服务器错误,请稍后重试");
+                       }
+                   }
+                });
+            }else{
+                alert("请输入有效的图片地址");
+            }
+        })
+    });
+</script>
+</body>
+</html>

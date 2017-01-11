@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/sub/subscribe.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container post-position mb20 clearfix">
+    <div class="sidebar fl">
+        <ul class="subscribe-nav">
+            <!--<div class="title"><i></i>发布的职位</div>-->
+            <li class="cur"><a href="/sub/list">我的订阅</a></li>
+            <li><a href="/favorite/list?type=job">我的收藏</a></li>
+        </ul>
+    </div>
+    <div class="content fr">
+        <%if(isSub){%>
+        <!--订阅列表-->
+        <div class="subscribe-content">
+            <div class="subscribe-top mt20">
+                <%
+                    var min_payment = "", min_payment_id;
+                    switch (parseInt(job_subscription.min_payment)) {
+                        case 0: min_payment = "不限";min_payment_id=0; break;
+                        case 1: min_payment = "0-50元";min_payment_id=1; break;
+                        case 50: min_payment = "50-100元"; min_payment_id=2;break;
+                        case 100: min_payment = "100-200元"; min_payment_id=3;break;
+                        case 200: min_payment = "200-500元"; min_payment_id=4;break;
+                        case 500: min_payment = "500元以上"; min_payment_id=5;break;
+                    }
+                %>
+                <%
+                    var education = "";
+                    switch (parseInt(job_subscription.education)) {
+                        case 0: education = "不限"; break;
+                        case 1: education = "大专"; break;
+                        case 2: education = "本科"; break;
+                        case 3: education = "硕士"; break;
+                        case 4: education = "博士及以上"; break;
+                    }
+                %>
+                <div class="subscribe-title">
+                    <span class="sub-select">订阅条件</span>：
+                    <span id="sub-key" data-key="<%=job_subscription.key%>"><%=job_subscription.key%></span>
+                    <%if(job_subscription.city_id !=0){%>
+                        ／<span id="sub-city" data-cid="<%=job_subscription.city_id%>"><%=job_subscription.city%></span>
+                    <%}else{}%>
+                    <%if(min_payment_id!=0){%>
+                        ／<span id="min-payment" data-pt="<%=min_payment_id%>"><%=min_payment%></span>
+                    <%}else{}%>
+                    <%if(job_subscription.workdays != 0) {%>
+                        ／<span id="sub-workdays" data-wk="<%=job_subscription.workdays%>"><%=job_subscription.workdays%>天</span>
+                    <%}else{}%>
+                    <%if(job_subscription.education!=0){%>
+                        ／<span id="sub-education" data-et="<%=job_subscription.education%>"><%=education%></span>
+                    <%}else{}%>
+                    <a href="/sub/setting" class="refresh-subscribe subscribe-btn">重新订阅</a>
+                </div>
+            </div>
+            <div class="subscribe-list mb20">
+                <%if(jobs&&jobs.length){%>
+                    <%for(var i = 0,len = jobs.length;i<len;++i){%>
+                        <div class="job-box mb20">
+                            <div class="job-info-top">
+                                <%var jobChannel = (jobs[i].channel_type == 2 || jobs[i].channel_type == 4) ? "det" :"job";%>
+                                <span class="job-info-name"><a href="/<%=jobChannel%>/detail/<%=jobs[i].jid%>" target="_blank" title="<%=jobs[i].name%>"><%=jobs[i].name.length>10?jobs[i].name.substr(0,10)+"...":jobs[i].name.substr(0,10)%></a></span>
+                                <span class="job-info-date"><%=new Date(jobs[i].refresh_time).format('yyyy-MM-dd')%></span>
+                            </div>
+                            <%
+                                var education2 = "";
+                                switch (parseInt(jobs[i].education)) {
+                                    case 0: education2 = "不限"; break;
+                                    case 1: education2 = "大专"; break;
+                                    case 2: education2 = "本科"; break;
+                                    case 3: education2 = "硕士"; break;
+                                    case 4: education2 = "博士及以上"; break;
+                                }
+                            %>
+                            <div class="job-info-bottom">
+                                <!--实习包打听职位-->
+                                <%if(jobs[i].channel_type == 2 || jobs[i].channel_type == 4){%>
+                                <span class="job-info-company"><%=jobs[i].company_name.length>10?jobs[i].company_name.substr(0,10)+"...":jobs[i].company_name%></span>／
+                                <%}else{%>
+                                <span class="job-info-company"><a href="/company/detail/<%=jobs[i].company_id%>"  target="_blank" title="<%=jobs[i].company_name%>"><%=jobs[i].company_name.length>10?jobs[i].company_name.substr(0,10)+"...":jobs[i].company_name%></a></span>／
+                                <%}%>
+                                <span class="job-info-city"><%=jobs[i].city.length>12?jobs[i].city.substr(0,12)+"...":jobs[i].city%></span>／
+                                <%if(jobs[i].channel_type ==1 && jobs[i].channel_type ==2) {%>
+                                <span class="job-info-days"><%=jobs[i].workdays?jobs[i].workdays:1%>天</span>／
+                                <%}%>
+                                <% if(jobs[i].min_payment == 0 && jobs[i].max_payment == 0) {%>
+                                <span class="job-info-money">面议</span>／
+                                <%}else{%>
+                                <%if(jobs[i].channel_type ==3 || jobs[i].channel_type ==4) {%>
+                                <span class="job-info-money"><%=jobs[i].min_payment/10000%>-<%=jobs[i].max_payment/10000%>万/年</span>／
+                                <%}else{%>
+                                <span class="job-info-money"><%=jobs[i].min_payment%>-<%=jobs[i].max_payment%>/天</span>／
+                                <%}%>
+                                <%}%>
+                                <span class="job-info-education2"><%=education2%></span>
+                            </div>
+                            <div class="job-logo">
+                                <%if(jobs[i].company_avatar){%>
+                                <span class="company-logo" style="background-image: url('<%=jobs[i].company_avatar%>?imageView2/2/w/152/h/152')"></span>
+                                <%}else{%>
+                                <span class="company-logo"></span>
+                                <%}%>
+                            </div>
+                    </div>
+                    <%}%>
+                    <!--分页-->
+                    <%include ../common/paging.ejs%>
+                <%}else{%>
+                    <div class="empty-area2">
+                        <div class="empty-content">
+                            <span class="pic fl"></span>
+                            <div class="text fl">
+                                <div>暂时没有符合您订阅条件的职位</div>
+                                <!--<a href="/sub/setting" class="subscribe-setting subscribe-btn">订阅职位</a>-->
+                            </div>
+                        </div>
+                    </div>
+                <%}%>
+            </div>
+        </div>
+        <%}else{%>
+        <!--当前无订阅-->
+        <div class="empty-area">
+            <div class="empty-content">
+                <h4>暂时没有您想要的职位，请重新订阅。</h4>
+                <a href="/sub/setting" class="subscribe-setting subscribe-btn">订阅职位</a>
+            </div>
+        </div>
+        <%}%>
+    </div>
+</div>
+<%include ../common/footer.ejs %>
+<!-- -------弹窗 end------ -->
+<script src="<%=baseUrl%>/js/lib/IB_require.js" data-main="<%=baseUrl%>/js/page/sub/IB_subscribe.js"></script>
+</body>
+</html>

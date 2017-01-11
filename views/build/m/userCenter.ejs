@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ./header.ejs%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_userCenter.js"></script>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/userCenter.css"/>
+</head>
+<body>
+<%include ./bodyHeader.ejs%>
+<%
+var userUrl = "http://i.internbird.com/mine";
+switch(env){
+    case "local" : userUrl = "http://localhost:8096/mine"; break;
+    case "development" : userUrl = "http://i.dev.internbird.com/mine"; break;
+    case "prod" : userUrl = "http://i.internbird.com/mine"; break;
+}
+%>
+<a href="<%=userUrl%>" class="tr-link">企业入口</a>
+<div class="main">
+<!--    <div class="header w100 tac">
+        <span>我的</span>
+    </div>-->
+
+    <%if(user && user.user_id){%>
+    <div class="account" id="sign" data-uid = '<%=user.user_id%>'>
+        <%if(user.avatar){%>
+                <span class="avatar" style="background-image: url('<%=user.avatar%>');"></span>
+                <input type="file" class="file-avatar" id="file-avatar"/>
+        <%}else{%>
+                <span class="avatar" style="background-image: url('<%=baseUrl%>/img/icon-avatar.png');"></span>
+                <input type="file" class="file-avatar" id="file-avatar"/>
+        <%}%>
+    </div>
+    <p class="w100 tac nick_name-area"> <span class="nick-name ellipsis"><%=(user.nick_name || user.phone || user.email || "")%></span><i class="icon icon-uname-edit"></i></p>
+    <%}else{%>
+      <div class="w100 sign tac" id="sign" >
+        <a class="login iblock" id="login" href="http://<%=host.account%>/login?forward=<%=encodeOriginalUrl%>">登录</a>
+        <span>|</span>
+        <a class="register iblock" id="register" href="http://<%=host.account%>/register?forward=<%=encodeOriginalUrl%>">注册</a>
+      </div>
+    <%}%>
+    <div class="w100 link clearfix">
+        <a href="/private/job?forward=<%=encodeOriginalUrl%>" class="w100 icon p-job clearfix block">
+            <span class="iblock jobCondition icon"></span>
+            <span class="iblock text">求职动态</span>
+        </a>
+        <a href="/private/resume?forward=<%=encodeOriginalUrl%>" class="w100 icon  p-resume clearfix block">
+            <span class="iblock icon resume"></span>
+            <span class="iblock text">我的简历</span>
+        </a>
+        <a href="/sub/list?forward=<%=encodeOriginalUrl%>" class="w100 icon  p-sub clearfix block">
+            <span class="iblock icon sub"></span>
+            <span class="iblock text">我的订阅</span>
+        </a>
+        <a href="/private/quickRecruit?forward=<%=encodeOriginalUrl%>" class="w100 icon  p-sub clearfix block">
+            <span class="iblock icon qr"></span>
+            <span class="iblock text">我的快招</span>
+        </a>
+    </div>
+    <%if(user && user.user_id){%>
+    <div class="quit w100 tac" id="quit">
+        <span class="quit-icon iblock"></span>
+        <span class="iblock text">退出登录</span>
+    </div>
+    <%}%>
+</div>
+<div id="foot" class="w100 footer block">
+    <a class="tab iblock fll tac job-tab" href="/">
+        <span class="tab-icon iblock"></span>
+        <span>首页</span>
+    </a>
+    <a class="tab iblock fll search-tab tac" href="/job/search">
+        <span class="tab-icon iblock"></span>
+        <span>搜索</span>
+    </a>
+    <a class="tab iblock fll user-tab tac active" href="javascript:">
+        <span class="tab-icon iblock"></span>
+        <span>我的</span>
+    </a>
+</div>
+<%include ./footer.ejs%>
+<div class="popTips animation"></div>
+<div class="overlay"></div>
+<div class="popBox popBox-uname-change animation">
+    <div class="title">昵称设置</div>
+    <div class="info">修改昵称并不会影响简历里面的真实姓名</div>
+    <div class="input-line"><input class="uname-set" value="<%=(user.nick_name || user.phone || user.email || "")%>" type="text" placeholder="请输入昵称"/></div>
+    <div class="btn-area clearfix">
+        <span class="btn-cancel btn">取消</span>
+        <span class="btn-confirm btn">确认</span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/private/resumePreview.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <%if(resume){ %>
+    <div class="myresume">
+        <!---左侧-->
+        <div class="w800" style="margin: 0 auto; padding-top: 50px; padding-bottom: 30px;" >
+            <!--简历主体-->
+            <div class="myresume-main inwrapBox mb20">
+                <div class="myresume-main-top"></div>
+                <!--基本信息 Start-->
+                <div class="resume-header pd resume-block resume-block-base">
+                    <% if(resume.avatar && resume.avatar!="undefined"){
+                    %>
+                    <div class="avatar" style="background-image:url('<%=resume.avatar%>?imageView2/2/w/244/h/244')"></div>
+                    <%}else{%>
+                    <div class="avatar"></div>
+                    <%}%>
+
+                    <div class="info show-state">
+                        <span class="myname name"><%=resume.name%></span>
+                    </div>
+                    <div class="myresume-info clearfix">
+                        <ul class="resume-base clearfix">
+                            <li>籍贯:<span class="address" title="<%=resume.address.length>12?resume.address:""%>"><%=resume.address.length>12?resume.address.substr(0,12)+"...":resume.address%></span></li>
+                            <li>生日:<span class="birthday"><%=new Date(resume.birthday).format("yyyy.MM")%></span></li>
+                            <li>性别:<%
+                                    var sex = resume.male?"男":"女";
+                                %><span class="sex"><%=sex%></span></li>
+                            <li>电话:<span class="phone"><%=resume.phone%></span></li>
+                            <li>邮箱:<span class="email"><%=resume.email%></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--基本信息 End-->
+
+                <!--教育信息 Start-->
+                <%try{
+                    var edu_list = JSON.parse(resume.education_detail);
+                if(edu_list.length >0){
+                %>
+                <div class="resume-block resume-block-edu pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-education"></span>教育背景
+                    </div>
+                    <%for(var j = 0;j<edu_list.length;j++){%>
+                    <div class="resume-edu show-state">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=edu_list[j].start_time.replace("-",".").substr(0,7)%>~<%=edu_list[j].end_time.replace("-",".").substr(0,7)%></span>
+                            <span class="school fl"><%=edu_list[j].school%></span>
+                        </div>
+                        <div class="resume-edu-info">
+                            <span class="major"><%=edu_list[j].major%></span><span class="stage"><%=edu_list[j].stage%></span>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+                <% }}catch(e){}%>
+                <!--教育信息 End-->
+
+                <!--期望实习 Start-->
+                <%try{
+
+                    var type_id = resume.intern_expect_position_type.split(",");
+                    var type_text = [];
+                    for(var j=0,len=type_id.length;j<len;j++){
+                        var pid = parseInt(type_id[j].substr(0,1))-1;
+                        var sid = parseInt(type_id[j].substr(1)) ;
+                        if(pid>-1 && sid > -1){
+                            type_text.push(job_type[pid].sub_types[sid].group_name);
+                        }
+                    }
+                    var jt = type_text.toString();
+
+                    var payment = "";
+                    var payment_text = ["不限","50以下","50-100","100-200","200-500","500以上"];
+                    switch(parseInt(resume.intern_expect_min_payment)){
+                        case 0 :  payment = payment_text[0];break;
+                        case 1 :  payment = payment_text[1];break;
+                        case 50 :  payment = payment_text[2];break;
+                        case 100 :  payment = payment_text[3];break;
+                        case 200:  payment = payment_text[4];break;
+                        case 500:  payment = payment_text[5];break;
+                        default : payment = payment_text[0];break;
+                    }
+
+                    var days_type = parseInt((resume.intern_expect_days_type));
+                    var days_text = ["1-2天","3天","4天","5天","6-7天"];
+                    var days = days_text[days_type-1];
+
+                    var dur_type = parseInt((resume.intern_expect_dur_type));
+                    var dur_text = ["1个月以下","2个月","3个月","3个月以上"];
+                    var duration = dur_text[dur_type-1];
+
+                %>
+                <div class="resume-block resume-block-hope pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-expecte-practice"></span>期望实习
+                    </div>
+                    <ul class="resume-hope clearfix show-state">
+                        <li><span class="icon icon-new"></span><span class="hope-position" title="<%=resume.intern_expect_position.length>10?resume.intern_expect_position:""%>"><%=resume.intern_expect_position.length>10?resume.intern_expect_position.substr(0,10)+"...":resume.intern_expect_position%></span></li>
+                        <li><span class="icon icon-job-type"></span><span class="hope-position-type" data-id="<%=resume.intern_expect_position_type%>"><%=jt%></span></li>
+                        <li><span class="icon icon-locate"></span><span class="hope-city" data-cid="<%=resume.intern_expect_cid||0%>"><%=resume.intern_expect_city%></span></li>
+                        <li><span class="icon icon-salary"></span><span class="hope-payment" data-type="<%=resume.intern_expect_min_payment%>"><%=payment%></span></li>
+                        <li><span class="icon icon-calendar"></span><span class="hope-days" data-type="<%=resume.intern_expect_days_type%>"><%=days%>/周</span></li>
+                        <li><span class="icon icon-r-time"></span><span class="hope-duration" data-type="<%=resume.intern_expect_dur_type%>"><%=duration%></span></li>
+                    </ul>
+                </div>
+                <%}catch(e){}%>
+                <!--期望实习 End-->
+
+                <!--校园经历 Start-->
+                <%try{
+                    var exp_list = JSON.parse(resume.school_exp);
+                if(exp_list.length>0){
+                %>
+                <div class="resume-block resume-block-school pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-school-exper"></span>校园经历
+                    </div>
+                    <%
+                    for(var j = 0;j < exp_list.length;j++){
+                    %>
+                    <div class="resume-school resume-exp show-state"  data-id="<%=exp_list[j].id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></span>
+                            <span class="exp-name fl"><%=exp_list[j].name%></span>
+                            <span class="exp-role fl"><%=exp_list[j].role%></span>
+                        </div>
+                        <div class="exp-content">
+                            <%-exp_list[j].content%>
+                        </div>
+                    </div>
+                    <% }%>
+                </div>
+                <%}}catch(e){}%>
+                <!--校园经历 End-->
+
+                <!--实习经历 Start-->
+                <%try{
+                    var exp_list = JSON.parse(resume.inter_exp);
+                if(exp_list.length>0){
+                %>
+                <div class="resume-block resume-block-intern pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-internship"></span>实习经历
+                    </div>
+                    <%
+                    for(var j = 0;j < exp_list.length;j++){
+                    %>
+                    <div class="resume-intern resume-exp show-state"  data-id="<%=exp_list[j].id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></span>
+                            <span class="exp-name fl"><%=exp_list[j].name%></span>
+                            <span class="exp-role fl"><%=exp_list[j].role%></span>
+                        </div>
+                        <div class="exp-content">
+                            <%-exp_list[j].content%>
+                        </div>
+                    </div>
+                    <% }%>
+                </div>
+                <%}}catch(e){}%>
+                <!--实习经历 End-->
+
+                <!--项目经历 Start-->
+                <%try{
+                    var exp_list = JSON.parse(resume.project_exp);
+                if(exp_list.length>0){
+                %>
+                <div class="resume-block resume-block-project pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-project-exper"></span>项目经历
+                    </div>
+                    <%
+                    for(var j = 0;j < exp_list.length;j++){
+                    %>
+                    <div class="resume-project resume-exp show-state" data-id="<%=exp_list[j].id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></span>
+                            <span class="exp-name fl"><%=exp_list[j].name%></span>
+                            <span class="exp-role fl"><%=exp_list[j].role%></span>
+                        </div>
+                        <div class="exp-content">
+                            <%-exp_list[j].content%>
+                        </div>
+                    </div>
+                    <% }%>
+                </div>
+                <%}}catch(e){}%>
+                <!--项目经历 End-->
+
+                <!--我的技能 Start-->
+                <%try{
+                    var skill_list = JSON.parse(resume.skill);
+                if(skill_list.length>0){
+                %>
+                <div class="resume-block resume-block-skill pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-my-skill"></span>我的技能
+                    </div>
+                    <%
+                    for(var j=0;j<skill_list.length;j++){
+                    %>
+                    <div class="resume-skill show-state">
+                        <span class="resume-circle"></span>
+                        <div class="skill"><%=skill_list[j].skill%></div>
+                    </div>
+                    <%}%>
+                </div>
+                <%}}catch(e){}%>
+                <!--我的技能 End-->
+
+                <!--自我描述 Start-->
+                <%if(resume.self_desc){%>
+                <div class="resume-block resume-block-self pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-self-des"></span>自我描述
+                    </div>
+                    <div class="resume-self show-state">
+                        <div class="self-content">
+                            <%-resume.self_desc%>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+                <!--自我描述 End-->
+
+
+                <!--作品展示  Start-->
+                <%
+                try{
+                    var works = JSON.parse(resume.works);
+                if(works.length>0){
+                %>
+                <div class="resume-block resume-work-show pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-work-show"></span>作品展示
+                    </div>
+                    <%
+                    for(var j = 0;j < works.length;j++){
+                        if(works[j].type == "online") {   //在线作品
+                    %>
+                    <div class="resume-works resume-exp show-state" data-id="<%=works[j].id%>">
+                        <div class="info">
+                            <span class="exp-name"><%=works[j].name%></span>
+                        </div>
+                        <div class="works-site">
+                            <% if(new RegExp("http").test(works[j].url)) {%>
+                                <a href="<%=works[j].url%>" target="_blank"><%=works[j].url%></a>
+                            <%}else{%>
+                                <a href="http://<%=works[j].url%>" target="_blank"><%=works[j].url%></a>
+                            <%}%>
+                        </div>
+                    </div>
+                    <%} else {%>
+                    <div class ="resume-works resume-exp show-state" data-id="<%=works[j].id%>">
+                        <div class="info">
+                            <span class="exp-name"><%=works[j].name%></span>
+                        </div>
+                        <div class="works-img">
+                            <a href="<%=works[j].link%>" data-lightbox="works"><img class="works-img-item2" src="<%=works[j].link%>" /></a>
+                        </div>
+                    </div>
+                    <%}}%>
+                </div>
+                <%}}catch(e){}%>
+                <!--作品展示  End-->
+
+                <!--作品展示  Start-->
+                <!--<div class="resume-block resume-work-show pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-work-show"></span>作品展示
+                    </div>
+                    <div class="resume-works resume-exp show-state">
+                        <div class="info">
+                            <span class="exp-name">国家奖这金</span>
+                        </div>
+                        <div class="works-site">
+                            <a href="http://www.internbird.com" target="_blank">www.internbird.com</a>
+                        </div>
+                    </div>
+                </div>-->
+                <!--作品展示  End-->
+
+                <!--简历附件-->
+                <!--<div class="resume-block resume-attachment-blcok pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-attachment"></span>简历附件
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <div class="resume-attachment resume-exp show-state">
+                        <span class="resume-circle"></span>
+                        <p class="attachment">胡萌萌的简历.pdf</p>
+                        <div class="resume-r">
+                             <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <div class="resume-attachment resume-exp show-state">
+                        <span class="resume-circle"></span>
+                        <p class="attachment">萌萌喜欢老鼠爱大米.docx</p>
+                        <div class="resume-r">
+                          <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <span class="upload-attach">添加附件</span>
+                    <p class="upload-attach-tip">*支持格式:.jpg,.png,.jpeg,.pdf,.doc,.docx,.txt;大小不超过5M</p>
+                </div>-->
+
+                <!--找公司-->
+                <div class="resume-block-self-state pd">
+                    <div class="resume-block-self-state-top resume-block-top">
+                        <%
+                            var state = ""
+                            switch(resume.work_state){
+                                case 0: state ="我在学校，可来公司实习"; break;
+                                case 1: state ="我在实习，考虑换个公司"; break;
+                                case 2: state ="我在公司所在城市，可来实习"; break;
+                                case 3: state ="我暂时无法实习"; break;
+                            }
+                        %>
+                        <p class="state"><%=state%></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <%}%>
+</div>
+
+<script src="<%=baseUrl%>/js/lib/IB_require.js" data-main="<%=baseUrl%>/js/page/private/IB_resume_preview.js"></script>
+<%include ../../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

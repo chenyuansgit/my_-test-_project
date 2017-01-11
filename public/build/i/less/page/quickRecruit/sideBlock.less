@@ -1,0 +1,82 @@
+@import "../../common/index";
+.edit-block{
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  left:0;
+  top:0;
+  z-index: 10000;
+  background: #f5f5f5;
+  color: #333;
+  &-white{
+    background: #fff;
+  }
+  &-head{
+    text-align: center;
+    padding: 1.2em 0;
+    border-bottom: 0.1rem solid #eee;
+    background: #fff;
+    .title{
+      font-size: 1.5rem;
+    }
+  }
+  .block-content{
+    background: #fff;
+    >div{
+      width: 96%;
+      margin: 0 auto;
+      textarea{
+        width: 100%;
+        height: 12rem;
+        resize: none;
+        margin: 1rem 0;
+        background: #f5f5f5;
+        border: none;
+        border-radius: 0.1rem;
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+        font-size: 1.3rem;
+        color:#666;
+      }
+    }
+    .block-line{
+      height: 3.5rem;
+      line-height: 3.5rem;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      font-size: 1.3rem;
+      padding-left: 0.5rem;
+      .icon-down{
+        display: inline-block;
+        width: 1.6rem;
+        height: 0.9rem;
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        margin-top: -0.4rem;
+        background: url("@{baseUrl}/img/icon-down.png") 0 0 no-repeat;
+        background-size: 100% auto;
+      }
+      .select{
+        color: #999;
+        &.selected{
+          color: #333;
+        }
+      }
+    }
+  }
+  .btn-block{
+    width: 75%;
+    height: 3.5rem;
+    margin: 1.5rem auto 0;
+    border-radius: 0.3rem;
+    background: #6cc5c6;
+    line-height: 3.5rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+}

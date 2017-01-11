@@ -1,0 +1,176 @@
+@import "../../common/style";
+@import "../../common/title";
+@import "../../custom/jobs";
+
+.favorite{
+  .list-area{
+    width: 100%;
+    min-height: 300px;
+    padding-top: 15px;
+    background: @mainBackground;
+    .sub-title{
+      text-align: right;
+      margin-right: 30px;
+      a{
+        font-size: 17px;
+        color: #999;
+        &.curr{
+          color: #333;
+        }
+      }
+      .divide{
+        color: #ddd;
+      }
+    }
+    .jobs-area{
+      float: none;
+      padding: 15px 0;
+      .job {
+        width: 676px;
+        height: 131px;
+        margin: 0 auto 10px;
+        padding: 0;
+        border: none;
+        background: url("@{baseUrl}/img/favorite/bg-favorite.png") 0 0 no-repeat;
+        .job-content{
+          padding-top: 22px;
+          position: relative;
+          .job-l{
+            width: 65%;
+            margin-left: 45px;
+          }
+          .job-r{
+            margin-right: 55px;
+            text-align: center;
+            .btn-favorite{
+              color: @mainColor;
+              cursor: pointer;
+              &.off{
+                color: #999;
+              }
+            }
+            .btn-deliver{
+              margin-top: 35px;
+              cursor: pointer;
+              color: #666;
+              &.off{
+                color: #999;
+                cursor: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+    .company-area{
+      padding: 15px 0;
+      .company-info{
+        width: 676px;
+        height: 131px;
+        margin: 0 auto 10px;
+        padding: 0;
+        border: none;
+        background: url("@{baseUrl}/img/favorite/bg-favorite.png") 0 0 no-repeat;
+        .company-info-content{
+          padding-top: 22px;
+          position: relative;
+          .company-l{
+            width: 65%;
+            margin-left: 45px;
+            float: left;
+            .company-scale{
+              color: #666;
+            }
+            .company-info-title{
+              margin-top: 10px;
+              font-size: 15px;
+              color: #666;
+            }
+            .company-info-bottom{
+              margin-top: 10px;
+              font-size: 15px;
+              .jobs-num{
+                color: @mainColor;
+              }
+            }
+          }
+          .company-r{
+            margin-right: 55px;
+            text-align: center;
+            float: right;
+            .btn-favorite{
+              color: @mainColor;
+              cursor: pointer;
+              &.off{
+                color: #999;
+              }
+            }
+            .btn-deliver{
+              margin-top: 35px;
+              cursor: pointer;
+              color: #666;
+              &.off{
+                color: #999;
+                cursor: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+    .favorite-tips{
+      padding: 6px 10px;
+      border: 1px solid @mainColor;
+      border-radius: 3px;
+      background: #fbfbfb;
+      font-size: 15px;
+      position: absolute;
+      top: -12px;
+      right: 15px;
+      color: @mainColor;
+      i{
+        width: 15px;
+        height: 15px;
+        background: url("@{baseUrl}/img/favorite/icon-ok.png") 0 0 no-repeat;
+        background-position: 0 -22px;
+        vertical-align: middle;
+        margin-left: 5px;
+      }
+      &.off{
+        color: #999;
+        border: 1px solid #ddd;
+        i{
+          background-position: 0 0;
+        }
+      }
+    }
+  }
+  .sidebar-nav{
+    text-align: center;
+    border: 1px solid #eee;
+    background: #fff;
+    width: 200px;
+    margin: 0 auto;
+    li{
+      height: 50px;
+      line-height: 50px;
+      position: relative;
+      border-top: 1px solid #eee;
+      &:first-of-type{
+        border-top: none;
+      }
+      &.curr{
+        background: @mainColor;
+        width: 202px;
+        margin-left: -0.2px;
+        a{
+          color: #fff;
+        }
+      }
+      a{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

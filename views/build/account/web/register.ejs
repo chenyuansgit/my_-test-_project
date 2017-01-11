@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ./common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/web/enter.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            www: "http://<%=host.www%>",
+            hr : "http://<%=host.hr%>",
+            account: "http://<%=host.account%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/web/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/web/page/IB_register.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/web/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/web/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="bird-enter">
+    <div class="enter-top"></div>
+    <div class="enter-content">
+        <!--<div class="enter-top clearfix">
+            <a class="logo fl" href="/"></a>
+            &lt;!&ndash;<span class="slogan fl"></span>&ndash;&gt;
+        </div>-->
+        <div class="enter-box clearfix">
+            <div class="enter-box-l fl">
+                <ul class="box-head clearfix">
+                    <div class="bird-36"></div>
+                    <li class="fl curr">手机号注册<span class="icon-sel-up"></span></li>
+                    <li class="fl">邮箱注册<span class="icon-sel-up"></span></li>
+                </ul>
+
+                <div class="enter-body enter-body-phone" data-type="phone">
+                    <div>
+                        <input type="text" class="reg-phone enter-input" placeholder="请输入常用手机"/>
+                    </div>
+                    <div class="verifyCode-area">
+                        <input type="text" class="reg-code-machine enter-input" placeholder="请输入图形验证码"/>
+                        <img src="/vcode/create?time=<%=(+new Date)%>" alt="" class="machine-code">
+                        <span class="btn-refresh"></span>
+                    </div>
+                    <div class="clearfix code-area">
+                        <input type="text" class="reg-code-phone fl enter-input" placeholder="请输入验证码"/>
+                        <input type="button" class="fl btn-send-code btn btn-outline btn-blue" value="获取验证码"/>
+                        <input type="button" class="fl btn-resend-code btn-outline" value="60秒后重试"/>
+                    </div>
+                    <div>
+                        <input type="password" class="reg-pwd-phone reg-pwd enter-input" placeholder="请输入密码"/>
+                    </div>
+                    <div class="clearfix">
+                        <input type="button" class="btn-type fl btn btn-outline on" value="找实习" data-type="0"/>
+                        <input type="button" class="btn-type fr btn btn-outline" value="招实习" data-type="1"/>
+                    </div>
+                    <div>
+                        <input type="button" class="btn-reg-phone btn-block btn-blue btn-outline btn" value="注册"/>
+                        <h6>点击“注册”，即代表您同意遵守实习鸟的<a href="http://<%=host.www%>/public/static/extra/userProtocol.html" target="_blank">《用户协议》</a>和<a href="http://<%=host.www%>/public/static/extra/privacyPolicy.html" target="_blank">《隐私政策》</a>。</h6>
+                    </div>
+                </div>
+                <div class="enter-body enter-body-email" data-view="email">
+                    <div>
+                        <input type="text" class="reg-email enter-input" placeholder="请输入常用邮箱"/>
+                    </div>
+                    <div>
+                        <input type="password" class="reg-pwd-email reg-pwd enter-input" placeholder="请输入密码"/>
+                    </div>
+                    <div class="clearfix">
+                        <input type="button" class="btn-type fl btn btn-outline on" value="找实习" data-type="0"/>
+                        <input type="button" class="btn-type fr btn btn-outline" value="招实习" data-type="1"/>
+                    </div>
+                    <div>
+                        <input type="button" class="btn-reg-email btn-block btn-blue btn-outline btn" value="注册"/>
+                        <h6>点击“注册”，即代表您同意遵守实习鸟的<a href="http://<%=host.www%>/public/static/extra/userProtocol.html" target="_blank">《用户协议》</a>和<a href="http://<%=host.www%>/public/static/extra/privacyPolicy.html" target="_blank">《隐私政策》</a>。</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="enter-box-r fr">
+                <h5>已有账号？<a href="http://<%=host.account%>/login">马上登录</a></h5>
+                <div class="third-login">
+                    <p>第三方账号登录：</p>
+                    <div class="third-reg-login">
+                        <span class="icon-weixin third-type" data-type="wechat"></span>
+                        <!--<span class="icon-weibo third-type" data-type="weibo"></span>
+                        <span class="icon-black-qq third-type" data-type="qq"></span>-->
+                    </div>
+                </div>
+                <div class="qrcode-area">
+                    <div class="qrcode"></div>
+                    <p class="qrcode-title">扫一扫下载实习鸟手机APP</p>
+                </div>
+                <!--<h5 class="other-log-title">使用以下账号直接登录</h5>
+                <div>
+                    <input class="btn-other-log btn-other-log-wechat btn-outline btn" type="button"/>
+                    <input class="btn-other-log btn-other-log-sina btn-outline btn" type="button" />
+                    <input class="btn-other-log btn-other-log-qq btn-outline btn" type="button" />
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="reg-bottom"></div>
+<div id="wxLogContainer"></div>
+<div class="overlay"></div>
+<%include ./common/statistics.ejs%>
+</body>
+</html>

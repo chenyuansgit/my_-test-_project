@@ -1,0 +1,609 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../common/paging";
+@import "../../plugin/jquery-ui";
+@import "../../plugin/date";
+@import "../../fonts";
+/*mask-area 简历管理*/
+.overlay,.overlay-forever{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: .5;
+  filter:alpha(opacity=50);
+  z-index: 1000;
+}
+.popBox,.popBox-forever{
+  display: none;
+  position: fixed;
+  width: 480px;
+  left: 50%;
+  top: 20%;
+  margin-left: -240px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  background: #fff;
+  z-index: 1001;
+  .borderRadius(10px);
+
+  .pop-title {
+    background: @mainColor;
+    color: #fff;
+    height: 44px;
+    .bordertlRadius(10px);
+    .bordertrRadius(10px);
+    line-height: 44px;
+    font-size: 18px;
+    text-align: center;
+  }
+  .tc {
+    text-align: center;
+  }
+  .no-suitable-reason {
+    width: 360px;
+    margin: 0 auto 30px;
+  }
+  .no-suitable-reason textarea {
+    width: 342px;
+    height: 150px;
+    padding: 8px;
+    resize: none;
+    color: #888;
+    border: 1px #eee solid;
+    &.error{
+      border: 1px solid @errorColor;
+    }
+    line-height: 25px;
+  }
+  .pop-content {
+    padding: 20px 28px;
+    line-height: 28px;
+  }
+  .no-suitable-text {
+    width: 360px;
+    position: relative;
+    margin: 10px auto 30px;
+    h4 {
+      font-weight: 600;
+      position: relative;
+      line-height: 25px;
+    }
+    .no-suitable-wrap {
+      height: 24px;
+      line-height: 24px;
+      margin-bottom: 15px;
+      input{
+        border:1px solid #eee;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+      .no-suitable-list {
+        line-height: 22px;
+        width: 130px;
+        position: relative;
+        padding: 0 48px 0 5px;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+
+      .add-suitable {
+        color: #00ced1;
+        padding-left: 20px;
+      }
+    }
+    .no-suitable-item {
+      display: none;
+      width: 183px;
+      position: absolute;
+      z-index: 1;
+      font-size: 14px;
+      background-color: #fff;
+      border: 1px #eee solid;
+      li {
+        height: 24px;
+        line-height: 24px;
+        padding-left: 10px;
+        position: relative;
+        border-bottom: 1px #eee solid;
+        :last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .pop-ul, .forward-ul, .notice-ul {
+    li {
+      line-height: 24px;
+      margin-bottom: 6px;
+      padding-left: 80px;
+      position: relative;
+      span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80px;
+      }
+      .pop-inputText, .forward-inputText {
+        height: 22px;
+        line-height: 22px;
+        padding: 0 5px;
+        border: 1px #eee solid;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+    }
+  }
+  .notice-box p {
+    padding-top: 20px;
+  }
+  .pop-ul {
+    margin: 0 auto 30px;
+    width: 300px;
+    li{
+      height: 24px;
+      .pop-inputText {
+        width: 208px;
+      }
+    }
+  }
+  .tab-ui li {
+    background-color: #fdfdfd;
+    text-align: center;
+    color: #00ced1;
+    float: left;
+    width: 50%;
+    cursor: pointer;
+    padding: 10px 0;
+  }
+  .tab-ui li.active {
+    color: #fff;
+    background-color: #00ced1;
+  }
+  .forward-ul, .notice-ul {
+    margin: 20px auto 30px;
+    width: 360px;
+    li {
+      .forward-inputText {
+        width: 268px;
+      }
+      .forward-textareaText {
+        padding: 5px 4px;
+        width: 270px;
+        height: 72px;
+        resize: none;
+        line-height: 24px;
+        border: 1px #eee solid;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+      span {
+        text-align: right;
+      }
+    }
+  }
+  .pop-btn {
+    width: 360px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 25px;
+  }
+  .pop-btn a {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 4px 30px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+  .pop-btn a.send {
+    background-color: #00ced1;
+    color: #fff;
+  }
+  .pop-btn a.cancel {
+    background-color: #fcfcfc;
+    color: #00ced1;
+  }
+
+}
+
+.icon {
+  background-image: url("@{baseUrl}/img/company/icon-resume-manage.png");
+  background-repeat: no-repeat;
+}
+.icon-cur {
+  width: 16px;
+  height: 24px;
+  background-position: -2px -2px;
+}
+.icon-no-select, .icon-select {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+.icon-no-select {
+  background-position: -8px -130px;
+}
+.icon-select {
+  background-position: -38px -130px;
+}
+.icon-tel, .icon-mail {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-top: 4px;
+  display: inline-block;
+}
+.icon-tel {
+  background-position: -2px -50px;
+}
+.icon-mail {
+  background-position: -2px -24px;
+}
+.icon-search {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-position: -7px -85px;
+}
+.icon-search-s {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background-position: -24px -3px;
+}
+.icon-box-tip {
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 0;
+  left: -30px;
+  background-position: -2px -161px;
+}
+.icon-down-arrow, .icon-down-round {
+  height: 20px;
+  width: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.icon-down-arrow {
+  background-position: -34px -163px;
+}
+.icon-down-round {
+  background-position: -2px -190px;
+}
+
+#resume-manage {
+  .sidebar {
+    .resume-manage-side {
+      padding: 20px 30px 40px;
+      height: 240px;
+      position: relative;
+      background-color: #fff;
+      border: 1px solid #eee;
+      .borderRadius(4px);
+      .title-area {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+      ul li {
+        position: relative;
+        font-size: 16px;
+        height: 21px;
+        line-height: 21px;
+        padding: 12px 0;
+        border-bottom: 1px #eee dashed;
+        a {
+          color: #666;
+        }
+      }
+      ul li:last-child {
+        border-bottom: none;
+      }
+      ul li.active span.icon-right-arrow {
+        position: absolute;
+        font-size: 18px;
+        right: 0;
+        color: @mainColor;
+        top: 12px;
+      }
+      ul li.active {
+        //border-bottom: 1px @mainColor dashed;
+      }
+      ul li.active a {
+        color: @mainColor;
+      }
+    }
+  }
+  .content {
+    .resume-manage-content {
+      &-tip {
+        padding: 15px 30px;
+        margin-bottom: 15px;
+        border-bottom: 1px #eee solid;
+        span {
+          color: @c1;
+        }
+      }
+      background-color: #fff;
+      .borderRadius(4px);
+      padding: 15px 0;
+      border: 1px solid #eee;
+      .resume-manage-select {
+        line-height: 24px;
+        margin-bottom: 20px;
+        height: 24px;
+        padding-left: 30px;
+        position: relative;
+        a {
+          padding-left: 20px;
+          color: #33d8da;
+        }
+      }
+      .resume-manage-nav {
+        line-height: 24px;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px #eee solid;
+        span {
+          cursor: pointer;
+          padding-right: 20px;
+        }
+        span.cur {
+          color: #33d8da;
+        }
+      }
+      .resume-box-search {
+        margin-bottom: 30px;
+        height: 45px;
+        position: relative;
+        .icon-search {
+          margin-right: 12px;
+        }
+        .inputSearchText {
+          height: 30px;
+          line-height: 30px;
+          width: 480px;
+          padding: 4px 10px;
+          border: 1px #03cfd1 solid;
+          margin-left: 48px;
+        }
+        .searchBtn {
+          height: 40px;
+          padding-left: 20px;
+          width: 75px;
+          cursor: pointer;
+          color: #fff;
+          position: relative;
+          background-color: #33d8da;
+          line-height: 40px;
+        }
+      }
+      .resume-box {
+        padding: 15px 0 25px;
+        margin: 0 30px 10px;
+       /* border-left: 3px solid @mainColor;
+        background: @mainBackground;*/
+        color: @c2;
+        border-bottom: 1px #eee solid;
+        .resume-box-t1 {
+          line-height: 24px;
+          margin-bottom: 26px;
+          height: 24px;
+          position: relative;
+          span.resume-box-title {
+            color: #666;
+            font-weight: 600;
+            font-size: 16px;
+            padding-left: 20px;
+          }
+          span.resume-box-time {
+            font-size: 14px;
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
+        .resume-box-text, .resume-box-text2 {
+          height: 96px;
+          position: relative;
+          .resume-head {
+            height: 96px;
+            width: 96px;
+            position: absolute;
+            left: 0;
+            .background("@{baseUrl}/img/company/resume-avatar.jpg",contain);
+            /*img {
+              height: 96px;
+              width: 96px;
+            }*/
+          }
+          ul {
+            height: 96px;
+            padding-left: 120px;
+            li {
+              height: 32px;
+              line-height: 32px;
+              overflow: hidden;
+              span {
+                padding: 0 7px;
+              }
+              span.resume-user {
+                font-size: 16px;
+              }
+              a {
+                padding-left: 5px;
+              }
+              a, .view-resume, .down-resume{
+                color: #00ced1;
+                cursor: pointer;
+              }
+              .no-view-resume, .other-reason {
+                margin-right: 30px;
+                display: inline;
+                color: #d0d0d0;
+              }
+              .resume-user {
+                font-weight: 600;
+              }
+            }
+          }
+          .btn-share, .btn-reject, .btn-contact, .btn-interview, .btn-delete {
+            position: absolute;
+            cursor: pointer;
+            width: 72px;
+            text-align: center;
+          }
+          .btn-share {
+            color: #00ced1;
+            right: 100px;
+            top: 36px;
+          }
+          .btn-contact, .btn-reject, .btn-interview, .btn-delete {
+            right: 0;
+            color: @mainColor;
+            border: 1px @mainColor solid;
+            .borderRadius(3px);
+            height: 30px;
+            line-height: 30px;
+          }
+          .btn-contact, .btn-interview {
+            top: 8px;
+          }
+          .btn-reject, .btn-delete {
+            bottom: 8px;
+          }
+          .icon-phone, .icon-email {
+            font-size: 20px;
+          }
+          .pop-box {
+            position: absolute;
+            display: none;
+            font-weight: 600;
+            .borderRadius(2px);
+            z-index: 1;
+            background-color: #fff;
+            border: 1px @mainColor solid;
+            height: 24px;
+            line-height: 24px;
+            padding: 0 10px;
+            span.triangle-1, span.triangle-2 {
+              position: absolute;
+              top: 24px;
+              width: 0;
+              height: 0;
+              text-align: center;
+            }
+            span.triangle-1 {
+              left: 20px;
+              border-left: 10px solid transparent;
+              border-right: 10px solid transparent;
+              border-top: 10px solid @mainColor;
+            }
+            span.triangle-2 {
+              left: 21px;
+              border-left: 9px solid transparent;
+              border-right: 9px solid transparent;
+              border-top: 9px solid #fff;
+            }
+          }
+          .icon-star {
+            width: 16px;
+            height: 16px;
+            display: none;
+            //display: inline-block;
+            margin-left: 20px;
+            background: url("@{baseUrl}/img/icon-star.png") center center no-repeat;
+          }
+        }
+        .resume-box-text .icon {
+          margin-left: 20px;
+        }
+        .resume-box-date {
+          width: 100px;
+          height: 72px;
+          padding-top: 12px;
+          p {
+            text-align: center;
+            font-size: 14px;
+            line-height: 36px;
+          }
+        }
+        .resume-box-text2 {
+          width: 720px;
+          /*.icon {
+            margin-right: 20px;
+          }*/
+        }
+      }
+    }
+  }
+  .go-quick-recruit{
+    width: 100%;
+    padding:8px 0;
+    margin-top: 15px;
+    background: @mainColor;
+    color: #fff;
+    text-align: center;
+  }
+  .state-tips{
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: @mainBackground;
+    color: #666;
+    font-size: 15px;
+    text-align: justify;
+    em{
+      color: @mainColor;
+    }
+  }
+  .resume-manage-nav{
+    height: 40px;
+    line-height: 40px;
+    background: #00ced1;
+    text-align: center;
+    margin-top: 15px;
+    a{
+      color: #fff;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .empty-area{
+    width: 100%;
+    height: 270px;
+    background: #fff;
+    .btn{
+      padding: 8px 15px;
+      background: @mainColor;
+      color: #fff;
+      border-radius: 3px;
+    }
+    .no-resume {
+      width: 360px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+  }
+}
+

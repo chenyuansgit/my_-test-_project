@@ -1,0 +1,22 @@
+
+td,th {
+  padding     : 0 10px;
+  font-size   : 13px;
+  line-height : 32px;
+}
+
+th.table-sort {
+    padding-right : 36px;
+    text-align    : left;
+    cursor        : pointer;
+}
+/* Table Sorting */
+th.table-sort {
+  padding-right : 36px;
+  text-align    : left;
+  cursor        : pointer;
+}
+.table-sort-highlight {
+  color      : #fff;
+  background : rgb(255,86,174);
+}

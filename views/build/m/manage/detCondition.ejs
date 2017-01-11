@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/manage/jobCondition.css?name=11"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/det/IB_detCondition.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/userCenter" class="back left-icon"></a>
+        <span>求职动态</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="top-nav clearfix">
+        <a class="nav fll iblock normal" data-status=1 href="/private/job?forward=/userCenter#1">
+            <span>待筛选</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=2 href="/private/job?forward=/userCenter#2">
+            <span>待沟通</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=3 href="/private/job?forward=/userCenter#3">
+            <span>通知面试</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=4 href="/private/job?forward=/userCenter#4">
+            <span>不合适</span>
+        </a>
+        <a class="nav fll iblock det active" href="/private/det">
+            <span>外网投递</span>
+        </a>
+    </div>
+    <div class="list w100" id="list"></div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>

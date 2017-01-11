@@ -1,0 +1,97 @@
+.listone{
+  display:block;
+  box-sizing: border-box;
+  padding: 1.5rem 2rem;
+  border-bottom:1px solid #eee;
+  position:relative;
+  text-decoration: none;
+  overflow-x: hidden;
+  *{
+    text-decoration: none;
+  }
+  .icon-corner{
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    background: 0 0 no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    &-campus{
+      background-image: url("@{baseUrl}/img/position/corner-campus.png");
+    }
+  }
+  span{
+    display:inline-block;
+  }
+  .job-icon{
+    width:6.5rem;
+    height:6.5rem;
+    background-image: url('@{baseUrl}/img/default-back.png');
+    background-size: contain;
+    background-repeat: no-repeat ;
+    background-position: center;
+    background-color: #fff;
+    border:1px solid #eee;
+    margin-right: 2.2rem;
+  }
+  .j-title{
+    .name{
+      color: #333;
+      font-size: 1.4rem;
+      width:13rem;
+      word-break: keep-all;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .time{
+      color:#ababab;
+      font-size: 1.2rem;
+      margin-left: 3rem;
+      position:absolute;
+      top:1.5rem;
+      right:2rem;
+    }
+  }
+  .j-mid{
+    color:#999;
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    .company_name{
+      min-width: 3rem;
+      max-width: 16rem;
+    }
+  }
+  .j-bottom{
+    color:#6f6f6f;
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+    img{
+      margin-top: 0.3rem;
+    }
+    .address{
+      white-space: nowrap;
+      max-width: 4rem;
+      min-width: 3rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-left: 0.3rem;
+    }
+    .address-icon{
+      width: 0.9rem;
+      height: auto;
+    }
+    .workdays-icon{
+      width: 1.2rem;
+      height: auto;
+      margin-left: 1rem;
+      margin-right: 0.2rem;
+    }
+    .payment{
+      margin-left: 1rem;
+      color: #f69b9a;
+    }
+  }
+}

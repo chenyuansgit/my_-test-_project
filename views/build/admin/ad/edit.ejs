@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+    <style>
+        .ui_timepicker{
+            z-index: 10001;
+        }
+    </style>
+
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-11">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <script type="text/javascript">
+                            var $path_assets = "assets";//this will be used in loading jQuery UI if needed!
+                        </script>
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right"> 广告时间 </label>
+                                <div class="col-sm-1">
+                                    <input type="text" name="datetime" class="ui_timepicker enter-content start-time" id="startTime" value="<%=new Date(ad.start_time).format("yyyy-MM-dd hh:mm")%>" placeholder="请输入开始时间">
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right"> </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="datetime" class="ui_timepicker enter-content end-time" id="endTime" value="<%=new Date(ad.end_time).format("yyyy-MM-dd hh:mm")%>" placeholder="请输入结束时间">
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 广告类型 </div>
+
+                                <div class="col-sm-11">
+                                    <!--<input type="number" id="term" placeholder="请输入快照期数,只支持数字,表示第几期(一经确认不能修改)" class="col-xs-12 col-sm-8" />-->
+                                    <select class="form-control col-xs-12 col-sm-8" id="type_id" style="max-width: 300px;">
+                                        <%if(ad.type_id == 0){%>
+                                        <option value="0" selected="selected">暂无选择</option>
+                                        <%}else{%>
+                                        <option value="0">暂无选择</option>
+                                        <%}%>
+                                        <%if(ad.type_id == 1){%>
+                                        <option value="1" selected="selected">公司详情</option>
+                                        <%}else{%>
+                                        <option value="1">公司详情</option>
+                                        <%}%>
+                                        <%if(ad.type_id == 2){%>
+                                        <option value="2" selected="selected">职位详情</option>
+                                        <%}else{%>
+                                        <option value="2">职位详情</option>
+                                        <%}%>
+                                        <%if(ad.type_id == 3){%>
+                                        <option value="3" selected="selected">活动页面</option>
+                                        <%}else{%>
+                                        <option value="3">活动页面</option>
+                                        <%}%>
+                                        <%if(ad.type_id == 4){%>
+                                        <option value="4" selected="selected">第三方页面</option>
+                                        <%}else{%>
+                                        <option value="4">第三方页面</option>
+                                        <%}%>
+                                        <%if(ad.type_id == 5){%>
+                                        <option value="5" selected="selected">包打听</option>
+                                        <%}else{%>
+                                        <option value="5">包打听</option>
+                                        <%}%>
+                                    </select>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="mainTitle"> 广告标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="mainTitle" placeholder="请输入主标题，不超过16个字" class="col-xs-10 col-sm-5 enter-content main-title" value="<%=ad.title%>"/>
+                                </div>
+                                <p>&nbsp;</p>
+                                <%if(ad.category_id == 2){%>
+                                <label class="col-sm-1 control-label no-padding-right" for="sideTitle"> 副标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="sideTitle" value="<%=ad.sub_title%>"  placeholder="请输入副标题，不超过24个字" class="col-xs-10 col-sm-5 enter-content side-title" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <%}%>
+                                <label class="col-sm-1 control-label no-padding-right" for="adOrder"> 广告排序 </label>
+                                <div class="col-sm-11">
+                                    <%if(ad.category_id == 3){%>
+                                    <input type="text" id="adOrder"  placeholder="输入整数1——4,数字越大越靠前" min="1" max="4" class="col-xs-10 col-sm-5 enter-content order-4" value="<%=ad.order%>" />
+                                    <%}else{%>
+                                    <input type="text" id="adOrder"  placeholder="输入整数1——8,数字越大越靠前" min="1" max="8" class="col-xs-10 col-sm-5 enter-content order-8" value="<%=ad.order%>" />
+                                    <%}%>
+                                </div>
+                                <%if(ad.category_id == '1' || ad.category_id == '2' || ad.category_id == '3'|| ad.category_id == '4'|| ad.category_id == '6'){%>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="skipLink"> 跳转链接 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="skipLink" placeholder="请输入跳转链接" class="col-xs-10 col-sm-5 enter-content skip-link" value="<%=ad.url%>" />
+                                </div>
+                                <%}%>
+                                <%if(ad.category_id=='5'){%>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 文章ID </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="articleId" placeholder="" class="col-xs-10 col-sm-5" />
+                                </div>
+                                <%}%>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="addImage"> 广告图片</label>
+                                <div class="col-sm-11">
+
+                                    <%
+                                    var flag = 0;//图片信息传的是json，跟以前的区分开，以前的是url
+                                    if(ad.image.indexOf('width')>0){
+                                        flag = 1;
+                                        var img = eval('(' + ad.image + ')');
+                                    }
+                                    %>
+                                    <%if(ad.category_id == "1"){%>
+                                    <p>图片大小不超过3M,900*500</p>
+                                    <div class="company-pic" <%if(ad.image.length>3){%>style="background-image: url('<%=flag==1?img.url:ad.image%>');" <%}%>>
+                                    <%}else if(ad.category_id == "2"){%>
+                                    <p>图片大小不超过3M,500*500</p>
+                                    <div class="ad-small-pic enter-content input-pic company-pic" <%if(ad.image.length>3){%>style="background-image: url('<%=flag==1?img.url:ad.image%>');width: 240px;height: 240px;padding: 0" <%}%>>
+                                    <%}else if(ad.category_id == "3"||ad.category_id == "6"){%>
+                                    <p>图片大小不超过3M,240*140</p>
+                                    <div class="ad-small-pic enter-content input-pic company-pic" <%if(ad.image.length>3){%>style="background-image: url('<%=flag==1?img.url:ad.image%>');width: 240px;height: 140px;padding: 0" <%}%>>
+                                    <%}else if(ad.category_id == "4"){%>
+                                        <p>图片大小不超过3M,640*640</p>
+                                        <div class="ad-small-pic enter-content input-pic company-pic" <%if(ad.image.length>3){%>style="background-image: url('<%=flag==1?img.url:ad.image%>');width: 320px;height: 320px;padding: 0" <%}%>>
+                                            <%}%>
+                                        <input type="file" class="avatar input-transparent" id="avatar" name="avatar" />
+                                        <span class="avatar-mask"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <div>
+                                <label class="col-sm-1 control-label no-padding-right" for="adDesc"> 广告描述 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="adDesc" placeholder="请输入广告描述，便于查找" class="col-xs-10 col-sm-5" value="<%=ad.desc%>"/>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="ib-how">
+                                <span  class="ib-confirm"><a href="" id="buttonAdd">确定</a></span>
+                                <span  class="ib-quit"><a href="" id='buttonCancel'>取消</a></span>
+                            </div>
+                            <!-- PAGE CONTENT ENDS -->
+
+                    </div>
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/regex.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.category_id = '<%=ad.category_id%>';
+    global.status = '<%=ad.status%>';
+    global.id = '<%=ad.id%>';
+    global.img_info = '<%-ad.image||{}%>';
+</script>
+<script type="text/javascript">
+    $(function() {
+        //时间戳格式转换
+        Date.prototype.format = function(format) {
+            var o = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S": this.getMilliseconds()
+            };
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+
+
+        var category_id = global.category_id;
+        var status = global.status;
+        var id = global.id;
+
+        //给sidebar加样式
+        var url = location.href;
+        if(url.indexOf('/ad/')){
+            $('#adMenu').addClass('active open');
+            if(category_id == 1)$('#adMenu ul li:eq(0)').addClass('active');
+            else if(category_id == 2)$('#adMenu ul li:eq(1)').addClass('active');
+            else if(category_id == 3)$('#adMenu ul li:eq(2)').addClass('active');
+            else if(category_id == 4)$('#adMenu ul li:eq(3)').addClass('active');
+        }
+
+        //时间插件
+        $(".ui_timepicker").datetimepicker({
+            //showOn: "button",
+            //buttonImage: "./css/images/icon_calendar.gif",
+            //buttonImageOnly: true,
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        })
+
+        //图片上传
+        var avatar,imageInfo;
+        try{
+             imageInfo = JSON.parse(global.img_info);
+        }catch(e){}
+
+        var uploader = Qiniu.uploader({
+            runtimes: 'html5,flash,html4',    //上传模式,依次退化
+            browse_button: 'avatar',       //上传选择的点选按钮，**必需**
+            uptoken_url: '/api/upload/upToken?mediaType=image',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+            // downtoken_url: '/downtoken',
+            // Ajax请求downToken的Url，私有空间时使用,JS-SDK将向该地址POST文件的key和domain,服务端返回的JSON必须包含`url`字段，`url`值为该文件的下载地址
+            // uptoken : '<Your upload token>', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+            unique_names: false, // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+            save_key: false,   // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+            domain: 'http://qiniu-plupload.qiniudn.com/',   //bucket 域名，下载资源时用到，**必需**
+            get_new_uptoken: false,  //设置上传文件的时候是否每次都重新获取新的token
+            //  container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
+            max_file_size: '5mb',           //最大文件体积限制
+            flash_swf_url: 'js/plupload/Moxie.swf',  //引入flash,相对路径
+            max_retries: 3,                   //上传失败最大重试次数
+            dragdrop: true,                   //开启可拖曳上传
+            drop_element: 'container',        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+            chunk_size: '5mb',                //分块上传时，每片的体积
+            auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传,
+            //x_vars : {
+            //    自定义变量，参考http://developer.qiniu.com/docs/v6/api/overview/up/response/vars.html
+            //    'time' : function(up,file) {
+            //        var time = (new Date()).getTime();
+            // do something with 'time'
+            //        return time;
+            //    },
+            //    'size' : function(up,file) {
+            //        var size = file.size;
+            // do something with 'size'
+            //        return size;
+            //    }
+            //},
+            init: {
+                'FilesAdded': function(up, files) {
+                    plupload.each(files, function(file) {
+                        // alert('file is added in the queque');
+                        // 文件添加进队列后,处理相关的事情
+                    });
+                },
+                'BeforeUpload': function(up, file) {
+                    // alert('before upload');
+                    // 每个文件上传前,处理相关的事情
+                },
+                'UploadProgress': function(up, file) {
+                    // alert('uploading');
+                    // 每个文件上传时,处理相关的事情
+                },
+                'FileUploaded': function(up, file, info) {
+                    avatar = "http://image.internbird.cn/"+JSON.parse(info).key;
+                    $(".company-pic").css({"background-image":"url('"+avatar+"')"});
+                    imageInfo = info;
+                    // alert('imageUrl=' + avatar);
+                    // mr_info.avatar = avatar;
+                    // mr_info.uid = uid;
+                    // setStorage("mr_info",JSON.stringify(mr_info));
+                    // alert('upload success');
+
+                    // 每个文件上传成功后,处理相关的事情
+                    // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                    // {
+                    //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                    //    "key": "gogopher.jpg"
+                    //  }
+                    // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+
+                    // var domain = up.getOption('domain');
+                    // var res = parseJSON(info);
+                    // var sourceLink = domain + res.key; 获取上传成功后的文件的Url
+                },
+                'Error': function(up, err, errTip) {
+                    alert('upload error');
+                    //上传出错时,处理相关的事情
+                },
+                'UploadComplete': function(data) {
+
+                    //队列文件处理完毕后,处理相关的事情
+                },
+                'Key': function(up, file) {
+                    // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                    // 该配置必须要在 unique_names: false , save_key: false 时才生效
+
+                    var key = md5("admin")+"/"+md5(+new Date)+".png";
+                    // do something with key here
+                    return key
+                }
+            }
+        });
+        //上传广告
+        var startTime, endTime, type_id ,adOrder,mainTitle, sideTitle, skipLink, imageUrl, adDesc,addurl,flag=1;
+        //Date.parse($("#time-1").val().trim().replace(/-/g,"/"));
+        //if(!addImage.length) alert('please input image');
+        $('#buttonCancel').click(function(){
+            window.history.back();
+        })
+
+        //判断输入
+        $('.enter-content').blur(function(){
+            startTime = parseInt(Date.parse($("input#startTime").val()))/1000;
+            endTime = parseInt(Date.parse($("input#endTime").val()))/1000;
+            if($(this).hasClass("start-time")) {
+                if(!startTime) {
+                    $(this).after("<span class='input-tips red'>请输入开始时间</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("end-time")){
+                if(!endTime){
+                    $(this).after("<span class='input-tips red'>请输入结束时间</span>");
+                    flag = 0;
+                }else flag =1;
+            }
+            else if($(this).hasClass("main-title")){
+                if($('.main-title').val().length>16 || $('.main-title').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入主标题，不超过16个字</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("side-title")){
+                if($('.side-title').val().length>24 || $('.side-title').val().length<=0){
+                    $(this).after("<span class='input-tips red'>不超过24个字</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("order-8")){
+                if(parseInt($('.order-8').val())>8 || parseInt($('.order-8').val()) <=0 || $('.order-8').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入正确的序号</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("order-4")){
+                if(parseInt($('.order-4').val())>4 || parseInt($('.order-4').val()) <=0 || $('.order-4').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入正确的序号</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+            else if($(this).hasClass("skip-link")){
+                if($('.skip-link').val().length<=0){
+                    $(this).after("<span class='input-tips red'>请输入链接</span>");
+                    flag = 0;
+                }else flag = 1;
+            }
+        })
+        $(".enter-content").focus(function(){
+            $(this).siblings(".input-tips").remove();
+        });
+        $('#buttonAdd').click(function(){
+            startTime = parseInt(Date.parse($("input#startTime").val()));
+            endTime = parseInt(Date.parse($("input#endTime").val()));
+            type_id = $('#type_id option:selected').val();
+            adOrder = $('input#adOrder').val();
+            mainTitle= $('input#mainTitle').val();
+            sideTitle = $('input#sideTitle').val();
+            skipLink= $('input#skipLink').val().trim();
+            imageUrl = avatar;
+            var img = {};
+            //判断图片是否重新上传
+            if(avatar != undefined){
+                 var obj = $.parseJSON(imageInfo);
+                 img.url = imageUrl;
+                 img.height = obj.height;
+                 img.width = obj.width;
+
+            }else{
+                  img = imageInfo || {};
+            }
+            var image = JSON.stringify(img);
+            adDesc= $('input#adDesc').val();
+            addurl = '/ad/edit/' + id;
+            if( adOrder.length<=0 || mainTitle.length<=0 || !startTime || !endTime|| flag == 0 || type_id ==0)
+            {
+                alert('请输入正确的内容');
+            } else if(!regex.url.test(skipLink)){
+                alert('请输入跳转链接(地址前面请加上："http://"或"https://")');
+            }else{
+                $.ajax({
+                    type: 'POST',
+                    url: addurl,
+                    dataType: 'json',
+                    data: {
+                        option: {
+                            title:mainTitle,
+                            sub_title:sideTitle,
+                            category_id: category_id,
+                            start_time: startTime,
+                            end_time: endTime,
+                            type_id :type_id,
+                            order: parseInt(adOrder),
+                            url: skipLink,
+                            image: image,
+                            desc: adDesc,
+                            status: status
+                        }
+                    },
+                   /* if (!option.order || !(option.order < 8 && option.order >= 1) || !option.start_time || !option.end_time || !option.image || !option.url || !option.category_id || option.id) {
+                    return res.json(resp_status_builder.build(10002));
+                }*/
+                    success: function (data) {
+                        if (data.status == '10000') {
+                            //alert('POST success');
+                            window.location.href = '/ad/list?status=1&page=1&category_id=' + category_id;
+                        }
+                        else {
+                            alert('POST error\n' + data.status + ':' + data.desc);
+                        }
+                    }
+                })
+            }
+            return false;
+        })
+
+    })
+</script>
+
+</body>
+</html>

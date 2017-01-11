@@ -1,0 +1,103 @@
+@import "../../common/i/reconsitution";
+@import "../../common/i/index";
+@import "../../common/i/animation";
+body{
+  background-color: #fff;
+}
+.main{
+  padding-top: 2rem;
+  background-color: #fff;
+  .top{
+    .icon-back{
+      padding: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: 1rem;
+      background: url('@{baseUrl}/img/i/icon-left-blue.png') center no-repeat;
+      background-size: 70% auto;
+    }
+  }
+  .logo{
+    width: 7.2rem;
+    height: 10.44rem;
+    margin: 3rem auto 0;
+    background: url('@{baseUrl}/img/i/logo.png') center no-repeat;
+    background-size: 100% auto;
+  }
+  .step-area{
+    margin-top: 5rem;
+    font-size: 1.4rem;
+    .line{
+      position: relative;
+      width: 68%;
+      height: 3rem;
+      line-height: 3rem;
+      margin: 0.5rem auto;
+      border-bottom: 0.1rem solid #eee;
+      input{
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .machine-code{
+        position: absolute;
+        width: 6rem;
+        top: -0.3rem;
+        right: 3rem;
+      }
+      .btn-refresh{
+        position: absolute;
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        background: url("@{baseUrl}/img/i/refresh.png") center no-repeat;
+        background-size: contain;
+        top: 50%;
+        margin-top: -0.75rem;
+        right: 0.5rem;
+      }
+      .btn-sendCode{
+        position: absolute;
+        top: 0.2rem;
+        right: 0.5rem;
+        background-color: #fff;
+        padding: 0 1rem;
+        line-height: 2.2rem;
+        border: 1px solid #afeaea;
+        border-radius: 1rem;
+        font-size: 1.2rem;
+        color: #22cdd0;
+      }
+      .btn-resendCode{
+        position: absolute;
+        display: none;
+        top: 0.2rem;
+        right: 0.5rem;
+        background-color: #fff;
+        width: 8rem;
+        line-height: 2.2rem;
+        border: 1px solid #eee;
+        border-radius: 1.5rem;
+        font-size: 1.2rem;
+        color: #999;
+      }
+    }
+    .btn{
+      width: 75%;
+      height: 4rem;
+      line-height: 4rem;
+      background-color: @mainColor;
+      color: #fff;
+      text-align: center;
+      margin: 2.8rem auto 0;
+      border-radius: 1.8rem;
+    }
+    .tips{
+      width: 68%;
+      margin: 0 auto 1rem;
+      color: #888;
+      word-break: break-all;
+      font-size: 1.3rem;
+    }
+  }
+}

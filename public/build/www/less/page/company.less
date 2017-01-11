@@ -1,0 +1,545 @@
+@import "../common/style";
+@import "../common/header";
+@import "../common/footer";
+@import "../common/title";
+@import "../common/overlay";
+@import "../custom/city";
+@import "../common/paging";
+@import "../fonts";
+
+//公司
+.h3-title {
+  position: relative;
+  font-size:16px;
+  height: 36px;
+  line-height: 20px;
+  padding-left: 10px;
+  li {
+    text-align: center;
+    position: relative;
+    float: left;
+    padding-bottom: 16px;
+    cursor: pointer;
+    color: @c2;
+    span.icon-sel-up {
+      font-size: 12px;
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+    }
+  }
+  li.cur {
+    color: @mainColor;
+  }
+  li.title-line {
+    margin: 0 12px;
+  }
+  &-line {
+    width: 3px;
+    height: 15px;
+    left: 0;
+    top: 2px;
+    position: absolute;
+    background-color: @c1;
+  }
+}
+//公司头部
+.company-top {
+  width: 1024px;
+  margin-left:auto;
+  margin-right:auto;
+  height: 160px;
+  .company-base {
+    position: relative;
+    height: 162px;
+    .company-title, .edit-state-title {
+      position: relative;
+      padding-left: 221px;
+      .company-logo {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 160px;
+        height: 160px;
+        .background("@{baseUrl}/img/bird.png",contain);
+        border: 1px #eee solid;
+      }
+    }
+    .edit-state-title {
+      height: 36px;
+      line-height: 36px;
+      padding-top: 30px;
+    }
+    .company-title {
+      height: 78px;
+      padding-right: 50px;
+      .company-name {
+        height: 36px;
+        line-height: 36px;
+        font-size: 24px;
+        padding: 8px 0px;
+      }
+      .company-idea {
+        height: 28px;
+        line-height: 28px;
+        color: @c2;
+        font-size: 16px;
+      }
+    }
+    .company-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 36px;
+      height: 56px;
+      color: @c2;
+      cursor: pointer;
+      text-align: center;
+      .icon-favorite, .icon-isfavorite {
+        font-size: 26px;
+        height: 35px;
+        /*cursor: pointer;*/
+      }
+      /*.icon-favorite {
+        color: @c2;
+      }
+      .icon-isfavorite {
+        color: @c1;
+      }
+      a {
+        font-size:16px;
+        padding-left:10px;
+        color: @c2;
+      }
+      a:hover, .icon-favorite:hover {
+        color: @mainColor;
+      }*/
+      p {
+        position: absolute;
+        top: 35px;
+        width: 36px;
+        text-align: center;
+        height: 18px;
+        line-height: 18px;
+      }
+      .company-icon:hover {
+        color: @mainColor;
+      }
+    }
+    .company-isfavorite,  .company-isfavorite:hover {
+      color: @c1;
+    }
+    .no-favorite, .is-favorite {
+      display: none;
+      position: absolute;
+      width: 80px;
+      height: 32px;
+      top: 64px;
+      z-index: 1;
+      right: -24px;
+      span.icon-up {
+        position: absolute;
+        left: 50%;
+        margin-left: -8px;
+        width: 0;
+        height: 0;
+        text-align: center;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #eeeeee;
+      }
+      span.icon-text {
+        margin-top: 8px;
+        text-align: center;
+        height: 24px;
+        color: @c2;
+        width: 80px;
+        line-height: 24px;
+        background-color: #eeeeee;
+        .borderRadius(3px);
+      }
+    }
+    .edit-state-title {
+      .company-name {
+        width: 242px;
+        margin-right: 20px;
+      }
+      .company-name input[type=text] {
+        width: 220px;
+      }
+      .company-idea {
+        width: 362px;
+        margin-right: 20px;
+      }
+      .company-idea input[type=text] {
+        width: 340px;
+      }
+      input[type=file], .notice {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        cursor: pointer;
+      }
+      input[type=file] {
+        z-index: 1;
+        height: 100%;
+        border: none;
+        padding: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        top: 0;
+        cursor: pointer;
+      }
+      .notice {
+        height: 20px;
+        line-height:20px;
+        bottom: 0;
+        color: @mainColor;
+        background: #eee;
+        text-align: center;
+      }
+    }
+    .btn-company-edit, .btn-company-console {
+      top: 0;
+      right: 0;
+    }
+    ul {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 803px;
+      height: 56px;
+      padding-top: 18px;
+      border-top: 1px #eee dashed;
+      li {
+        width: 190px;
+        float: left;
+        p {
+          color: @c2;
+          text-align: center;
+        }
+        p.data {
+          color: #333;
+          font-size:16px;
+        }
+      }
+      li.line {
+        border-right:1px #eee solid;
+      }
+    }
+  }
+}
+.edit-state-title .btn-save-area {
+  margin-top: 0;
+}
+//公司描述
+.company-detail, .company-address, .company-jobs {
+  padding: 36px 28px 36px 78px;
+  .btn-company-edit, .btn-company-console {
+    top: 36px;
+    right: 28px;
+  }
+}
+.company-detail {
+  .company-intro {
+    color: @c2;
+    line-height: 24px;
+  }
+}
+//公司地址
+.company-address {
+  .location-area-content {
+    height: 290px;
+    margin: 0 auto;
+    .map-area {
+      width: 400px;
+      height: 100%;
+      .map {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .location-area {
+      width: 300px;
+      overflow-y: auto;
+      padding-right: 10px;
+      height: 100%;
+      .locations {
+        li {
+          border-bottom: 1px #eee dashed;
+          .location-desc {
+            cursor: pointer;
+            padding: 0 0 10px 20px;
+          }
+          .location-title {
+            font-size: 16px;
+            height: 30px;
+            line-height: 30px;
+            padding-bottom:5px;
+            position: relative;
+            em {
+              color: @c2;
+            }
+            span.icon-locate2 {
+              color: @c1;
+              position: absolute;
+              padding-left:2px;
+              font-size:20px;
+            }
+            span.location-city {
+              padding-left:20px;
+            }
+            .btn-edit {
+              position: absolute;
+              right: 0;
+              color: @mainColor;
+              cursor: pointer;
+            }
+          }
+        }
+        .icon-locate2 {
+          font-size:20px;
+          padding-right:5px;
+          padding-left:2px;
+          color: @c1;
+        }
+        .location-total-area {
+          text-align: center;
+          padding-top:10px;
+          span.location-total {
+            color: @c1;
+            padding: 0 5px;
+          }
+        }
+      }
+    }
+  }
+}
+//实习职位
+.company-jobs {
+  &-box {
+    margin-bottom:20px;
+    padding: 10px 20px;
+  }
+  .jobs-item{
+    .job-info {
+      .borderRadius(2px);
+      border: 1px #eee solid;
+      padding: 10px 20px;
+      position: relative;
+      margin-bottom:20px;
+      &-top {
+        padding-bottom:10px;
+        span.job-info-name {
+          padding-right:30px;
+          font-size:16px;
+          a {
+            color: @mainColor;
+          }
+        }
+        span.job-info-date {
+          font-size:12px;
+          color: @c2;
+        }
+      }
+      &-bottom {
+        color: @c2;
+        span.icon-locate, span.icon-calendar, span.icon-salary {
+          font-size:16px;
+          padding-right:4px;
+        }
+        span.icon-calendar, span.icon-salary {
+          padding-left:24px;
+        }
+        span.icon-salary, span.job-info-money {
+          color: @c1;
+        }
+      }
+      .btn-deliver {
+        padding: 2px 0;
+        height: 20px;
+        width: 80px;
+        text-align: center;
+        line-height:20px;
+        border: 1px @mainColor solid;
+        background: transparent;
+        color: @mainColor;
+        .borderRadius(4px);
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        &.off {
+          color: #999;
+          background: #ddd;
+          border: 1px #ddd solid;
+          cursor: auto;
+        }
+      }
+    }
+  }
+}
+
+//公司基本信息
+.company-base-info {
+  ul li {
+    padding-bottom: 10px;
+    color: @c2;
+    span.icon-company-nature2, span.icon-company-nature, span.icon-locate, span.icon-company-nums,span.icon-company-site {
+      font-size:16px;
+      width: 20px;
+      display: inline-block;
+      padding-right:10px;
+      text-align: center;
+    }
+  }
+}
+//公司标签
+.company-tags {
+  .company-label {
+    display: inline-block;
+    padding: 0 4px;
+    border: 1px #eee solid;
+    margin: 0 3px 6px;
+    text-align: center;
+    .tag-delete {
+      padding: 0 4px 0 8px;
+    }
+  }
+}
+
+
+//公司编辑
+.btn-company-edit, .btn-company-console {
+  position: absolute;
+  cursor: pointer;
+  color: @mainColor;
+  span.icon-edit {
+    font-size:18px;
+    padding-right:4px;
+  }
+}
+input[type=text] {
+  border: 1px #eee solid;
+  height: 24px;
+  line-height: 24px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: @c2;
+}
+.btn-save-area, .mt {
+  .btn-save, .btn-console, .console, .delete {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    padding: 6px 15px;
+    .borderRadius(4px);
+  }
+  .btn-save {
+    margin-right:8px;
+  }
+  .btn-console, .console {
+    color: @mainColor;
+  }
+}
+.btn-save-area{
+  margin-top: 10px;
+}
+.company-base-info, .company-tags {
+  .btn-company-edit, .btn-company-console {
+    top: 26px;
+    right: 20px;
+  }
+}
+//编辑模式
+.edit-state {
+  display: none;
+  position: relative;
+  &-info {
+    .company-info {
+      position: relative;
+      padding-bottom: 10px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+  .wd {
+    position: absolute;
+    left: 40px;
+    width: 190px;
+    top: 0;
+    .company-type, .company-trade-type, .company-city, .company-scale, .company-page {
+      width: 168px;
+      display: inline-block;
+      padding: 0 10px;
+      height: 28px;
+      border: 1px #eee solid;
+      line-height: 30px;
+      text-align: left;
+      outline: none;
+    }
+  }
+  .selector-city {
+    left: 40px;
+    top: 29px;
+  }
+  .selector {
+    width: 188px;
+    top: 29px;
+    left: 40px;
+    border: 1px solid #eee;
+    display: none;
+  }
+}
+
+//公司标签
+.company-tags {
+  .label-top {
+    padding-bottom:10px;
+    .label-count {
+      color: @c1;
+    }
+  }
+  .label-add-area {
+    padding: 12px 0;
+    .new-label {
+      width: 120px;
+      outline: none;
+      color: @c2;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    span.btn-labeling {
+      background-color: @mainColor;
+      color: #fff;
+      .borderRadius(4px);
+      height: 24px;
+      line-height: 24px;
+      padding: 6px 15px;
+    }
+  }
+}
+
+.popBox{
+  .confirm-deliver{
+    width: 183px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+  .deliver-success,.deliver-repeat{
+    width: 260px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+  .deliver-upperLimit{
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 20px;
+    .btn-link{
+      margin-right: 15px;
+    }
+  }
+}
+/*company end*/

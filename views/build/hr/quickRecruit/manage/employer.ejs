@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/quickRecruit/manage.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/manage/IB_employer.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include ../../quickRecruit/common/headerHr.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+                <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+                <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+                <li class="curr">
+                    <span class="icon-curr-up"></span>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/talentPool/list">人才库</a></li>
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container mb20">
+    <div class="center-content">
+        <div class="quickRecruit clearfix">
+            <div class="left w800 fl">
+                <div class="left-content">
+                    <div class="control-panel">
+                        <div class="top-banner"></div>
+                        <%if(company.avatar){%>
+                        <div class="logo" style="background-image:url('<%=company.avatar%>?imageView2/2/w/176/h/176')"></div>
+                        <%}else{%>
+                        <div class="logo"></div>
+                        <%}%>
+                        <h3><em class="company-name"><%=company.name%></em>的快招</h3>
+                    </div>
+                    <div class="top-nav">
+                        <ul class="nav-list clearfix">
+                            <%
+                                var status_1 = "",status_2 = "",status_3 = "",status_4 = "";
+                                switch (parseInt(status)){
+                                    case 2 : status_2 = "curr";break;
+                                    case 3 : status_3 = "curr";break;
+                                    case 4 : status_4 = "curr";break;
+                                    default: status_1 = "curr";break;
+                                }
+                            %>
+                            <li class="nav <%=status_1%>"><a href="#1">等待回应</a></li>
+                            <li class="nav <%=status_2%>"><a href="#2">已接受邀请</a></li>
+                            <li class="nav <%=status_3%>"><a href="#3">已拒绝邀请</a></li>
+                            <li class="nav <%=status_4%>"><a href="#4">过期未回应</a></li>
+                        </ul>
+                    </div>
+                    <div class="resume-area">
+                        <%if(invites&& invites.length){%>
+                        <%for(var i = 0,len = invites.length;i<len && invites[i].name;++i){%>
+                        <div class="resume-box resume-box-quickRecruit">
+                            <div class="resume-box-top">
+                                邀请<span class="position-name"><%=invites[i].job_name%></span>
+                                <i class="icon-quick-corner"></i>
+                                <span class="deliver-time"><%=new Date(invites[i].create_time).format('yyyy-MM-dd hh:mm')%>&nbsp;邀请</span>
+                            </div>
+                            <div class="resume-info">
+                                <%if(invites[i].avatar && invites[i].avatar !='undefined'){%>
+                                <div class="resume-head" style="background-image:url('<%=invites[i].avatar%>?imageView2/2/w/192/h/192') "></div>
+                                <%}else{%>
+                                <div class="resume-head"></div>
+                                <%}%>
+                                <ul>
+                                    <%try{%>
+                                    <li>
+                                        <div class="fl">
+                                            <span class="resume-name"><%=invites[i].name%></span>
+                                            <span><%=invites[i].male?'男':'女'%>｜<%=JSON.parse(invites[i].education_detail)[0].school||''%>｜<%=JSON.parse(invites[i].education_detail)[0].major||''%>｜<%=JSON.parse(invites[i].education_detail)[0].stage||''%></span>
+                                        </div>
+                                    </li>
+                                    <%}catch(e){%>
+                                    <li>
+                                        <div class="fl">
+                                            <span class="resume-name"><%=invites[i].name%></span>
+                                            <span><%=invites[i].male?'男':'女'%></span>
+                                        </div>
+                                    </li>
+                                    <%}%>
+                                    <%if(invites[i].status == 2){%>
+                                    <li><a href="/resume/detail/<%=invites[i].resume_id%>?jid=<%=invites[i].job_id%>" class="fl" target="_blank">点击查看简历</a></li>
+                                    <%}%>
+                                    <%if(invites[i].status == 1){%>
+                                        <%if(!invites[i].term_id){%>
+                                        <li> <a href='/talentPool/detail/<%=invites[i].user_id%>' class='fl' target='_blank'>点击查看简历</a></li>
+                                        <%}else{%>
+                                        <li> <a href='/quickRecruit/detail/<%=invites[i].qid%>' class='fl' target='_blank'>点击查看简历</a></li>
+                                        <%}%>
+                                    <%}%>
+                                </ul>
+                                <!-- <%if(invites[i].status == 1){%>
+                                <span class="invite-state invite-state-0">待处理</span>
+                                <%}else if(invites[i].status == 2){%>
+                                <span class="invite-state invite-state-1">已接受</span>
+                                <%}else if(invites[i].status == 3){%>
+                                <span class="invite-state invite-state-2">已拒绝</span>
+                                <%}else{%>
+                                <span class="invite-state invite-state-0">已过期</span>
+                                <%}%>-->
+                            </div>
+                        </div>
+                        <%}%>
+                        <%}else{%>
+                        <div class="empty-area empty-area-invite">
+                            <div class="no-invite">
+                                <div class="bg"></div>
+                                <p class="notice-word">没有找到符合条件的快招简历信息...</p>
+                                <a class="btn btn-invite" href="/talentPool/list" target="_blank">前往快招</a>
+                            </div>
+                        </div>
+                        <%}%>
+                    </div>
+                    <%if(invites && invites.length ==10){%>
+                    <div class="load-tips">
+                        <span class="btn-load">加载更多</span>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <div class="right w330 fr">
+                <div class="jump-area">
+                    <div class="clearfix">
+                        <a class="fl" href="/quickRecruit/process">快招攻略</a>
+                        <a class="fr" href="/resume/list">简历管理</a>
+                    </div>
+                </div>
+                <ul class="connect-tips">
+                    <li>
+                        <div class="list-title">联系我们</div>
+                    </li>
+                    <li class="methods">
+                        <p>客服邮箱&nbsp;:&nbsp;service@internbird.com</p>
+                        <p>客服热线&nbsp;:&nbsp;010-57460008</p>
+                    </li>
+                    <li class="bottom">
+                        <div class="qrcode"></div>
+                        <div class="info">快招有什么问题，快告诉职位君吧！</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../../common/footer.ejs%>
+<!--Js-->
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.original_status = '<%=status%>';
+</script>
+<%include ../../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

@@ -1,0 +1,54 @@
+<div class="popBox popBox-join">
+    <div class="popBox-title tc">第<%=quick_recruit_term.term_id?quick_recruit_term.term_id:"?"%>期快招精选报名</div>
+    <div class="tc mg">报名时间</div>
+    <%if(quick_recruit_term.term_id){%>
+    <div class="tc mg"><%=new Date(quick_recruit_term.start_time).format("yyyy-MM-dd mm:ss")%>&nbsp;——&nbsp;<%=new Date(quick_recruit_term.end_time).format("yyyy-MM-dd mm:ss")%></div>
+    <%}else{%>
+    <div class="tc mg no-time">暂时没有开放的快招精选，敬请期待下一期</div>
+    <%}%>
+    <div class="tc mg">报名须知</div>
+    <ul class="tips">
+        <li>
+            <i></i>加入快招精选，您将拥有在人才库中头条显示的机会；
+        </li>
+        <li>
+            <i></i>快招精选每周二、四各推出一期；
+        </li>
+        <li>
+            <i></i>若申请通过，实习鸟工作人员会通过电话、邮件等方式联系你，请保持通讯畅通
+        </li>
+    </ul>
+    <div class="btn-area">
+        <%if(apply<1){%>
+        <span class="btn-apply btn" data-term-id="<%=quick_recruit_term.term_id%>">申请快招精选</span>
+        <%}else{%>
+        <span class="btn btn-applied">已申请</span>
+        <%}%>
+    </div>
+</div>
+<%if(quick_recruit_term.term_id){%>
+<div class="popBox popBox-apply-succ">
+    <div class="popBox-title tc">申请成功</div>
+    <p>快招精选申请成功，我们的工作人员在抓紧审核，耐心等待下哦~</p>
+    <div class="btn-area clearfix">
+        <div class="btn-ok btn fl">知道了</div>
+        <a href="/quickRecruit/manage" class="fr"><div class="btn-back btn">返回快招</div></a>
+    </div>
+</div>
+<div class="popBox popBox-apply-again">
+    <div class="popBox-title tc">申请失败</div>
+    <p>不能重复申请同一期的快招精选</p>
+    <div class="btn-area clearfix">
+        <div class="btn-ok btn fl">知道了</div>
+        <a href="/quickRecruit/manage" target="_blank" class="fr"><div class="btn-back btn">查看我的快招</div></a>
+    </div>
+</div>
+<div class="popBox popBox-no-resume">
+    <div class="popBox-title tc">申请失败</div>
+    <p>您还没有创建在线简历，无法申请快招精选</p>
+    <div class="btn-area clearfix">
+        <div class="btn-ok btn fl">知道了</div>
+        <a href="/resumeCreate" target="_blank" class="fr"><div class="btn-blue btn">去创建简历</div></a>
+    </div>
+</div>
+<%}%>

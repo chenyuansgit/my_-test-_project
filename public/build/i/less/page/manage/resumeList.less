@@ -1,0 +1,97 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+
+.main {
+  .tab-area {
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    border-top: 0.1rem solid #eee;
+    background: #fff;
+    .tab {
+      width: 23%;
+      float: left;
+      margin: 0 1%;
+      text-align: center;
+      color: #666;
+      font-size: 1.4rem;
+      &.curr {
+        color: @mainColor;
+        border-bottom: 0.2rem solid @mainColor;
+      }
+    }
+  }
+  .resumes-area {
+    padding-bottom: 1rem;
+    .resume {
+      display: block;
+      width: 96%;
+      margin: 1rem auto 0;
+      background-color: #fff;
+      border-radius: 0.3rem;
+      padding: 1rem;
+      box-sizing: border-box;
+      font-size: 1.3rem;
+      position: relative;
+      .resume-l {
+        text-align: center;
+        width: 13%;
+        float: left;
+        .avatar {
+          width: 90%;
+          height: 0;
+          padding-top: 90%;
+          border: 0.1rem solid #ddd;
+          border-radius: 999px;
+          background-image: url("@{baseUrl}/img/bird.png");
+          background-size: cover;
+          background-position: center;
+        }
+        .name {
+          margin-top: 0.5rem;
+          color: #333;
+          max-width: 5.2rem;
+        }
+      }
+      .resume-r {
+        width: 84%;
+        float: right;
+        color: #666;
+        .resume-top{
+          margin-top: 0.3rem;
+          .time{
+            position: absolute;
+            right: 1rem;
+          }
+        }
+        .resume-center{
+          margin-top: 1rem;
+          >span{
+            float: left;
+          }
+          .ellipsis{
+            display: inline-block;
+          }
+          .school{
+            max-width: 9.1rem;
+            margin: 0 0.2rem;
+          }
+          .major{
+            max-width: 7rem;
+            margin-right: 0.2rem;
+          }
+        }
+        .resume-bottom{
+          margin-top: 0.8rem;
+          .delete{
+            position: absolute;
+            padding: 0.5rem;
+            right: 1rem;
+            margin: -0.5rem 0 0 -0.5rem;
+            color: @mainColor;
+          }
+        }
+      }
+    }
+  }
+}

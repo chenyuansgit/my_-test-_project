@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+    <link rel="stylesheet" href="/public/ace/assets/css/page/ad/adEdit.css">
+</head>
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="title"> 广告描述 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="des" placeholder="请输入广告描述" class="col-xs-12 col-sm-8" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <label class="col-sm-1 control-label no-padding-right" for="summary"> 跳转地址 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="url" placeholder="跳转地址" class="col-xs-12 col-sm-8" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 开屏尺寸:320*480</div>
+                                <div class="col-sm-11">
+                                    <div class="screen-pic-320">
+                                        <input type="file" class="avatar input-transparent" id="img320" name="img320"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                    <p>图片大小不超过3M,上传图片的尺寸为：320*480(<span class='red'>必填</span>)</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 开屏尺寸:480*800</div>
+                                <div class="col-sm-11">
+                                    <div class="screen-pic-480">
+                                        <input type="file" class="avatar input-transparent" id="img480" name="img480"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                    <p>图片大小不超过3M,上传图片的尺寸为：480*800(<span class='red'>必填</span>)</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 开屏尺寸:720*1280</div>
+                                <div class="col-sm-11">
+                                    <div class="screen-pic-720">
+                                        <input type="file" class="avatar input-transparent" id="img720" name="img720"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                    <p>图片大小不超过3M,上传图片的尺寸为：720*1280(<span class='red'>必填</span>)</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 开屏尺寸:750*1334</div>
+                                <div class="col-sm-11">
+                                    <div class="screen-pic-750">
+                                        <input type="file" class="avatar input-transparent" id="img750" name="img750"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                    <p>图片大小不超过3M,上传图片的尺寸为：750*1334(<span class='red'>必填</span>)</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right"> 开屏尺寸:1080*1920</div>
+                                <div class="col-sm-11">
+                                    <div class="screen-pic-1080">
+                                        <input type="file" class="avatar input-transparent" id="img1080" name="img1080"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                    <p>图片大小不超过3M,上传图片的尺寸为：1080*1920(<span class='red'>必填</span>)</p>
+                                </div>
+                                <p>&nbsp;</p>
+                            </div>
+                        </form>
+                        <div class="ib-how">
+                            <span class="btn btn-add">发布</span>
+                            <span class="btn btn-cancel">取消</span>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div>
+                </div><!-- /.page-content -->
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    window.global = window.global || {};
+</script>
+<script type="text/javascript">
+    jQuery(function($) {
+        //给sidebar加样式
+        var url = location.href;
+        //给sidebar加样式
+        if (url.indexOf('open_screen')) {
+            $('#adMenu').addClass('active open');
+            $('#adMenu ul li:eq(4)').addClass('active')
+        }
+        //图片上传
+        var img320="", img480="", img720="", img750="", img1080="";
+        //上传图片320*480
+        fileUpload("admin", "img320", function (error, pic,info) {
+            if (!error) {
+                var w = parseInt(JSON.parse(info).width);
+                var h = parseInt(JSON.parse(info).height);
+                if(w == 320 && h ==480) {
+                    $(".screen-pic-320").css({"background-image":"url('"+pic+"')"});
+                    img320 = pic;
+                } else {
+                    alert("开屏尺寸为320*480，请重新上传宽为320px，高为480px的图片！");
+                }
+            }
+        })
+        //上传图片480*800
+        fileUpload("admin", "img480", function (error, pic,info) {
+            if (!error) {
+                var w = parseInt(JSON.parse(info).width);
+                var h = parseInt(JSON.parse(info).height);
+                if(w == 480 && h ==800) {
+                    $(".screen-pic-480").css({"background-image":"url('"+pic+"')"});
+                    img480 = pic;
+                } else {
+                    alert("开屏尺寸为480*800，请重新上传宽为480px，高为800px的图片！");
+                }
+            }
+        })
+        //上传图片720*1280
+        fileUpload("admin", "img720", function (error, pic,info) {
+            if (!error) {
+                var w = parseInt(JSON.parse(info).width);
+                var h = parseInt(JSON.parse(info).height);
+                if(w == 720 && h ==1280) {
+                    $(".screen-pic-720").css({"background-image":"url('"+pic+"')"});
+                    img720 = pic;
+                } else {
+                    alert("开屏尺寸为720*1280，请重新上传宽为720px，高为1280px的图片！");
+                }
+            }
+        })
+        //上传图片750*1334
+        fileUpload("admin", "img750", function (error, pic,info) {
+            if (!error) {
+                var w = parseInt(JSON.parse(info).width);
+                var h = parseInt(JSON.parse(info).height);
+                if(w == 750 && h ==1334) {
+                    $(".screen-pic-750").css({"background-image":"url('"+pic+"')"});
+                    img750 = pic;
+                } else {
+                    alert("开屏尺寸为750*1334，请重新上传宽为750px，高为1334px的图片！");
+                }
+            }
+        })
+        //上传图片1080*1920
+        fileUpload("admin", "img1080", function (error, pic,info) {
+            if (!error) {
+                var w = parseInt(JSON.parse(info).width);
+                var h = parseInt(JSON.parse(info).height);
+                if(w == 1080 && h ==1920) {
+                    $(".screen-pic-1080").css({"background-image":"url('"+pic+"')"});
+                    img1080 = pic;
+                } else {
+                    alert("开屏尺寸为1080*1920，请重新上传宽为1080px，高为1920px的图片！");
+                }
+            }
+        })
+
+        $(".btn-add").click(function(){
+            var desc = $("input#des").val();
+            var url = $("input#url").val();
+            if(img320.length>0 && img480.length>0 && img720.length>0 && img750.length>0 && img1080.length>0) {
+                $.ajax({
+                    url:"/open_screen/add",
+                    type:"post",
+                    dataType:"json",
+                    data:{
+                        option:{
+                            desc: desc,
+                            url: url,
+                            img320: img320,
+                            img480: img480,
+                            img750: img720,
+                            img720: img750,
+                            img1080: img1080
+                        }
+                    },
+                    success:function(data){
+                        if(data.status == '10000') {
+                            alert("POST success!");
+                            location.href = "/open_screen/curr";
+                        } else {
+                            alert('POST error\n' + data.status);
+                        }
+                    }
+                });
+            } else {
+                alert("5张开屏广告图不能为空！")
+            }
+        });
+
+        //取消
+        $(".btn-cancel").click(function () {
+            location.href = "/open_screen/list";
+        });
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+@import "../common/reconsitution";
+@import "../common/index";
+@import "../common/animation";
+
+.main{
+  .top{
+    position: relative;
+    .bg{
+      width: 100%;
+      font-size: 0;
+      img{
+        width: 100%;
+      }
+    }
+    .top-content{
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 2rem;
+      .account {
+        text-align: center;
+        position: relative;
+        .avatar, .file-avatar {
+          display: inline-block;
+          width: 6rem;
+          height: 6rem;
+          .borderRadius(999px);
+          background: @mainColor;
+          margin-top: 1rem;
+        }
+        .avatar {
+          background-image: url("@{baseUrl}/img/bird.png");
+          background-size: cover;
+          background-position: center;
+          background-color: #fff;
+          &.loading-img{
+            background-image: url("@{baseUrl}/img/loading.gif")!important;
+            background-size: 3rem 3rem;
+            background-position: center;
+            background-color: #fff;
+            background-repeat: no-repeat;
+          }
+        }
+        .file-avatar {
+          position: absolute;
+          margin-left: -6rem;
+          opacity: 0;
+        }
+      }
+      .avatar{
+        width: 6rem;
+        height: 6rem;
+        border-radius: 999px;
+        border: 0.2rem solid @mainColor;
+        margin: 0 auto 1.5rem;
+        background:url("@{baseUrl}/img/bird.png");
+        background-size: 100% auto;
+        background-position: center;
+      }
+      .uname{
+        font-size: 1.5rem;
+      }
+      a{
+        font-size: 1.4rem;
+        color: @mainColor;
+        text-decoration: none;
+      }
+    }
+  }
+  .nav-area{
+    .nav{
+      text-decoration: none;
+      color: #333;
+      display: block;
+      font-size: 1.4rem;
+      height: 4rem;
+      line-height: 4rem;
+      padding-left: 1.5rem;
+      background-color: #fff;
+      border-bottom: 0.1rem solid #eee;
+      position: relative;
+      em{
+        color: @mainColor;
+      }
+      .icon{
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.6rem;
+        background-size: 100%;
+        vertical-align: middle;
+        background-repeat: no-repeat;
+        margin-right: 0.8rem;
+        &.icon-c-home{
+          background-image: url("@{baseUrl}/img/icon-home.png");
+        }
+        &.icon-c-job{
+          background-image: url("@{baseUrl}/img/icon-jobs.png");
+        }
+        &.icon-next{
+          width: .8rem;
+          height: 1.6rem;
+          background-image: url("@{baseUrl}/img/icon-next.png");
+          position: absolute;
+          right: 1rem;
+          top: 50%;
+          margin-top: -.8rem;
+        }
+      }
+    }
+  }
+  .quit{
+    padding: 1.8rem 0;
+    .quit-icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      background: url("@{baseUrl}/img/icon-quit.png") no-repeat;
+      background-size: 100% auto;
+      position: relative;
+      top: .22rem
+    }
+    .text {
+      color: #e11111;
+      font-size: 1.4rem
+    }
+  }
+
+}

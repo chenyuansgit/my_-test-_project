@@ -1,0 +1,293 @@
+<div class="sidebar" id="sidebar">
+    <script type="text/javascript">
+        try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+    </script>
+
+    <ul class="nav nav-list">
+        <li class="">
+            <a href="/home">
+                <i class="icon-home"></i>
+                <span class="menu-text"> 首页 </span>
+            </a>
+        </li>
+        <li class="" id="recruitMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-desktop"></i>
+                <span class="menu-text"> 招聘管理 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li class="company">
+                    <a href="/company/list?status=1&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        公司管理
+                    </a>
+                <li class="job">
+                    <a href="/job/list?status=1&page=1&lt=time">
+                        <i class="icon-double-angle-right"></i>
+                        职位管理
+                    </a>
+                </li>
+                <li class="resume">
+                    <a href="/resume/list?page=1&lt=time">
+                        <i class="icon-double-angle-right"></i>
+                        简历管理
+                    </a>
+                </li>
+                <li class="employer">
+                    <a href="/employer/list?lt=time&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        hr管理
+                    </a>
+                </li>
+                <li class="validated">
+                    <a href="/employer/unvalidatedList?page=1">
+                        <i class="icon-double-angle-right"></i>
+                        企业邮箱验证
+                    </a>
+                </li>
+                <!-- <li>
+                     <a href="./companu/re">
+                         <i class="icon-double-angle-right"></i>
+                         举报管理
+                     </a>
+                 </li>-->
+            </ul>
+        </li>
+
+        <li id="adMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-list"></i>
+                <span class="menu-text"> 广告管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="/ad/list?status=1&page=1&category_id=1">
+                        <i class="icon-double-angle-right"></i>
+                        pc首页大图广告
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/ad/list?status=1&page=1&category_id=2">
+                        <i class="icon-double-angle-right"></i>
+                        pc首页小图广告
+                    </a>
+                </li>
+                <li>
+                    <a href="/ad/list?status=1&page=1&category_id=3">
+                        <i class="icon-double-angle-right"></i>
+                        pc搜索页小图广告
+                    </a>
+                </li>
+                <li>
+                    <a href="/ad/list?status=1&page=1&category_id=4">
+                        <i class="icon-double-angle-right"></i>
+                        客户端首页大图广告
+                    </a>
+                </li>
+                <li>
+                    <a href="/ad/list?status=1&page=1&category_id=6">
+                        <i class="icon-double-angle-right"></i>
+                        pc校招页面小图广告
+                    </a>
+                </li>
+                <li>
+                    <a href="/open_screen/curr">
+                        <i class="icon-double-angle-right"></i>
+                        客户端开屏广告
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li id="articleMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-edit"></i>
+                <span class="menu-text"> 文章管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="/article/list?status=1&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        文章管理
+                    </a>
+                </li>
+                <!--  <li>
+                      <a href="../article/articleModule.ejs">
+                          <i class="icon-double-angle-right"></i>
+                          板块管理
+                      </a>
+                  </li>-->
+            </ul>
+        </li>
+
+        <li id="activityMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-calendar"></i>
+                <span class="menu-text"> 活动管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="/activity/list?status=1&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        活动管理
+                    </a>
+                </li>
+                <!--  <li>
+                      <a href="../article/articleModule.ejs">
+                          <i class="icon-double-angle-right"></i>
+                          板块管理
+                      </a>
+                  </li>-->
+            </ul>
+        </li>
+
+        <li id="messageMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-collapse"></i>
+                <span class="menu-text">消息管理 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="/push/notification/list?page=1">
+                        <i class="icon-double-angle-right"></i>
+                        消息推送
+                    </a>
+                </li>
+                <li>
+                    <a href="/push/test">
+                        <i class="icon-double-angle-right"></i>
+                        推送测试
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li id="detMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-collapse"></i>
+                <span class="menu-text">包打听管理 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="/det/list?state=1&page=1&lt=time&ct=2">
+                        <i class="icon-double-angle-right"></i>
+                        实习包打听列表
+                    </a>
+                </li>
+                <li>
+                    <a href="/det/list?state=1&page=1&lt=time&ct=4">
+                        <i class="icon-double-angle-right"></i>
+                        校招包打听列表
+                    </a>
+                </li>
+                <li>
+                    <a href="/det/add">
+                        <i class="icon-double-angle-right"></i>
+                        添加职位
+                    </a>
+                </li>
+                <li>
+                    <a href="/det/report/list?status=1&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        举报管理
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li id="quickRecruitMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-fighter-jet"></i>
+                <span class="menu-text"> 快招 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="/quick_recruit/list?status=1&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        快招管理
+                    </a>
+                </li>
+                <li>
+                    <a href="/quick_recruit_term/list?status=1&page=1">
+                        <i class="icon-double-angle-right"></i>
+                        快招档期管理
+                    </a>
+                </li>
+                <li id="quickRecruitApply">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-double-angle-right"></i>
+                        快招申请
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li id="choiceList">
+                            <a href="/quick_recruit_apply/list?status=1&page=1">
+                                <i class="icon-double-angle-right"></i>
+                                快招精选
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/quick_recruit_apply/list?status=1&page=1">
+                                <i class="icon-double-angle-right"></i>
+                                人才市场
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <!--  <li>
+                      <a href="../article/articleModule.ejs">
+                          <i class="icon-double-angle-right"></i>
+                          板块管理
+                      </a>
+                  </li>-->
+
+            </ul>
+        </li>
+        <li id="othersMenu">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-tag"></i>
+                <span class="menu-text"> 其他 </span>
+                <b class="arrow icon-angle-down"></b>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="/feedback/list?page=1">
+                        <i class="icon-double-angle-right"></i>
+                        用户反馈
+                    </a>
+                </li>
+                <li>
+                    <a href="/imgUpload">
+                        <i class="icon-double-angle-right"></i>
+                        第三方图片上传
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul><!-- /.nav-list -->
+
+    <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+    </div>
+
+    <script type="text/javascript">
+        try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+    </script>
+</div>

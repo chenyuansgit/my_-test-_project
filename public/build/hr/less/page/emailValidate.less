@@ -1,0 +1,64 @@
+@import "../var";
+@import "../var";
+*{
+  margin: 0;
+  padding: 0;
+}
+::selection {background:@mainColor; color:#fff;}
+::-moz-selection{background:@mainColor; color:#fff;}
+html{
+  width:100%;
+  /*min-height: 100%;*/
+  color: #333;
+  font-family: "Microsoft Yahei","Hiragino Sans GB","SimSun";
+}
+body{
+  width: auto!important;
+  position: relative;
+  background: url("@{baseUrl}/img/bg.png") center top repeat-y transparent;
+}
+a{
+  text-decoration: none;
+  color: #333;
+}
+a:hover {
+  color: @mainColor;
+}
+.emailValidate {
+  width: auto!important;
+  width: 100%;
+  max-width: 720px;
+  padding: 50px 0 20px;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: center;
+  .success-icon {
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    background: url("@{baseUrl}/img/success-icon.png") no-repeat;
+  }
+  h4 {
+    margin: 20px auto 30px;
+    font-size: 18px;
+    color: #f58910;
+  }
+  p {
+    font-size: 16px;
+    padding: 0 20px;
+    color: @c2;
+    line-height: 30px;
+  }
+  .btn-log {
+    display: inline-block;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    background-color: @mainColor;
+    height: 36px;
+    line-height: 36px;
+    margin-top: 36px;
+    .borderRadius(5px);
+  }
+}

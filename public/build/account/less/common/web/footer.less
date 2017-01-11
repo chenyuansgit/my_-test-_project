@@ -1,0 +1,131 @@
+/*页脚*/
+.footer{
+  width: 100%;
+  color: #fff;
+  background-color: @mainColor;
+  position: relative;
+  &-content{
+    width: 1180px;
+   // padding: 10px 0;
+    margin: 0 auto 0;
+    position: relative;
+    a{
+      color:#fff;
+    }
+    >div{
+      padding: 15px 0;
+    }
+    .top{
+      border-bottom: 1px solid #fff;
+      position: relative;
+      height: 32px;
+      line-height: 32px;
+      &-l{
+        float: left;
+        >span{
+          margin-right: 30px;
+        }
+      }
+      &-r{
+        float: right;
+        text-align: right;
+        span.icon-weixin, span.icon-weibo {
+          font-size: 24px;
+          height: 32px;
+          overflow: hidden;
+          color: #fff;
+          top: 15px;
+          position: absolute;
+        }
+        span.icon-weixin {
+          right: 120px;
+        }
+        span.icon-weibo {
+          right: 85px;
+        }
+        /*span.icon-weixin:hover {
+          .qrcode{
+            display: block;
+          }
+        }*/
+        .wehchat-qrcode-wrap, .app-qrcode-wrap {
+          display: none;
+          position: absolute;
+          bottom: 64px;
+          width: 180px;
+          z-index: 99;
+          padding-bottom: 10px;
+          background-color: #fff;
+          border: 1px #ddd solid;
+        }
+        .wehchat-qrcode-wrap {
+          right: 40px;
+        }
+        .app-qrcode-wrap {
+          right: -50px;
+        }
+        .qrcode{
+          position: relative;
+          height: 220px;
+          .trianglebottom, .trianglebottom2 {
+            width: 0;
+            height: 0;
+            position: absolute;
+          }
+          .trianglebottom {
+            border-left: 18px solid transparent;
+            border-right:18px solid transparent;
+            border-top: 18px solid #ddd;
+            left: 73px;
+            bottom: -28px;
+          }
+          .trianglebottom2 {
+            border-left: 17px solid transparent;
+            border-right: 17px solid transparent;
+            border-top: 17px solid #fff;
+            left: 74px;
+            bottom: -27px;
+          }
+        }
+        .wehchat-qrcode, .app-qrcode {
+          width: 180px;
+          height: 180px;
+        }
+        .wehchat-qrcode {
+          background: url("@{baseUrl}/img/wechat-qrcode.png") no-repeat;
+        }
+        .app-qrcode {
+          background: url("@{baseUrl}/img/qrcode-app.png") no-repeat;
+        }
+        p {
+          height: 20px;
+          line-height: 20px;
+          padding: 0 10px;
+          font-size: 13px;
+          text-align: left;
+          color: @c2;
+        }
+        .weixin-box:hover .wehchat-qrcode-wrap {
+            display: block;
+        }
+        span.app-down:hover .app-qrcode-wrap {
+            display: block;
+        }
+
+      }
+      /*.icon-new {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50px;
+        height: 24px;
+        background: url("@{baseUrl}/img/icon-new.png") left top no-repeat;
+      }*/
+    }
+    .friend-links{
+      a{
+        margin-left: 15px;
+      }
+    }
+  }
+}

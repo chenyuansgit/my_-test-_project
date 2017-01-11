@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div id="modal-offline" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">
+                                        下线广告
+                                    </div>
+                                    <div class="modal-body step-content">
+                                        <p>你确定要下线广告？</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next button-offline" data-dismiss="modal">
+                                            确定
+                                            <i class="icon-arrow-right icon-on-right"></i>
+                                        </button>
+
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+                                            <i class="icon-remove"></i>
+                                            取消
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-delete" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">
+                                        删除广告
+                                    </div>
+                                    <div class="modal-body step-content">
+                                        <p>你确定要删除广告？</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next button-delete" data-dismiss="modal">
+                                            确定
+                                            <i class="icon-arrow-right icon-on-right"></i>
+                                        </button>
+
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+                                            <i class="icon-remove"></i>
+                                            取消
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-online" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">
+                                        上线广告
+                                    </div>
+                                    <div class="modal-body step-content">
+                                        <p>你确定要重现上线广告？</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next button-online" data-dismiss="modal">
+                                            确定
+                                            <i class="icon-arrow-right icon-on-right"></i>
+                                        </button>
+
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+                                            <i class="icon-remove"></i>
+                                            取消
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-recover" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">
+                                        恢复广告
+                                    </div>
+                                    <div class="modal-body step-content">
+                                        <p>你确定要恢复广告</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next button-recover" data-dismiss="modal">
+                                            确定
+                                            <i class="icon-arrow-right icon-on-right"></i>
+                                        </button>
+
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+                                            <i class="icon-remove"></i>
+                                            取消
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="header smaller lighter blue head-title">
+                                    <%if(category_id == 1){%>pc首页大图广告<%}else if(category_id == 2){%>pc首页小图广告<%}else if(category_id == 3){%>px搜索页小图广告<%}else if(category_id == 4){%>客户端首页广告<%}%>
+                                    <%if(category_id == '1'){%>
+                                    <a href="/ad/add?category_id=1" class="btn">添加</a>
+                                    <%}else if(category_id == '2'){%>
+                                    <a href="/ad/add?category_id=2" class="btn">添加</a>
+                                    <%}else if(category_id == '3'){%>
+                                    <a href="/ad/add?category_id=3" class="btn">添加</a>
+                                    <%}else if(category_id == '4'){%>
+                                    <a href="/ad/add?category_id=4" class="btn">添加</a>
+                                    <%}else if(category_id == '6'){%>
+                                    <a href="/ad/add?category_id=6" class="btn">添加</a>
+                                    <%}%>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="tabbable">
+                                            <ul class="nav nav-tabs" id="myTab">
+                                                <li id="adList" <%if(status == 1){%> class="active<%}%>">
+                                                    <a href="/ad/list?status=1&page=1&category_id=<%=category_id%>">
+                                                        已上线
+                                                    </a>
+                                                </li>
+                                                <li id="offlineList" <%if(status == 2){%> class="active<%}%>">
+                                                    <a href="/ad/list?status=2&page=1&category_id=<%=category_id%>">
+                                                        已下线
+                                                    </a>
+                                                </li>
+                                                <li id="deleteList" <%if(status == 9){%> class="active<%}%>">
+                                                    <a href="/ad/list?status=9&page=1&category_id=<%=category_id%>">
+                                                        已删除
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane in active">
+                                                    <div class="table-responsive">
+                                                        <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+                                                            <thead>
+                                                            <%if(ads.length>0){%>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>投放</th>
+                                                                <th >状态</th>
+                                                              <!--  <th>统计</th>-->
+                                                                <th>操作</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <%
+                                                            for(var i=0; i<ads.length; i++){%>
+                                                            <tr data-aid="<%=ads[i].id%>">
+                                                                <td><%=ads[i].id%></td>
+                                                                <td>
+                                                                    <%
+                                                                        var img = '';
+                                                                        try{
+                                                                            img = JSON.parse(ads[i].image).url
+                                                                        }catch (e){
+                                                                            img = ads[i].image;
+                                                                        }
+                                                                    %>
+                                                                    <p>概述：<%=ads[i].desc%></p>
+                                                                    图片:<img class="picture" src="<%=img%>" alt=""/>
+
+                                                                </td>
+                                                                <td>
+                                                                    <p>投放时间：<%=new Date(ads[i].start_time).format("yyyy-MM-dd hh:mm")%>--<%=new Date(ads[i].end_time).format("yyyy-MM-dd hh:mm")%></p>
+                                                                    <p>投放序号：<span class="ib-hot"><%=ads[i].order%></span></p>
+                                                                    <%if(parseInt(status) == 1 ){%>
+                                                                         <%if(ads[i].end_time <= +new Date){%>
+                                                                           <p>投放状态：<span class="ib-hot" style="color:#f00;">待下线</span></p>
+                                                                        <%}else if(ads[i].start_time<+new Date){%>
+                                                                           <p>投放状态：<span class="ib-hot" style="color:#f00;">在投放</span></p>
+                                                                        <%}else{%>
+                                                                            <p>投放状态：<span class="ib-hot"  style="color:#f00;">待投放</span></p>
+                                                                        <%}%>
+                                                                    <%}%>
+                                                                </td>
+                                                               <!-- <td>
+                                                                    <p>展示：<span class="ib-show">111</span></p>
+                                                                    <p>点击：<span class="ib-click">111</span></p>
+                                                                </td>-->
+
+                                                                <td class="operation">
+                                                                    <%if(parseInt(status) == 1){%>
+                                                                    <p>
+                                                                        <a href="/ad/edit/<%=ads[i].id%>"><span class="ib-operation">编辑</span> </a>
+                                                                        <a href="#modal-offline" data-toggle="modal"><span class="ib-operation">下线</span> </a>
+                                                                    </p>
+                                                                    <%}else if(parseInt(status) == 2){%>
+                                                                    <p>
+                                                                        <a href="/ad/edit/<%=ads[i].id%>"><span class="ib-operation">编辑</span> </a>
+                                                                        <a href="#modal-online" data-toggle="modal"><span class="ib-operation" data-category-id = "<%=ads[i].category_id%>" data-starttime="<%=ads[i].start_time%>" data-endtime="<%=ads[i].end_time%>">上线</span> </a>
+                                                                        <a href="#modal-delete" data-toggle="modal"><span class="ib-operation">删除</span> </a>
+                                                                    </p>
+                                                                    <%}else if(parseInt(status) == 9){%>
+                                                                    <p>
+                                                                        <a href="#modal-recover" data-toggle="modal"><span class="ib-operation" data-starttime="<%=ads[i].start_time%>" data-endtime="<%=ads[i].end_time%>">恢复</span> </a>
+
+                                                                    </p>
+                                                                    <%}%>
+                                                                </td>
+                                                            </tr>
+                                                            <%}}else{%>
+                                                            <p>该栏目下没有数据！</p>
+                                                            <%}%>
+                                                            </tbody>
+                                                    </table>
+                                                    <%include ../common/pages.ejs%>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- /span -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script>
+    window.global = window.global || {};
+    global.category_id = parseInt('<%=category_id%>');
+</script>
+<script type="text/javascript">
+    $(function () {
+        //时间戳格式转换
+        Date.prototype.format = function(format) {
+            var o = {
+                "M+": this.getMonth() + 1,
+                "d+": this.getDate(),
+                "h+": this.getHours(),
+                "m+": this.getMinutes(),
+                "s+": this.getSeconds(),
+                "q+": Math.floor((this.getMonth() + 3) / 3),
+                "S": this.getMilliseconds()
+            };
+            if (/(y+)/.test(format)) {
+                format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+                }
+            }
+            return format;
+        };
+        //给sidebar加样式
+        var url = location.href;
+        if(url.indexOf('/ad/')>-1){
+            var category_id = global.category_id;
+            $('#adMenu').addClass('active open');
+            if(category_id == 1)$('#adMenu ul li:eq(0)').addClass('active');
+            else if(category_id == 2)$('#adMenu ul li:eq(1)').addClass('active');
+            else if(category_id == 3)$('#adMenu ul li:eq(2)').addClass('active');
+            else if(category_id == 4)$('#adMenu ul li:eq(3)').addClass('active');
+            else if(category_id == 6)$('#adMenu ul li:eq(4)').addClass('active');
+        }
+        //分页绑定
+        fn.pagingBind();
+        var startTime;
+        var endTime;
+        //POST
+        $('.ib-operation').on('click', function () {
+            var id = $(this).closest('tr').attr('data-aid');
+            startTime = $(this).attr('data-starttime');
+            endTime = $(this).attr('data-endtime');
+            category_id = $(this).attr('data-category-id');
+           // alert('startTime=' + startTime + ',endTime=' + endTime);
+            $('.button-delete').click(function () {
+                url = '/ad/del/' + id;
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: {
+                        option: {
+
+                        }
+                    },
+                    success: function (data) {
+                        if (data.status == '10000') {
+                            //alert('POST success');
+                            location.reload();
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+
+                    }
+                });
+            })
+            $('.button-online').click(function () {
+                url = '/ad/online/' + id;
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: {
+                        option:{
+                            start_time:startTime,
+                            end_time:endTime,
+                            category_id :category_id
+                        }
+                    },
+                    success: function (data) {
+                        if (data.status == '10000') {
+                            //alert('POST success');
+                            location.reload();
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+
+                    }
+                });
+            })
+
+            //下线与恢复接口,恢复操作调用的是下线接口
+            $('.button-offline,.button-recover').click(function () {
+                url = '/ad/offline/' + id;
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    data: {
+                        id:id
+                    },
+                    success: function(data) {
+                        if (data.status == '10000') {
+                            //alert('POST success');
+                            location.reload();
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+
+                    }
+                });
+            })
+
+        });
+    })
+</script>
+</body>
+</html>

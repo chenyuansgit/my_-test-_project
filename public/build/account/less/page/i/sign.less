@@ -1,0 +1,134 @@
+@import "../../common/i/reconsitution";
+@import "../../common/i/index";
+@import "../../common/i/animation";
+html,body{
+  background-color: #f9f9f9;
+}
+.main {
+  padding-top: 4rem;
+  background: #f9f9f9;
+}
+.mg15{
+  margin-top: 1.5rem;
+}
+.tips{
+  font-size: 1.3rem;
+  color: #333;
+  line-height: 2rem;
+}
+a {
+  color: @mainColor;
+}
+
+.sign-area {
+  .sign-line {
+    height: 4rem;
+    line-height: 4rem;
+    position: relative;
+    &.input-area {
+      border-bottom: 0.1rem solid #dbdbdb;
+      width: 90%;
+      margin: 0 auto 1rem;
+      input {
+        background: #f9f9f9;
+        height: 100%;
+      }
+      .code {
+        width: 15rem;
+      }
+    }
+    i {
+      position: absolute;
+      display: inline-block;
+      width: 1.4rem;
+      height: 1.4rem;
+      top: 1.1rem;
+      &.icon-phone {
+        background: url("@{baseUrl}/img/i/enter/icon-phone.png") center no-repeat;
+        background-size: auto 100%;
+      }
+      &.icon-email {
+        background: url("@{baseUrl}/img/i/enter/icon-mail.png") center no-repeat;
+        background-size: 100% auto;
+      }
+      &.icon-user {
+        background: url("@{baseUrl}/img/i/enter/icon-uname.png") center no-repeat;
+        background-size: auto 100%;
+      }
+      &.icon-pwd {
+        background: url("@{baseUrl}/img/i/enter/icon-pwd.png") center no-repeat;
+        background-size: auto 100%;
+      }
+      &.icon-code {
+        background: url("@{baseUrl}/img/i/enter/icon-code.png") center no-repeat;
+        background-size: 100% auto;
+      }
+    }
+    .input-sign {
+      border: none;
+      outline: none;
+      font-size: 1.6rem;
+      display: inline-block;
+      width: 90%;
+      margin-left: 2rem;
+    }
+    .btn-sendCode{
+      background: @mainColor;
+      color: #fff;
+      padding: 0.4rem 1rem;
+      .borderRadius(0.3rem);
+      font-size: 1.4rem;
+      position: absolute;
+      top: 0.4rem;
+      right: 1rem;
+    }
+    .btn-resendCode{
+      display: none;
+      background: #ddd;
+      color: #999;
+      padding: 0.4rem 1rem;
+      .borderRadius(0.3rem);
+      font-size: 1.4rem;
+      position: absolute;
+      top: 0.4rem;
+      right: 1rem;
+    }
+    &.btn-area {
+      height: 4rem;
+      line-height: 4rem;
+      text-align: center;
+      margin-top: 1rem;
+      .btn-register,.btn-login {
+        display: inline-block;
+        border: none;
+        width: 90%;
+        height: 4rem;
+        .borderRadius(0.3rem);
+        font-size: 1.6rem;
+        color: #fff;
+        background: @mainColor;
+      }
+    }
+    .input-error{
+      display: none;
+      color: #ff2525;
+      position: absolute;
+      right: 1rem;
+    }
+  }
+  .notice {
+    font-size: 1.4rem;
+    margin: 1rem auto 0;
+    width: 88%;
+    color: #666;
+  }
+}
+
+.register-bottom {
+  padding: 0 2rem;
+  margin-top: 13.5rem;
+  text-align: justify;
+  line-height: 1.5rem;
+  font-size: 1.4rem;
+  color: #a3a3a3;
+}

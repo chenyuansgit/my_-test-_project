@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../../common/head.ejs %>
+</head>
+<body>
+<% include ../../common/header.ejs %>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <% include ../../common/sidebar.ejs %>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-1 control-label no-padding-right" for="term"> 期数ID </div>
+
+                                <div class="col-sm-11">
+                                    <!--<input type="number" id="term" placeholder="请输入快照期数,只支持数字,表示第几期(一经确认不能修改)" class="col-xs-12 col-sm-8" />-->
+                                    <select class="form-control col-xs-12 col-sm-8" id="term_id">
+                                        <% if(terms.length > 0){ %>
+                                        <% for(var i = 0, len = terms.length;i < len;++i){ %>
+                                        <option value="<%= terms[i].term_id %>"><%= terms[i].term_id %></option>
+                                        <% } %>
+                                        <% }else{ %>
+                                        <option value="暂无可选的期数ID">暂无可选的期数ID</option>
+                                        <% } %>
+                                    </select>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="title"> 文章标题 </div>
+
+                                <div class="col-sm-11">
+                                    <input type="text" id="title" placeholder="请输入文章标题(不超过32个字)"
+                                           class="col-xs-12 col-sm-8"/>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="summary"> 文章概要 </div>
+
+                                <div class="col-sm-11">
+                                    <input type="text" id="summary" placeholder="请输入文章概要（不超过64个字）"
+                                           class="col-xs-12 col-sm-8"/>
+                                    <span class="ib-warning2"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="resumeSearch"> 简历搜索 </div>
+
+                                <div class="col-sm-11">
+                                    <input type="text" id="resumeSearch" placeholder="请先搜索简历"
+                                           class="col-xs-12 col-sm-8"/>
+                                    &nbsp; <span class="btn" id="buttonSearch">搜索</span>
+                                </div>
+
+                                <div class="col-sm-1 control-label no-padding-right" for="show-resume">选择简历</div>
+                                <div class="col-sm-11 control-label no-padding-right" >
+                                    <select style="width:300px;display:none;" class="form-control col-xs-12 col-sm-8 quick-resume"></select>
+                                </div>
+                                <p id="warning"></p>
+
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="content"> 文章图片</div>
+
+                                <div class="col-sm-11">
+                                    <input type="file" id="article-pic" class="article-pic"/>
+                                </div>
+
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="content"> 文章内容</div>
+
+                                <div class="col-sm-11"  style="padding-bottom: 20px">
+                                    <textarea id="article-content"></textarea>
+                                </div>
+                                <div class="col-sm-1 control-label no-padding-right" for="release_time"> 上线时间 </div>
+
+                                <div class="col-sm-11">
+                                    <input type="text" id="release_time" placeholder="" class="col-xs-12 col-sm-8"/>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+
+                                <p>&nbsp;</p>
+                                <div class="col-sm-1 control-label no-padding-right" for="addImage"> 封面</div>
+
+                                <div class="col-sm-11">
+                                    <p>图片大小不超过3M,900*500</p>
+
+                                    <div class="quick-recruit-pic">
+                                        <input type="file" class="avatar input-transparent" id="avatar" name="avatar"
+                                               placeholder="请插入图片"/>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                                <!--<div class="col-sm-1 control-label no-padding-right" for="stuAccount"> 学生账号 </div>
+                                <div class="col-sm-11">
+                                    <input type="text" id="stuAccount" placeholder="登陆账号（邮箱或者电话号码）" class="col-xs-10 col-sm-5" />
+                                </div>-->
+                                <!-- <div class="col-sm-1 control-label no-padding-right" for="author"> 文章作者 </div>
+                                 <div class="col-sm-11">
+                                     <input type="text" id="author" placeholder="请输入文章作者" class="col-xs-10 col-sm-5" />
+                                 </div>-->
+                            </div>
+                        </form>
+                        <div class="ib-how">
+                            <span class="ib-release" id="buttonAdd"><a href="">发布</a></span>
+                            <span class="ib-quit"><a href="" id='buttonCancel'>取消</a></span>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+
+                    </div>
+                </div>
+                <!-- /.page-content -->
+            </div>
+            <!-- /.main-content -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<% include ../../common/footer.ejs %>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<%include ../../common/ueditor_script.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/ueditor.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("#release_time").datetimepicker({
+            //showOn: "button",
+            //buttonImage: "./css/images/icon_calendar.gif",
+            //buttonImageOnly: true,
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        })
+        function showErrorAlert(reason, detail) {
+            var msg = '';
+            if (reason === 'unsupported-file-type') {
+                msg = "Unsupported format " + detail;
+            }
+            else {
+                console.log("error uploading file", reason, detail);
+            }
+            $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                    '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+        }
+
+        //$('#editor1').ace_wysiwyg();//this will create the default editor will all buttons
+
+
+        $('[data-toggle="buttons"] .btn').on('click', function (e) {
+            var target = $(this).find('input[type=radio]');
+            var which = parseInt(target.val());
+            var toolbar = $('#editor1').prev().get(0);
+            if (which == 1 || which == 2 || which == 3) {
+                toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g, '');
+                if (which == 1) $(toolbar).addClass('wysiwyg-style1');
+                else if (which == 2) $(toolbar).addClass('wysiwyg-style2');
+            }
+        });
+
+        //图片上传
+        var cover_img;
+        var ue = ueUtil.getFullEditor("article-content", 800, 500, 10000);
+        fileUpload("admin", "article-pic", function (error, pic) {
+            if (!error) {
+                ue.focus();
+                ue.execCommand('inserthtml',"<p><img src='" + pic + "'/></p>");
+            }
+        })
+
+        fileUpload("admin", "avatar", function (error, avatar) {
+            if (!error) {
+                $(".quick-recruit-pic").css({"background-image": "url('" + avatar + "')"});
+                cover_img = avatar;
+            }
+        })
+        //上传文章
+        var content, title, summary, release_time, term_id, resumeSearch, resumeSearchConfirm, get_url, post_url, resume_id, user_id, version;
+        $('#buttonCancel').click(function () {
+            window.history.back();
+        })
+
+        $('#buttonSearch').click(function () {
+            resumeSearch = $('#resumeSearch').val();
+            get_url = '/resume/search?k=' + resumeSearch;
+            $.ajax({
+                type: 'GET',
+                url: get_url,
+                dataType: 'json',
+                data: {
+                    option: {
+                        key: resumeSearch
+                    }
+                },
+                success: function (data) {
+                    if (data.status == '10000') {
+                        if (data.data.resumes.length) {
+                            var resumes = data.data.resumes;
+                            $('.quick-resume').empty().css("display", "block");
+                            for (var i = 0, len = resumes.length; i < len; ++i) {
+                                if (i == 0) {
+                                    $('.quick-resume').append("<option selected='selected' data-rid ='" + resumes[i].rid + "'  data-uid ='" + resumes[i].user_id + "'  data-version='" + resumes[i].version + "'>" + resumes[i].name + " " + resumes[i].phone + " " + resumes[i].email + "</option>");
+                                } else {
+                                    $('.quick-resume').append("<option data-rid ='" + resumes[i].rid + "' data-uid ='" + resumes[i].user_id + "' data-version='" + resumes[i].version + "'>" + resumes[i].name + " " + resumes[i].phone + " " + resumes[i].email + "</option>");
+                                }
+                            }
+                            $('#warning').text('');
+                        }
+                        else {
+                            $('.quick-resume').css("display", "none");
+                            $('#warning').css('color', 'red').text('搜素不到，请重新搜索');
+                        }
+
+                    }
+                    else {
+                        alert('get error\n' + data.status);
+                    }
+                }
+            })
+        })
+        $('#buttonAdd').click(function () {
+            title = $('#title').val();
+            summary = $('input#summary').val();
+            if (title.length > 32) {
+                $('.ib-warning').text("长度错误");
+                return false;
+            }
+            else {
+                $('.ib-warning').text("");
+            }
+            var opt = $('.quick-resume option:selected');
+            user_id = opt.attr('data-uid');
+            resume_id = opt.attr('data-rid');
+            version = opt.attr('data-version');
+
+            release_time = parseInt(Date.parse($("input#release_time").val()));
+            term_id = $('#term_id option:selected').val();
+            if (!(term_id >= 1)) {
+                $('#term').siblings('.ib-warning').text("此项不能为空");
+                return false;
+            }
+            content = $('#editor1').html();//获取格式化后的内容
+            resumeSearchConfirm = $('#resumeSearch').val();//与搜索时输入内容比较验证是否一致
+            // stuAccount = $('#stuAccount').val()
+            post_url = '/quick_recruit/add';
+            if (user_id && resumeSearch == resumeSearchConfirm) {
+                var option = {
+                    title: title,
+                    summary: summary,
+                    content: content,
+                    img: cover_img,
+                    term_id: term_id,
+                    release_time: release_time
+                }
+                if (resume_id) {
+                    option.resume_id = resume_id;
+                }
+                if (user_id) {
+                    option.user_id = user_id;
+                }
+                if (version) {
+                    option.version = version;
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: post_url,
+                    dataType: 'json',
+                    data: {
+                        option: {
+                            title: title,
+                            summary: summary,
+                            content: content,
+                            img: cover_img,
+                            term_id: term_id,
+                            release_time: release_time
+                        }
+                    },
+                    success: function (data) {
+                        if (data.status == '10000') {
+                            window.location.href = '/quick_recruit/list?status=1&page=1';
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+                    }
+                })
+            } else {
+                $('.quick-resume').css("display", "none");
+                $('#warning').css('color', 'red').text('搜素不到，请重新搜索');
+            }
+            return false;
+        })
+    })
+</script>
+</body>
+</html>

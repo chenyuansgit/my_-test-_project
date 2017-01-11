@@ -1,0 +1,246 @@
+@import "../common/reconsitution";
+@import "../common/index";
+@import "../common/animation";
+.mr {
+  background: #f5f5f5;
+  top:4.2rem;
+  width: 100%;
+  padding-bottom: 5rem;
+  .top-tips{
+    display:none;
+    box-sizing: border-box;
+    padding:0.6rem 2.5rem;
+    font-size: 1.2rem;
+    width: 100%;
+    position: relative;
+    z-index: 9999;
+    background: #f9f9f9;
+    a{
+      color: @mainColor;
+    }
+    .btn-close{
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      position: absolute;
+      right: 1rem;
+      top: 0.6rem;
+      background: url("@{baseUrl}/img/icon-close.png") 0 0 no-repeat;
+      background-size: cover;
+    }
+  }
+  .mr-block{
+    position: relative;
+    .block-title{
+      padding:1rem;
+      font-size: 1.4rem;
+      .required-tips{
+        font-size: 1.2rem;
+        background: #fbe8ec;
+        color: #dda7b3;
+        padding: 0.10rem 0.6rem;
+        border-radius: 1.2rem;
+        margin-left: 0.5rem;
+      }
+    }
+    .block-content{
+      background: #fff;
+      padding:1rem;
+      position: relative;
+      font-size: 1.3rem;
+      .mr-avatar {
+        width: 7.5rem;
+        height: 7.5rem;
+        margin: 0 auto;
+        .borderRadius(999px);
+        border: 0.3rem solid #ededed;
+        background: url("@{baseUrl}/img/bird.png") 0 0 no-repeat;
+        background-color: #fff;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        &.loading-img{
+          background-image: url("@{baseUrl}/img/loading.gif")!important;
+          background-size: 3rem 3rem;
+          background-position: center;
+          background-color: #fff;
+          background-repeat: no-repeat;
+        }
+        #file-avatar{
+          width: 100%;
+          height: 100%;
+          .borderRadius(999px);
+          opacity: 0;
+          position: absolute;
+        }
+      }
+      .avatar-tips{
+        font-size: 1.4rem;
+        color: #999;
+        margin-top: 1rem;
+      }
+      .info-list{
+        margin-left: 1.8rem;
+        li{
+          font-size: 1.3rem;
+          color: #666;
+          line-height: 2.5rem;
+          >div{
+            float: left;
+            &.info-title{
+              width: 6.5rem;
+            }
+            &.info{
+              margin-left: 1.5rem;
+              color: #85b2b3;
+            }
+          }
+        }
+      }
+      .mr-info-detail{
+        position: relative;
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        color: #666;
+        .mr-edit{
+          top: 0.2rem;
+          right: 1rem;
+        }
+        >div{
+          line-height: 2rem;
+        }
+        &.mr-info-edu{
+          color: #85b2b3;
+          .edu-time{
+            color: #666;
+          }
+          .circle{
+            width: 0.8rem;
+            height: 0.8rem;
+            position: absolute;
+            top: 0.5rem;
+            left: 0.2rem;
+            border-radius: 999px;
+            background: #999;
+          }
+          .info-title{
+            display: inline-block;
+            width: 6.5rem;
+            margin-right: 1.4rem;
+            color: #666;
+          }
+        }
+        &.mr-exp{
+          >div{
+            margin: 0.3rem 0 0 0.5rem;
+            &.exp-title{
+              color: #85b2b3;
+              margin-left: 0;
+            }
+          }
+          .exp-l{
+            margin-right: 0.5rem;
+          }
+          .exp-r{
+            width: 80%;
+            text-align: justify;
+          }
+        }
+        &.mr-self{
+          width: 90%;
+          text-align: justify;
+        }
+        /*ueditor*/
+        strong {
+          font-weight: 700
+        }
+        ol li{
+
+          list-style-type: decimal
+        }
+        ul li{
+          list-style-type: disc
+        }
+        .list-paddingleft-2,.list-paddingleft-1 {
+          padding-left: 1.9rem;
+        }
+        .ueditor_underline {
+          text-decoration: underline
+        }
+        .ueditor_left {
+          text-align: left
+        }
+        .ueditor_right {
+          text-align: right
+        }
+        .ueditor_center {
+          text-align: center
+        }
+        .ueditor_indent2 {
+          text-indent: 2em
+        }
+        /*ueditor end*/
+      }
+      .mr-skill{
+        position: relative;
+        line-height: 2rem;
+        padding: 0.3rem 0 0 1.8rem;
+        color: #666;
+        .circle{
+          width: 0.8rem;
+          height: 0.8rem;
+          position: absolute;
+          top: 0.85rem;
+          left: 0.2rem;
+          border-radius: 999px;
+          background: #999;
+        }
+      }
+    }
+    &.mr-state-area{
+      background: #fff;
+      margin-top: 1rem;
+      padding: 2rem 0;
+      text-align: center;
+      .mr-edit{
+        top: -1.2rem;
+      }
+      .mr-state{
+        display: inline-block;
+        border-radius: 5rem;
+        padding: 1rem 2rem;
+        text-align: center;
+        margin: 0 auto;
+        background: #99cfd0;
+        color: #fff;
+        font-size: 1.4rem;
+      }
+    }
+  }
+  .optional-content{
+    display: none;
+  }
+}
+/*edit*/
+.mask_layer{
+  z-index: 20000;
+}
+.dateScrollerDiv{
+  z-index: 20001;
+}
+.popTips{
+  z-index: 30000;
+}
+/*edit end*/
+
+.overlay{
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20000;
+  background-color: #000;
+  opacity: 0.7;
+  left: 0;
+  bottom: 0;
+}

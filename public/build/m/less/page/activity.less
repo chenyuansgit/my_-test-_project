@@ -1,0 +1,135 @@
+@import "../common/reconsitution";
+@import "../common/index";
+body {
+  background-color: #f6f6f6;
+}
+.listone{
+  display:block;
+  margin: 1.5rem;
+  position:relative;
+  text-decoration: none;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 0.6rem;
+  *,*:hover{
+    text-decoration: none;
+    outline:none;
+  }
+  .lazyImg {
+    width: 100%;
+    text-align: center;
+    line-height: 0;
+    position: relative;
+    a {
+      display: block;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .time{
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #fff;
+      font-size: 1.35rem;
+      line-height: 1.6rem;
+      text-decoration: none;
+      .isOver, .ongoing, .notStart{
+        display: block;
+        padding: 0 .4rem;
+        .borderRadius(.2rem);
+      }
+      .isOver {
+        background-color: #bfbfbf;
+      }
+      .ongoing {
+        background-color: @mainColor;
+      }
+      .notStart {
+        background-color: #f58201;
+      }
+    }
+  }
+  .info {
+    padding: 1rem 1rem;
+    .title {
+      font-size: 1.6rem;
+      color: #333;
+      a, a:hover, a:visited, a:focus {
+        color: #333;
+      }
+    }
+    .subTitle {
+      font-size: 1.4rem;
+      color: #666;
+    }
+  }
+}
+
+//活动详情
+.detail {
+  padding: 1rem 1.2rem;
+  background: #fff;
+  //正文
+  h3 {
+    font-size:1.8rem;
+    color: #333;
+    text-align: center;
+  }
+  h4 {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    color: @mainColor;
+  }
+  .activity-info {
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    text-align: center;
+    color: #999;
+    border-bottom: 1px #eee dashed;
+    .sponsor {
+      padding-right: 1rem;
+    }
+  }
+  .activity-content {
+    padding: 1rem 0;
+    p {
+      font-size: 1.4rem;
+      line-height: 1.6rem;
+      color: #999;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+    }
+  }
+  .last-update {
+    color: #999;
+    padding-top: 1.2rem;
+    text-align: right;
+  }
+  .activity-over {
+    display: block;
+    padding: .4rem 0;
+    color: #fff;
+    width: 10rem;
+    margin: 2rem auto 0;
+    font-size: 1.6rem;
+    text-align: center;
+    .borderRadius(.2rem);
+    background-color: #ddd;
+  }
+  .qrcode {
+    width: 12rem;
+    height: 12rem;
+    margin: 3rem auto;
+    img {
+      width: 12rem;
+      height: 12rem;
+    }
+  }
+}

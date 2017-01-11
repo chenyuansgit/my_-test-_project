@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/activity/entry.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/summer/IB_index.js"></script>
+</head>
+<body>
+<div class="header">
+    <%include header.ejs%>
+</div>
+<!--页面顶部背景-->
+<div class="top-wrap"></div>
+
+<!--页面主体-->
+<div class="w1045 mb mt">
+    <div class="box-s1">
+        <div class="box-s1-text">
+            <h3 class="mb">从前的你,如何找实习?</h3>
+            <p><span class="c888">寻找实习网站 — 注册并完善简历 — 搜索感兴趣的职位 — 投递职位 — 等待公司通知</span></p>
+        </div>
+        <div class="s-1"></div>
+    </div>
+    <div class="box-s2">
+        <div class="box-s2-text">
+            <h3 class="mb30 ml20">这个暑假,可以换一种方式了!</h3>
+            <p><span class="c888">注册并完善简历 — 加入暑期实习 — 躺着等待企业邀约</span></p>
+        </div>
+        <div class="s-2"></div>
+        <ul>
+            <li class="li-1">2016暑期实习风暴月，由靠谱实习平台实习鸟、青年实习家等联合举办，中国人民大学、中国矿业大学、湖南大学、北京科技大学、同济大学等合作推广，知名咨询集团正略集团大力支持，聚合更多适合你的职位。</li>
+            <li class="li-2">本次暑期专场采用 “职位投递＋企业邀约” 相结合的形式，打破了学生以往被动找实习的状况。</li>
+            <li>4月25日－5月25日，2016暑期实习风暴月，你可以任意挑选适合你的职位，时间更充裕，机会更多。</li>
+        </ul>
+        <!--邀约按钮-->
+        <span class="box-s2-btn">只要你够主动,offer任你选择!</span>
+    </div>
+    <div class="box-s3">
+        <div class="box-s3-text">
+            <h3 class="mb30 ml20">2016暑假实习专区时间表</h3>
+            <p>4月18日开始&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;报名阶段-简历加入暑期实习</p>
+            <p>4月25日-5月25日&nbsp;&nbsp;&nbsp;&nbsp;职位简历投递+等待企业邀约</p>
+        </div>
+        <div class="box-s3-how">
+            如何参加2016暑期实习?
+        </div>
+        <ul>
+            <li>1. 登陆<a href="http://www.internbird.com">www.internbird.com</a>并注册账号；</li>
+            <li>2. 创建并完善简历；</li>
+            <li>3. 加入暑期实习；</li>
+            <li>4. 4月25日－5月25日期间，可通过实习鸟首页banner或顶部入口，进入暑期实习专场，挑选并投递职位；同时，此期间可接受企业的主动邀约，及时查看哦～</li>
+        </ul>
+        <!--发布暑期职位-->
+        <div class="box-s3-btn">
+            <%if(isJoiner){%>
+            <span class="btn off btn-join">已加入暑期实习</span>
+            <%}else{%>
+            <span class="btn on btn-join">加入暑期实习</span>
+            <%}%>
+            <a class="btn on" href="/private/summer/jobList">挑选好职位</a>
+        </div>
+    </div>
+    <!--<div class="welfare-area">
+        <div class="title">更多福利</div>
+        <div class="welfare-content clearfix">
+            <a href="" class="welfare" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/2f0f47359ffccce44565fb685710eb7a.png')"></a>
+            <a href="" class="welfare" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/2f0f47359ffccce44565fb685710eb7a.png')"></a>
+            <a href="" class="welfare" style="background-image: url('http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/2f0f47359ffccce44565fb685710eb7a.png')"></a>
+        </div>
+    </div>-->
+</div>
+
+<%include footer.ejs%>
+<div class="overlay"></div>
+<div class="popTips popTips-join">
+    <div class="pop-top clearfix">
+        <div class="icon-logo"></div>
+        <div class="btn-cancel"></div>
+    </div>
+    <div class="pop-content">
+        <h3 class="pop-title">报名2016暑期实习</h3>
+        <p>你将要加入2016暑期实习专场。</p>
+        <p>报名成功后，4月25日—5月25日，你可以在实习鸟首页暑期实习风暴月专场挑选适合自己的实习职位，以及接受企业邀约~</p>
+        <%if(isJoiner){%>
+        <div class="btn-confirm off">已加入</div>
+        <%}else{%>
+        <div class="btn-confirm on">加入</div>
+        <%}%>
+    </div>
+</div>
+<%include ../common/statistics.ejs%>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.type = "user";
+</script>
+</body>
+</html>

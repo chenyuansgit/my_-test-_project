@@ -1,0 +1,206 @@
+@import "../../../common/style";
+@import "../../../common/header";
+@import "../../../common/footer";
+@import "../../../common/overlay";
+@import "../../../common/backTop";
+@import "../../../common/animation";
+@import "../popBox";
+.container{
+  background: @mainBackground;
+}
+.footer{
+  background: #fff;
+}
+.quick-content {
+  width: 1024px;
+  min-height: 100%;
+  margin: 10px auto 80px;
+  position: relative;
+  .center-ball {
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    background: #879bb4;
+    margin: 0 auto;
+    border-radius: 50%;
+    color: #fff;
+  }
+  .center-line-s {
+    width: 4px;
+    height: 30px;
+    margin: 0 auto;
+    background: #879bb4;
+  }
+  .resume-block {
+    position: relative;
+    margin-bottom: 15px;
+    height: 284px;
+    .circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin: 10px auto 0;
+    }
+    .center-line {
+      width: 4px;
+      height: 236px;
+      position: absolute;
+      left: 50%;
+      margin-left: -2px;
+      top: 55px;
+      background: #879bb4;
+    }
+    .resume-time {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    .resume-detail {
+      width: 498px;
+      height: 300px;
+      position: absolute;
+      margin-top: -15px;
+      opacity:0;
+      .resume-title {
+        width: 500px;
+        height: 74px;
+        position: relative;
+        color: #fff;
+        font-size: 18px;
+        .title{
+          max-width: 400px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+      .resume-bottom {
+        .avatar {
+          width: 264px;
+          height: 176px;
+          border: 1px solid #eee;
+          font-size: 0;
+          .background("@{baseUrl}/img/articles/3.jpg",contain);
+        }
+        .intro {
+          width: 214px;
+        }
+        .look {
+          font-size: 18px;
+          padding: 0 2px 5px 20px;
+          position: relative;
+          i {
+            background: url("@{baseUrl}/img/quickRecruit/icon-kuaizhao.png") 0 0 no-repeat;
+            width: 19px;
+            height: 19px;
+            position: absolute;
+            left: 1px;
+            top: 5px;
+          }
+        }
+      }
+    }
+    &.odd {
+      @color: #b6719a;
+      .resume-time {
+        color: @color;
+      }
+      .circle {
+        background: @color;
+      }
+      .resume-detail {
+        left:0px;
+        .resume-title {
+          background: url("@{baseUrl}/img/quickRecruit/title-purple.png") 0 0 no-repeat;
+          background-size: cover;
+          .title {
+            margin: 10px 30px 0 55px;
+          }
+        }
+        .resume-bottom {
+          padding-left: 5px;
+          .avatar{
+            float: left;
+          }
+          .intro-area{
+            float: left;
+            .intro {
+              margin: 20px 0 0 10px;
+            }
+            .look {
+              color: @color;
+              margin: 10px 0 0 136px;
+              border-bottom: 1px solid @color;
+            }
+          }
+        }
+      }
+    }
+    &.even {
+      @color: #6cbbdc;
+      .resume-time {
+        color: @color;
+      }
+      .circle {
+        background: @color;
+      }
+      .resume-detail {
+        right:0px;
+        .resume-title {
+          background: url("@{baseUrl}/img/quickRecruit/title-blue.png") 0 0 no-repeat;
+          background-size: cover;
+          .title {
+            margin: 10px 30px 0 55px;
+          }
+        }
+        .resume-bottom {
+          .avatar{
+            float: right;
+          }
+          .intro-area{
+            .intro {
+              margin: 20px 0 0 15px;
+            }
+            .look {
+              color: @color;
+              margin: 10px 0 0 136px;
+              border-bottom: 1px solid @color;
+              i{
+                background-position: -20px 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .join {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    background: #a1d0d1;
+    padding: 10px 35px 10px 15px;
+    color: #fff;
+    cursor: pointer;
+    i {
+      background: url("@{baseUrl}/img/quickRecruit/icon-kuaizhao.png") 0 0 no-repeat;
+      background-position: -38px 2px;
+      width: 21px;
+      height: 19px;
+      position: absolute;
+      top: 13px;
+      right: 11px;
+    }
+  }
+  .loading{
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    background: url("@{baseUrl}/img/loading.gif") 0 0 no-repeat;
+    background-size: cover;
+  }
+}
+
+
+

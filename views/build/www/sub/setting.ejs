@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/sub/subscribe.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container post-position mb20 clearfix">
+    <div class="sidebar fl">
+        <ul class="subscribe-nav">
+            <!--<div class="title"><i></i>发布的职位</div>-->
+            <li class="cur"><a href="/sub/list">我的订阅</a></li>
+            <li><a href="/favorite/list?type=job">我的收藏</a></li>
+        </ul>
+    </div>
+    <div class="content fr">
+        <!--订阅列表-->
+        <div class="subscribe-box sideBox">
+            <h3>我的职位订阅</h3>
+            <%if(sub.user_id&&sub.user_id.length){%>
+            <!--职位名称-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>职位名称</div>
+                <div class="sub-item-input fl">
+                    <input class="input-text input-type" type="text" value="<%=sub.key%>" data-id="<%=sub.key_id%>" placeholder="请选择职位类别" /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择职位类别</span>-->
+                    <div class="selector-jt selector clearfix">
+                        <ul class="main-box fl">
+                            <!--互联网 市场商务 通信电器 人事行政 财经法务 媒体艺术 教育语言 机械建筑 其他类型-->
+                            <li class="jt-1st curr" data-class="互联网">互联网</li>
+                            <li class="jt-1st" data-class="市场/商务">市场/商务</li>
+                            <li class="jt-1st" data-class="通信/电气">通信/电气</li>
+                            <li class="jt-1st" data-class="人事/行政">人事/行政</li>
+                            <li class="jt-1st" data-class="财经/法律">财经/法律</li>
+                            <li class="jt-1st" data-class="媒体/艺术">媒体/艺术</li>
+                            <li class="jt-1st" data-class="咨询/教育">咨询/教育</li>
+                            <li class="jt-1st" data-class="机械/建筑">机械/建筑</li>
+                            <li class="jt-1st" data-class="其他类型">其他类型</li>
+                        </ul>
+                        <div class="fl sub-box"></div>
+                    </div>
+
+                </div>
+            </div>
+            <!--日薪范围-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>日薪范围</div>
+                <div class="sub-item-input fl">
+                    <%
+                        var min_payment = "";
+                        switch (parseInt(sub.min_payment)) {
+                            case 0: min_payment = "不限"; break;
+                            case 1: min_payment = "0-50元"; break;
+                            case 50: min_payment = "50-100元"; break;
+                            case 100: min_payment = "100-200元"; break;
+                            case 200: min_payment = "200-500元"; break;
+                            case 500: min_payment = "500元以上"; break;
+                        }
+                    %>
+                    <input class="input-text input-payment-min" type="text" value="<%=min_payment%>" data-id="<%=sub.min_payment%>" placeholder="最低日薪" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="mlr20">—</span>
+                    <input class="input-text2 input-payment-max" data-type="int" type="text" placeholder="最高日薪" />
+                    <span class="yuan">元/天</span>-->
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请输入日薪范围</span>-->
+                    <ul class="selector selector-payment-min">
+                        <li data-id="0">不限</li>
+                        <li data-id="1">0-50元</li>
+                        <li data-id="50">50-100元</li>
+                        <li data-id="100">100-200元</li>
+                        <li data-id="200">200-500元</li>
+                        <li data-id="500">500元以上</li>
+                    </ul>
+                </div>
+            </div>
+            <!--实习城市-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>实习城市</div>
+                <div class="sub-item-input city-wrap fl">
+                    <input class="input-text input-city" type="text" value="<%=sub.city%>" data-cid="<%=sub.city_id%>" placeholder="请选择实习城市" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择实习城市</span>-->
+                </div>
+                <div class="selector-city"></div>
+            </div>
+            <!--实习时间-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>实习时间</div>
+                <div class="sub-item-input fl">
+                    <% var isworkday;
+                        if(sub.workdays == 0)
+                            isworkday = "不限";
+                        else
+                            isworkday = sub.workdays + "天";
+                    %>
+                    <input class="input-text input-time" type="text" placeholder="请选择每周至少实习时间" value="<%=isworkday%>" data-id="<%=sub.workdays%>" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择实习时间</span>-->
+                    <ul class="selector selector-days">
+                        <li data-id="0">不限</li>
+                        <li data-id="1">1天</li>
+                        <li data-id="2">2天</li>
+                        <li data-id="3">3天</li>
+                        <li data-id="4">4天</li>
+                        <li data-id="5">5天</li>
+                        <li data-id="6">6天</li>
+                        <li data-id="7">7天</li>
+                    </ul>
+                </div>
+            </div>
+            <!--学历要求-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>学历要求</div>
+                <div class="sub-item-input fl">
+                    <%
+                        var education = "";
+                        switch (parseInt(sub.education)) {
+                            case 0: education = "不限"; break;
+                            case 1: education = "大专"; break;
+                            case 2: education = "本科"; break;
+                            case 3: education = "硕士"; break;
+                            case 4: education = "博士及以上"; break;
+                        }
+                    %>
+                    <input class="input-text input-education" type="text" placeholder="请选择最低学历要求" value="<%=education%>" data-id="<%=sub.education%>" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择学历要求</span>-->
+                    <ul class="selector selector-education">
+                        <li data-id="0">不限</li>
+                        <li data-id="1">大专</li>
+                        <li data-id="2">本科</li>
+                        <li data-id="3">硕士</li>
+                        <li data-id="4">博士及以上</li>
+                    </ul>
+                </div>
+            </div>
+            <%}else{%>
+            <!--职位名称-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>职位名称</div>
+                <div class="sub-item-input fl">
+                    <input class="input-text input-type" type="text" placeholder="请选择职位类别" /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择职位类别</span>-->
+                    <div class="selector-jt selector clearfix">
+                        <ul class="main-box fl">
+                            <!--互联网 市场商务 通信电器 人事行政 财经法务 媒体艺术 教育语言 机械建筑 其他类型-->
+                            <li class="jt-1st curr" data-class="互联网">互联网</li>
+                            <li class="jt-1st" data-class="市场/商务">市场/商务</li>
+                            <li class="jt-1st" data-class="通信/电气">通信/电气</li>
+                            <li class="jt-1st" data-class="人事/行政">人事/行政</li>
+                            <li class="jt-1st" data-class="财经/法律">财经/法律</li>
+                            <li class="jt-1st" data-class="媒体/艺术">媒体/艺术</li>
+                            <li class="jt-1st" data-class="咨询/教育">咨询/教育</li>
+                            <li class="jt-1st" data-class="机械/建筑">机械/建筑</li>
+                            <li class="jt-1st" data-class="其他类型">其他类型</li>
+                        </ul>
+                        <div class="fl sub-box"></div>
+                    </div>
+
+                </div>
+            </div>
+            <!--日薪范围-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>日薪范围</div>
+                <div class="sub-item-input fl">
+                    <input class="input-text input-payment-min" type="text" placeholder="最低日薪" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="mlr20">—</span>
+                    <input class="input-text2 input-payment-max" data-type="int" type="text" placeholder="最高日薪" />
+                    <span class="yuan">元/天</span>-->
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请输入日薪范围</span>-->
+                    <ul class="selector selector-payment-min">
+                        <li data-id="0">不限</li>
+                        <li data-id="1">0-50元</li>
+                        <li data-id="50">50-100元</li>
+                        <li data-id="100">100-200元</li>
+                        <li data-id="200">200-500元</li>
+                        <li data-id="500">500元以上</li>
+                    </ul>
+                </div>
+            </div>
+            <!--实习城市-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>实习城市</div>
+                <div class="sub-item-input city-wrap fl">
+                    <input class="input-text input-city" type="text" placeholder="请选择实习城市" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择实习城市</span>-->
+                </div>
+                <div class="selector-city"></div>
+            </div>
+            <!--实习时间-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>实习时间</div>
+                <div class="sub-item-input fl">
+                    <input class="input-text input-time" type="text" placeholder="请选择每周至少实习时间" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择实习时间</span>-->
+                    <ul class="selector selector-days">
+                        <li data-id="0">不限</li>
+                        <li data-id="1">1天</li>
+                        <li data-id="2">2天</li>
+                        <li data-id="3">3天</li>
+                        <li data-id="4">4天</li>
+                        <li data-id="5">5天</li>
+                        <li data-id="6">6天</li>
+                        <li data-id="7">7天</li>
+                    </ul>
+                </div>
+            </div>
+            <!--学历要求-->
+            <div class="sub-item clearfix">
+                <div class="sub-item-left fl"><span class="req">*</span>学历要求</div>
+                <div class="sub-item-input fl">
+                    <input class="input-text input-education" type="text" placeholder="请选择最低学历要求" readonly /><span class="icon-down-arrow"></span>
+                    <!--<span class="input-error"><span class="icon-prompt"></span>请选择学历要求</span>-->
+                    <ul class="selector selector-education">
+                        <li data-id="0">不限</li>
+                        <li data-id="1">大专</li>
+                        <li data-id="2">本科</li>
+                        <li data-id="3">硕士</li>
+                        <li data-id="4">博士及以上</li>
+                    </ul>
+                </div>
+            </div>
+            <%}%>
+            <!--接收邮箱/发送周期-->
+            <!--<div class="sub-item send-mail clearfix">
+                <div class="sub-item-left fl" style="width: 140px;">接收邮箱/发送周期</div>
+                <div class="sub-item-input fl">
+                    <input class="input-text3 input-education" type="text" placeholder="请输入接收邮箱" />
+                    <span class="send-cycle cur">3天</span>
+                    <span class="send-cycle">7天</span>
+                    <span class="input-error"><span class="icon-prompt"></span>请输入接收邮箱</span>
+                </div>
+            </div>-->
+            <span class="save-btn">开始订阅</span>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs %>
+<!-- -------弹窗 end------ -->
+<script src="<%=baseUrl%>/js/lib/IB_require.js" data-main="<%=baseUrl%>/js/page/sub//IB_subscribe.js"></script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+@import "../../var";
+.popBox{
+  background: #fff;
+  &-quickRecruit {
+    padding-bottom: 0;
+    .recruit-block {
+      padding-top: 20px;
+      .title {
+        width: 52px;
+        font-size: 16px;
+        line-height: 16px;
+        margin-left: 15px;
+        padding-left: 29px;
+        position: relative;;
+        i {
+          width: 23px;
+          height: 23px;
+          background: url("@{baseUrl}/img/quickRecruit/icon-invite.png") 0 0 no-repeat;
+          position: absolute;
+          top:0;
+          left: 0;
+          &.icon-text {
+            background-position: 2px -32px;
+            top: -3px;
+          }
+        }
+      }
+      .block-right{
+        margin-left: 15px;
+        .invite-theme{
+          font-size: 16px;
+          line-height: 16px;
+          .company-name{
+            color: @mainColor;
+          }
+        }
+        .invite-jobs{
+          margin-top: 15px;
+          .jobs-title{
+            color: #666;
+          }
+          .jobs{
+            margin-left: 6px;
+            border: 1px solid #eee;
+            width: 230px;
+            height: 100px;
+            padding: 6px 10px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            .job{
+              position: relative;
+              cursor: pointer;
+              height: 25px;
+              line-height: 25px;
+              padding-left: 24px;
+              .sel-circle{
+                width: 9px;
+                height: 9px;
+                padding: 1px;
+                border: 1px solid #ddd;
+                position: absolute;
+                left:0;
+                top:6px;
+                border-radius: 50%;
+              }
+              .job-name{
+                font-size: 15px;
+                max-width: 196px;
+                white-space:nowrap;
+                overflow:hidden;
+                text-overflow: ellipsis;
+              }
+              &.curr{
+                .sel-circle{
+                  background: @mainColor;
+                  background-clip: content-box;
+                }
+              }
+            }
+            .no-job{
+              color: @mainColor;
+            }
+          }
+        }
+        .job-add{
+          width: 264px;
+          text-align: right;
+          margin-top: 6px;
+          font-size: 15px;
+          line-height: 23px;
+          i{
+            width: 18px;
+            height: 18px;
+            margin: -1px 3px 0 0;
+            background: url("@{baseUrl}/img/quickRecruit/icon-invite.png") 0 0 no-repeat;
+          }
+          a{
+            color: #666;
+            i {
+              vertical-align: middle;
+              background-position: -1px -71px;
+            }
+          }
+          .btn-refresh{
+            color: #666;
+            margin-left: 15px;
+            cursor: pointer;
+            i {
+              vertical-align: middle;
+              background-position: -3px -107px;
+            }
+          }
+        }
+        .invite-content{
+          width: 326px;
+          height: 100px;
+          padding: 8px 12px;
+          resize: none;
+          border: 1px solid #eee;
+          font-size: 15px;
+          color: #333;
+        }
+      }
+    }
+    .invite-btn{
+      text-align: right;
+      margin: 15px auto 0;
+      position: relative;
+      .btn{
+        width: 90px;
+        text-align: center;
+        line-height: 35px;
+        position: relative;
+        font-size: 17px;
+        background: #35e9ec;
+        color: #279b9d;
+        &-invite{
+          background: @mainColor;
+          color: #fff;
+          line-height: 38px;
+          box-shadow: 3px 0 3px #999;
+          right: -5px;
+          z-index: 1000;
+        }
+        &-console{
+          background: #b3f1f2;
+          color: @mainColor;
+          bottom: -1px;
+        }
+      }
+      .icon-corner{
+        width: 6px;
+        height: 6px;
+        background: url("@{baseUrl}/img/quickRecruit/icon-corner-2.png");
+        position: absolute;
+        z-index: 999;
+        top:0;
+        right: 85px;
+      }
+    }
+  }
+  &-join {
+    background: #f4fafa;
+    color: #666;
+    .join-top {
+      .title {
+        margin: 20px 75px;
+        font-size: 18px;
+        color: #999;
+        border-bottom: 1px solid #fff;
+        cursor: pointer;
+        &.curr {
+          color: @mainColor;
+          border-bottom: 1px solid @mainColor;
+        }
+      }
+    }
+    .no-time{
+      color: @mainColor;
+    }
+    .tips {
+      width: 80%;
+      margin: 10px auto 20px;
+      li {
+        margin-top: 8px;
+        text-align: justify;
+        position: relative;
+        i {
+          width: 5px;
+          height: 5px;
+          position: absolute;
+          left: -13px;
+          top: 9px;
+          border-radius: 50%;
+          background: @mainColor;
+        }
+      }
+    }
+    .btn-area{
+      width: 80%;
+      margin: 0 auto 15px;
+      text-align: center;
+      .btn{
+        padding: 6px 10px;
+        color: #fff;
+        border-radius: 3px;
+        &-apply{
+          background: @mainColor;
+        }
+        &-applied{
+          background: #ccc;
+          cursor: auto;
+        }
+        &-more{
+          background: #bfbfbf;
+        }
+      }
+    }
+    .mg{
+      margin-top: 8px;
+    }
+  }
+  &-apply-succ,&-apply-again,&-no-resume,&-invite-succ,&-invite-again{
+    p{
+      width: 80%;
+      margin: 20px auto;
+    }
+    .btn-area{
+      width: 80%;
+      margin: 0 auto 15px;
+      .btn{
+        padding: 6px 10px;
+        color: #fff;
+        border-radius: 3px;
+        &-ok{
+          background: @mainColor;
+        }
+        &-back{
+          background: #bfbfbf;
+        }
+      }
+    }
+  }
+  &-qr-join{
+    .popBox-content{
+      color: #666;
+      padding-bottom: 15px;
+      .recruit-block{
+        position: relative;
+        margin-top: 25px;
+        &.bottom{
+          border-top: 1px solid #eee;
+          margin-top: 15px;
+          padding-top: 15px;
+        }
+        .tips{
+          width: 360px;
+          margin: 0 auto;
+          font-size: 15px;
+          line-height: 23px;
+          text-align: justify;
+          .mg{
+            margin-top: 15px;
+          }
+        }
+        .join-tips{
+          float: left;
+          margin-left: 75px;
+          text-align: center;
+          color: @mainColor;
+          .btn-join{
+            width: 52px;
+            height: 23px;
+            background: url("@{baseUrl}/img/talentPool/icon-btn.png") 0 0 no-repeat;
+            margin-right: 3px;
+            vertical-align: middle;
+            cursor: pointer;
+            &.off{
+              background-position: 0 0;
+            }
+            &.on{
+              background-position: 0 -36px;
+            }
+          }
+          @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+            .btn-join {
+              background-image: url('@{baseUrl}/img/talentPool/icon-btn_3x.png');
+              background-size: cover;
+              &.on{
+                background-position: 0 -25px;
+              }
+              &.off{
+                background-position: 0 0;
+              }
+            }
+          }
+        }
+        .btn-whatever{
+          float: right;
+          margin-right: 105px;
+        }
+      }
+    }
+  }
+}

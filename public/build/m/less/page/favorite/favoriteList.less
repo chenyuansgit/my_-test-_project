@@ -1,0 +1,165 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+html,body,.main,.loading{
+  background-color: #edf3f3;
+}
+.main{
+  padding-bottom:4.2rem;
+}
+.top-nav .nav{
+  font-weight: 500;
+  box-sizing: border-box;
+  width: 33%;
+  text-align: center;
+  font-size: 1.4rem;
+  margin:1rem 0 0.4rem 0;
+  color:#666;
+  cursor: pointer;
+  span{
+    display: inline-block;
+    padding: 0.5rem 0;
+    border-bottom: none;
+  }
+  &.active span{
+    color: @mainColor;
+    border-bottom: 1px solid @mainColor;
+  }
+}
+.none-job{
+  font-size:1.5rem;
+  color:#666;
+  margin-top:4rem;
+}
+.listone{
+  position: relative;
+  width: 96%;
+  margin:1.2rem 0 0 2%;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 0.4rem;
+  overflow-x: hidden;
+  display: block;
+  .company-info{
+    text-decoration: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e2eeee;
+    color: #666;
+    font-size: 1.3rem;
+    display: block;
+    cursor: pointer;
+    .company-logo{
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      margin:0 0.5rem;
+    }
+    .mp{
+      margin-top: 0.16rem;
+    }
+  }
+  .job_info{
+    cursor: pointer;
+    display: block;
+    padding-bottom:1rem;
+    text-decoration: none;
+    h3{
+      font-weight: normal;
+      font-size: 1.5rem;
+      color: #333;
+      margin:1rem 0 1rem 3rem;
+    }
+    .j-mid{
+      color:#666;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      img{
+        margin-top: 0.35rem;
+      }
+      .address-icon{
+        width: 1rem;
+        height: auto;
+        margin-left: 2.8rem;
+      }
+      .workdays-icon{
+        width: 1rem;
+        height: auto;
+        margin-left: 1rem;
+      }
+      .payment{
+        margin-left: 1rem;
+      }
+    }
+    .j-bottom{
+      font-size: 1.25rem;
+      .time{
+        color:#c1c1c1;
+        margin-left: 3rem;
+      }
+      .status{
+        color: @mainColor;
+        margin-right: 2rem;
+      }
+    }
+  }
+  .hr-info{
+    font-size: 1.25rem;
+    color:@mainColor;
+    margin:2rem 0 1rem 0;
+    .iphone-icon{
+      margin: 0 0.8rem 0 2.8rem;
+      width: 1rem;
+      height: auto;
+    }
+    .hr-phone{
+      margin-left: 2rem;
+    }
+  }
+  .address-info{
+    font-size: 1.25rem;
+    color:@mainColor;
+    .address-icon-light{
+      margin: 0 0.8rem 0 2.8rem;
+      width: 1rem;
+      height: auto;
+    }
+    .interview-address{
+      margin-left: 2rem;
+    }
+  }
+  .circle{
+    display: block;
+    width: 2.4rem;
+    height: 2.4rem;
+    position: absolute;
+    background-color: #edf3f3;
+    border-radius: 50%;
+    right: -1.2rem;
+    bottom:3.8rem;
+  }
+}
+.selection{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom:0;
+  font-size: 1.6rem;
+  color:@mainColor;
+  background-color: #dbfeff;
+  span{
+    display: inline-block;
+    text-align: center;
+    line-height: 100%;
+    padding:1.2rem 0;
+    box-sizing: border-box;
+    &.active{
+      color: #dbfeff;
+      background-color: #00ced1;
+    }
+    &.all{
+      width:46%;
+    }
+    &.done,&.doing{
+      width:27%;
+    }
+  }
+}

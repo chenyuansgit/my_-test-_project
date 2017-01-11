@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="header smaller lighter blue head-title">hr管理
+                                    <p class="search-head">
+                                        <input type="text" id="search" placeholder="请输入搜索关键词"/> <a href="" class="btn button-search">搜索</a>
+                                    </p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                             <div class="row">
+                                                  排序：<input type="radio" class="refresh" name="refresh" id="" value="time">创建时间 &nbsp;
+                                                 <input type="radio" class="refresh" name="refresh" id="" value="deals">处理简历数&nbsp;
+                                                 <input type="radio" class="refresh" name="refresh" id="" value="invites">发出邀请数
+                                                 <button id="button-refresh">确定</button>
+                                             </div>
+                                            <div class="tab-content">
+                                                <div id="home" class="tab-pane in active">
+                                                    <table id="sample-table-home" class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>hr信息</th>
+                                                            <th>公司信息</th>
+                                                            <th>统计</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <%if(employers.length>0){%>
+                                                        <tbody>
+                                                        <%for(var i= 0; i<employers.length; i++)
+                                                        {%>
+                                                        <tr data-uid="<%=employers[i].user_id%>">
+                                                            <td>
+                                                               <%=employers[i].user_id%>
+                                                            </td>
+                                                            <td>
+                                                               <p>电话:<%=employers[i].phone%></p>
+                                                                <p>邮箱:<%=employers[i].notice_email%></p>
+                                                                <p>创建时间:<%=new Date(employers[i].create_time).format("yyyy-MM-dd hh:mm")%></p>
+                                                            </td>
+                                                            <td>
+                                                                <%if(env==='local'){%>
+                                                                <a target="_blank" href="<%=employers[i].company_id?('http://www.dev.internbird.com/company/detail/'+employers[i].company_id):'javascript:'%>"><p class="ib-operation "><%=employers[i].company_name||'暂未通过验证'%></p></a>
+                                                                <%}else if(env==='development'){%>
+                                                                <a target="_blank" href="<%=employers[i].company_id?('http://www.dev.internbird.com/company/detail/'+employers[i].company_id):'javascript:'%>"><p class="ib-operation "><%=employers[i].company_name||'暂未通过验证'%></p></a>
+                                                                <%}else{%>
+                                                                <a target="_blank" href="<%=employers[i].company_id?('http://www.internbird.com/company/detail/'+employers[i].company_id):'javascript:'%>"><p class="ib-operation "><%=employers[i].company_name||'暂未通过验证'%></p></a>
+                                                                <%}%>
+                                                            </td>
+                                                            <td>
+                                                                <p>处理简历数：<a href="#" class="ib-operation"><%=employers[i].count||0%></a></p>
+                                                                <p>发送快招邀请数：<a href="#" class="ib-operation"><%=employers[i].invites||0%></a></p>
+                                                            </td>
+                                                        </tr>
+                                                        <%}%>
+                                                        </tbody>
+                                                        <%}else{%>
+                                                        <p>该栏目下没有数据！</p>
+                                                        <%}%>
+                                                    </table>
+                                                    <%include ../common/pages.ejs%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                        <i class="icon-double-angle-up icon-only bigger-110"></i>
+                    </a>
+                </div>
+            </div>
+    </div>
+</div>
+
+<%include ../common/footer.ejs%>
+<script src="/public/ace/assets/js/common/fn.js"></script>
+<script>
+    window.global = window.global || {};
+    global.page = parseInt('<%= page %>') || 1;
+</script>
+<script type="text/javascript">
+    var url = location.href;
+    var page = global.page;
+    //时间戳格式转换
+    Date.prototype.format = function(format) {
+        var o = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            "S": this.getMilliseconds()
+        };
+        if (/(y+)/.test(format)) {
+            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o) {
+            if (new RegExp("(" + k + ")").test(format)) {
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+            }
+        }
+        return format;
+    };
+    //hr搜索
+    $('.button-search').click(function(){
+        var searchText = $('#search').val();
+        url = "/employer/list?"
+        url= url + "k=" + searchText +'&page=1';
+        location.href = url;
+        return false;
+    })
+    //排序关键词选择
+    var lt = fn.getUrlPara("lt");
+    var $sort = $(".refresh");
+    if(lt == 'deals'){
+        $sort.eq(1).attr('checked','checked');
+    }
+    else if(lt == 'invites'){
+        $sort.eq(2).attr('checked','checked');
+    }
+    else {
+        $sort.eq(0).attr('checked','checked');
+    }
+
+    $('#button-refresh').click(function(){
+        var $sort = $(".refresh");
+        for(var i=0; i<$sort.length; i++)
+        {
+            if($sort.eq(i).is(':checked') == true){
+                location.href = url.replace('lt=' + lt,'lt='+ $sort.eq(i).val()) ;
+                break;
+            }
+        }
+    })
+    //给sidebar加样式
+    if(url.indexOf('job')){
+        $('#recruitMenu').addClass('active open');
+        $('#recruitMenu ul li:eq(3)').addClass('active');
+    }
+    //分页绑定
+    fn.pagingBind();
+</script>
+</body>
+</html>

@@ -1,0 +1,692 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../plugin/jquery-ui";
+@import "../../plugin/date";
+@import "../../custom/city";
+@import "../../common/overlay";
+@import "../../custom/date";
+@import "../../fonts";
+@import "../../plugin/lightbox";
+
+.myresume {
+  //简历主体
+  &-main {
+    padding-bottom: 30px;
+    &-top {
+      height: 113px;
+      width: 100%;
+      background-image: url("@{baseUrl}/img/my-resume-top.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      -webkit-background-size: 100% 100%;
+    }
+    .pd {
+      padding: 20px 60px 0;
+    }
+    .resume-circle {
+      position: absolute;
+      left: 24px;
+      width: 8px;
+      height: 8px;
+      .borderRadius(8px);
+      background-color: @c1;
+    }
+    .resume-block {
+      &-title {
+        padding-top: 20px;
+        margin-top: 10px;
+        padding-bottom: 20px;
+        border-top: 1px #eee solid;
+        position: relative;
+        font-size: 16px;
+        span.icon {
+          font-size: 18px;
+          padding-right: 10px;
+          color: @c1;
+        }
+      }
+      &-self-state{
+        .resume-block-top {
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px #eee solid;
+        }
+        p.state {
+          text-align: center;
+          color: @mainColor;
+        }
+        &-con{
+          width:315px;
+          margin: 0 auto;
+          position: relative;
+          .self-state-con{
+            width: 315px;
+            height: 44px;
+            font-size: 18px;
+            background: @mainColor;
+            cursor: pointer;
+            &:hover,&:focus{
+              background: #65e2e4;
+              .self-state-btn,i{
+                background-color: #65e2e4;
+              }
+            }
+            .self-state-btn{
+              width:285px;
+              height:100%;
+              border: none;
+              background:@mainColor ;
+              font-size: 16px;
+              text-align: left;
+              color: #fff;
+              padding-left: 15px;
+              outline: none;
+              cursor: pointer;
+            }
+          }
+          i{
+            width: 17px;
+            height: 13px;
+            background: url("@{baseUrl}/img/mr/icon-mr.png") 0 0 no-repeat;
+            background-position: -76px -108px;
+          }
+          .self-state-list{
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            z-index: 2;
+            width: 315px;
+            background-color: #65e2e4;
+            box-shadow: 2px 2px 4px #efefe4;
+            .ul-self-state{
+              list-style: none;
+              li{
+                padding: 5px 15px;
+                color: #fff;
+                cursor: pointer;
+                &:hover{
+                  background: @mainColor;
+                }
+              }
+            }
+          }
+        }
+        .resume-update-time{
+          color: #aaaaaa;
+          text-align: right;
+          padding: 20px 0;
+        }
+      }
+      .add-area {
+        position: absolute;
+        right: 0;
+        top: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        color: @mainColor;
+        .btn-add {
+          span.icon-r-add {
+            padding-right: 4px;
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    //加载图片
+    .loading{
+      width: 30px;
+      height: 30px;
+      background: url("../../../img/loading-s.gif") 0 0 no-repeat;
+      background-size: contain;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -15px;
+      margin-top: -15px;
+    }
+    //简历头部
+    .resume-header {
+      background-size: cover;
+      position: relative;
+      text-align: center;
+      .myname{
+        line-height: 20px;
+        padding-bottom: 30px;
+        font-size: 18px;
+        padding-top: 48px;
+      }
+      .avatar{
+        position: absolute;
+        z-index: 1000;
+        width: 122px;
+        height: 122px;
+        top: -80px;
+        left: 50%;
+        margin-left: -64px;
+        .background("@{baseUrl}/img/mr/icon-avatar.png",cover);
+        background-color: #fff;
+        .borderRadius(50%);
+        border: 3px solid #fff;
+        *{
+          width: 122px;
+          height: 122px;
+          border-radius: 50%;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        #avatar-file{
+          opacity: 0;
+          filter: alpha(opacity=0);
+          cursor: pointer;
+        }
+        .avatar-mask{
+          background: url("@{baseUrl}/img/mr/head-mask.png") 0 0 no-repeat;
+          background-size: cover;
+          display: none;
+        }
+        &:hover{
+          .avatar-mask{
+            display: block;
+          }
+        }
+      }
+    }
+    //个人信息
+    .myresume-info {
+      position: relative;
+      ul {
+        padding-left: 26px;
+      }
+      ul li {
+        min-width: 218px;
+        float: left;
+        line-height: 30px;
+        text-align: left;
+        span {
+          color: @c2;
+          padding-left: 2px;
+        }
+      }
+    }
+    //教育背景   校园经历
+    .resume-edu, .resume-school, .resume-intern, .resume-project, .resume-skill, .resume-honor, .resume-self, .resume-works, .resume-attachment {
+      position: relative;
+      padding-bottom: 12px;
+      color: @c2;
+      line-height: 24px;
+      padding-left: 24px;
+      .btn-delete {
+        padding-left: 12px;
+      }
+      .resume-circle {
+        top: 8px;
+      }
+    }
+    .resume-edu, .resume-school, .resume-intern, .resume-project, .resume-honor {
+      .time {
+       /* position: absolute;
+        left: 38px;
+        top: 0;*/
+        padding: 0 20px;
+      }
+      .info {
+        /*margin-left: 200px;*/
+      }
+    }
+    .resume-skill {
+      .skill {
+        padding-left: 20px;
+      }
+    }
+    .resume-attachment {
+      .attachment {
+        padding-left: 20px;
+      }
+    }
+    .resume-attachment-blcok {
+      .upload-attach {
+        border: 1px @mainColor solid;
+        color: @mainColor;
+        width: 120px;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 6px 0;
+        text-align: center;
+        display: block;
+        .borderRadius(3px);
+        margin: 10px auto;
+      }
+      .upload-attach-tip {
+        color: @c2;
+        padding-top: 10px;
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+    .resume-block-hope .resume-r {
+      top: 20px;
+    }
+    .resume-school, .resume-intern, .resume-project, .resume-honor {
+      .info {
+        span.exp-name,span.exp-role {
+          display: inline;
+          padding-left: 12px;
+        }
+        span.exp-name {
+          padding-right: 12px;
+        }
+      }
+    }
+    .resume-works{
+      .works-site a {
+        color: @mainColor;
+        line-height: 24px;
+      }
+      .works-img {
+        width: 572px;
+        height: auto;
+        line-height: 0;
+        margin-bottom: 12px;
+        text-align: center;
+        .works-img-item {
+          width:auto !important;
+          width:656px;
+          max-width:656px;
+          height: auto;
+          border: none;
+        }
+      }
+    }
+    .resume-work-show {
+      .works-img {
+        width: 100%;
+      }
+    }
+    //期望实习
+    .resume-block-hope {
+      ul {
+        padding-left: 26px;
+      }
+      ul li {
+        float: left;
+        color: @c2;
+        width: 218px;
+        line-height: 30px;
+        .icon {
+          font-size: 18px;
+          padding-right: 8px;
+        }
+      }
+    }
+    //校园经历
+    .resume-block-school, .resume-block-intern, .resume-block-project {
+      .exp-content {
+        padding: 12px 0 0 12px;
+        color: @c2;
+        h1,h2,h3,h4,h5,h6 {
+        font-size: 14px;
+        color: #666;
+        font-weight: 600;
+      }
+      }
+    }
+    .resume-block-edu {
+      .resume-edu-info {
+        padding: 12px 0 0 12px;
+        color: @c2;
+        span.major {
+          padding-right: 12px;
+        }
+      }
+    }
+    //自我描述
+    .resume-self {
+      .self-content {
+        /*padding-right: 50px;*/
+      }
+      .btn-edit {
+        right: 0;
+      }
+      .add-area {
+        top: 0;
+      }
+    }
+    //简历作品预览
+    .resume-works-preview {
+      width: 100%;
+      text-align: center;
+      img {
+        max-width: 100%;
+        margin: 0 auto;
+        display: none;
+      }
+    }
+  }
+}
+.bottom{
+  position: fixed;
+  width:100%;
+  bottom:0;
+  left:0;
+  .bottom-mask{
+    width:100%;
+    height: 56px;
+    background: #000;
+    opacity: .8;
+  }
+  .btn-det-area {
+    width: 100%;
+    text-align: center;
+    height: 36px;
+    font-size: 16px;
+    color: #fff;
+    position: fixed;
+    bottom: 10px;
+    z-index: 9;
+    span.bottom-info {
+      display: inline-block;
+      line-height: 36px;
+      vertical-align: top;
+    }
+    .btn {
+      width: 98px;
+      height: 36px;
+      display: inline-block;
+      margin: 0 8px;
+    }
+    .btn-reg {
+      background: url("@{baseUrl}/img/det-reg.png") no-repeat;
+    }
+    .btn-download {
+      background: url("@{baseUrl}/img/det-down.png") no-repeat;
+    }
+  }
+  .btn-area{
+    position: absolute;
+    width:100%;
+    top: 0;
+    height: 50px;
+    padding:0 6%;
+    >div{
+      display:inline-block;
+      &.btn-r{
+        float: right;
+        margin-right: 10%;
+      }
+    }
+    .btn{
+      padding: 5px 10px;
+      border: 2px solid #eee;
+      margin: 10px 10px  0 0;
+      i{
+        width: 22px;
+        height: 19px;
+        vertical-align: middle;
+        background: url("@{baseUrl}/img/mr/icon-operation.png") no-repeat;
+      }
+      &.btn-download{
+        i{
+          background-position: 0 -48px;
+        }
+      }
+      &.btn-share{
+        i{
+          background-position: 0 -25px;
+        }
+      }
+      &.btn-print{
+        i{
+          background-position: 0 -73px;
+        }
+      }
+      &.btn-favorite{
+        i{
+          width: 17px;
+          height: 19px;
+          background-position: 0 0;
+        }
+      }
+      &.bg-blue{
+        background: @mainColor;
+        border:none;
+      }
+      a{
+        color:#eee;
+      }
+    }
+  }
+}
+.popBox{
+  .pop-title {
+    background: @mainColor;
+    color: #fff;
+    height: 44px;
+    padding-left: 28px;
+    line-height: 44px;
+    font-size: 18px;
+  }
+  .tc {
+    text-align: center;
+  }
+  .no-suitable-reason {
+    width: 360px;
+    margin: 0 auto 30px;
+  }
+  .no-suitable-reason textarea {
+    width: 342px;
+    height: 150px;
+    padding: 8px;
+    resize: none;
+    color: #888;
+    border: 1px #eee solid;
+    &.error{
+      border: 1px solid @errorColor;
+    }
+    line-height: 25px;
+  }
+  .pop-content {
+    padding: 20px 28px;
+    line-height: 28px;
+  }
+  .no-suitable-text {
+    width: 360px;
+    position: relative;
+    margin: 10px auto 40px;
+    h4 {
+      font-weight: 600;
+      position: relative;
+      line-height: 25px;
+    }
+    .no-suitable-wrap {
+      height: 24px;
+      line-height: 24px;
+      margin-bottom: 15px;
+      input{
+        border:1px solid #eee;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+      .no-suitable-list {
+        line-height: 22px;
+        width: 130px;
+        position: relative;
+        padding: 0 48px 0 5px;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+
+      .add-suitable {
+        color: #00ced1;
+        padding-left: 20px;
+      }
+    }
+    .no-suitable-item {
+      display: none;
+      width: 183px;
+      position: absolute;
+      z-index: 1;
+      font-size: 14px;
+      background-color: #fff;
+      border: 1px #eee solid;
+      li {
+        height: 24px;
+        line-height: 24px;
+        padding-left: 10px;
+        position: relative;
+        border-bottom: 1px #eee solid;
+        :last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .pop-ul, .forward-ul, .notice-ul {
+    li {
+      line-height: 24px;
+      margin-bottom: 6px;
+      padding-left: 80px;
+      position: relative;
+      span {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 80px;
+      }
+      .pop-inputText, .forward-inputText {
+        height: 22px;
+        line-height: 22px;
+        padding: 0 5px;
+        border: 1px #eee solid;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+    }
+  }
+  .notice-box p {
+    padding-top: 20px;
+  }
+  .pop-ul {
+    margin: 0 auto 30px;
+    width: 300px;
+    li{
+      height: 24px;
+      .pop-inputText {
+        width: 208px;
+      }
+    }
+  }
+  .tab-ui li {
+    background-color: #fdfdfd;
+    text-align: center;
+    color: #00ced1;
+    float: left;
+    width: 50%;
+    cursor: pointer;
+    padding: 10px 0;
+  }
+  .tab-ui li.active {
+    color: #fff;
+    background-color: #00ced1;
+  }
+  .forward-ul, .notice-ul {
+    margin: 20px auto 30px;
+    width: 360px;
+    li {
+      .forward-inputText {
+        width: 268px;
+      }
+      .forward-textareaText {
+        padding: 5px 4px;
+        width: 270px;
+        height: 72px;
+        resize: none;
+        line-height: 24px;
+        border: 1px #eee solid;
+        &.error{
+          border: 1px solid @errorColor;
+        }
+      }
+      span {
+        text-align: right;
+      }
+    }
+  }
+  .pop-btn {
+    width: 360px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 25px;
+  }
+  .pop-btn a {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 4px 30px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+  }
+  .pop-btn a.send {
+    background-color: #00ced1;
+    color: #fff;
+  }
+  .pop-btn a.cancel {
+    background-color: #fcfcfc;
+    color: #00ced1;
+  }
+  &.popBox-download{
+    .top-tip{
+      text-align: center;
+      margin-top: 15px;
+      position: relative;
+      padding-left: 15px;
+      .icon-light{
+        width: 27px;
+        height: 41px;
+        position: absolute;
+        top: -15px;
+        left: 25px;
+        background: url("/public/build/web/img/mr/icon-light.png") 0 0 no-repeat;
+        background-size: cover;
+      }
+      .cb{
+        color: @mainColor;
+      }
+      .cg{
+        color: #666;
+      }
+    }
+    .download-area{
+      margin: 10px 0;
+      text-align: center;
+      a{
+        display: block;
+        width: 96px;
+        padding: 10px 0;
+        margin: 10px auto 0;
+        border-radius: 3px;
+        color: #666;
+        font-size: 17px;
+        border-bottom: 1px solid #eee;
+        &:hover{
+          width: 150px;
+          background: @mainColor;
+          color: #fff;
+          border-bottom-color: #fff;
+        }
+      }
+    }
+    .transition {
+      -moz-transition:ease-in-out .5s;
+      -webkit-transition:ease-in-out .5s;
+      -o-transition:ease-in-out .5s;
+      -ms-transition:ease-in-out .5s;
+      transition:ease-in-out .5s;
+    }
+  }
+}

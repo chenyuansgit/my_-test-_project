@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <%if(account && account.uid){%>
+    <script>
+        var isLogin = true;
+    </script>
+    <%}else{%>
+    <script>
+        var isLogin = false;
+    </script>
+    <%}%>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/IB_recruitDetail.js"></script>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/qr/recruitDetail.css"/>
+</head>
+<body>
+<%
+var userUrl = "http://i.internbird.com/mine";
+switch(env){
+    case "local" : userUrl = "http://localhost:8096"; break;
+    case "development" : userUrl = "http://test.i.internbird.com"; break;
+    case "prod" : userUrl = "http://i.internbird.com"; break;
+}
+%>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/quickRecruit" class="back left-icon"></a>
+        <span>快招</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <p class="title w100"><%=quick_recruit.title%></p>
+    <p class="tips clearfix">
+        <span class="fll iblock"><%=new Date(quick_recruit.release_time).format('yyyy-MM-dd')%></span>
+        <a class="fll iblock ibird" href="<%=userUrl%>/quickRecruit/detail/<%=quick_recruit.id%>">实习鸟</a>
+    </p>
+    <div class="content w100 bb clearfix"><%-quick_recruit.content%></div>
+    <div class="int w100">
+        <div class="tip bb w100 clearfix">
+            <p>招聘官大人</p>
+            <p>快快注册实习鸟,点击邀请按钮，邀请ta吧。</p>
+            <a href="<%=userUrl%>/quickRecruit/detail/<%=quick_recruit.id%>" class="block fll right">
+                <button>邀请TA</button>
+            </a>
+        </div>
+        <div class="tip bb w100 clearfix">
+            <p>学生宝宝，还没有注册？</p>
+            <p>点击注册按钮，海量实习一键投递任你选。</p>
+            <a href="http://www.internbird.com/register" class="block fll right">
+                <button>注册</button>
+            </a>
+        </div>
+        <!--暑期实习-->
+        <!--<div class="tip bb w100 clearfix">
+            <p>宝宝们，还没有找到暑期实习？</p>
+            <p>点击暑期实习，3000&nbsp;offer任你选。</p>
+            <a href="http://www.internbird.com/private/summer" class="block fll right">
+                <button class="blue">暑期实习</button>
+            </a>
+        </div>-->
+    </div>
+</div>
+<!--<p class="bottom clearfix">
+    <a class="read fll iblock" href="/quickRecruit">阅读原文</a>
+    <span class="fll iblock">阅读 100000+</span>
+    <img class="like-icon fll iblock" src="<%=baseUrl%>/img/icon-light-like.png"/>
+    <span class="fll iblock">15838</span>
+</p>-->
+<div class="share-back w100 h100 none" data-title="<%=quick_recruit.title%>" data-desc="<%=quick_recruit.summary%>" data-cover="<%=quick_recruit.img%>"></div>
+</body>
+</html>

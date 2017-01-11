@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/activity/list.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/summer/IB_job.js"></script>
+</head>
+<body>
+<div class="header">
+    <%include header.ejs%>
+</div>
+<div class="top-wrap"></div>
+<div class="w1182">
+    <div class="join-banner user">
+        <a href="/private/summer" class="join-entrance"></a>
+    </div>
+    <div class="intern-search-area">
+        <div class="intern-search-top">
+            <div class="line-select-wrap">
+                <div class="item item-city">
+                    <ul class="active clearfix">
+                        <li class="title">实习地点:</li>
+                        <%if(!option.cid){%>
+                        <li class="job-city selected" data-c="" data-cid="">不限</li>
+                        <%}else{%>
+                        <li class="job-city" data-c="" data-cid="">不限</li>
+                        <%}%>
+                        <%for(var i= 0;i<12;++i){%>
+                        <%if(option.cid==hotCity[i].city_id){%>
+                        <li class="job-city selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                        <%}else{%>
+                        <li class="job-city" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                        <%}%>
+                        <%}%>
+                        <li class="btn-more fr">更多<i></i></li>
+                    </ul>
+                    <div class="more clearfix">
+                        <ul class="hot">
+                            <li class="title">实习地点:</li>
+                            <%if(!option.cid){%>
+                            <li class="job-city selected" data-c="">不限</li>
+                            <%}else{%>
+                            <li class="job-city" data-c="">不限</li>
+                            <%}%>
+
+                            <%for(var i= 0;i<12;++i){%>
+                            <%if(option.cid==hotCity[i].city_id){%>
+                            <li class="job-city selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}else{%>
+                            <li class="job-city" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}%>
+                            <%}%>
+                            <li class="btn-more fr">更多<i></i></li>
+                        </ul>
+                        <ul class="other">
+                            <%for(var i= 12;i<hotCity.length;++i){%>
+                            <%if(option.cid==hotCity[i].city_id){%>
+                            <li class="job-city selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}else{%>
+                            <li class="job-city" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}%>
+                            <%}%>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item item-job-type">
+                    <ul class="job-class-area">
+                        <li class="title">实习分类:</li>
+                        <%if(!option.jt){%>
+                        <li class="job-type selected" data-type="" data-id="" >不限</li>
+                        <%}else{%>
+                        <li class="job-type" data-type="" data-id="" >不限</li>
+                        <%}%>
+                        <li class="job-class" data-class="互联网">互联网</li>
+                        <li class="job-class" data-class="市场/商务">市场/商务</li>
+                        <li class="job-class" data-class="通信/电气">通信/电气</li>
+                        <li class="job-class" data-class="人事/行政">人事/行政</li>
+                        <li class="job-class" data-class="财经/法律">财经/法律</li>
+                        <li class="job-class" data-class="媒体/艺术">媒体/艺术</li>
+                        <li class="job-class" data-class="咨询/教育">咨询/教育</li>
+                        <li class="job-class" data-class="机械/建筑">机械/建筑</li>
+                        <li class="job-class" data-class="其他类型">其他类型</li>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul>
+                        <li class="title">薪资 / 天:</li>
+                        <%if(!option.pt){%>
+                        <li class="job-salary selected" data-s="0">不限</li>
+                        <%}else{%>
+                        <li class="job-salary" data-s="0">不限</li>
+                        <%}%>
+                        <%if(option.pt==1){%>
+                        <li class="job-salary selected" data-s="1">小于50</li>
+                        <%}else{%>
+                        <li class="job-salary" data-s="1">小于50</li>
+                        <%}%>
+                        <%if(option.pt==2){%>
+                        <li class="job-salary selected" data-s="2">50-100</li>
+                        <%}else{%>
+                        <li class="job-salary" data-s="2">50-100</li>
+                        <%}%>
+                        <%if(option.pt==3){%>
+                        <li class="job-salary selected" data-s="3">100-200</li>
+                        <%}else{%>
+                        <li class="job-salary" data-s="3">100-200</li>
+                        <%}%>
+                        <%if(option.pt==4){%>
+                        <li class="job-salary selected" data-s="4">200-500</li>
+                        <%}else{%>
+                        <li class="job-salary" data-s="4">200-500</li>
+                        <%}%>
+                        <%if(option.pt==5){%>
+                        <li class="job-salary selected" data-s="5">500以上</li>
+                        <%}else{%>
+                        <li class="job-salary" data-s="5">500以上</li>
+                        <%}%>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul>
+                        <li class="title">学历要求:</li>
+                        <%if(option.et==0){%>
+                        <li class="job-edu selected" data-e="">不限</li>
+                        <%}else{%>
+                        <li class="job-edu" data-e="">不限</li>
+                        <%}%>
+                        <%if(option.et==1){%>
+                        <li class="job-edu selected" data-e="1">大专</li>
+                        <%}else{%>
+                        <li class="job-edu" data-e="1">大专</li>
+                        <%}%>
+                        <%if(option.et==2){%>
+                        <li class="job-edu selected" data-e="2">本科</li>
+                        <%}else{%>
+                        <li class="job-edu" data-e="2">本科</li>
+                        <%}%>
+                        <%if(option.et==3){%>
+                        <li class="job-edu selected" data-e="3">硕士</li>
+                        <%}else{%>
+                        <li class="job-edu" data-e="3">硕士</li>
+                        <%}%>
+                        <%if(option.et==4){%>
+                        <li class="job-edu selected" data-e="4">博士及以上</li>
+                        <%}else{%>
+                        <li class="job-edu" data-e="4">博士及以上</li>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="list-content">
+        <div class="jobs-area clearfix">
+            <%if(jobs&&jobs.length){%>
+            <%for(var i = 0,len = jobs.length;i<len;++i){%>
+            <div class="job">
+                <div class="job-content clearfix">
+                    <div class="job-l">
+                        <div class="job-info-top">
+                            <span class="job-info-name"><a href="/job/detail/<%=jobs[i].jid%>" target="_blank" title="<%=jobs[i].name%>"><%=jobs[i].name.length>10?jobs[i].name.substr(0,10)+"...":jobs[i].name.substr(0,10)%></a></span>
+                            <span class="job-info-date fr"><%=new Date(jobs[i].refresh_time).format('yyyy-MM-dd')%></span>
+                        </div>
+                        <span  class="job-info-company fl"><a href="/company/detail/<%=jobs[i].company_id%>" target="_blank" title="<%=jobs[i].company_name%>"><%=jobs[i].company_name.length>10?jobs[i].company_name.substr(0,10)+"...":jobs[i].company_name%></a>-<%=jobs[i].company_type%></span>
+                        <div class="job-info-bottom clearfix">
+                            <span class="job-info-city" title="<%=jobs[i].city%>"><%=jobs[i].city.length>7?jobs[i].city.substr(0,7)+"...":jobs[i].city%></span>
+                            <span class="job-info-money"><%=jobs[i].min_payment%>-<%=jobs[i].max_payment%>/天</span>
+                            <span class="job-info-days">≥<%=jobs[i].workdays?jobs[i].workdays:1%>天</span>
+                        </div>
+                    </div>
+                    <div class="job-logo">
+                        <%if(jobs[i].company_avatar){%>
+                        <span class="company-logo" style="background-image: url('<%=jobs[i].company_avatar%>')"></span>
+                        <%}else{%>
+                        <span class="company-logo"></span>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+            <%}}else{%>
+            <div class="empty-area empty-area-job">
+                <div class="empty-content">
+                    <span class="pic fl"></span>
+                    <div class="text fl">
+                        <div>暂时没有符合您搜索条件的职位</div>
+                        <span>要不修改搜索条件重新试试?</span>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+        </div>
+    </div>
+    <%include ../common/paging.ejs%>
+
+</div>
+<%include footer.ejs%>
+</body>
+</html>

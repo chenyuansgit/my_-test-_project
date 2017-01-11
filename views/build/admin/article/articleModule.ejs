@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+
+        <%include ../common/sidebar.ejs%>
+
+        <div class="main-content">
+            <div class="page-content">
+                <a href="edit.ejs">
+                    <p class="module-add">添加</p>
+                </a>
+                <div class="recommend module1">
+                    <div class="top-container" >
+                        <p class="above">推荐</p>
+                    </div>
+                    <a href="edit.ejs" class="add-hover">
+                        <p class="down">添加</p>
+                    </a>
+                </div>
+                <div class="recommend module2">
+                    <div class="top-container" >
+                        <p class="above">定位</p>
+                    </div>
+                    <a href="edit.ejs" class="add-hover">
+                        <p class="down">添加</p>
+                    </a>
+                </div>
+                <div class="recommend module3">
+                    <div class="top-container" >
+                        <p class="above">行业解读</p>
+                    </div>
+                    <a href="edit.ejs" class="add-hover">
+                        <p class="down">添加</p>
+                    </a>
+                </div>
+                <div class="recommend module4">
+                    <div class="top-container" >
+                        <p class="above">简历</p>
+                    </div>
+                    <a href="edit.ejs" class="add-hover">
+                        <p class="down">添加</p>
+                    </a>
+                </div>
+                <div class="recommend module5">
+                    <div class="top-container" >
+                        <p class="above">面试</p>
+                    </div>
+                    <a href="edit.ejs" class="add-hover">
+                        <p class="down">添加</p>
+                    </a>
+                </div>
+                <div class="recommend module6">
+                    <div class="top-container" >
+                        <p class="above">实习故事</p>
+                    </div>
+                    <a href="edit.ejs" class="add-hover">
+                        <p class="down">添加</p>
+                    </a>
+                </div>
+                <div class="module-detail" id="module1">
+                    <p>板块名称：推荐</p>
+                    <p>创建时间：2016.1.4</p>
+                    <p>板块序号：101</p>
+                    <p>板块文章：123</p>
+                    <p>板块热度：111</p>
+                </div>
+                <div class="module-detail" id="module2">
+                    <p>板块名称：定位</p>
+                    <p>创建时间：2016.1.5</p>
+                    <p>板块序号：101</p>
+                    <p>板块文章：123</p>
+                    <p>板块热度：111</p>
+                </div>
+                <div class="module-detail" id="module3">
+                    <p>板块名称：行业解读</p>
+                    <p>创建时间：2016.1.6</p>
+                    <p>板块序号：101</p>
+                    <p>板块文章：123</p>
+                    <p>板块热度：111</p>
+                </div>
+                <div class="module-detail" id="module4">
+                    <p>板块名称：简历</p>
+                    <p>创建时间：2016.1.7</p>
+                    <p>板块序号：101</p>
+                    <p>板块文章：123</p>
+                    <p>板块热度：111</p>
+                </div>
+                <div class="module-detail" id="module5">
+                    <p>板块名称：面试</p>
+                    <p>创建时间：2016.1.8</p>
+                    <p>板块序号：101</p>
+                    <p>板块文章：123</p>
+                    <p>板块热度：111</p>
+                </div>
+                <div class="module-detail" id="module6">
+                    <p>板块名称：实习故事</p>
+                    <p>创建时间：2016.1.9</p>
+                    <p>板块序号：101</p>
+                    <p>板块文章：123</p>
+                    <p>板块热度：111</p>
+                </div>
+            </div>
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script>
+    $(function(){
+        var length,trans;
+        $('.recommend').hover(function(){
+            length = $(this).attr('class').length;
+            trans = "#" + "module" + $(this).attr('class').substr(length-1);
+            $(trans).css('display','block');
+            },function(){
+                $(trans).css("display", "none");
+        })
+    });
+</script>
+</body>
+</html>

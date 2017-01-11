@@ -1,0 +1,130 @@
+[
+  {
+    "city_id": 1,
+    "city_name": "北京"
+  },
+  {
+    "city_id": 73,
+    "city_name": "上海"
+  },
+  {
+    "city_id": 199,
+    "city_name": "深圳"
+  },
+  {
+    "city_id": 74,
+    "city_name": "南京"
+  },
+  {
+    "city_id": 169,
+    "city_name": "武汉"
+  },
+  {
+    "city_id": 87,
+    "city_name": "杭州"
+  },
+  {
+    "city_id": 235,
+    "city_name": "成都"
+  },
+  {
+    "city_id": 116,
+    "city_name": "厦门"
+  },
+  {
+    "city_id": 288,
+    "city_name": "西安"
+  },
+  {
+    "city_id": 197,
+    "city_name": "广州"
+  },
+  {
+    "city_id": 183,
+    "city_name": "长沙"
+  },
+  {
+    "city_id": 60,
+    "city_name": "哈尔滨"
+  },
+  {
+    "city_id": 38,
+    "city_name": "大连"
+  },
+  {
+    "city_id": 88,
+    "city_name": "宁波"
+  },
+  {
+    "city_id": 234,
+    "city_name": "重庆"
+  },
+  {
+    "city_id": 200,
+    "city_name": "珠海"
+  },
+  {
+    "city_id": 202,
+    "city_name": "佛山"
+  },
+  {
+    "city_id": 343,
+    "city_name": "香港"
+  },
+  {
+    "city_id": 344,
+    "city_name": "澳门"
+  },
+  {
+    "city_id": 298,
+    "city_name": "兰州"
+  },
+  {
+    "city_id": 124,
+    "city_name": "南昌"
+  },
+  {
+    "city_id": 218,
+    "city_name": "南宁"
+  },
+  {
+    "city_id": 37,
+    "city_name": "沈阳"
+  },
+  {
+    "city_id": 152,
+    "city_name": "郑州"
+  },
+  {
+    "city_id": 75,
+    "city_name": "无锡"
+  },
+  {
+    "city_id": 98,
+    "city_name": "合肥"
+  },
+  {
+    "city_id": 232,
+    "city_name": "海口"
+  },
+  {
+    "city_id": 265,
+    "city_name": "昆明"
+  },
+  {
+    "city_id": 2,
+    "city_name": "天津"
+  },
+  {
+    "city_id": 3,
+    "city_name": "石家庄"
+  },
+  {
+    "city_id": 14,
+    "city_name": "太原"
+  },
+  {
+    "city_id": 115,
+    "city_name": "福州"
+  }
+]

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <!--标题-->
+                                <%if(client_notification.type_id != 5){%>
+                                <label class="col-sm-1 control-label no-padding-right" for="title"> 标题 </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="title" placeholder="请输入文章标题" class="col-xs-12 col-sm-8" value="<%=client_notification.title%>" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <%}else{}%>
+                                <!--类型-->
+                                <label class="col-sm-1 control-label no-padding-right"> 类型 </label>
+                                <div class="col-sm-11">
+                                    <!--<input type="number" id="term" placeholder="请输入快照期数,只支持数字,表示第几期(一经确认不能修改)" class="col-xs-12 col-sm-8" />-->
+                                    <select class="form-control col-xs-12 col-sm-8" id="type_id" style="max-width: 300px;">
+                                        <%if(client_notification.type_id ==1){%>
+                                        <option value="1" data-id="1" selected="selected">职位</option>
+                                        <%}else{%>
+                                        <option value="1" data-id="1">职位</option>
+                                        <%}%>
+                                        <%if(client_notification.type_id == 2){%>
+                                        <option value="2" data-id="2" selected="selected">公司</option>
+                                        <%}else{%>
+                                        <option value="2" data-id="2">公司</option>
+                                        <%}%>
+                                        <%if(client_notification.type_id == 3){%>
+                                        <option value="3" data-id="3" selected="selected">内部其他页面</option>
+                                        <%}else{%>
+                                        <option value="3" data-id="3">内部其他页面</option>
+                                        <%}%>
+                                        <%if(client_notification.type_id == 4){%>
+                                        <option value="4" data-id="4" selected="selected">第三方页面</option>
+                                        <%}else{%>
+                                        <option value="4" data-id="4">第三方页面</option>
+                                        <%}%>
+                                        <%if(client_notification.type_id == 5){%>
+                                        <option value="5" data-id="5" selected="selected">消息</option>
+                                        <%}else{%>
+                                        <option value="5" data-id="5">消息</option>
+                                        <%}%>
+                                    </select>
+                                    <span class="ib-warning"></span>
+                                </div>
+                                <p>&nbsp;</p>
+                                <!--缩略图-->
+                                <%if(client_notification.type_id != 5){%>
+                                <label class="col-sm-1 control-label no-padding-right" for="title"> 缩略图 </label>
+                                <div class="col-sm-11">
+                                    <p>图片大小不超过3M</p>
+
+                                    <div class="article-recruit-pic"
+                                         <% if(client_notification.cover){ %>style="background-image: url('<%= client_notification.cover %>')"
+                                            <% } %>
+                                    >
+                                        <input type="file" class="avatar input-transparent" id="avatar" name="avatar"/>
+                                        <span class="avatar-mask"></span>
+                                    </div>
+                                </div>
+                                <p>&nbsp;</p>
+                                <%}else{}%>
+                                <!--描述-->
+                                <label class="col-sm-1 control-label no-padding-right" for="summary"> 描述 </label>
+                                <div class="col-sm-11">
+                                    <textarea type="text" id="desc" cols="12" rows="4" placeholder="请输入文章描述" class="col-xs-12 col-sm-8"><%=client_notification.desc%></textarea>
+                                </div>
+                                <p>&nbsp;</p>
+                                <!--URL-->
+                                <%if(client_notification.type_id != 5){%>
+                                <label class="col-sm-1 control-label no-padding-right" for="url"> URL </label>
+                                <div class="col-sm-11">
+                                    <input type="text" id="url" placeholder="请输入消息URL" class="col-xs-12 col-sm-8" value="<%=client_notification.url%>" />
+                                </div>
+                                <p>&nbsp;</p>
+                                <%}else{}%>
+                            </div>
+                        </form>
+                        <div class="ib-how">
+                            <a href=""> <span class="ib-release" id="buttonAdd">提交</span></a>
+                            <a href="/push/notification/list?page=1"> <span>取消</span></a>
+                        </div>
+                        <!-- PAGE CONTENT ENDS -->
+
+                    </div>
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div><!-- /.main-container -->
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<!--<script type="text/javascript" src="/public/ace/assets/js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/jquery-ui-timepicker-zh-CN.js"></script>-->
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<!--<script type="text/javascript" src="/public/ace/assets/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/public/ace/assets/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" src="/public/ace/assets/ueditor/lang/zh-cn/zh-cn.js"></script>-->
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<!-- inline scripts related to this page -->
+<!-- time plug -->
+<script type="text/javascript">
+    jQuery(function($) {
+        //图片上传
+        var cover_img;
+        //封面上传
+        fileUpload("admin", "avatar", function (error, avatar) {
+            if (!error) {
+                $(".article-recruit-pic").css({"background-image": "url('" + avatar + "')"});
+                cover_img = avatar;
+            }
+        })
+        //上传文章
+        var  title, desc, url, type_url, id, type_id;
+        $('#buttonCancel').click(function(){
+            window.history.back();
+        })
+        $('#buttonAdd').click(function(){
+            type_id = parseInt($('#type_id option:selected').attr("data-id"));
+            url = '/push/notification/edit/';
+            id = '<%=client_notification.id%>';
+            url = url  + id;
+            desc= $('textarea#desc').val();
+            if(type_id != 5) {
+                title= $('input#title').val();
+                type_url = $('input#url').val();
+                $.ajax({
+                    type:'POST',
+                    url:url,
+                    dataType:'json',
+                    data:{
+                        option:{
+                            title:title,
+                            desc:desc,
+                            type_id:type_id,
+                            cover:cover_img,
+                            url:type_url
+                        }
+                    },
+                    success:function(data){
+                        if (data.status == '10000') {
+                            window.location.href='/push/notification/list?page=1';
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+                    }
+                })
+            } else {
+                $.ajax({
+                    type:'POST',
+                    url:url,
+                    dataType:'json',
+                    data:{
+                        option:{
+                            type_id:type_id,
+                            desc:desc
+                        }
+                    },
+                    success:function(data){
+                        if (data.status == '10000') {
+                            window.location.href='/push/notification/list?page=1';
+                        }
+                        else {
+                            alert('POST error\n' + data.status);
+                        }
+                    }
+                })
+            }
+            return false;
+        })
+    })
+</script>
+</body>
+</html>

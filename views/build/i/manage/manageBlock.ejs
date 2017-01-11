@@ -1,0 +1,141 @@
+<div class="popTips"></div>
+<div class="edit-block edit-block-contact edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">联系ta</span>
+    </div>
+    <div class="block-content">
+        <div class="content-line">
+            <span>HR姓名:</span>
+            <span><input class="employer-name required input" type="text" value=""/></span>
+            <div class="input-error">必填</div>
+        </div>
+        <div class="content-line">
+            <span>HR邮箱:</span>
+            <span><input class="employer-email required input email" type="text" value="<%=employer.notice_email%>"/></span>
+            <div class="input-error">必填</div>
+        </div>
+        <div class="tips">
+            <p class="tips-content">
+                <i class="icon-tips"></i>
+                <em class="tips-detail">确认后候选人会收到消息通知,建议您尽快与其沟通,3天后您的联系方式将展示给该候选人,若候选人因未收到沟通而进行举报,您的职位曝光率将受到影响,甚至封禁。</em>
+            </p>
+        </div>
+        <div class="bottom">
+            <div class="btn-confirm btn btn-block tac">发送</div>
+        </div>
+    </div>
+</div>
+<div class="edit-block edit-block-transmit edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">转发</span>
+    </div>
+    <div class="block-content">
+        <div class="content-line">
+            <span>收件人:</span>
+            <span><input class="transmit-email required input email" type="text" value=""/></span>
+            <div class="input-error">必填</div>
+        </div>
+        <div class="content-line">
+            <span>主题:</span>
+            <span><textarea class="transmit-subject required input autosize" type="text" >(来自实习鸟的简历)<%=job.name%>:<%=resume.name%>的简历</textarea></span>
+            <div class="input-error">必填</div>
+        </div>
+        <textarea class="transmit-content editor required">以下是应聘<%=job.name%>的简历,我已查阅，请你评估一下。若觉得合适，我们将安排面试，谢谢！</textarea>
+        <div class="bottom">
+            <div class="btn-confirm btn btn-block tac">发送</div>
+        </div>
+    </div>
+</div>
+<div class="edit-block edit-block-unsuitable edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">不合适</span>
+    </div>
+    <div class="block-content">
+        <div class="content-line">
+            <span>原因:</span>
+            <span><input class="unsuitable-title required input" type="text" value=""/></span>
+            <div class="input-error">必填</div>
+        </div>
+        <textarea class="unsuitable-content editor required">非常荣幸收到你的简历，经过评估，我们认为你与该职位的条件暂时不太匹配，无法进入面试阶段。相信更好的机会一定还在等待着你，赶快调整心态，做好充足的准备重新出发吧！</textarea>
+        <div class="bottom">
+            <div class="btn-confirm btn btn-block tac">发送</div>
+        </div>
+    </div>
+</div>
+<div class="edit-block edit-block-interview edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">通知面试</span>
+    </div>
+    <div class="block-content">
+        <ul class="sub-tab-area clearfix">
+            <li class="sub-tab curr" data-type="1">发面试通知</li>
+            <li class="center-line"></li>
+            <li class="sub-tab" data-type="2">已安排面试</li>
+        </ul>
+        <div class="sub-content-1 sub-content curr" data-type="1">
+            <div class="content-line">
+                <span>收件人:</span>
+                <span><input class="interview-email required input email" type="text" value="<%=resume.email%>"/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <div class="content-line">
+                <span>主题:</span>
+                <span><input class="interview-subject required input" type="text" value="面试通知"/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <div class="content-line" id="interview-time-1">
+                <span>时间:</span>
+                <span class="interview-time required select"></span>
+                <div class="input-error">必填</div>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="content-line">
+                <span>地点:</span>
+                <span><input class="interview-address required input" type="text" value=""/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <div class="content-line">
+                <span>联系人:</span>
+                <span><input class="interview-hr required input" type="text" value=""/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <div class="content-line">
+                <span>联系电话:</span>
+                <span><input class="interview-phone required input phone" type="text" value="<%=employer.phone%>"/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <textarea class="interview-content editor">您的简历已通过我们的筛选，很高兴通知您参加我们的面试。</textarea>
+        </div>
+        <div class="sub-content-2 sub-content" data-type="2">
+            <div class="content-line" id="interview-time-2">
+                <span>时间:</span>
+                <span class="interview-time required select"></span>
+                <div class="input-error">必填</div>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="content-line">
+                <span>联系人:</span>
+                <span><input class="interview-hr required input" type="text" value=""/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <div class="content-line">
+                <span>联系电话:</span>
+                <span><input class="interview-phone required input phone" type="text" value="<%=employer.phone%>"/></span>
+                <div class="input-error">必填</div>
+            </div>
+            <div class="tips">
+                <p class="tips-content">
+                    <i class="icon-tips"></i>
+                    <em class="tips-detail">如果您已通过电话或邮件通知求职者面试,可以将简历标记为"已安排面试",需要您提供面试时间等信息,标记后,简历会进入已安排面试列表,待沟通名额立即释放。</em>
+                </p>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="btn-confirm btn btn-block tac">发送</div>
+        </div>
+    </div>
+</div>

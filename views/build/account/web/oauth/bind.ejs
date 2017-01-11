@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/web/bind.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            www: "http://<%=host.www%>",
+            hr : "http://<%=host.hr%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/web/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/web/page/IB_bind.js"></script>
+</head>
+<body>
+<div class="user-bind">
+    <div class="bind-top"></div>
+    <div class="bind-content">
+        <div class="bind-box clearfix">
+            <div class="bind-box-l fl">
+                <div class="avatar"></div>
+                <p class="nick-name">用户ID账户</p>
+            </div>
+            <div class="bind-box-r fr">
+                <div class="step-1">
+                    <h4>已有实习鸟账号</h4>
+                    <span class="btn btn-select-bind mb20">关联已有账号</span>
+                    <span class="btn btn-ignore mb12">跳过绑定</span>
+                </div>
+                <div class="step-2" style="display: none;">
+                    <h4>关联实习鸟账号</h4>
+                    <input type="email" class="enter-input enter-name" placeholder="请输入正确的手机号或邮箱" />
+                    <input type="password" class="mt20 enter-input enter-pwd" placeholder="请输入6-22位的密码" />
+                    <span class="btn mt20 mb12 btn-bind">立即关联</span>
+                    <p><span class="step-leap-back">返回上一步</span></p>
+                </div>
+                <div class="popTips"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="bind-bottom"></div>
+<%include ../common/statistics.ejs%>
+</body>
+</html>

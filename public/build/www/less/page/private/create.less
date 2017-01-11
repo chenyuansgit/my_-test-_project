@@ -1,0 +1,227 @@
+@import "../../common/style";
+@import "../../custom/city";
+@import "../../custom/date";
+@import "../../custom/jobTypeSelector";
+@import "../../plugin/date";
+@import "../../fonts";
+
+/*创建简历*/
+.resume-create{
+  width: 100%;
+  padding-top: 100px;
+  .mg15{
+    margin-left: 15px;
+  }
+  .step-content{
+    width: 1024px;
+    margin: 0 auto;
+    position: relative;
+    .upload-avatar {
+      width: 120px;
+      position: absolute;
+      left: 265px;
+      z-index: 9;
+      text-align: center;
+      top: 30px;
+      .title{
+        padding-top: 60px;
+        font-size: 20px;
+      }
+      .resume-pic{
+        width: 120px;
+        height: 120px;
+        margin: 30px  auto;
+        border-radius: 50%;
+        .background("@{baseUrl}/img/mr/icon-avatar.png",cover);
+        background-position:center;
+        position: relative;
+        .avatar-mask{
+          width: 100%;
+          height: 100%;
+          .background("@{baseUrl}/img/mr/head-mask.png",cover);
+          display: none;
+        }
+        &:hover{
+          .avatar-mask{
+            display: block;
+          }
+          .input-transparent{
+            display: block;
+          }
+        }
+        .loading{
+          width: 30px;
+          height: 30px;
+          background: url("../../../img/loading-s.gif") 0 0 no-repeat;
+          background-size: contain;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          margin-left: -15px;
+          margin-top: -15px;
+        }
+      }
+      .upload-tip {
+        color: @mainColor;
+        font-size: 16px;
+      }
+    }
+    &-1,&-2,&-3{
+      display: none;
+    }
+    span.icon-right-arrow, span.icon-left-arrow {
+      position: absolute;
+      top: 12px;
+    }
+    span.icon-right-arrow{
+      right: 0;
+    }
+    span.icon-left-arrow{
+      left: 0;
+    }
+    //页脚
+    .step-bottom {
+      text-align: center;
+      margin-top: 15px;
+      span.icon-circle {
+        display: inline-block;
+        margin: 0 10px;
+        width: 12px;
+        height: 12px;
+        .borderRadius(12px);
+        background-color: #dadada;;
+      }
+      span.cur {
+        background-color: @mainColor;
+      }
+    }
+    .step-center{
+      .background("@{baseUrl}/img/mr/bg-mr.png",100% 100%);
+    }
+    &-0 .step-center{
+      .background("@{baseUrl}/img/mr/bg-mr-0.png",100% 100%);
+    }
+    .step-center{
+      width: 660px;
+      min-height: 446px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      .center-l{
+        width: 290px;
+        height: 380px;
+        text-align: center;
+        color: #888;
+        position: relative;
+        .remind-step{
+          position: absolute;
+          bottom: 20px;
+          text-align: right;
+          width: 75%;
+          font-size: 15px;
+          letter-spacing: 3px;
+        }
+      }
+      .center-r{
+        width:276px;
+        padding: 20px 0;
+        margin-left: 20px;
+        >div{
+          position: relative;
+          padding: 15px 0;
+        }
+        .selector-city{
+          left:0;
+          top:59px;
+        }
+        input{
+          font-size: 16px;
+          &[type="button"]{
+            height: 43px;
+            line-height: 43px;
+            outline: none;
+            text-align: left;
+            color: #999;
+            padding: 0 15px;
+            &.selected{
+              color:#000;
+            }
+          }
+        }
+        .input-l{
+          padding: 10px 15px;
+          border: 1px solid #eee;
+          width: 229px;
+          .borderRadius(4px);
+          &[type="button"]{
+            width: 260px;
+          }
+        }
+        .input-s{
+          padding: 10px 15px;
+          border: 1px solid #eee;
+          font-size: 16px;
+          text-align: left;
+          width: 90px;
+          color: #999;
+          outline: none;
+          &[type="button"]{
+            width: 122px;
+          }
+        }
+        .btn{
+          text-align: left;
+          padding: 10px 15px;
+          border: 1px solid #eee;
+          box-sizing: border-box;
+        }
+        .btn-l{
+          width: 142px;
+        }
+        .selector-s{
+          width: 120px;
+        }
+        .selector-l{
+          width: 140px;
+        }
+        .tab{
+          padding: 10px 15px;
+          color: #999;
+          margin-right: 20px;
+          border: 1px solid #eee;
+          cursor: pointer;
+          .borderRadius(4px);
+          &:hover,&.on{
+            border-color:@mainColor;
+            color: #333;
+          }
+        }
+      }
+    }
+    .step-r,.step-l{
+      cursor: pointer;
+      position: absolute;
+      top: 45%;
+      height: 50px;
+      line-height: 25px;
+      color: @mainColor;
+      font-size: 18px;
+    }
+    .step-r{
+      right:0;
+      padding-right: 30px;
+    }
+    .step-l{
+      left:0;
+      padding-left: 30px;
+    }
+    .border{
+      width: 3px;
+      height: 90%;
+      background: @mainColor;
+      position: absolute;
+      top: 26px;
+      left: 413px;
+    }
+  }
+}

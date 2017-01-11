@@ -1,0 +1,314 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../common/paging";
+@import "../../fonts";
+
+//活动列表
+.more-list {
+  .more-item {
+    padding-bottom: 40px;
+    position: relative;
+    &-box {
+      padding: 10px 10px 10px 20px;
+      width: 600px;
+      height: 180px;
+      border: 1px #eee solid;
+      position: relative;
+      .triangleLeft, .triangleLeft2 {
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+      .triangleLeft {
+        border-top: 16px solid transparent;
+        border-bottom: 16px solid transparent;
+        border-right: 16px solid #eee;
+        left: -16px;
+        top: 87px;
+      }
+      .triangleLeft2 {
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-right: 15px solid #fff;
+        left: -15px;
+        top: 88px;
+      }
+      &-info {
+        width: 268px;
+        overflow: hidden;
+        position: absolute;
+        left: 20px;
+        top: 10px;
+        h4 {
+          font-size: 16px;
+          padding: 16px 0;
+        }
+        p {
+          color: @c2;
+          line-height: 24px;
+          overflow: hidden;
+        }
+        .btn, .grayBtn {
+          color: #fff;
+          .borderRadius(4px);
+          margin-top: 16px;
+          padding: 0 3px;
+        }
+        .btn {
+          background-color: @mainColor;
+        }
+        .grayBtn {
+          background-color: #aaa;
+        }
+        .subtitle {
+          height: 48px;
+        }
+      }
+      &-img, &-signBg, &-sign-1, &-sign-2, .sign-1-angle, .sign-2-angle, .sign-text {
+        position: absolute;
+        top: 10px;
+      }
+      &-img {
+        width: 300px;
+        height: 180px;
+        right: 10px;
+        .background2(cover);
+      }
+      &-signBg, &-sign-1, &-sign-2 {
+        -webkit-transform: skew(30deg);
+        -moz-transform: skew(30deg);
+        -o-transform: skew(30deg);
+        transform: skew(30deg);
+      }
+      &-signBg {
+        width: 78px;
+        height: 24px;
+        right: 15px;
+        background: #fff;
+      }
+      &-sign-1, &-sign-2 {
+        width: 75px;
+        height: 22px;
+        right: 16px;
+        text-align: center;
+        color: #fff;
+      }
+      &-sign-1, .sign-1-angle {
+        background-color: @c1;
+      }
+      &-sign-2, .sign-2-angle {
+        background-color: #666;
+      }
+      .sign-1-angle, .sign-2-angle {
+        width: 22px;
+        height: 22px;
+        right: 10px;
+      }
+      .sign-text {
+        width: 78px;
+        line-height: 22px;
+        right: 10px;
+        color: #fff;
+        text-align: center;
+      }
+    }
+    //在线，下架
+    .online, .offline {
+      width: 48px;
+      height: 48px;
+      color: #fff;
+      position: absolute;
+      left: 0;
+      top: 80px;
+      text-align: center;
+      line-height: 48px;
+      .borderRadius(50%);
+    }
+    .online {
+      background-color: @mainColor;
+    }
+    .offline {
+      background-color: #999;
+    }
+    .online-c, .offline-c {
+      height: 242px;
+      top: 0;
+    }
+    .online-t, .online-b, .offline-t, .offline-b {
+      height: 121px;
+    }
+    .online-c, .online-t, .online-b, .offline-c, .offline-t, .offline-b {
+      width: 2px;
+      left: 23px;
+      position: absolute;
+    }
+    .online-c, .online-t, .online-b {
+      background-color: @mainColor;
+    }
+    .offline-c, .offline-t, .offline-b {
+      background-color: #999;
+    }
+    .online-t, .offline-t {
+      top: 50%;
+    }
+    .online-b, .offline-b {
+      bottom: 50%;
+    }
+  }
+}
+//活动详情
+.more-detail {
+  width: 840px;
+.more-text {
+  padding: 36px 28px;
+  //正文
+  h3 {
+    font-size:20px;
+    text-align: center;
+  }
+  h4 {
+    font-size: 16px;
+    color: @c2;
+    line-height: 28px;
+    span {
+      color: @mainColor;
+    }
+  }
+  .activity-info {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 1px #eee dashed;
+    .sponsor {
+      padding-right: 12px;
+    }
+  }
+  .activity-content {
+    padding: 20px 0;
+    margin-bottom: 12px;
+  }
+  &-info {
+    padding-bottom: 10px;
+    span.article-author {
+      color: @mainColor;
+      padding-left: 20px;
+    }
+  }
+  p {
+    line-height: 24px;
+    color: @c2;
+  }
+  img {
+    max-width: 784px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+  &-btn {
+    margin-top: 50px;
+    .btn-join, .activity-over {
+      width: 120px;
+      padding: 8px 0;
+      color: #fff;
+      margin: 0 auto 12px;
+      font-size: 16px;
+      display: block;
+      text-align: center;
+      .borderRadius(4px);
+    }
+    .btn-join {
+      cursor: pointer;
+      background-color: @mainColor;
+    }
+    .activity-over {
+      background-color: #ddd;
+    }
+  }
+  //标签
+  &-tag {
+    padding: 20px 0;
+    a {
+      color: @mainColor;
+      padding: 0 6px;
+    }
+  }
+  //分享
+  &-share {
+    border-top: 1px #eee solid;
+    padding: 20px 0;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    span.icon-view2, span.icon-likes, span.icon-brake {
+      font-size:16px;
+      padding-right: 4px;
+    }
+    span.icon-likes, span.icon-brake {
+      padding-left: 20px;
+    }
+    .share-icon {
+      height: 20px;
+      line-height: 20px;
+      top: 20px;
+      color: @c2;
+      position: absolute;
+      right: 0;
+      a {
+        color: @c2;
+        font-size: 18px;
+        padding: 0 10px;
+      }
+    }
+  }
+}
+.more-next {
+  height: 30px;
+  line-height: 30px;
+  padding: 18px 28px;
+  a {
+    color: @c2;
+  }
+  a:hover {
+    color: @mainColor;
+  }
+}
+}
+//侧边栏
+.sideBox {
+  text-align: center;
+  &-logo {
+    width: 140px;
+    height: 50px;
+    margin: 0 auto;
+    background-image: url("@{baseUrl}/img/logo.png");
+    background-position: center center;
+    background-size: 68% 68%;
+    -webkit-background-size: 68% 68%;
+    background-repeat: no-repeat;
+  }
+  &-qrcode {
+    width: 156px;
+    height: 156px;
+    margin: 0 auto 12px;
+    background: url("@{baseUrl}/img/qrcode-156.png") no-repeat;
+  }
+  h4 {
+    font-size:16px;
+    margin-bottom:10px;
+    padding-bottom:10px;
+    color: @c2;
+    border-bottom: 1px #eee dashed;
+  }
+  p {
+    color: @c2;
+  }
+}
+//无活动时显示
+.empty-area{
+  padding: 100px 0;
+  text-align: center;
+}
+.last-update {
+  color: @c2;
+  text-align: right;
+}

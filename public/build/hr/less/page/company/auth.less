@@ -1,0 +1,320 @@
+@import "../../common/style";
+@import "../../common/header";
+@import "../../common/footer";
+@import "../../common/overlay";
+@import "../../custom/city";
+@import "../../plugin/date";
+@import "../../fonts";
+
+/*mycompany*/
+.mycompany{
+  padding: 20px 0;
+  .req{
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color:#ff5555;
+    font-style: normal;
+    padding: 0 5px;
+  }
+  &-top{
+    .remind{
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px #ddd dashed;
+      &-title {
+        padding-right: 12px;
+        font-size: 20px;
+      }
+      &-tip {
+        color: @c2;
+        position: relative;
+        padding-left: 15px;
+        padding-right: 5px;
+        .req{
+          top: 2px;
+        }
+      }
+    }
+    .auth-title-area{
+      position: relative;
+      .title{
+        position: relative;
+        padding-top: 50px;
+        color: @c2;
+        width: 132px;
+        text-align: center;
+        font-size: 16px;
+        height: 30px;
+        line-height: 30px;
+        z-index: 1;
+        background-color: #fff;
+        &.curr{
+          color: @mainColor;
+        }
+        &-step {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 132px;
+          height: 50px;
+          font-size: 24px;
+          line-height: 50px;
+        }
+      }
+      .mlr120 {
+        margin: 0 120px;
+      }
+      .line{
+        height: 1px;
+        position: absolute;
+        bottom: 15px;
+        left: 0;
+        width: 636px;
+        border-top: 1px #d6d6d6 dashed;
+      }
+    }
+
+  }
+  &-info{
+    padding: 50px 0;
+    .info-item{
+      position: relative;
+      padding-left: 15px;
+      line-height: 38px;
+      .input-tips {
+        height: 38px;
+        padding-left: 20px;
+      }
+      .step3-c {
+        vertical-align: top;
+      }
+      span.title {
+        width: 64px;
+      }
+     /* .input-tips{
+        margin-left: 15px;
+        position: absolute;
+      }
+      & .intro-area{
+        .input-tips{
+          margin-left: 0;
+          position: relative;
+        }
+      }*/
+      input{
+        width: 480px;
+        height: 36px;
+        line-height: 36px;
+        padding: 0 10px;
+        margin-left: 15px;
+        font-size: 16px;
+        border: 1px solid #eee;
+        outline: none;
+        &.input-m{
+          width:300px;
+        }
+        &.input-s[type='button']{
+          width:180px;
+          height: 38px;
+          text-align: left;
+          color: #999;
+          &.selected{
+            color: #333;
+          }
+        }
+      }
+      .small{
+        font-size: 15px;
+      }
+      .mg{
+        margin-left: 26px;
+      }
+      .btn-blue{
+        background: @mainColor;
+        color: #fff;
+        padding: 0 25px;
+        .borderRadius(5px);
+        margin-left: 88px;
+      }
+      .info-help {
+        padding-left: 50px;
+        color: @mainColor;
+      }
+      .btn-selector {
+        width: 300px;
+      }
+    }
+    .tip{
+      color: @c2;
+      padding: 12px 0 30px 96px;
+    }
+    .email-validate{
+      width: 640px;
+      text-align: center;
+      line-height: 35px;
+      color: #666;
+      .email-icon{
+        width: 110px;
+        height: 85px;
+        margin: 0 auto;
+        .background("@{baseUrl}/img/company/icon-com-validate.png",cover);
+      }
+      .big{
+        font-size: 22px;
+      }
+      .small{
+        padding: 20px 0 30px;
+        color: @c2;
+        font-size: 16px;
+      }
+    }
+    .company-existed{
+      color: @c2;
+      margin: 0 auto;
+      padding-left: 88px;
+      &-title {
+        font-size: 16px;
+      }
+      .companies{
+        td{
+          padding:8px 15px 8px 0;
+          .exist-company-name{
+            margin-right: 35px;
+          }
+          a {
+            color: @mainColor;
+          }
+        }
+        .btn{
+          color: @mainColor;
+        }
+      }
+      .btn-area{
+        margin-top: 30px;
+        .btn{
+          border-radius: 3px;
+          margin-left: 0;
+          margin-right: 35px;
+          padding: 10px 15px;
+        }
+        a{
+          color: #fff;
+        }
+      }
+      //创建公司
+      .create-company{
+        font-size: 16px;
+        padding: 20px 0;
+        a {
+          color: @mainColor;
+        }
+      }
+    }
+    .tips{
+      color: @c2;
+      margin-left: 88px;
+      &-title {
+        padding-left: 15px;
+        font-weight: 600;
+      }
+      p {
+        line-height: 28px;
+      }
+      a {
+        color: @c2;
+      }
+      a{
+        color: @mainColor;
+      }
+    }
+    .input-tips{
+      display: inline-block;
+      margin-top: 0;
+    }
+  }
+  &.step-3-create{
+    .company-logo{
+      width: 170px;
+      height: 170px;
+      margin-left: 15px;
+      background: #eee;
+      background-repeat: no-repeat;
+      background-size: contain ;
+      -o-background-size: contain ;
+      -moz-background-size: contain ;
+      -webkit-background-size: contain ;
+      background-position: center center;
+      position: relative;
+      .loading{
+        width: 30px;
+        height: 30px;
+        background: url("../../../img/loading-s.gif") 0 0 no-repeat;
+        background-size: contain;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -15px;
+        margin-top: -15px;
+      }
+    }
+    .upload-logo {
+      position: absolute;
+      top: 40px;
+      left: 300px;
+      width: 190px;
+      color: @c2;
+      text-align: center;
+    }
+    .upload-logo-s {
+      top: 0;
+      left: 0;
+      width: 190px;
+      text-align: center;
+      color: @mainColor;
+      font-size: 16px;
+      z-index: 1;
+      position: absolute;
+    }
+    .update-logo{
+      width:165px;
+      height: 36px;
+      z-index: 9;
+      display: inline-block;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      cursor: pointer;
+    }
+    .selector{
+      margin-left: 83px;
+      width: 178px;
+      z-index: 1000;
+    }
+    .selector li {
+      line-height: 24px;
+    }
+    .selector-city{
+      top:38px;
+      left:98px
+    }
+    .intro-area{
+      width: 80%;
+      margin-left: 15px;
+    }
+    .btn-test{
+      margin-left: 10px;
+      padding:6px 15px;
+    }
+  }
+}
+.popBox{
+  .confirm-join{
+    width: 260px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+}
+.tangram-suggestion-main{
+  z-index: 10000;
+}
+/*mycompany end*/

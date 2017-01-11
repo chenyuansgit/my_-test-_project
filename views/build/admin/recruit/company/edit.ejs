@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../../common/head.ejs%>
+    <link rel="stylesheet" href="/public/ace/assets/css/page/recruit/company_edit.css" />
+</head>
+<body>
+<%include ../../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#">
+            <span class="menu-text"></span>
+        </a>
+        <%include ../../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="content">
+                    <%if(company&&company.cid){%>
+                    <div class="add-area">
+                        <div class="pos-block">
+                            <div>
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司名称</span>
+                                <span>
+                                    <input class="pos-company pos-item" type="text" value="<%=company.name || ''%>" data-cid="<%=company.cid || ''%>" placeholder="修改公司名"/>
+                                </span>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>公司名称不能为空</div>
+                            </div>
+                            <div>
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司全名</span>
+                                <span>
+                                    <input class="pos-full-company pos-item" type="text" value="<%=company.full_name || ''%>" placeholder="修改公司名"/>
+                                </span>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>公司全名不能为空</div>
+                            </div>
+                            <div>
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司简介</span>
+                                <span>
+                                    <input class="pos-title pos-item" type="text" value="<%=company.title || ''%>" placeholder="一句话介绍公司"/>
+                                </span>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>公司全名不能为空</div>
+                            </div>
+                            <div class="company-avatars">
+                                <em class="req">*</em>
+                                <span class="first-of-type" style="vertical-align:top;margin-top: 4px;">公司logo</span>
+                                <span>
+                                   <div class="company-avatar fl" data-avatar="<%=company.avatar%>" style="background-image:url('<%=company.avatar%>?imageView2/2/w/224/h/224')">
+                                    <input type="file" id="avatar-file" name="file" class="avatar-file" title="支持jpg、jpeg、gif、png格式，文件小于5M" style="z-index: 9;">
+                                    <div class="avatar-text">上传公司新的图像</div>
+                                   </div>
+                                </span>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>公司图像不能为空</div>
+                            </div>
+                        </div>
+                        <div class="pos-base pos-block">
+                            <!--<div class="company-types">
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司领域</span>
+                                <span class="btn-selector btn-selector-type pos-drop-down">
+                                    <input class="pos-type pos-item" data-type-id="<%=company.type_id || ''%>" value="<%=company.type|| ''%>" type="text" placeholder="请选择公司领域" readonly/>
+                                    <span class="icon-down-arrow"></span>
+                                </span>
+                                <ul class="selector selector-types">
+                                    <li class="ct" data-type="互联网" data-type-id="1000">互联网</li>
+                                    <li class="ct" data-type="通信/电子" data-type-id="1001">通信/电子</li>
+                                    <li class="ct" data-type="机械/制造" data-type-id="1002">机械/制造</li>
+                                    <li class="ct" data-type="材料/化工" data-type-id="1003">材料/化工</li>
+                                    <li class="ct" data-type="日用/消费" data-type-id="1004">日用/消费</li>
+                                    <li class="ct" data-type="零售/贸易" data-type-id="1005">零售/贸易</li>
+                                    <li class="ct" data-type="生物/医药" data-type-id="1006">生物/医药</li>
+                                    <li class="ct" data-type="汽车" data-type-id="1007">汽车</li>
+                                    <li class="ct" data-type="能源" data-type-id="1008">能源</li>
+                                    <li class="ct" data-type="银行" data-type-id="1009">银行</li>
+                                    <li class="ct" data-type="基金/证券" data-type-id="1010">基金/证券</li>
+                                    <li class="ct" data-type="保险" data-type-id="1011">保险</li>
+                                    <li class="ct" data-type="投资/期货" data-type-id="1012">投资/期货</li>
+                                    <li class="ct" data-type="财务/会计/审计" data-type-id="1013">财务/会计/审计</li>
+                                    <li class="ct" data-type="教育/培训" data-type-id="1014">教育/培训</li>
+                                    <li class="ct" data-type="建筑/土木" data-type-id="1015">建筑/土木</li>
+                                    <li class="ct" data-type="房地产" data-type-id="1016">房地产</li>
+                                    <li class="ct" data-type="物流/仓储" data-type-id="1017">物流/仓储</li>
+                                    <li class="ct" data-type="医疗/卫生" data-type-id="1018">医疗/卫生</li>
+                                    <li class="ct" data-type="专业服务/咨询" data-type-id="1019">专业服务/咨询</li>
+                                    <li class="ct" data-type="酒店餐饮/旅游" data-type-id="1020">酒店餐饮/旅游</li>
+                                    <li class="ct" data-type="公众服务" data-type-id="1021">公众服务</li>
+                                    <li class="ct" data-type="影视传媒" data-type-id="1022">影视传媒</li>
+                                    <li class="ct" data-type="广告" data-type-id="1023">广告</li>
+                                    <li class="ct" data-type="公关/会展" data-type-id="1024">公关/会展</li>
+                                    <li class="ct" data-type="文化/娱乐" data-type-id="1025">文化/娱乐</li>
+                                    <li class="ct" data-type="政府/公共事业" data-type-id="1026">政府/公共事业</li>
+                                    <li class="ct" data-type="其他行业" data-type-id="1027">其他行业</li>
+                                </ul>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>请选择公司领域</div>
+                            </div>
+
+                            <div class="company-citys">
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司地点</span>
+                                <span class="selector-input city-wrap pos-drop-down">
+                                    <input class="pos-city pos-item" type="text" value="<%=company.city|| ''%>" data-cid="<%=company.city_id|| ''%>" placeholder="请选择公司地点" readonly/>
+                                    <span class="icon-down-arrow"></span>
+                                </span>
+
+                                <div class="selector-city"></div>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>请选择公司地点</div>
+                            </div>
+
+                            <div class="company-trades">
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司性质</span>
+                                <span class="btn-selector btn-selector-trade pos-drop-down">
+                                    <%
+                                var trade_type = "";
+                                switch(parseInt(company.trade_type||0)){
+                                    case 1: trade_type ="国企"; break;
+                                    case 2: trade_type="私企"; break;
+                                    case 3: trade_type="外企"; break;
+                                    case 4: trade_type="合资企业"; break;
+                                    case 5: trade_type="其它"; break;
+                                }
+                            %>
+                                    <input class="pos-trade pos-item" value="<%=trade_type%>" data-id="<%=company.trade_type%>" type="text" placeholder="请选择公司领域" readonly/>
+                                    <span class="icon-down-arrow"></span>
+                                </span>
+                                <ul class="selector selector-trades">
+                                    <li data-id="1">国企</li>
+                                    <li data-id="2">私企</li>
+                                    <li data-id="3">外企</li>
+                                    <li data-id="4">合资企业</li>
+                                    <li data-id="5">其它</li>
+                                </ul>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>请选择公司性质</div>
+                            </div>
+
+                            <div class="company-scales">
+                                <em class="req">*</em>
+                                <span class="first-of-type">公司规模</span>
+                                <span class="btn-selector btn-selector-scale pos-drop-down">
+                                    <%
+                                var scale_type = "";
+                                switch(parseInt(company.scale_type||0)){
+                                    case 1: scale_type ="15人以下"; break;
+                                    case 2: scale_type="15-50人"; break;
+                                    case 3: scale_type="50-150人"; break;
+                                    case 4: scale_type="150-500人"; break;
+                                    case 5: scale_type="500-2000人"; break;
+                                    case 6: scale_type="2000-5000人"; break;
+                                    case 7: scale_type="5000人以上"; break;
+                                }
+                            %>
+                                    <input class="pos-scale pos-item" value="<%=scale_type%>" data-id="<%=company.scale_type%>" type="text" placeholder="请选择公司规模" readonly/>
+                                    <span class="icon-down-arrow"></span>
+                                </span>
+                                <ul class="selector selector-scales">
+                                    <li data-id="1">15人以下</li>
+                                    <li data-id="2">15-50人</li>
+                                    <li data-id="3">50-150人</li>
+                                    <li data-id="4">150-500人</li>
+                                    <li data-id="5">500-2000人</li>
+                                    <li data-id="6">2000-5000人</li>
+                                    <li data-id="7">5000人以上</li>
+                                </ul>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>请选择公司性质</div>
+                            </div>-->
+
+                            <div>
+                                <em class="req"></em>
+                                <span class="first-of-type">公司主页</span>
+                                <span><input class="pos-homepage pos-item" type="text" value="<%=company.homepage|| ''%>" placeholder="请填写公司主页"/></span>
+                                <div class="note warning input-error"><span class="icon-prompt"></span>公司主页不能为空</div>
+                            </div>
+
+                        </div>
+                        <div class="pos-more pos-block">
+                            <div>
+                                <em class="req" style="margin-top:3px;">*</em>
+                                <span class="first-of-type">公司介绍</span>
+                                <span>（请勿输入公司邮箱、电话、薪资面议或其他链接，否则将会被删除，不可恢复）</span>
+
+                                <div class="pos-content-area">
+                                    <!-- 加载编辑器的容器 -->
+                                    <textarea id="pos-content" class="pos-content" name="content"><%=company.introduction || ''%></textarea>
+                                </div>
+                                <div class="note warning input-error input-error-content"><span class="icon-prompt"></span>请输入公司介绍，尽量使用短句并分条列出
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pos-block pos-bottom">
+                            <div class="pos-bottom-btn">
+                                <!--<span class="btn-add-preview">预览</span>-->
+                                <span class="btn-add-pos" data-type="edit" data-cid="<%=company.cid%>">修改</span>
+                                <a class="btn-cancel-pos" href="/company/list?status=1&page=1">取消</a>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                <i class="icon-double-angle-up icon-only bigger-110"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- -------弹窗------ -->
+<div class="overlay" ></div>
+<div class="popBox popBox-cutter" >
+    <div class="popBox-title">图片裁切</div>
+    <div class="popBox-content">
+        <div class="cutter-top">
+            <div class="cropper-container">
+                <img id="cropper-image" src="" style="width: 100%">
+                <div id="myDiv"></div>
+            </div>
+            <div class="operation-area" style="text-align: center;">
+                <span class="cutter-smaller icon-cutter">缩小</span>
+                <span class="cutter-larger icon-cutter">放大</span>
+            </div>
+            <div class="btn-area">
+                <span class="btn-cancel btn">取消</span>
+                <span class="btn-confirm btn">确定</span>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>
+<!--
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=3q9TUK5ahFNyuealiblGt8OV"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/map.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/async.js"></script>
+-->
+<%include ../../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/jquery-ui-timepicker-zh-CN.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/qiniu.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/fileUpLoad.js"></script>
+<%include ../../common/ueditor_script.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/regex.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/ueditor.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/citySelector.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/cropper.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/lib/md5.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/imageCutter.js"></script>
+<script type="text/javascript" src="/public/ace/assets/js/common/imgCropper.js"></script>
+<script type="text/javascript">
+    //给sidebar加样式
+    var url = location.href;
+    var env = '<%= env %>';
+    if(url.indexOf('company')!=-1){
+        $('#recruitMenu').addClass('active open');
+        $('#recruitMenu ul li:eq(0)').addClass('active');
+    }
+    window.global = window.global || {};
+</script>
+<!--[if lte IE 8]>
+<script type="text/javascript">
+    window.global.ie= 1;
+</script>
+<![endif]-->
+<script type="text/javascript" src="/public/ace/assets/js/page/company/company.js"></script>
+</body>
+</html>

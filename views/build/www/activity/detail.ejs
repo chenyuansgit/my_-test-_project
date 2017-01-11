@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><%=activity.title%> － 实习鸟</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="实习鸟专注大学生实习就业，为全国大学生提供最全面、最及时、最靠谱的实习、工作、兼职、志愿者等职位信息，是国内最具影响力的实习生招聘网站之一。在实习鸟,你可以免费查询北京实习、上海实习、名企实习、寒暑期实习等信息，同时你可以免费发布实习招聘信息。薪资透明、拒绝面议,多平台多选择,大学生,实习,找实习,就业,大学生找靠谱实习首选实习鸟。">
+    <meta name="keywords" content="实习,实习生,找实习,大学生实习,实习鸟,大学生就业,大学生,实习生招聘,兼职">
+    <meta name="baidu-site-verification" content="ma1cMfraUp" />
+    <link href="<%=baseUrl%>/img/icon-title.ico" rel="shortcut icon" />
+    <!-- 让HTML5支持IE -->
+    <!--[if lte IE 9]>
+    <script src="<%=baseUrl%>/js/plugin/IB_html5.js"></script>
+    <![endif]-->
+    <script>
+        window.global = window.global || {};
+        global.account_host = 'http://<%=host.account%>';
+        var baseUrl = '<%=baseUrl%>';
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?5f6b35b51a25201f1ab8f0a8ce96e6ec";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link href="<%=baseUrl%>/css/page/activity/activity.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item on" href="/activity">活动</a></li>
+            <li><a class="header-link-item" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<!--页面主体-->
+<div class="container mb clearfix">
+    <!--左侧列表-->
+    <div class="more-detail fl">
+        <%if(activity){ %>
+        <% var timestamp = Date.parse(new Date());%>
+        <div class="more-text inwrapBox mb20">
+            <h3 class="ellipsis"><%=activity.title%></h3>
+            <p class="activity-info">活动发起者：<span class="sponsor"><%=activity.sponsor%></span>创建时间：<span><%= new Date(activity.create_time).format('yyyy-MM-dd hh:mm')%></span></p>
+            <div class="activity-content">
+                <%-activity.content%>
+            </div>
+            <h4>活动开始时间：<span><%= new Date(activity.start_time).format('yyyy-MM-dd hh:mm')%></span></h4>
+            <h4>活动结束时间：<span><%= new Date(activity.end_time).format('yyyy-MM-dd hh:mm')%></span></h4>
+            <p class="last-update">最后更新于：<span><%= new Date(activity.update_time).format('yyyy-MM-dd hh:mm')%></span></p>
+            <!--<p><img src="http://t.s0.internbird.com/web/img/articles/32-1.ae00e3d0919d.png"></p>
+            <p class="tc">我来到你的城市，诉说你走过的路</p>
+            <p class="tc">想象着，没我的日子</p>
+            <p class="tc">你是怎样的奋斗？</p>
+            <p class="tc">大三准备保研的你，现在有哪些疑惑，遇到了什么困难？</p>
+            <p class="tc">大一大二急切实习的你，现在对实习是否还一无所知？</p>
+            <p></p>
+            <p class="tc">大学生保研第一品牌－保研论坛</p>
+            <p class="tc">最靠谱的实习平台－实习鸟</p>
+            <p class="tc">和你面对面交流</p>
+            <p class="tc">5月18日，紫金山下，让希望成真</p>
+            <p></p>
+            <p class="tc">实习鸟＋保研论坛线下讲座开启全国巡回模式，京外第一站：南京理工大学</p>
+            <p><img src="http://t.s0.internbird.com/web/img/articles/32-1.ae00e3d0919d.png"></p>
+            <h4>[宣讲流程]</h4>
+            <p>1.如何获取保研信息，保研论坛的介绍和使用（主讲人：阮小路）</p>
+            <p>2.保研同学经验介绍（主讲人：相关保研成功同学）</p>
+            <p>3.实习鸟平台介绍和实习疑惑解答；</p>
+            <p>4.自由提问交流；</p>-->
+            <%if(timestamp > activity.end_time) {%>
+                <div class="more-text-btn">
+                    <!--<span class="btn btn-join">立即加入</span>-->
+                    <span class="activity-over">活动已结束</span>
+                </div>
+            <%}%>
+            <!--<div class="more-text-tag">标签:<a href="#">证书</a><a href="#">萌萌</a><a href="#">娘炮</a><a href="#">董小姐</a></div>
+            <div class="more-text-share">
+                <span class="icon-view2"></span>阅读(10)
+                <span class="icon-likes"></span>赞(120)
+                <span class="icon-brake"></span>踩(120)
+                <div class="share-icon">
+                    分享到: <a href="#"><span class="icon-weixin"></span></a><a href="#"><span class="icon-weibo"></span></a>
+                </div>
+            </div>-->
+        </div>
+        <%}%>
+        <!--分页-->
+        <div class="more-next inwrapBox clearfix mb20">
+            <%if(typeof(next.id) != "undefined"){%>
+            <a href="/activity/detail/<%=next.id%>" class="fl" id="next-next-next">上期活动：<%=next.title.length>20?next.title.substr(0,20)+"...":next.title%></a>
+            <%}%>
+            <%if(typeof(prev.id) != "undefined"){%>
+            <a href="/activity/detail/<%=prev.id%>" class="fr" id="next-next-prev">下期活动：<%=prev.title.length>20?prev.title.substr(0,20)+"...":prev.title%></a>
+            <%}%>
+        </div>
+    </div>
+    <!--右侧-->
+    <div class="w310 fr">
+        <div class="sideBox mb20">
+            <div class="sideBox-logo"></div>
+            <div class="sideBox-qrcode"></div>
+            <p>微信号:internbird</p>
+        </div>
+        <div class="sideBox mb20">
+            <h4>若有活动合作，可联系邮箱</h4>
+            <p>info@internbird.com</p>
+        </div>
+    </div>
+</div>
+
+<%include ../common/footer.ejs%>
+</body>
+</html>

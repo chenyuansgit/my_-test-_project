@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/web/enter.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/web/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/web/page/setting/IB_findPwd.js"></script>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            www: "http://<%=host.www%>",
+            hr : "http://<%=host.hr%>",
+            account: "http://<%=host.account%>"
+        };
+    </script>
+</head>
+<body>
+<div class="bird-enter">
+    <div class="enter-top"></div>
+    <div class="enter-content">
+        <!--<div class="enter-top clearfix">
+            <a class="logo fl" href="/"></a>
+            <span class="slogan fl"></span>
+        </div>-->
+        <div class="reset-box clearfix">
+            <div class="reset-box-l fl">
+                <div class="reset-body reset-body-mail">
+                    <div class="step-email-3 reset-step curr">
+                        <div>
+                            <input class="input-l req" id="reset-pwd" type="password" placeholder="请输入新的密码"/>
+                        </div>
+                        <div>
+                            <input type="button" id="btn-reset-email" class="btn-block btn-blue btn-outline btn" value="重置密码"/>
+                        </div>
+                        <div class="step-bottom clearfix">
+                            <span class="fl">第3步(共3步)</span>
+                            <span class="fr">记起密码?&nbsp;<a href="http://<%=host.account%>/login">登录</a></span>
+                        </div>
+                    </div>
+                    <div class="step-email-4 reset-step">
+                        <div style="text-align: center;">
+                            <span>密码修改成功，<a href="http://<%=host.account%>/login">立即登录</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reset-box-r fr">
+                <h5>已有账号？<a href="http://<%=host.account%>/login">马上登录</a></h5>
+                <div class="third-login">
+                    <p>第三方账号登录：</p>
+                    <div class="third-reg-login">
+                        <span class="icon-weixin third-type" data-type="wechat"></span>
+                        <!--<span class="icon-weibo third-type" data-type="weibo"></span>
+                        <span class="icon-black-qq third-type" data-type="qq"></span>-->
+                    </div>
+                </div>
+                <div class="qrcode-area">
+                    <div class="qrcode"></div>
+                    <p class="qrcode-title">扫一扫下载实习鸟手机APP</p>
+                </div>
+                <!--<h5 class="other-log-title">使用以下账号直接登录</h5>
+                <div>
+                    <input class="btn-other-log btn-other-log-wechat btn-outline btn" type="button"/>
+                    <input class="btn-other-log btn-other-log-sina btn-outline btn" type="button" />
+                    <input class="btn-other-log btn-other-log-qq btn-outline btn" type="button" />
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="reg-bottom"></div>
+</body>
+</html>

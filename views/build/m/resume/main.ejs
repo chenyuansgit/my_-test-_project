@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/resume/main.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.edu_list = '<%-resume[0].education_detail%>';
+        global.skill_list = '<%-resume[0].skill%>';
+        global.project_exp = '<%-resume[0].project_exp%>';
+        global.school_exp = '<%-resume[0].school_exp%>';
+        global.intern_exp = '<%-resume[0].inter_exp%>';
+        global.mr_integrity = 0;
+    </script>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/resume/IB_resume.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="#" class="back left-icon"></a>
+        <span>我的简历</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <%var integrity = 0%>
+    <div class="mr" data-rid="<%=resume[0].rid%>" data-uid="<%=uid%>">
+        <div class="top-tips">
+            <span>电脑登录<a href="http://www.internbird.com" target="_blank">www.internbird.com</a>，在“我的简历”栏目中可完成简历中其他的项目，找到实习的机率更高哦～</span>
+            <span class="btn-close"></span>
+        </div>
+        <div class="mr-block">
+            <div class="block-content">
+                <% if(resume[0].avatar && resume[0].avatar !== 'undefined'){
+                    integrity += 10;
+                %>
+                <div class="mr-avatar" style="background-image:url('<%=resume[0].avatar%>')">
+                    <input type="file" id="file-avatar"/>
+                </div>
+                <%}else{%>
+                <div class="mr-avatar">
+                    <input type="file" id="file-avatar" />
+                </div>
+                <%}%>
+                <div class="tac avatar-tips">点击&nbsp;添加或更换头像</div>
+            </div>
+        </div>
+        <%integrity += 10;%>
+        <div class="mr-block">
+            <div class="block-title">
+                <span>基本信息</span>
+                <span class="required-tips">必填</span>
+            </div>
+            <div class="block-content">
+                <span class="mr-edit mr-edit-base"></span>
+                <ul class="base-info info-list">
+                    <li class="clearfix">
+                        <div class="info-title clearfix">姓<span class="tw"></span>名&nbsp;:</div>
+                        <div class="info mr-name"><%=resume[0].name%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">性<span class="tw"></span>别&nbsp;:</div>
+                        <div class="info mr-sex"><%=resume[0].male?"男":"女"%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">出生日期&nbsp;:</div>
+                        <div class="info mr-birth"><%=new Date(resume[0].birthday).format("yyyy.MM")%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">籍<span class="tw"></span>贯&nbsp;:</div>
+                        <div class="info mr-city"><%=resume[0].address%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">电<span class="tw"></span>话&nbsp;:</div>
+                        <div class="info mr-phone"><%=resume[0].phone%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">邮<span class="tw"></span>箱&nbsp;:</div>
+                        <div class="info mr-email"><%=resume[0].email%></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <%try{
+            var edu_list = JSON.parse(resume[0].education_detail);
+            integrity += 10;
+        %>
+        <div class="mr-block mr-block-edu">
+            <div class="block-title">
+                <span>教育经历</span>
+                <span class="required-tips">必填</span>
+            </div>
+            <span class="mr-edit"></span>
+            <div class="block-content block-content-edu">
+                <%for(var j = 0;j<edu_list.length;j++){%>
+                <div class="mr-info-edu mr-info-detail" data-id="<%=edu_list[j].edu_id%>">
+                    <div class="circle"></div>
+                    <div class="edu-time"><%=edu_list[j].start_time%>-<%=edu_list[j].end_time%></div>
+                    <div><span class="info-title">学校名称&nbsp;:</span><span class="edu-school"><%=edu_list[j].school%></span></div>
+                    <div><span class="info-title">学<span class="tw"></span>历&nbsp;:</span><span class="edu-stage"><%=edu_list[j].stage%></span></div>
+                    <div><span class="info-title">专业名称&nbsp;:</span><span class="edu-major"><%=edu_list[j].major%></span></div>
+                </div>
+                <%}%>
+            </div>
+        </div>
+        <% }catch(e){}%>
+        <%integrity += 10;%>
+        <div class="mr-block">
+            <div class="block-title">
+                <span>期望实习</span>
+                <span class="required-tips">必填</span>
+            </div>
+            <div class="block-content">
+                <span class="mr-edit mr-edit-hope"></span>
+                <ul class="hope-info info-list">
+                    <li class="clearfix">
+                        <div class="info-title">职位名称&nbsp;:</div>
+                        <div class="info mr-hope-position"><%=resume[0].intern_expect_position%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">职位类型&nbsp;:</div>
+                        <div class="info mr-hope-position-type" ></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">地<span class="tw"></span>点&nbsp;:</div>
+                        <div class="info mr-hope-city" data-cid="<%=resume[0].intern_expect_cid||0%>"><%=resume[0].intern_expect_city%></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">日<span class="tw"></span>薪&nbsp;:</div>
+                        <div class="info mr-hope-payment"></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">每周实习&nbsp;:</div>
+                        <div class="info mr-hope-days"></div>
+                    </li>
+                    <li class="clearfix">
+                        <div class="info-title">实习月数&nbsp;:</div>
+                        <div class="info mr-hope-duration"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="optional-content">
+            <%try{
+                var skill_list = JSON.parse(resume[0].skill);
+            if(skill_list.length > 0){
+                integrity += 10;
+            %>
+            <div class="mr-block mr-block-skill" data-type="skill">
+                <div class="block-title">
+                    <span>我的技能</span>
+                </div>
+                <span class="mr-edit"></span>
+                <div class="block-content">
+                    <%
+                    for(var j=0;j<skill_list.length;j++){
+                    %>
+                    <div data-id="<%=skill_list[j].skill_id%>" class="mr-skill"><i class="circle"></i><span><%=skill_list[j].skill%></span></div>
+                    <%}%>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="mr-block mr-block-skill" data-type="skill">
+                <div class="block-title">
+                    <span>我的技能</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">快添上，让用人单位知道你有什么傍身技能<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%}catch(e){%>
+            <div class="mr-block mr-block-skill" data-type="skill">
+                <div class="block-title">
+                    <span>我的技能</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">快添上，让用人单位知道你有什么傍身技能<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%try{
+                var exp_list = JSON.parse(resume[0].project_exp);
+            if(exp_list.length > 0){
+                integrity += 10;
+            %>
+            <div class="mr-block mr-block-exp mr-block-project" data-type="project">
+                <div class="block-title">
+                    <span>项目经历</span>
+                </div>
+                <span class="mr-edit"></span>
+                <div class="block-content">
+                    <%
+                    for(var j=0;j<exp_list.length;j++){
+                    %>
+                    <div class="mr-info-detail mr-exp" data-id="<%=exp_list[j].id%>">
+                        <div class="exp-title exp-name"><%=exp_list[j].name%></div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">时间&nbsp;:</div><div class="exp-r fll exp-time"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">职务&nbsp;:</div><div class="exp-r fll exp-role"><%=exp_list[j].role%></div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">职责&nbsp;:</div><div class="exp-r fll exp-content"><%-exp_list[j].content%></div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="mr-block mr-block-exp mr-block-project" data-type="project">
+                <div class="block-title">
+                    <span>项目经历</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">描述参与过的项目经历，使你更具竞争力<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%}catch(e){%>
+            <div class="mr-block mr-block-exp mr-block-project" data-type="project">
+                <div class="block-title">
+                    <span>项目经历</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">描述参与过的项目经历，使你更具竞争力<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%try{
+                var exp_list = JSON.parse(resume[0].school_exp);
+            if(exp_list.length > 0){
+                integrity += 10;
+            %>
+            <div class="mr-block mr-block-exp mr-block-school" data-type="school">
+                <div class="block-title">
+                    <span>校园经历</span>
+                </div>
+                <span class="mr-edit"></span>
+                <div class="block-content">
+                    <%
+                    for(var j=0;j<exp_list.length;j++){
+                    %>
+                    <div class="mr-info-detail mr-exp" data-id="<%=exp_list[j].id%>">
+                       <!-- <span class="mr-edit mr-edit-school"></span>-->
+                        <div class="exp-title exp-name"><%=exp_list[j].name%></div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">时间&nbsp;:</div><div class="exp-r fll exp-time"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">职务&nbsp;:</div><div class="exp-r fll exp-role"><%=exp_list[j].role%></div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">职责&nbsp;:</div><div class="exp-r fll exp-content"><%-exp_list[j].content%></div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="mr-block mr-block-exp mr-block-school" data-type="school">
+                <div class="block-title">
+                    <span>校园经历</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">展现你独有的校园风采<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%}catch(e){%>
+            <div class="mr-block mr-block-exp mr-block-school" data-type="school">
+                <div class="block-title">
+                    <span>校园经历</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">展现你独有的校园风采<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%try{
+                var exp_list = JSON.parse(resume[0].inter_exp);
+            if(exp_list.length > 0){
+                integrity += 10;
+            %>
+            <div class="mr-block mr-block-exp mr-block-intern" data-type="intern">
+                <div class="block-title">
+                    <span>实习经历</span>
+                </div>
+                <span class="mr-edit"></span>
+                <div class="block-content">
+                    <%
+                    for(var j=0;j<exp_list.length;j++){
+                    %>
+                    <div class="mr-info-detail mr-exp" data-id="<%=exp_list[j].id%>">
+                       <!-- <span class="mr-edit mr-edit-intern"></span>-->
+                        <div class="exp-title exp-name"><%=exp_list[j].name%></div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">时间&nbsp;:</div><div class="exp-r fll exp-time"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">职务&nbsp;:</div><div class="exp-r fll exp-role"><%=exp_list[j].role%></div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="exp-l fll">职责&nbsp;:</div><div class="exp-r fll exp-content"><%-exp_list[j].content%></div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="mr-block mr-block-exp mr-block-intern" data-type="intern">
+                <div class="block-title">
+                    <span>实习经历</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">添加实习经历，为自己增加砝码<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%}catch(e){%>
+            <div class="mr-block mr-block-exp mr-block-intern" data-type="intern">
+                <div class="block-title mr-block-intern" data-type="intern">
+                    <span>实习经历</span>
+                </div>
+                <span class="mr-edit" style="display: none"></span>
+                <div class="block-content">
+                    <p class="blank-tips">添加实习经历，为自己增加砝码<i></i></p>
+                </div>
+            </div>
+            <%}%>
+            <%if(resume[0].self_desc){
+                integrity += 10;
+            %>
+            <div class="mr-block">
+                <div class="block-title">
+                    <span>自我评价</span>
+                </div>
+                <span class="mr-edit mr-edit-self"></span>
+                <div class="block-content">
+                    <div class="mr-info-detail mr-self"> <%-resume[0].self_desc%></div>
+                </div>
+            </div>
+            <%}else{%>
+            <div class="mr-block mr-block-self">
+                <div class="block-title">
+                    <span>自我评价</span>
+                </div>
+                <span class="mr-edit mr-edit-self" style="display: none"></span>
+                <div class="block-content">
+                   <p class="blank-tips">还原一个真实的你，吸引更多的目光<i></i></p>
+                    <div class="mr-info-detail mr-self"></div>
+                </div>
+            </div>
+            <%}%>
+        </div>
+        <div class="btn-switch open">
+            <span class="icon-wing"></span>
+            <p>展开选填内容</p>
+        </div>
+        <%
+        var state = ""
+        switch(resume[0].work_state){
+            case 0: state ="我在学校，可来公司实习";break;
+            case 1: state ="我在实习，考虑换个公司"; break;
+            case 2: state ="我在公司所在城市，可来实习"; break;
+            case 3: state ="我暂时无法实习"; break;
+        }
+        if(state){
+            integrity += 10;
+        %>
+        <div class="mr-state-area mr-block">
+            <div class="block-content">
+                <div class="mr-state"><%=state%></div>
+            </div>
+        </div>
+        <%}%>
+    </div>
+</div>
+<script>
+    global.mr_integrity = '<%=integrity%>';
+</script>
+<div class="popTips animation"></div>
+<!--编辑-->
+<div class="edit-block edit-block-base edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">基本信息</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="content-line">
+            <span>姓&nbsp;&nbsp;名</span>
+            <span><input class="name required input" type="text" value="<%= resume[0].name %>"/></span>
+        </div>
+        <div class="content-line">
+            <span>性&nbsp;&nbsp;别</span>
+            <span class="sex required" data-type="<%=resume[0].male%>"><%=parseInt(resume[0].male)?"男":"女"%></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line select-block" data-sel="city" id="address">
+            <span>籍&nbsp;&nbsp;贯</span>
+            <span class="address required select"><%= resume[0].address %></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line" id="birth">
+            <span>出生年月</span>
+            <span class="birthday required select"><%= new Date(resume[0].birthday).format("yyyy.MM") %></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line">
+            <span>常用手机</span>
+            <span><input class="phone required input" type="tel" value="<%= resume[0].phone %>"/></span>
+        </div>
+        <div class="content-line">
+            <span>常用邮箱</span>
+            <span><input class="email required input" type="text" value="<%= resume[0].email %>"/></span>
+        </div>
+    </div>
+</div>
+<div class="edit-block edit-block-edu edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">教育经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="content-line">
+            <span>毕业院校</span>
+            <span><input class="school required input" type="text"/></span>
+        </div>
+        <div class="content-line">
+            <span>所学专业</span>
+            <span><input class="major required input" type="text"/></span>
+        </div>
+        <div class="content-line select-block" data-selector="stage" id="stage">
+            <span>学&nbsp;&nbsp;历</span>
+            <span class="stage required select"></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line" id="edu-start">
+            <span>入学时间</span>
+            <span class="start_time_edu edu_time required select"></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line" id="edu-end">
+            <span>毕业时间</span>
+            <span class="end_time_edu edu_time required select"></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="btn-del"><i></i>删除经历</div>
+    </div>
+</div>
+<div class="edit-block edit-block-hope edit-block-white">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">期望实习</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="content-line" id="hope-city">
+            <span>实习地点</span>
+            <span class="hope-city required select" data-cid="<%= resume[0].intern_expect_cid || 0%>"><%= resume[0].intern_expect_city %></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line">
+            <span>实习职位</span>
+            <span><input class="position required input" type="text"  value="<%= resume[0].intern_expect_position %>"/></span>
+        </div>
+        <div class="content-line" id="position-type">
+            <span>职位类型</span>
+            <span class="position-type required select" data-id="<%=resume[0].intern_expect_position_type%>"></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line select-block" data-selector="payment" id="payment">
+            <span>每日薪资</span>
+            <span class="payment required select" data-type="<%= resume[0].intern_expect_min_payment || 0 %>"></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line select-block" data-selector="days" id="days">
+            <span>每周实习天数</span>
+            <span class="days required select" data-type="<%= resume[0].intern_expect_days_type || 0 %>"></span>
+            <span class="btn-sel"></span>
+        </div>
+        <div class="content-line select-block" data-selector="duration" id="duration">
+            <span>连续实习时间</span>
+            <span class="duration required select" data-type="<%= resume[0].intern_expect_dur_type || 0 %>"></span>
+            <span class="btn-sel"></span>
+        </div>
+    </div>
+</div>
+<div class="edit-block edit-block-self">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">自我评价</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <%if(resume[0].self_desc){%>
+        <div class="self-editor" placeholder="简要描述一下自己，字数控制在500字以内"><%-resume[0].self_desc%></div>
+        <%}else{%>
+        <div class="self-editor" placeholder="简要描述一下自己，字数控制在500字以内"></div>
+        <%}%>
+        <div class="block-tips">
+            <div class="tc i"><i class="icon-bird"></i>小贴士：样例示范</div>
+            <div class="tc i">可以试着从以下几个方面描述自己！</div>
+            <ul class="tips">
+                <li><i class="circle"></i>自己的性格或兴趣爱好;</li>
+                <li><i class="circle"></i>对于申请职位的理解和规划;</li>
+                <li><i class="circle"></i>其他能够展示自己优势的事情;</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="edit-block edit-block-exp edit-block-project" data-type="project">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">项目经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="line-content">
+            <div class="content-line select-block">
+                <span>项目名称</span>
+                <span><input class="exp-name required input" type="text"/></span>
+            </div>
+            <div class="content-line select-block">
+                <span>项目角色</span>
+                <span><input class="exp-role required input" type="text"/></span>
+            </div>
+            <div class="content-line" id="start-time-project">
+                <span>开始时间</span>
+                <span class="start-time-project required select exp-startTime"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="content-line" id="end-time-project">
+                <span>结束时间</span>
+                <span class="end-time-project required select exp-endTime"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="exp-editor pro-editor editor required" placeholder="项目中自己负责的事或取得的成就，500字以内"></div>
+        </div>
+        <div class="btn-del"><i></i>删除经历</div>
+    </div>
+</div>
+<div class="edit-block edit-block-exp edit-block-school" data-type="school">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">校园经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="line-content">
+            <div class="content-line select-block">
+                <span>经历名称</span>
+                <span><input class="exp-name required input" type="text"/></span>
+            </div>
+            <div class="content-line select-block">
+                <span>经历角色</span>
+                <span><input class="exp-role required input" type="text"/></span>
+            </div>
+            <div class="content-line" id="start-time-school">
+                <span>开始时间</span>
+                <span class="start-time-school required select exp-startTime"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="content-line" id="end-time-school">
+                <span>结束时间</span>
+                <span class="end-time-school required select exp-endTime"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="exp-editor school-editor editor required" placeholder="此段经历具体做过的事情和取得的成就，500字内"></div>
+        </div>
+        <div class="btn-del"><i></i>删除经历</div>
+    </div>
+</div>
+<div class="edit-block edit-block-exp edit-block-intern" data-type="intern">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">实习经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="line-content">
+            <div class="content-line select-block">
+                <span>公司名称</span>
+                <span><input class="exp-name required input" type="text"/></span>
+            </div>
+            <div class="content-line select-block">
+                <span>岗位名称</span>
+                <span><input class="exp-role required input" type="text"/></span>
+            </div>
+            <div class="content-line" id="start-time-intern">
+                <span>开始时间</span>
+                <span class="start-time-intern required select exp-startTime"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="content-line" id="end-time-intern">
+                <span>结束时间</span>
+                <span class="end-time-intern required select exp-endTime"></span>
+                <span class="btn-sel"></span>
+            </div>
+            <div class="exp-editor intern-editor editor required" placeholder="实习过程中主要做过的事或取得的成就，500字内"></div>
+        </div>
+        <div class="btn-del"><i></i>删除经历</div>
+    </div>
+</div>
+<div class="edit-block edit-block-skill" data-type="skill">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">我的技能</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <div class="line-content">
+            <div class="content-line select-block">
+                <input class="skill-name required input block" type="text" placeholder="技能名称"/>
+            </div>
+        </div>
+        <div class="btn-del"><i></i>删除技能</div>
+        <div class="block-tips">
+            <div class="tc i"><i class="icon-bird"></i>小贴士：样例示范</div>
+            <ul class="tips tips-block">
+                <li><i class="circle"></i>熟练使用word / ppt / excel</li>
+                <li><i class="circle"></i>英语口语交流熟练，读写能力良好</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--编辑 end-->
+
+<!--编辑列表-->
+<div class="edit-block edit-list edit-list-edu" data-type="edu">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">教育经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <ul class="item-list item-list-edu">
+            <%try{
+                var edu_list = JSON.parse(resume[0].education_detail);
+            if(edu_list.length > 0){
+            %>
+
+            <%for(var i= 0,len=edu_list.length;i<len;i++){%>
+            <li class="item item-edu" data-id="<%=edu_list[i].edu_id%>" data-startime="<%=edu_list[i].start_time%>" data-endtime="<%=edu_list[i].end_time%>" data-school="<%=edu_list[i].school%>" data-stage="<%=edu_list[i].stage%>" data-major="<%=edu_list[i].major%>">
+                <span class="mr-edit"></span>
+                <ul class="item-detail">
+                    <li class="edu-time"><%=edu_list[i].start_time%>~<%=edu_list[i].end_time%></li>
+                    <li class="edu-school"><%=edu_list[i].school%></li>
+                    <li class="edu-stage"><%=edu_list[i].stage%></li>
+                    <li class="edu-major"><%=edu_list[i].major%></li>
+                </ul>
+            </li>
+            <%}%>
+            <%}%>
+            <%}catch(e){}%>
+        </ul>
+        <div class="btn-add"><i></i>添加经历</div>
+    </div>
+</div>
+<div class="edit-block edit-list  edit-list-skill" data-type="skill">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">我的技能</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <ul class="item-list item-list-skill">
+            <%try{
+                var skill_list = JSON.parse(resume[0].skill);
+            if(skill_list.length > 0){
+            %>
+            <%for(var i= 0,len=skill_list.length;i<len;i++){%>
+            <li class="item item-skill" data-id="<%=skill_list[i].skill_id%>"  data-name="<%=skill_list[i].skill%>">
+                <span class="mr-edit"></span>
+                <div class="skill-detail"><%=skill_list[i].skill%></div>
+            </li>
+            <%}%>
+            <%}%>
+            <%}catch(e){}%>
+        </ul>
+        <div class="btn-add"><i></i>添加技能</div>
+    </div>
+</div>
+<div class="edit-block edit-list edit-list-exp edit-list-project" data-type="project">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">项目经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <ul class="item-list item-list-exp">
+            <%try{
+                var exp_list = JSON.parse(resume[0].project_exp);
+                if(exp_list.length > 0){
+            %>
+            <%for(var i= 0,len=exp_list.length;i<len;i++){%>
+            <li class="item item-exp" data-id="<%=exp_list[i].id%>" data-startime="<%=exp_list[i].startTime.replace("-",".").substr(0,7)%>" data-endtime="<%=exp_list[i].endTime.replace("-",".").substr(0,7)%>" data-name="<%=exp_list[i].name%>" data-role="<%=exp_list[i].role%>" data-content="<%=exp_list[i].content%>">
+                <span class="mr-edit"></span>
+                <ul class="item-detail">
+                    <li class="exp-time"><%=exp_list[i].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[i].endTime.replace("-",".").substr(0,7)%></li>
+                    <li class="exp-name"><%=exp_list[i].name%></li>
+                    <li class="exp-role"><%=exp_list[i].role%></li>
+                    <li class="exp-content"><%-exp_list[i].content%></li>
+                </ul>
+            </li>
+            <%}%>
+            <%}%>
+            <%}catch(e){}%>
+        </ul>
+        <div class="btn-add"><i></i>添加经历</div>
+    </div>
+</div>
+<div class="edit-block edit-list edit-list-exp edit-list-school" data-type="school">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">校园经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <ul class="item-list item-list-exp">
+            <%try{
+                var exp_list = JSON.parse(resume[0].school_exp);
+            if(exp_list.length > 0){
+            %>
+            <%for(var i= 0,len=exp_list.length;i<len;i++){%>
+            <li class="item item-exp" data-id="<%=exp_list[i].id%>" data-startime="<%=exp_list[i].startTime.replace("-",".").substr(0,7)%>" data-endtime="<%=exp_list[i].endTime.replace("-",".").substr(0,7)%>" data-name="<%=exp_list[i].name%>" data-role="<%=exp_list[i].role%>" data-content="<%=exp_list[i].content%>">
+                <span class="mr-edit"></span>
+                <ul class="item-detail">
+                    <li class="exp-time"><%=exp_list[i].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[i].endTime.replace("-",".").substr(0,7)%></li>
+                    <li class="exp-name"><%=exp_list[i].name%></li>
+                    <li class="exp-role"><%=exp_list[i].role%></li>
+                    <li class="exp-content"><%-exp_list[i].content%></li>
+                </ul>
+            </li>
+            <%}%>
+            <%}%>
+            <%}catch(e){}%>
+        </ul>
+        <div class="btn-add"><i></i>添加经历</div>
+    </div>
+</div>
+<div class="edit-block edit-list edit-list-exp edit-list-intern" data-type="intern">
+    <div class="edit-block-head">
+        <span class="back left"></span>
+        <span class="title">实习经历</span>
+        <span class="confirm right btn">完成</span>
+    </div>
+    <div class="block-content">
+        <ul class="item-list item-list-exp">
+            <%try{
+                var exp_list = JSON.parse(resume[0].inter_exp);
+            if(exp_list.length > 0){
+            %>
+            <%for(var i= 0,len=exp_list.length;i<len;i++){%>
+            <li class="item item-exp" data-id="<%=exp_list[i].id%>" data-startime="<%=exp_list[i].startTime.replace("-",".").substr(0,7)%>" data-endtime="<%=exp_list[i].endTime.replace("-",".").substr(0,7)%>" data-name="<%=exp_list[i].name%>" data-role="<%=exp_list[i].role%>" data-content="<%=exp_list[i].content%>">
+                <span class="mr-edit"></span>
+                <ul class="item-detail">
+                    <li class="exp-time"><%=exp_list[i].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[i].endTime.replace("-",".").substr(0,7)%></li>
+                    <li class="exp-name"><%=exp_list[i].name%></li>
+                    <li class="exp-role"><%=exp_list[i].role%></li>
+                    <li class="exp-content"><%-exp_list[i].content%></li>
+                </ul>
+            </li>
+            <%}%>
+            <%}%>
+            <%}catch(e){}%>
+        </ul>
+        <div class="btn-add"><i></i>添加经历</div>
+    </div>
+</div>
+<!--编辑列表 end-->
+
+<!--sel-->
+<div class="sel-sex sel">
+    <div class="sel-option clearfix">
+        <span class="sel-option-cancel"></span>
+        <span class="sel-option-confirm"></span>
+    </div>
+    <div class="main-scroll">
+        <div class="selected-bar"></div>
+        <div class="scroll-wrapper scroll-wrapper-sex"  id="iscroll-sex">
+            <div class="iscroll">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li data-type="0" class="selected">女</li>
+                    <li data-type="1">男</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sel-edu sel">
+    <div class="sel-option clearfix">
+        <span class="sel-option-cancel"></span>
+        <span class="sel-option-confirm"></span>
+    </div>
+    <div class="main-scroll">
+        <div class="selected-bar"></div>
+        <div class="scroll-wrapper scroll-wrapper-edu"  id="iscroll-edu">
+            <div class="iscroll">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li data-type="1" class="selected">大专</li>
+                    <li data-type="2">本科</li>
+                    <li data-type="3">硕士</li>
+                    <li data-type="4">博士及以上</li>
+                    <li data-type="5">其他</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sel-payment sel">
+    <div class="sel-option clearfix">
+        <span class="sel-option-cancel"></span>
+        <span class="sel-option-confirm"></span>
+    </div>
+    <div class="main-scroll">
+        <div class="selected-bar"></div>
+        <div class="scroll-wrapper scroll-wrapper-payment"  id="iscroll-payment">
+            <div class="iscroll">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li data-type="0" class="selected">不限</li>
+                    <li data-type="1">50以下</li>
+                    <li data-type="50">50-100</li>
+                    <li data-type="100">100-200</li>
+                    <li data-type="200">200-500</li>
+                    <li data-type="500">500以上</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sel-days sel">
+    <div class="sel-option clearfix">
+        <span class="sel-option-cancel"></span>
+        <span class="sel-option-confirm"></span>
+    </div>
+    <div class="main-scroll">
+        <div class="selected-bar"></div>
+        <div class="scroll-wrapper scroll-wrapper-days"  id="iscroll-days">
+            <div class="iscroll">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li data-type="1" class="selected">1-2天/周</li>
+                    <li data-type="2">3天/周</li>
+                    <li data-type="3">4天/周</li>
+                    <li data-type="4">5天/周</li>
+                    <li data-type="5">6-7天/周</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sel-duration sel">
+    <div class="sel-option clearfix">
+        <span class="sel-option-cancel"></span>
+        <span class="sel-option-confirm"></span>
+    </div>
+    <div class="main-scroll">
+        <div class="selected-bar"></div>
+        <div class="scroll-wrapper scroll-wrapper-duration"  id="iscroll-duration">
+            <div class="iscroll">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li data-type="1" class="selected">1个月以下</li>
+                    <li data-type="2">2个月以下</li>
+                    <li data-type="3">3个月以下</li>
+                    <li data-type="4">3个月以上</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="sel-state sel">
+    <div class="sel-option clearfix">
+        <span class="sel-option-cancel"></span>
+        <span class="sel-option-confirm"></span>
+    </div>
+    <div class="main-scroll">
+        <div class="selected-bar"></div>
+        <div class="scroll-wrapper scroll-wrapper-state"  id="iscroll-state">
+            <div class="iscroll">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li data-type="0" class="selected">我在学校，可来公司实习</li>
+                    <li data-type="1">我在实习，考虑换个公司</li>
+                    <li data-type="2">我在公司所在城市，可来实习</li>
+                    <li data-type="3">我暂时无法实习</li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="overlay"></div>
+<!--sel end-->
+<%include ../footer.ejs%>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/favorite/favoriteList.css"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_favorite.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/userCenter" class="back left-icon"></a>
+        <span>求职动态</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="top-nav clearfix">
+        <a class="nav fll iblock normal active" data-status=1 href="#1">
+            <span>职位收藏</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=2 href="#2">
+            <span>公司收藏</span>
+        </a>
+        <a class="nav fll iblock normal" data-status=3 href="#3">
+            <span>外网收藏</span>
+        </a>
+    </div>
+    <div class="list w100" id="list"></div>
+</div>
+<%include ../footer.ejs%>
+</body>
+</html>

@@ -1,0 +1,24 @@
+.pages{
+  width: 100%;
+  margin: 15px auto 0;
+  text-align: center;
+  color: #666;
+  >span{
+    padding: 2px 8px;
+    border: 1px solid #eee;
+    margin: 15px 5px;
+    cursor: pointer;
+    background: #fff;
+    &.on{
+      color: #666;
+    }
+    &.off{
+      cursor: auto;
+      color: #999;
+    }
+    &.active{
+      background: @mainColor;
+      color: #fff;
+    }
+  }
+}

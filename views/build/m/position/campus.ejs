@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/campusList.css"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_campusList.js"></script>
+    <script>
+        var userAgent = navigator.userAgent,platform = {
+            isMobile:userAgent.toLowerCase().match(/android|webos|iphone|ipad|ipod|blackberry|windows phone/i),
+            isAndroid:userAgent.toLowerCase().match(/android/i),
+            isIOS:userAgent.toLowerCase().match(/iphone|ipad|ipod/i),
+            isWeixin:userAgent.toLowerCase().match(/micromessenger/i),
+            isWeb:!userAgent.toLowerCase().match(/android|webos|iphone|ipad|ipod|blackberry|windows phone/i)
+        };
+    </script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<div class="main">
+    <div class="header w100 tac">
+        <a href="/" class="back left-icon"></a>
+        <span>校园招聘</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <div class="content w100">
+        <div class="interpolation-list none">
+            <a href="/company/detail/2983?forward=<%=encodeOriginalUrl%>" class="block bb w100 link">
+                <img src="<%=baseUrl%>/img/interpolation/hjcf.jpg" alt="" class="w100"/>
+            </a>
+            <a href="/company/detail/110?forward=<%=encodeOriginalUrl%>" class="block bb w100 link ">
+                <img src="<%=baseUrl%>/img/interpolation/zl.jpg" alt="" class="w100"/>
+            </a>
+            <a href="/company/detail/2609?forward=<%=encodeOriginalUrl%>" class="block bb w100 link ">
+                <img src="<%=baseUrl%>/img/interpolation/ts.jpg" alt="" class="w100"/>
+            </a>
+        </div>
+        <div class="list w100" id="list"></div>
+        <div class='w100 loading tac' id='loading'>
+            <img src='<%=baseUrl%>/img/loading.gif' class='loading_icon'>
+        </div>
+    </div>
+</div>
+<!--下载App-->
+<div class="download-app none" id="download">
+    <span class="download-logo"></span>
+    <a class="download-btn" href="http://www.internbird.com/app/download"></a>
+    <span class="download-close"></span>
+</div>
+<%include ../footer.ejs%>
+<script>
+    //安卓用户尝试直接打开客户端
+    if(platform.isAndroid){
+        setTimeout(function(){
+            location.href = 'internbird://m.internbird.com/home';
+        },500);
+    }
+</script>
+</body>
+</html>

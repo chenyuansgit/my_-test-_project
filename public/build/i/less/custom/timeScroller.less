@@ -1,0 +1,173 @@
+.mask_layer {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  z-index: 10000;
+  background-color: #000;
+  opacity: 0.7;
+  left: 0;
+  bottom: 0;
+}
+.dateScrollerDiv {
+  position: fixed;
+  width: 100%;
+  z-index: 10001;
+  height: 28rem;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+.ds_options {
+  width: 100%;
+  height: 1.6rem;
+  padding: 1.4rem 0;
+  background-color: #f2f5f7;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.ds_option_cancel {
+  position: absolute;
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+  top: 1.4rem;
+  left: 2.5rem;
+  background: url("@{baseUrl}/img/timeScroller/date_scroller_cancel.png") 0 0 no-repeat;
+  background-size: 100% 100%;
+}
+.ds_option_time {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-top: 1.25rem;
+  font-size: 1.5rem;
+  height: 1.5rem;
+}
+.ds_option_confirm {
+  position: absolute;
+  display: block;
+  width: 1.97rem;
+  height: 1.6rem;
+  top: 1.4rem;
+  right: 2.3rem;
+  background: url("@{baseUrl}/img/timeScroller/date_scroller_confirm.png") 0 0 no-repeat;
+  background-size: 100% 100%;
+}
+.main_scroll {
+  width: 100%;
+  height: 18rem;
+  position: absolute;
+  left: 0;
+  top: 4.4rem;
+  z-index: 20000;
+}
+.dateScrollerPart {
+  display: none;
+  position: absolute;
+  overflow-y: hidden;
+  width: 33.3%;
+  height: 100%;
+  border: none;
+  z-index: 20001;
+}
+.fixed_border{
+    position: absolute;
+    z-index: 25000;
+    width: 100%;
+    height: 1px;
+    top: 10.8rem;
+    left: 0;
+    background-color: #e9bb77;
+}
+.fixed_border.top{
+    top:7.2rem;
+}
+.year_scroller_part,
+.dayline_scroller_part {
+  left: 0;
+  top: 0;
+}
+.month_scroller_part,
+.hour_scroller_part {
+  left: 33.3%;
+  top: 0;
+}
+.day_scroller_part,
+.min_scroller_part {
+  left: 66.6%;
+  top: 0;
+}
+.iscroll {
+  z-index: 20001;
+  position: absolute;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+.select_ul {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.select_ul li {
+  list-style: none;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+  height: 1.4rem;
+  padding: 1.1rem 0;
+  color: #ababab;
+}
+.select_ul li.date_selected {
+  color: #ffbc70;
+  font-size: 1.5rem;
+  height: 1.5rem;
+  padding: 1.05rem 0;
+}
+.select_ul li.noselected {
+  display: none;
+}
+.date_type_option {
+  position: absolute;
+  width: 100%;
+  height: 2.6rem;
+  padding: 1.5rem 0;
+  left: 0;
+  bottom: 0;
+  background-color: #f2f5f7;
+}
+.date_type_label {
+  float: left;
+  margin: 0.6rem 0 0 2rem;
+  font-size: 1.5rem;
+}
+.date_type_switch {
+  float: right;
+  display: block;
+  width: 5rem;
+  height: 100%;
+  margin-right: 2rem;
+  background: url("@{baseUrl}/img/timeScrolle/type_switch.png") 0 0 no-repeat;
+  background-size: auto 100%;
+}
+.date_type_switch.switched {
+  background: url("@{baseUrl}/img/timeScrolle/type_switched.png") 0 0 no-repeat;
+  background-size: auto 100%;
+}

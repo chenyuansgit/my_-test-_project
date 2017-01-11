@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%include ../common/head.ejs%>
+</head>
+<body>
+<%include ../common/header.ejs%>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+        <%include ../common/sidebar.ejs%>
+        <div class="main-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div id="modal-shield" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">屏蔽操作</div>
+                                    <div class="modal-body step-content" id="modal-step-contents">
+                                        <p class="ib-shield"> 你想要将此职位屏蔽多久</p>
+                                        <p>  <input type="text" name="datetime-start" class="ui_timepicker" value="" placeholder="开始时间"> <input type="text" name="datetime-end" class="ui_timepicker" value="" placeholder="结束时间"></p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next" data-last="Finish ">确定<i class="icon-arrow-right icon-on-right"></i></button>
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-unshield" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">取消屏蔽</div>
+                                    <div class="modal-body step-content">
+                                        <p>取消屏蔽之后，职位和账号将恢复正常显示</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next" data-last="Finish ">确定<i class="icon-arrow-right icon-on-right"></i></button>
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-delete" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">删除职位</div>
+                                    <div class="modal-body step-content">
+                                        <p>该职位违反了实习鸟平台规则，现将其删除.若删除错误，可通过已删除栏目找回</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next" data-last="Finish ">确定<i class="icon-arrow-right icon-on-right"></i></button>
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-delete-real" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">删除公司</div>
+                                    <div class="modal-body step-content">
+                                        <p>该操作将彻底删除该职位，以及该职位下所有投递过来的简历，请谨慎操作。</p>
+                                    </div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next" data-last="Finish ">确定<i class="icon-arrow-right icon-on-right"></i></button>
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modal-undelete" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header blue" data-target="#modal-step-contents">恢复操作</div>
+                                    <div class="modal-body step-content">恢复操作之后，职位和账号将恢复正常显示</div>
+                                    <div class="modal-footer wizard-actions">
+                                        <button class="btn btn-success btn-sm btn-next" data-last="Finish ">确定<i class="icon-arrow-right icon-on-right"></i></button>
+                                        <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal"><i class="icon-remove"></i>取消</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h3 class="header smaller lighter blue">举报管理</h3>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="tabbable">
+                                            <div class="table-responsive">
+                                                <table id="sample-table-home" class="table table-striped table-bordered table-hover table-sort table-sort-search">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>公司信息</th>
+                                                            <th>账号信息</th>
+                                                            <th>统计</th>
+                                                            <th class="hidden-480">操作</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><a href="#">10001</a></td>
+                                                            <td class="hidden-480">
+                                                                <p><span class="ib-cname">北京图透教育科技有限公司</span></p>
+                                                                <p><span class="ib-join-time">图透教育/2015.11.11</span></p>
+                                                            </td>
+                                                            <td class="hidden-480">
+                                                                <p><span class="ib-email">heyb@internbird.com</span></p>
+                                                                <p><span class="ib-phone">18513009067</span></p>
+                                                            </td>
+                                                            <td>
+                                                                <p>举报<span class="ib-report-time">12次</span></p>
+                                                            </td>
+                                                            <td >
+                                                                <p>
+                                                                    <a href="#" data-toggle="modal"><span class="ib-operation ib-top-set">驳回</span> </a>
+                                                                    <a href="#modal-shield" data-toggle="modal"><span class="ib-operation ib-top-set">屏蔽</span> </a>
+                                                                </p>
+                                                                <p>
+                                                                    <a href="#modal-delete" data-toggle="modal"><span class="ib-operation ib-top-set">删除</span> </a>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                                <td>
+                                                                    <a href="#">10001</a>
+                                                                </td>
+                                                                <td class="hidden-480">
+                                                                    <p><span class="ib-cname">北京图透教育科技有限公司</span></p>
+                                                                    <p><span class="ib-join-time">图透教育/2015.11.11</span></p>
+                                                                </td>
+                                                                <td class="hidden-480">
+                                                                    <p><span class="ib-email">heyb@internbird.com</span></p>
+                                                                    <p><span class="ib-phone">18513009067</span></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p>举报<span class="ib-report-time">3次</span></p>
+                                                                </td>
+                                                                <td >
+                                                                    <p>
+                                                                        <a href="#modal-undelete" data-toggle="modal"><span class="ib-operation ib-top-set">驳回</span> </a>
+                                                                        <a href="#modal-shield" data-toggle="modal"><span class="ib-operation ib-top-set">屏蔽</span> </a>
+                                                                    </p>
+                                                                    <p>
+                                                                        <a href="#modal-delete" data-toggle="modal"><span class="ib-operation ib-top-set">删除</span> </a>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        <tr>
+                                                                <td>
+                                                                    <a href="#">10001</a>
+                                                                </td>
+                                                                <td class="hidden-480">
+                                                                    <p><span class="ib-cname">北京图透教育科技有限公司</span></p>
+                                                                    <p><span class="ib-join-time">图透教育/2015.11.11</span></p>
+                                                                </td>
+                                                                <td class="hidden-480">
+                                                                    <p><span class="ib-email">heyb@internbird.com</span></p>
+                                                                    <p><span class="ib-phone">18513009067</span></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p>举报<span class="ib-report-time">11次</span></p>
+                                                                </td>
+                                                                <td >
+                                                                    <p>
+                                                                        <a href="#modal-undelete" data-toggle="modal"><span class="ib-operation ib-top-set">驳回</span> </a>
+                                                                        <a href="#modal-shield" data-toggle="modal"><span class="ib-operation ib-top-set">屏蔽</span> </a>
+                                                                    </p>
+                                                                    <p>
+                                                                        <a href="#modal-delete" data-toggle="modal"><span class="ib-operation ib-top-set">删除</span> </a>
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+                        <i class="icon-double-angle-up icon-only bigger-110"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+<script type="text/javascript" src="/public/ace/assets/js/common/fn.js"></script>
+<script type="text/javascript">
+    $(".ui_timepicker").datetimepicker({
+        //showOn: "button",
+        //buttonImage: "./css/images/icon_calendar.gif",
+        //buttonImageOnly: true,
+        showSecond: true,
+        timeFormat: 'hh:mm:ss',
+        stepHour: 1,
+        stepMinute: 1,
+        stepSecond: 1
+    });
+    $(function () {
+        $('table.table-sort').tablesort();
+    });
+</script>
+</body>
+</html>

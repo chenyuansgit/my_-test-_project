@@ -1,0 +1,244 @@
+/*吐槽区域*/
+@import "../../var";
+.popBox-tucao {
+  width: 600px;
+  margin-left: -300px;
+  background: transparent;
+}
+.popBox-wrap {
+  position: relative;
+  background: transparent;
+  .tucao-logo-bg {
+    position: absolute;
+    .borderRadius(50%);
+    background: #fff;
+    z-index:1;
+    /*opacity: .5;
+    filter: alpha(opacity=50);*/
+    left: 50%;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    margin-left:-30px;
+    .tucao-logo {
+      width: 48px;
+      height: 48px;
+      padding: 6px;
+      background: url("@{baseUrl}/img/web/bird_48x48.png") center 3px no-repeat;
+    }
+  }
+  .tucao-head {
+    height: 30px;
+    position: relative;
+    &-sel {
+      color: #fff;
+      text-align: right;
+      padding-right: 50px;
+      line-height: 30px;
+      span {
+        padding: 0 3px;
+      }
+    }
+    &-close {
+      position: absolute;
+      right: 0;
+      top: -10px;
+      font-size: 30px;
+      width: 30px;
+      cursor: pointer;
+      text-align: center;
+      color: #fff;
+    }
+  }
+  .tucao-main {
+    padding: 60px 24px 40px;
+    position: relative;
+    .borderRadius(6px);
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background: #fff;
+    &-qrcode {
+      width: 100px;
+      p{
+        text-align: center;
+        font-size:12px;
+        padding-bottom:6px;
+        color: @c2;
+      }
+      .student-qrcode, .hr-qrcode {
+        background-image: url("@{baseUrl}/img/tucao_qrcode.png");
+        width: 100px;
+        height: 100px;
+        background-repeat: no-repeat;
+      }
+      .student-qrcode {
+        background-position: left top;
+      }
+      .hr-qrcode {
+        background-position: left -100px;
+      }
+    }
+    &-right {
+      width: 420px;
+      .sel-item {
+        padding: 20px;
+        border: 1px #eee solid;
+        ul li {
+          height: 20px;
+          position: relative;
+          line-height:20px;
+          margin-bottom:8px;
+          color: @c2;
+          .sel-mark {
+            width: 30px;
+            text-align: right;
+            display: inline-block;
+            padding: 0 15px;
+          }
+          .sel-progress {
+            width: 200px;
+            height: 20px;
+            position: relative;
+          }
+          .sel-progress-bg, .sel-percent, .sel-bar {
+            position: absolute;
+          }
+          .sel-progress-bg, .sel-percent {
+            width: 200px;
+            margin: 5px 0;
+            height: 10px;
+          }
+          .sel-progress-bg {
+            top: 0;
+            background: url("@{baseUrl}/img/progress_bg.png") left top no-repeat;
+          }
+          .sel-percent {
+            top: 1px;
+            width: 0;
+            background: url("@{baseUrl}/img/progress_bg.png") left -10px no-repeat;
+          }
+          .sel-bar {
+            width: 13px;
+            height: 20px;
+            top: 2px;
+            left: -2px;
+            background: url("@{baseUrl}/img/progress_btn.png") left top no-repeat;
+          }
+          .sel-result {
+          }
+        }
+        ul li:last-child {
+          margin-bottom:0;
+        }
+      }
+      .tucao-text-wrap {
+        width: 420px;
+        height: 140px;
+        border: 1px #eee solid;
+      }
+      .tucao-text {
+        width: 400px;
+        height: 120px;
+        padding: 10px;
+        border: none;
+        font-size: 16px;
+        resize: none;
+      }
+      .contact-us {
+        height: 36px;
+        position: relative;
+        .tucao-contact {
+          padding: 2px 10px;
+          height: 30px;
+          line-height: 30px;
+          width: 300px;
+          font-size:14px;
+          border: 1px #eee solid;
+        }
+        .confirm {
+          width: 86px;
+          .borderRadius(6px);
+          cursor: pointer;
+          height: 36px;
+          line-height:36px;
+          text-align: center;
+          border: none;
+          outline: none;
+          color: #fff;
+          background-color: @mainColor;
+          font-size:16px;
+        }
+      }
+      .tucao-error, .contact-error, .contact-none, .tucao-success {
+        display: none;
+        padding-top: 12px;
+      }
+      .tucao-error, .contact-error, .contact-none {
+        color: @c1;
+        span.icon-prompt {
+          font-size: 16px;
+          padding-right: 6px;
+        }
+      }
+      .tucao-success {
+        color: @mainColor;
+        span.icon-check {
+          font-size: 16px;
+          padding-right: 6px;
+        }
+      }
+    }
+  }
+}
+/*页面点击按钮*/
+.tucao-bar, .download-bar{
+  width:60px;
+  height:115px;
+  position: fixed;
+  right:-10px;
+  top:50%;
+  z-index: 10;
+  background: @mainColor;
+  color: #fff;
+  cursor: pointer;
+  .bordertlRadius(4px);
+  .borderblRadius(4px);
+  span{
+    width:28px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 11px;
+    &.icon{
+      height:28px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      .background("@{baseUrl}/img/tucao/icon-tucao.png",cover);
+    }
+  }
+  &:hover{
+    right:0;
+  }
+}
+
+.tucao-bar {
+  margin-top: -150px;
+}
+
+.download-bar {
+  margin-top: -24px;
+  -webkit-writing-mode:vertical-lr;
+  writing-mode:tb-rl;
+  text-align: left;
+  white-space:nowrap;
+  a {
+    display: block;
+    color: #fff;
+    width: 28px;
+    text-align: center;
+    padding: 0 22px 0 11px;
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/header.ejs%>
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/quickRecruit/specialDetail.css"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.uid = '<%=quick_recruit.user_id%>';
+        global.type = "special";
+        global.content_id = "<%=quick_recruit.id%>";
+    </script>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/IB_qr.js"></script>
+</head>
+<body>
+<%include ../common/bodyHeader.ejs%>
+<div class="main" data-id="<%=quick_recruit.id%>">
+    <div class="header w100 tac">
+        <a href="/" class="back left-icon"></a>
+        <span>快招精选</span>
+        <%if(isWeixin){%>
+        <span class="right-link" id="share">分享</span>
+        <%}%>
+    </div>
+    <div class="option-area btn-invite">
+        <span class="icon-invite"></span><span class="text">邀请</span>
+    </div>
+    <div class="article-area">
+        <p class="title w100"><%=quick_recruit.title%></p>
+        <p class="tips clearfix">
+            <span class="fll iblock"><%=new Date(quick_recruit.release_time).format('yyyy-MM-dd')%></span>
+        </p>
+        <div class="content w100 bb clearfix"><%-quick_recruit.content%></div>
+    </div>
+</div>
+<%include invite.ejs%>
+<%include ../common/footer.ejs%>
+<div class="share-back w100 h100 none" data-title="<%=quick_recruit.title%>" data-desc="<%=quick_recruit.summary%>" data-img = "<%=quick_recruit.img%>"></div>
+</body>
+</html>

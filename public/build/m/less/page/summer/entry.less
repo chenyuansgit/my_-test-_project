@@ -1,0 +1,117 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+
+.join-container{
+  position: relative;
+  .pic-intro{
+    width: 100%;
+  }
+  .btn-area{
+    position: absolute;
+    bottom: 4rem;
+    width: 100%;
+    text-align: center;
+    .btn{
+      font-size: 1.3rem;
+      padding: 0.5rem 1rem;
+      margin: 0 1rem;
+      border-radius: 5rem;
+      &.on{
+        background: @mainColor;
+        color: #fff;
+      }
+      &.off{
+        background: #cfcfcf;
+        color: #fff;
+      }
+    }
+    .tips{
+      font-size: 1rem;
+      color: #999;
+      position: absolute;
+      width: 6rem;
+      margin-left: -8rem;
+      margin-top: 2.5rem;
+    }
+  }
+}
+.pop{
+  display: none;
+  width: 20rem;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  margin-left: -10rem;
+  margin-top: -15rem;
+  z-index: 1001;
+  .pop-top{
+    padding-bottom: 10px;
+    .icon-logo{
+      width: 5.8rem;
+      height: 1.9rem;
+      float: left;
+      background-size: 100%;
+      background-image: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/17d3268023a14f72b24e564b5e63ea96.png");
+    }
+    .btn-cancel{
+      width: 0.9rem;
+      height: 0.9rem;
+      float: right;
+      margin: 0.9rem 0.5rem 0 0;
+      cursor: pointer;
+      background-size: 100%;
+      background-image: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/d9f609ccd3ee632c3ce67df1e2c409a5.png");
+    }
+  }
+  .pop-content{
+    background-color: #fff;
+    background-image: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/a827103f2a2c6fe1bc877db2ec3fcabd.png");
+    border-radius: 0.1rem;
+    padding-bottom: 1rem;
+    .pop-title{
+      font-size: 1.4rem;
+      color: #666;
+      width: 15rem;
+      margin: 0 auto;
+      padding: 10px 0;
+      text-align: center;
+      border-bottom: 1px solid #999;
+    }
+    p{
+      width: 15rem;
+      margin: 0 auto;
+      color: #666;
+      margin-top: 1.2rem;
+      line-height: 1.5rem;
+    }
+    .btn-confirm{
+      width: 12rem;
+      padding: 0.7rem 0;
+      margin: 1rem auto 0;
+      text-align: center;
+      font-size: 1.3rem;
+      border-radius: 8px;
+      &.on{
+        background: @mainColor;
+        color: #fff;
+        cursor: pointer;
+      }
+      &.off{
+        background: #dedede;
+        color: #999;
+      }
+    }
+  }
+}
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: .5;
+  filter: alpha(opacity=50);
+  z-index: 1000;
+}

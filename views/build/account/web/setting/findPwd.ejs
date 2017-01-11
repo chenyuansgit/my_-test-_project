@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/web/enter.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        window.global = window.global || {};
+        global.host = {
+            www: "http://<%=host.www%>",
+            hr : "http://<%=host.hr%>",
+            account: "http://<%=host.account%>"
+        };
+    </script>
+    <script src="<%=baseUrl%>/js/web/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/web/page/setting/IB_findPwd.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/web/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/web/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="bird-enter">
+    <div class="enter-top"></div>
+    <div class="enter-content">
+        <!-- <div class="enter-top clearfix">
+             <a class="logo fl" href="/"></a>
+             <span class="slogan fl"></span>
+         </div>-->
+        <div class="reset-box clearfix">
+            <div class="reset-box-l fl">
+                <ul class="reset-title clearfix">
+                    <div class="bird-36"></div>
+                    <li class="fl curr">邮箱找回<span class="icon-sel-up"></span></li>
+                    <li class="fl">手机找回<span class="icon-sel-up"></span></li>
+                </ul>
+                <div class="reset-body reset-body-mail">
+                    <div class="step-email-1 reset-step curr">
+                        <div>
+                            <input class="input-l reg-email enter-input req" id="reset-email" type="text" placeholder="请输入邮箱"/>
+                        </div>
+                        <div>
+                            <input type="button" id="next-email" class="btn-reg-phone btn-block btn-blue btn-outline btn" value="下一步"/>
+                        </div>
+                        <div class="step-bottom clearfix">
+                            <span class="fl">第1步(共3步)</span>
+                            <span class="fr">记起密码?&nbsp;<a href="http://<%=host.account%>/login">登录</a></span>
+                        </div>
+                    </div>
+                    <div class="step-email-2 reset-step">
+                        <div>
+                            <span>请查收邮件。已向您发送密码重置邮件，请前往邮箱查看</span>
+                        </div>
+                        <div class="step-bottom clearfix">
+                            <span class="fl">第2步(共3步)</span>
+                            <span class="fr">记起密码?&nbsp;<a href="http://<%=host.account%>/login">登录</a></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reset-body reset-body-phone">
+                    <div class="step-phone-1 reset-step">
+                        <div>
+                            <input class="input-l enter-input reg-phone req" id="reset-phone" type="text" placeholder="请输入手机号码"/>
+                        </div>
+                        <div class="verifyCode-area">
+                            <input type="text" class="reg-code-machine enter-input" placeholder="请输入图形验证码" autocomplete="off"/>
+                            <img src="" alt="" class="machine-code">
+                            <span class="btn-refresh"></span>
+                        </div>
+                        <div class="code-area clearfix">
+                            <input class="input-s reg-code-phone enter-input req fl" id="code" type="text" placeholder="请输入验证码" autocomplete="off"/>
+                            <input type="button" class="btn-send-code btn btn-outline btn-blue fr" value="获取验证码"/>
+                            <input type="button" class="btn-resend-code btn-outline fr" value="60秒后重试"/>
+                        </div>
+                        <div>
+                            <input class="input-l reg-pwd enter-input req" id="pwd-phone" type="password" placeholder="请输入新密码" autocomplete="off"/>
+                        </div>
+                        <div>
+                            <input type="button" class="btn-reset-phone btn-block btn-blue btn-outline btn" value="重置密码"/>
+                        </div>
+                        <div class="step-bottom clearfix">
+                            <span class="fr">记起密码?&nbsp;<a href="http://<%=host.account%>/login">登录</a></span>
+                        </div>
+                    </div>
+                    <div class="step-phone-2 reset-step">
+                        <div style="text-align: center;">
+                            <span>密码修改成功，<a href="http://<%=host.account%>/login">立即登录</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reset-box-r fr">
+                <h5>已有账号？<a href="http://<%=host.account%>/login">马上登录</a></h5>
+                <div class="third-login">
+                    <p>第三方账号登录：</p>
+                    <div class="third-reg-login">
+                        <span class="icon-weixin third-type" data-type="wechat"></span>
+                        <!--<span class="icon-weibo third-type" data-type="weibo"></span>
+                        <span class="icon-black-qq third-type" data-type="qq"></span>-->
+                    </div>
+                </div>
+                <div class="qrcode-area">
+                    <div class="qrcode"></div>
+                    <p class="qrcode-title">扫一扫下载实习鸟手机APP</p>
+                </div>
+                <!--<h5 class="other-log-title">使用以下账号直接登录</h5>
+                <div>
+                    <input class="btn-other-log btn-other-log-wechat btn-outline btn" type="button"/>
+                    <input class="btn-other-log btn-other-log-sina btn-outline btn" type="button" />
+                    <input class="btn-other-log btn-other-log-qq btn-outline btn" type="button" />
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="reg-bottom"></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../header.ejs%>
+    <link rel="stylesheet" href="<%=baseUrl%>/css/page/jobRecommend.css"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/summer/IB_jobList.js"></script>
+</head>
+<body>
+<%include ../bodyHeader.ejs%>
+<%var clientFlag = platform == "client"?1:0;%>
+<div class="main" style="<%=clientFlag?'padding-top:1rem':'padding-top:4.8rem'%>">
+    <%
+    if(!clientFlag){%>
+    <div class="header w100 tac">
+        <span>实习风暴月</span>
+        <a href="/" class="home right-icon"></a>
+    </div>
+    <%}%>
+    <div class="top-banner">
+        <a href="/private/summer"><img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/1a593c192575b6c584d6dd95c76d26b3.png" alt="暑期活动banner"/></a>
+    </div>
+    <div class="content w100">
+        <div class="interpolation-list none">
+            <a href="/company/detail/2983?forward=<%=encodeOriginalUrl%>" class="block bb w100 link">
+                <img src="<%=baseUrl%>/img/interpolation/hjcf.jpg" alt="" class="w100"/>
+            </a>
+            <a href="/company/detail/110?forward=<%=encodeOriginalUrl%>" class="block bb w100 link ">
+                <img src="<%=baseUrl%>/img/interpolation/zl.jpg" alt="" class="w100"/>
+            </a>
+            <a href="/company/detail/2609?forward=<%=encodeOriginalUrl%>" class="block bb w100 link ">
+                <img src="<%=baseUrl%>/img/interpolation/ts.jpg" alt="" class="w100"/>
+            </a>
+        </div>
+        <div class="list w100" id="list"></div>
+        <div class='w100 loading tac' id='loading'>
+            <img src='<%=baseUrl%>/img/loading.gif' class='loading_icon'>
+        </div>
+    </div>
+</div>
+<!--<div id="foot" class="w100 footer block">
+    <a class="tab iblock fll tac job-tab active" href="javascript:">
+        <span class="tab-icon iblock"></span>
+        <span>职位</span>
+    </a>
+    <a class="tab iblock fll search-tab tac" href="/job/search">
+        <span class="tab-icon iblock"></span>
+        <span>搜索</span>
+    </a>
+    <a class="tab iblock fll user-tab tac" href="/userCenter">
+        <span class="tab-icon iblock"></span>
+        <span>我的</span>
+    </a>
+</div>-->
+<%include ../footer.ejs%>
+</body>
+</html>

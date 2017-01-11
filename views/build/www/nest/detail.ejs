@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><%=article.title%> － 实习鸟</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="实习鸟专注大学生实习就业，为全国大学生提供最全面、最及时、最靠谱的实习、工作、兼职、志愿者等职位信息，是国内最具影响力的实习生招聘网站之一。在实习鸟,你可以免费查询北京实习、上海实习、名企实习、寒暑期实习等信息，同时你可以免费发布实习招聘信息。薪资透明、拒绝面议,多平台多选择,大学生,实习,找实习,就业,大学生找靠谱实习首选实习鸟。">
+    <meta name="keywords" content="实习,实习生,找实习,大学生实习,实习鸟,大学生就业,大学生,实习生招聘,兼职">
+    <meta name="baidu-site-verification" content="ma1cMfraUp" />
+    <link href="<%=baseUrl%>/img/icon-title.ico" rel="shortcut icon" />
+    <!-- 让HTML5支持IE -->
+    <!--[if lte IE 9]>
+    <script src="<%=baseUrl%>/js/plugin/IB_html5.js"></script>
+    <![endif]-->
+    <script>
+        window.global = window.global || {};
+        global.account_host = 'http://<%=host.account%>';
+        var baseUrl = '<%=baseUrl%>';
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?5f6b35b51a25201f1ab8f0a8ce96e6ec";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link href="<%=baseUrl%>/css/page/nest.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<!--页面头部-->
+<div class="header">
+    <%include ../common/header.ejs%>
+    <!--首页导航-->
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+        <a class="logo" href="/"></a>
+        <ul class="header-link clearfix">
+            <li><a class="header-link-item" href="/">首页</a></li>
+            <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+            <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+            <li>
+                <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                <ul class="sub-nav sub-nav-quickRecruit">
+                    <li><a href="/quickRecruit/manage">我的快招</a></li>
+                </ul>
+            </li>
+            <li><a class="header-link-item" href="/activity">活动</a></li>
+            <li><a class="header-link-item on" href="/nest">求职头条</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+<!--页面主体-->
+<div class="container mb20 clearfix">
+    <!--主体-->
+    <div class="wl840 fl">
+       <!-- <div class="nest-nav inwrapBox mb20">
+            <ul class="clearfix">
+                <li class="nav curr" data-type="全部文章" data-category_id="">全部<span class="icon-sel-up"></span></li>
+                <li class="nav" data-type="经验" data-category_id="1001">经验</li>
+                <li class="nav" data-type="好文" data-category_id="1002">好文</li>
+                <li class="nav" data-type="干货"  data-category_id="1003">干货</li>
+            </ul>
+        </div>-->
+
+        <!--正方-->
+        <%if(article){ %>
+        <div class="nest-text inwrapBox mb20">
+            <h3 class="ellipsis"><%=article.title%></h3>
+            <div class="nest-text-info"><%=new Date(article.update_time).format('yyyy-MM-dd hh:mm')%><span class="article-author"><%=article.author%></span></div>
+            <div class="article-content"><%-article.content%></div>
+        </div>
+        <%}%>
+        <!--分页-->
+        <div class="nest-next inwrapBox clearfix mb20">
+            <%if(typeof(next.id) != "undefined"){%>
+                <a href="/nest/detail/<%=next.id%>" target="_blank" class="fl" id="next-next-next">上一篇：<%=next.title.length>20?next.title.substr(0,20)+"...":next.title%></a>
+            <%}%>
+            <%if(typeof(prev.id) != "undefined"){%>
+                <a href="/nest/detail/<%=prev.id%>" target="_blank" class="fr" id="next-next-prev">下一篇：<%=prev.title.length>20?prev.title.substr(0,20)+"...":prev.title%></a>
+            <%}%>
+        </div>
+    </div>
+    <!--侧边栏-->
+    <div class="w310 fr">
+        <!--搜索-->
+       <!-- <div class="article-search sideBox mb20">
+            <div class="article-search-bg">
+                <input type="text" class="nest-search" placeholder="输入话题或关键字或标题" />
+                <span class="serach-btn"><span class="icon-search"></span>搜索</span>
+            </div>
+        </div>-->
+        <div class="sideBox nest mb20">
+            <div class="nest-logo"></div>
+            <div class="nest-qrcode"></div>
+            <p>微信号:internbird</p>
+        </div>
+        <div class="conn-article sideBox mb20">
+            <!-- <div>您可以通过以下方式联系我们</div>
+             <div>
+                 <a href=""><i class="icon-type-3-sina icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-wechat icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-qq icon-type-3"></i></a>
+                 <a href=""><i class="icon-type-3-wifi icon-type-3"></i></a>
+             </div>-->
+            <!--<div>如果您有推荐的文章，请将文章</div>
+            <div>发送至info@internbird.com</div>-->
+            <div class="conn-left">投稿邮箱</div>
+            <span class="conn-mail">info@internbird.com</span>
+        </div>
+        <!--<div class="sideBox conn-icon mb20">
+            <a href="#"><span class="icon-weixin"></span></a>
+            <a href="#"><span class="icon-weibo"></span></a>
+            <a href="#"><span class="icon-black-qq"></span></a>
+            <a href="#"><span class="icon-rss"></span></a>
+        </div>-->
+    </div>
+</div>
+<%include ../common/footer.ejs%>
+</body>
+</html>

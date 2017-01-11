@@ -1,0 +1,74 @@
+@import "../common/index";
+@import "../common/reconsitution";
+@import "../common/animation";
+.selector-top{
+  font-size: 1.6rem;
+  text-align: center;
+  border-bottom: 0.1rem solid #bbcacd;
+}
+.selector{
+  display: none;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20000;
+  .sel-title{
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1.5rem;
+    color: @mainColor;
+    text-align: center;
+    position: relative;
+    .btn-back{
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0 2rem;
+      background: url("@{baseUrl}/img/icon-left-blue.png") 0 0 no-repeat;
+      background-size: cover;
+      background-origin: content-box;
+      position: absolute;
+      left: 0;
+      top: 1.1rem;
+    }
+  }
+  .sel-content{
+    width: 100%;
+    .sel-tab{
+      box-sizing: border-box;
+      padding: 0 2rem;
+      height: 5.8rem;
+      line-height: 5.8rem;
+      font-size: 1.4rem;
+      color: #333;
+      border-bottom: 0.1rem solid #dbdbdb;
+      position: relative;
+      .sel-circle{
+        display: inline-block;
+        width: 1.4rem;
+        height: 1.4rem;
+        .borderRadius(999px);
+        background: #fff;
+        border: 0.1rem solid #dbdbdb;
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        margin-top: -0.7rem;
+      }
+      &.curr{
+        .sel-circle{
+          background: @mainColor;
+        }
+      }
+    }
+    .blank-tips{
+      font-size: 1.4rem;
+      color: @mainColor;
+      padding: 1rem;
+    }
+  }
+}

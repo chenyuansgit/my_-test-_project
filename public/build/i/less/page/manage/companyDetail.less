@@ -1,0 +1,287 @@
+@import "../../common/reconsitution";
+@import "../../common/index";
+
+.content {
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  padding-bottom: 1rem;
+  > div {
+    &.company-top {
+      margin-bottom: 1rem;
+      padding: 1rem 0;
+      position: relative;
+      background: #fff;
+      color: #666;
+      .share{
+        color: #c4c4c4;
+        padding: 1rem;
+        font-size: 1.2rem;
+        position: absolute;
+        right: 0.5rem;
+        top:1.5rem;
+      }
+      .company-logo {
+        width: 9rem;
+        height: 9rem;
+        background: url("@{baseUrl}/img/default-back.png") 0 0 no-repeat;
+        background-color: #fff;
+        background-size: 100% auto;
+        background-position: center;
+        border: 0.1rem solid #eee;
+        border-radius: 3px;
+        margin: 0 auto;
+      }
+      .info-area{
+        text-align: center;
+        color: #999;
+        .company-name {
+          font-size: 1.7rem;
+          color: #333;
+          display: inline-block;
+          margin-top: 0.75rem;
+          min-width: 2.8rem;
+          max-width: 18.7rem;
+        }
+        .company-info {
+          margin-top: 1rem;
+          font-size: 1.3rem;
+          color: #a3a3a3;
+          .company-city{
+            display: inline-block;
+            min-width: 2.8rem;
+            max-width: 5.6rem;
+          }
+        }
+        .company-website {
+          margin-top: 0.6rem;
+          font-size: 1.2rem;
+          a {
+            color: #999;
+          }
+        }
+      }
+      .top-nav{
+        border-top: 1px solid #eee;
+        margin-top: 1rem;
+        .nav{
+          float: left;
+          width: 35%;
+          margin: 0 7.5%;
+          padding: 1rem 0;
+          font-size: 1.4rem;
+          text-align: center;
+          /*  .icon{
+              display: inline-block;
+              position: relative;
+              width: 1.6rem;
+              height: 1.5rem;
+              background-image: url("../../img/company/icon-cd.png");
+              background-size: 100%;
+              margin-top: -3rem;
+              &-com{
+                background-position: 0 0;
+              }
+              &-job{
+                background-position: 0 -3.25rem;
+              }
+            }*/
+          &.curr{
+            color:@mainColor;
+            border-bottom: 2px solid @mainColor;
+            .icon-com{
+              background-position: 0 -1.75rem;
+            }
+            .icon-job{
+              background-position: 0 -4.9rem;
+            }
+          }
+        }
+      }
+    }
+    &.info-area{
+      >div{
+        background: #fff;
+        color: #666;
+        margin-bottom: 1rem;
+        padding: 1rem 1.1rem;
+      }
+      .title{
+        font-size: 1.4rem;
+        color: #333;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .company-title{
+        font-size: 1.4rem;
+        color: #666;
+      }
+      .addresses{
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+      .label-area {
+        margin-top: 1rem;
+        position: relative;
+        z-index: 5;
+        background: #fff;
+        .label {
+          color: #666;
+          font-size: 1.2rem;
+          padding: 0.5rem 1rem;
+          border: 1px solid #eee;
+          border-radius: 0.3rem;
+          float: left;
+          margin: 0 0.5rem 0.5rem 0;
+        }
+      }
+
+      .company-center {
+        background: #fff;
+        margin: 1.2rem 0;
+        position: relative;
+        box-shadow: 0 -0.2rem 0.2rem #eee, 0 0.2rem 0.2rem #eee;
+        .company-intro-area {
+          .company-intro {
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            color: #666 ;
+            /*ueditor*/
+            text-align: justify;
+            word-break: break-all;
+            strong {
+              font-weight: 700
+            }
+            ol li{
+
+              list-style-type: decimal
+            }
+
+            ul li{
+              list-style-type: disc
+            }
+
+            .list-paddingleft-2,.list-paddingleft-1 {
+              padding-left: 1.9rem;
+            }
+
+            .ueditor_underline {
+              text-decoration: underline
+            }
+
+            .ueditor_left {
+              text-align: left
+            }
+
+            .ueditor_right {
+              text-align: right
+            }
+
+            .ueditor_center {
+              text-align: center
+            }
+
+            .ueditor_indent2 {
+              text-indent: 2em
+            }
+            /*ueditor end*/
+          }
+          .arrow-down{
+            width: 1.8rem;
+            height: 1.08rem;
+            margin: 0.75rem auto 0;
+            background: url("@{baseUrl}/img/icon-down-blue.png") 0 0 no-repeat;
+            background-size: 100% auto;
+          }
+        }
+      }
+    }
+    &.jobs-area {
+      display: none;
+      background: #fff;
+      color: #666;
+      margin-top: 0.75rem;
+      margin-bottom: 1rem;
+      padding: 1rem 1.1rem;
+      .job {
+        margin-top: 1.5rem;
+        border-bottom: 0.1rem solid #eee;
+        padding-bottom: 1.2rem;
+        display: block;
+        color: #666;
+        text-decoration: none;
+        > div {
+          position: relative;
+          .job-name {
+            font-size: 1.4rem;
+            min-width: 1.4rem;
+            max-width: 14rem;
+            display: inline-block;
+          }
+          .job-time{
+            position: absolute;
+            right: 0;
+            color: #a3a3a3;
+            font-size: 1.2rem;
+          }
+          &.job-bottom{
+            margin-top: 1.2rem;
+            .job-info{
+              float: left;
+              font-size: 1.4rem;
+              position: relative;
+              padding-left: 1.5rem ;
+              margin-right: 1.5rem;
+              color: #ababab;
+              .city{
+                min-width: 2.8rem;
+                max-width: 7rem;
+                display: inline-block;
+              }
+              .icon{
+                display: inline-block;
+                width: 1.3rem;
+                height: 1.3rem;
+                position: absolute;
+                left:0;
+                top: 0.2rem;
+                &.icon-city{
+                  background: url("@{baseUrl}/img/icon-address-gray.png") 0 0 no-repeat;
+                  background-size: auto 100%;
+                }
+                &.icon-days{
+                  background: url("@{baseUrl}/img/icon-rili-gray.png") 0 0 no-repeat;
+                  background-size: auto 100%;
+                }
+                &.icon-payment{
+                  background: url("@{baseUrl}/img/icon-money.png") 0 0 no-repeat;
+                  background-size: auto 100%;
+                }
+              }
+              .payment{
+                color: #4fadae;
+              }
+            }
+          }
+        }
+      }
+      .get-more{
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 1.4rem;
+        color: #a3a3a3;
+      }
+    }
+  }
+}
+.share-back{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50000;
+  background: url('@{baseUrl}/img/share-weixin-back.png') 0 0 no-repeat;
+  background-color: rgba(0,0,0,.9);
+  background-size: 100% auto;
+}
+

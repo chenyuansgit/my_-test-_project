@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include common/head.ejs %>
+</head>
+<body>
+<% include common/header.ejs %>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-container-inner">
+        <a class="menu-toggler" id="menu-toggler" href="#"><span class="menu-text"></span></a>
+        <% include common/sidebar.ejs %>
+        <div class="main-content">
+            <script type="text/javascript">
+                try {
+                    ace.settings.check('breadcrumbs', 'fixed')
+                } catch (e) {
+                }
+            </script>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= user_num %>
+                <p>用户数</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= employer_num %>
+                <p>hr数量</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= company_num %>
+                <p>公司总数</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= job_num %>
+                <p>职位总数</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= det_num %>
+                <p>包打听总数</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= resume_num %>
+                <p>简历总数</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= job_update_queue_size %>
+                <p>待更新职位队列数量</p>
+            </div>
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= company_update_queue_size %>
+                <p>待更新公司队列数量</p>
+            </div>
+            <!--            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= qr_user_info_update_queue_size %>
+                <p>待更新人才库总统计队列数量</p>
+            </div>-->
+            <div class="ib-btn">
+                <span class="icon-circle"></span>&nbsp;<%= qr_user_history_update_queue_size %>
+                <p>待更新人才库浏览记录队列数量</p>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="chart" style="width:100%;height:800px;" id="chart"></div>
+        </div>
+    </div>
+    <% include common/footer.ejs %>
+</div>
+<script type="text/javascript" src="/public/ace/assets/js/lib/echarts.min.js"></script>
+<script>
+    var chart = document.getElementById('chart');
+    var incres = JSON.parse('<%- incres %>');
+    var myChart = echarts.init(chart);
+    // 绘制图表
+    var option = {
+        title: {
+            text: '近一个月日增量总计'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['简历日增', 'hr日增', '公司日增', '职位日增', '包打听日增']
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: []
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '注册用户数',
+                type: 'line',
+                stack: '日增',
+                areaStyle: {normal: {}},
+                data: []
+            },
+            {
+                name: '简历数',
+                type: 'line',
+                stack: '日增',
+                areaStyle: {normal: {}},
+                data: []
+            },
+            {
+                name: 'hr数',
+                type: 'line',
+                stack: '日增',
+                areaStyle: {normal: {}},
+                data: []
+            },
+            {
+                name: '公司数',
+                type: 'line',
+                stack: '日增',
+                areaStyle: {normal: {}},
+                data: []
+            },
+            {
+                name: '职位数',
+                type: 'line',
+                stack: '日增',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                areaStyle: {normal: {}},
+                data: []
+            },
+            {
+                name: '包打听数',
+                type: 'line',
+                stack: '日增',
+                areaStyle: {normal: {}},
+                data: []
+            }
+        ]
+    };
+    for (var i = incres.length; i >= 0; i--) {
+        if (i < incres.length - 1) {
+            option.xAxis[0].data.push(incres[i].date);
+            option.series[0].data.push(incres[i].user_num - incres[i + 1].user_num);
+            option.series[1].data.push(incres[i].resume_num - incres[i + 1].resume_num);
+            option.series[2].data.push(incres[i].employer_num - incres[i + 1].employer_num);
+            option.series[3].data.push(incres[i].company_num - incres[i + 1].company_num);
+            option.series[4].data.push(incres[i].job_num - incres[i + 1].job_num);
+            option.series[5].data.push(incres[i].det_num - incres[i + 1].det_num);
+        }
+    }
+    myChart.setOption(option);
+</script>
+</body>
+</html>

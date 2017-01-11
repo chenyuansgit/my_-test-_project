@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/quickRecruit/talentPool/list.css" rel="stylesheet"/>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/quickRecruit/talentPool/IB_list.js"></script>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+
+<div class="header">
+    <%include ../common/headerHr.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo item" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/myCompany">我的公司</a></li>
+                <li><a class="header-link-item" href="/job/list?type=all">职位管理</a></li>
+                <li><a class="header-link-item" href="/resume/list">简历管理</a></li>
+                <li class="curr">
+                    <span class="icon-curr-up"></span>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/talentPool/list">人才库</a></li>
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<a title="回到顶部" id="back-top" href="javascript:" rel="nofollow"></a>
+<div class="container">
+    <div class="center-content">
+        <div class="talentPool">
+            <!--人才库搜索-->
+            <div class="talent-search line-select-wrap">
+                <div class="item item-job-type">
+                    <ul class="job-class-area clearfix">
+                        <li class="title fl">实习分类:</li>
+                        <%if(!option.jt){%>
+                        <li class="job-type selected fl" data-type="" data-id="" >不限</li>
+                        <%}else{%>
+                        <li class="job-type fl" data-type="" data-id="" >不限</li>
+                        <%}%>
+                        <li class="job-class fl" data-class="互联网">互联网</li>
+                        <li class="job-class fl" data-class="市场/商务">市场/商务</li>
+                        <li class="job-class fl" data-class="通信/电气">通信/电气</li>
+                        <li class="job-class fl" data-class="人事/行政">人事/行政</li>
+                        <li class="job-class fl" data-class="财经/法律">财经/法律</li>
+                        <li class="job-class fl" data-class="媒体/艺术">媒体/艺术</li>
+                        <li class="job-class fl" data-class="咨询/教育">咨询/教育</li>
+                        <li class="job-class fl" data-class="机械/建筑">机械/建筑</li>
+                        <li class="job-class fl" data-class="其他类型">其他类型</li>
+                    </ul>
+                </div>
+                <div class="item item-city">
+                    <ul class="active clearfix">
+                        <li class="title fl">期望城市:</li>
+                        <%if(!option.cid){%>
+                        <li class="job-city fl selected" data-c="" data-cid="">不限</li>
+                        <%}else{%>
+                        <li class="job-city fl" data-c="" data-cid="">不限</li>
+                        <%}%>
+                        <%for(var i= 0;i<16;++i){%>
+                        <%if(option.cid==hotCity[i].city_id){%>
+                        <li class="job-city fl selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                        <%}else{%>
+                        <li class="job-city fl" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                        <%}%>
+                        <%}%>
+                        <li class="btn-more fr">更多<i></i></li>
+                    </ul>
+                    <div class="more clearfix">
+                        <ul class="hot clearfix">
+                            <li class="title fl">实习地点:</li>
+                            <%if(!option.cid){%>
+                            <li class="job-city fl selected" data-c="">不限</li>
+                            <%}else{%>
+                            <li class="job-city fl" data-c="">不限</li>
+                            <%}%>
+
+                            <%for(var i= 0;i<16;++i){%>
+                            <%if(option.cid==hotCity[i].city_id){%>
+                            <li class="job-city fl selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}else{%>
+                            <li class="job-city fl" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}%>
+                            <%}%>
+                            <li class="btn-more fr">更多<i></i></li>
+                        </ul>
+                        <ul class="other clearfix">
+                            <%for(var i= 16;i<hotCity.length;++i){%>
+                            <%if(option.cid==hotCity[i].city_id){%>
+                            <li class="job-city fl selected" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}else{%>
+                            <li class="job-city fl" data-c="<%=hotCity[i].city_name%>" data-cid="<%=hotCity[i].city_id%>"><%=hotCity[i].city_name%></li>
+                            <%}%>
+                            <%}%>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item">
+                    <ul class="clearfix">
+                        <li class="title fl">期望薪资:</li>
+                        <%if(option.mp == 0){%>
+                        <li class="job-salary fl selected" data-s="0">不限</li>
+                        <%}else {%>
+                        <li class="job-salary fl" data-s="0">不限</li>
+                        <%}%>
+                        <%if(option.mp == 1){%>
+                        <li class="job-salary fl selected" data-s="1">小于50</li>
+                        <%}else {%>
+                        <li class="job-salary fl" data-s="1">小于50</li>
+                        <%}%>
+                        <%if(option.mp == 50){%>
+                        <li class="job-salary fl selected" data-s="50">50-100</li>
+                        <%}else {%>
+                        <li class="job-salary fl" data-s="50">50-100</li>
+                        <%}%>
+                        <%if(option.mp == 100){%>
+                        <li class="job-salary fl selected" data-s="100">100-200</li>
+                        <%}else {%>
+                        <li class="job-salary fl" data-s="100">100-200</li>
+                        <%}%>
+                        <%if(option.mp == 200){%>
+                        <li class="job-salary fl selected" data-s="200">200-500</li>
+                        <%}else {%>
+                        <li class="job-salary fl" data-s="200">200-500</li>
+                        <%}%>
+                        <%if(option.mp == 500){%>
+                        <li class="job-salary fl selected" data-s="500">500以上</li>
+                        <%}else {%>
+                        <li class="job-salary fl" data-s="500">500以上</li>
+                        <%}%>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul class="clearfix">
+                        <li class="title fl">每周实习:</li>
+                        <%if(option.wk==0){%>
+                        <li class="job-times fl selected" data-t="">不限</li>
+                        <%}else{%>
+                        <li class="job-times fl" data-t="">不限</li>
+                        <%}%>
+                        <%if(option.wk==1){%>
+                        <li class="job-times fl selected" data-t="1">1~2天</li>
+                        <%}else{%>
+                        <li class="job-times fl" data-t="1">1~2天</li>
+                        <%}%>
+                        <%if(option.wk==2){%>
+                        <li class="job-times fl selected" data-t="2">3天</li>
+                        <%}else{%>
+                        <li class="job-times fl" data-t="2">3天</li>
+                        <%}%>
+                        <%if(option.wk==3){%>
+                        <li class="job-times fl selected" data-t="3">4天</li>
+                        <%}else{%>
+                        <li class="job-times fl" data-t="3">4天</li>
+                        <%}%>
+                        <%if(option.wk==4){%>
+                        <li class="job-times fl selected" data-t="4">5天</li>
+                        <%}else{%>
+                        <li class="job-times fl" data-t="4">5天</li>
+                        <%}%>
+                        <%if(option.wk==5){%>
+                        <li class="job-times fl selected" data-t="5">6~7天</li>
+                        <%}else{%>
+                        <li class="job-times fl" data-t="5">6~7天</li>
+                        <%}%>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul class="clearfix">
+                        <li class="title fl">实习周期:</li>
+                        <%if(option.dt==0){%>
+                        <li class="job-cycle fl selected" data-c="">不限</li>
+                        <%}else{%>
+                        <li class="job-cycle fl" data-c="">不限</li>
+                        <%}%>
+                        <%if(option.dt==1){%>
+                        <li class="job-cycle fl selected" data-c="1">1个月以下</li>
+                        <%}else{%>
+                        <li class="job-cycle fl" data-c="1">1个月以下</li>
+                        <%}%>
+                        <%if(option.dt==2){%>
+                        <li class="job-cycle fl selected" data-c="2">2个月</li>
+                        <%}else{%>
+                        <li class="job-cycle fl" data-c="2">2个月</li>
+                        <%}%>
+                        <%if(option.dt==3){%>
+                        <li class="job-cycle fl selected" data-c="3">3个月</li>
+                        <%}else{%>
+                        <li class="job-cycle fl" data-c="3">3个月</li>
+                        <%}%>
+                        <%if(option.dt==4){%>
+                        <li class="job-cycle fl selected" data-c="4">3个月以上</li>
+                        <%}else{%>
+                        <li class="job-cycle fl" data-c="4">3个月以上</li>
+                        <%}%>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul class="clearfix">
+                        <li class="title fl">最高学历:</li>
+                        <%if(option.et==0){%>
+                        <li class="job-edu fl selected" data-e="">不限</li>
+                        <%}else{%>
+                        <li class="job-edu fl" data-e="">不限</li>
+                        <%}%>
+                        <%if(option.et==1){%>
+                        <li class="job-edu fl selected" data-e="1">大专</li>
+                        <%}else{%>
+                        <li class="job-edu fl" data-e="1">大专</li>
+                        <%}%>
+                        <%if(option.et==2){%>
+                        <li class="job-edu fl selected" data-e="2">本科</li>
+                        <%}else{%>
+                        <li class="job-edu fl" data-e="2">本科</li>
+                        <%}%>
+                        <%if(option.et==3){%>
+                        <li class="job-edu fl selected" data-e="3">硕士</li>
+                        <%}else{%>
+                        <li class="job-edu fl" data-e="3">硕士</li>
+                        <%}%>
+                        <%if(option.et==4){%>
+                        <li class="job-edu fl selected" data-e="4">博士及以上</li>
+                        <%}else{%>
+                        <li class="job-edu fl" data-e="4">博士及以上</li>
+                        <%}%>
+                    </ul>
+                </div>
+                <div class="item">
+                    <ul class="clearfix">
+                        <li class="title fl">头像显示:</li>
+                        <%if(!option.ava){%>
+                        <li class="job-avatar fl selected" data-a="">不限</li>
+                        <%}else{%>
+                        <li class="job-avatar fl" data-a="">不限</li>
+                        <%}%>
+                        <%if(option.ava==1){%>
+                        <li class="job-avatar fl selected" data-a="1">有头像</li>
+                        <%}else{%>
+                        <li class="job-avatar fl" data-a="1">有头像</li>
+                        <%}%>
+                        <!--<li class="job-avatar selected" data-e="">不限</li>
+                        <li class="job-avatar" data-a="1">有头像</li>-->
+                    </ul>
+                </div>
+            </div>
+            <%if(resumes && resumes.length){%>
+            <div class="list-area clearfix">
+                <div class="list-left list">
+                    <%for(var i= 0,len=resumes.length;i<len;i+=2){%>
+                    <%
+                        var sex  = resumes[i].male?"male":"female";
+                        var bg_avatar = resumes[i].avatar&& resumes[i].avatar!="undefined"?"background-image:url("+resumes[i].avatar+'?imageView2/2/w/200/h/200'+")":"";
+                        try{
+                            education_detail = JSON.parse(resumes[i].education_detail);
+                        }catch(e){}
+                        var intern_expect = [];
+                        intern_expect.city = resumes[i].intern_expect_city;
+                        intern_expect.position = resumes[i].intern_expect_position;
+                        switch (parseInt(resumes[i].intern_expect_min_payment)){
+                            case 0 : intern_expect.payment = "不限";break;
+                            case 1 : intern_expect.payment = "50以下";break;
+                            case 50 : intern_expect.payment = "50-100";break;
+                            case 100 : intern_expect.payment = "100-200";break;
+                            case 200 : intern_expect.payment = "200-500";break;
+                            case 500 : intern_expect.payment = "500以上";break;
+                        }
+                        switch (parseInt(resumes[i].intern_expect_days_type)){
+                            case 1 : intern_expect.days = "1-2天/周";break;
+                            case 2: intern_expect.days = "3天/周";break;
+                            case 3 : intern_expect.days = "4天/周";break;
+                            case 4 : intern_expect.days = "5天/周";break;
+                            case 5 : intern_expect.days = "6-7天/周";break;
+                        }
+                        var self_desc = resumes[i].self_desc.replace(/(<[^>]*>)/g, '').trim();
+                        self_desc = self_desc.length >30 ? self_desc.substr(0,30)+"..." : self_desc;
+                    %>
+                    <div class='talent-info talent-info-hr'>
+                        <div class='info-content clearfix'>
+                            <div class='info-l'>
+                                <div class='avatar <%=sex%>' style='<%=bg_avatar%>'></div>
+                                <h3 class='name'><%=resumes[i].name%></h3>
+                                <p class='school ellipsis'><%=education_detail[0].school|| ""%></p>
+                                <p class='clearfix edu-detail'><span class='major ellipsis'><%=education_detail[0].major || ""%></span><span class='ellipsis'>-</span><span class='stage ellipsis'><%=education_detail[0].stage|| ""%></span></p>
+                            </div>
+                            <div class='info-r'>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>期待职位&nbsp;:&nbsp;</span>
+                                    <span class='hope-position ellipsis'><%=intern_expect.position%></span><span>-</span><span class='hope-city ellipsis'><%=intern_expect.city%></span>
+                                </p>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>实习薪资&nbsp;:&nbsp;</span>
+                                    <span class='hope-payment'><%=intern_expect.payment =="不限"?intern_expect.payment:intern_expect.payment+"/天"%></span>
+                                </p>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>实习时间&nbsp;:&nbsp;</span>
+                                    <span class='hope-days'><%=intern_expect.days%></span>
+                                </p>
+                                <%
+                                    var self_state = "我暂时无法实习";
+                                    switch(parseInt(resumes[i].work_state)){
+                                        case 0: self_state ="我在学校，可实习"; break;
+                                        case 1: self_state ="我在实习，想换份实习"; break;
+                                        case 2: self_state ="我在公司所在城市，可来实习"; break;
+                                        case 3: self_state ="我暂时无法实习"; break;
+                                    }
+                                %>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>求职状态&nbsp;:&nbsp;</span>
+                                    <span class='self-state'><%=self_state%></span>
+                                </p>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>自我评价&nbsp;:&nbsp;</span>
+                                    <em class='self-desc'><%=self_desc?self_desc:"这家伙很懒，什么都没有写..."%></em>
+                                </p>
+                                <div class='btn-area'>
+                                    <a href='/talentPool/detail/<%=resumes[i].user_id%>' target='_blank' class='btn btn-more'>查看详情</a>
+                                    <span class='btn btn-invite' data-rid='<%=resumes[i].rid%>' data-version='<%=resumes[i].version%>'><i></i>邀请</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+                <div class="list-right list">
+                    <%for(var i= 1,len=resumes.length;i<len;i+=2){%>
+                    <%
+                        var sex  = resumes[i].male?"male":"female";
+                        var bg_avatar = resumes[i].avatar&& resumes[i].avatar!="undefined"?"background-image:url("+resumes[i].avatar+'?imageView2/2/w/200/h/200'+")":"";
+                        var education_detail = [];
+                        try{
+                            education_detail = JSON.parse(resumes[i].education_detail);
+                        }catch(e){}
+                        var intern_expect = [];
+                        intern_expect.city = resumes[i].intern_expect_city;
+                        intern_expect.position = resumes[i].intern_expect_position;
+                        switch (parseInt(resumes[i].intern_expect_min_payment)){
+                            case 0 : intern_expect.payment = "不限";break;
+                            case 1 : intern_expect.payment = "50以下";break;
+                            case 50 : intern_expect.payment = "50-100";break;
+                            case 100 : intern_expect.payment = "100-200";break;
+                            case 200 : intern_expect.payment = "200-500";break;
+                            case 500 : intern_expect.payment = "500以上";break;
+                        }
+                        switch (parseInt(resumes[i].intern_expect_days_type)){
+                            case 1 : intern_expect.days = "1-2天/周";break;
+                            case 2: intern_expect.days = "3天/周";break;
+                            case 3 : intern_expect.days = "4天/周";break;
+                            case 4 : intern_expect.days = "5天/周";break;
+                            case 5 : intern_expect.days = "6-7天/周";break;
+                        }
+                        var self_desc = resumes[i].self_desc.replace(/(<[^>]*>)/g, '').trim();
+                        self_desc = self_desc.length >30 ? self_desc.substr(0,30)+"..." : self_desc;
+                    %>
+                    <div class='talent-info talent-info-hr'>
+                        <div class='info-content clearfix'>
+                            <div class='info-l'>
+                                <div class='avatar <%=sex%>' style='<%=bg_avatar%>'></div>
+                                <h3 class='name'><%=resumes[i].name%></h3>
+                                <p class='school ellipsis'><%=education_detail[0].school|| ""%></p>
+                                <p class='clearfix edu-detail'><span class='major ellipsis'><%=education_detail[0].major|| ""%></span><span class='ellipsis'>-</span><span class='stage ellipsis'><%=education_detail[0].stage|| ""%></span></p>
+                            </div>
+                            <div class='info-r'>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>期待职位&nbsp;:&nbsp;</span>
+                                    <span class='hope-position ellipsis'><%=intern_expect.position%></span><span>-</span><span class='hope-city ellipsis'><%=intern_expect.city%></span>
+                                </p>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>实习薪资&nbsp;:&nbsp;</span>
+                                    <span class='hope-payment'><%=intern_expect.payment =="不限"?intern_expect.payment:intern_expect.payment+"/天"%></span>
+                                </p>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>实习时间&nbsp;:&nbsp;</span>
+                                    <span class='hope-days'><%=intern_expect.days%></span>
+                                </p>
+                                <%
+                                    var self_state = "我暂时无法实习";
+                                    switch(parseInt(resumes[i].work_state)){
+                                        case 0: self_state ="我在学校，可实习"; break;
+                                        case 1: self_state ="我在实习，想换份实习"; break;
+                                        case 2: self_state ="我在公司所在城市，可来实习"; break;
+                                        case 3: self_state ="我暂时无法实习"; break;
+                                    }
+                                %>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>求职状态&nbsp;:&nbsp;</span>
+                                    <span class='self-state'><%=self_state%></span>
+                                </p>
+                                <p class='info-line clearfix'>
+                                    <span class='title'>自我评价&nbsp;:&nbsp;</span>
+                                    <em class='self-desc'><%=self_desc?self_desc:"这家伙很懒，什么都没有写..."%></em>
+                                </p>
+                                <div class='btn-area'>
+                                    <a href='/talentPool/detail/<%=resumes[i].user_id%>' target='_blank' class='btn btn-more'>查看详情</a>
+                                    <span class='btn btn-invite' data-rid='<%=resumes[i].rid%>' data-version='<%=resumes[i].version%>'><i></i>邀请</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <%include ../../common/paging.ejs%>
+            <%}else{%>
+            <div class="empty-area empty-area-invite">
+                <div class="no-invite">
+                    <div class="bg"></div>
+                    <p class="notice-word">人才似乎被挑走了，过段时间再来吧...</p>
+                    <a class="btn btn-go" href="/quickRecruit">去快招</a>
+                    <a class="btn btn-reload" href="/talentPool/list">刷新</a>
+                </div>
+            </div>
+            <%}%>
+
+        </div>
+    </div>
+</div>
+<div class="self-content"></div>
+<!-----------弹窗----------->
+<div class="overlay"></div>
+<%include ../common/popBox/invite.ejs%>
+<!--------弹窗 end---------->
+<%include ../../common/footer.ejs%>
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.type = 'list';
+    global.uid = '<%=account.user_id%>'
+</script>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

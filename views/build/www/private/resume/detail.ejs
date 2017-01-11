@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <%include ../../common/head.ejs%>
+    <link href="<%=baseUrl%>/css/page/private/resume.css" rel="stylesheet"/>
+    <!--[if lte IE 8]>
+    <link href="<%=baseUrl%>/css/page/cssie/css-ie8-style.css" rel="stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link href="<%=baseUrl%>/css/page/cssie/ie7fix.css" rel="stylesheet"/>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <%include ../../common/header.ejs%>
+    <div class="header-nav">
+        <div class="header-nav-wrap">
+            <a class="logo" href="/"></a>
+            <ul class="header-link clearfix">
+                <li><a class="header-link-item" href="/">首页</a></li>
+                <li><a class="header-link-item" href="/j/search">实习招聘</a></li>
+                <li><a class="header-link-item" href="/j/search?type=campus">校园招聘</a></li>
+                <li>
+                    <a class="header-link-item" href="/quickRecruit">快招</a><i class="icon-test"></i>
+                    <ul class="sub-nav sub-nav-quickRecruit">
+                        <li><a href="/quickRecruit/manage">我的快招</a></li>
+                    </ul>
+                </li>
+                <li><a class="header-link-item" href="/activity">活动</a></li>
+                <li><a class="header-link-item" href="/nest">求职头条</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--我的简历中部-->
+<div class="container">
+    <%var integrity = 10;%>
+    <%if(resume){
+    for(var i=0;i<1;i++){
+        integrity = 0;
+    %>
+    <div class="myresume clearfix mb20" data-id="<%=resume[i].rid%>">
+        <!---左侧-->
+        <div class="w800 fl">
+            <!--简历头部-->
+            <div class="myresume-top inwrapBox mb20">
+                <!-- <div class="myresume-top-tab">
+                     <span class="cur tab-1">在线中文简历</span>
+                     <span>|</span>
+                     <span class="tab-2">English Resume Online</span>
+                     <span>|</span>
+                     <span class="tab-3">附件简历</span>
+                 </div>-->
+                <!--切换一-->
+                <div class="tab-content-1">
+                    <div class="resume-integrity-area clearfix">
+                        <span class="fl">在线中文简历:</span>
+                        <div class="resume-integrity fl">
+                            <span class="integrity-solid transition_1000"></span>
+                        </div>
+                        <div class="resume-progress fl">简历完整度: <em class="integrity-number"></em></div>
+                        <div class="fr">
+                            <a class="btn-view" href="/resume/detail/<%=resume[i].rid%>" target="_blank">预览简历</a>
+                            <span>|</span>
+                            <span class="btn-downResume">下载</span>
+                            <span>|</span>
+                            <a class="find-jobs" href="/j/search" target="_blank">找实习</a>
+                        </div>
+                    </div>
+                </div>
+                <!--&lt;!&ndash;切换二&ndash;&gt;
+                <div class="tab-content-2">
+
+                </div>
+                &lt;!&ndash;切换三&ndash;&gt;
+                <div class="tab-content-3">
+
+                </div>-->
+            </div>
+
+            <!--简历主体-->
+            <div class="myresume-main inwrapBox mb20">
+                <div class="myresume-main-top"></div>
+                <!--基本信息 Start-->
+                <div class="resume-header pd resume-block resume-block-base">
+                    <% if(resume[i].avatar){
+                        integrity+=10;
+                    %>
+                    <div class="avatar" style="background-image:url('<%=resume[i].avatar%>?imageView2/2/w/244/h/244')">
+                        <div class="avatar-mask"></div>
+                        <input type="file" id="avatar-file" data-uid = "<%=uid%>" name="file" class="avatar-file" data-rid="<%=resume[i].rid%>" title="支持jpg、jpeg、gif、png格式，文件小于5M"/>
+                    </div>
+                    <%}else{%>
+                    <div class="avatar">
+                        <div class="avatar-mask"></div>
+                        <input type="file" id="avatar-file" data-uid = "<%=uid%>" name="file" class="avatar-file" data-rid="<%=resume[i].rid%>" title="支持jpg、jpeg、gif、png格式，文件小于5M"/>
+                    </div>
+                    <%}%>
+
+                    <div class="info show-state">
+                        <span class="myname name"> <%=resume[i].name%></span>
+                    </div>
+                    <div class="myresume-info">
+                        <div class="resume-r">
+                            <span class="btn-edit btn icon-r-edit"></span>
+                        </div>
+                        <ul class="resume-base clearfix">
+                            <li>籍贯:<span class="address" title="<%=resume[i].address.length>12?resume[i].address:""%>"><%=resume[i].address.length>12?resume[i].address.substr(0,12)+"...":resume[i].address%></span></li>
+                            <li>生日:<span class="birthday"><%=new Date(resume[i].birthday).format("yyyy.MM")%></span></li>
+                            <li>性别:<%
+                                    var sex = resume[i].male?"男":"女";
+                                %><span class="sex" data-type="<%=resume[i].male%>"><%=sex%></span></li>
+                            <li>电话:<span class="phone"><%=resume[i].phone%></span></li>
+                            <li>邮箱:<span class="email"><%=resume[i].email%></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--基本信息 End-->
+                <!--基本信息 编辑模式 Start-->
+                <div class="resume-edit resume-edit-base">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">姓名</span>
+                            <input type="text" class="name-edit fl req" value="<%=resume[i].name%>"/>
+                            <div class="sex-select fl">
+                                <%if(sex){%>
+                                <span class="tab on" data-type="1">男</span>
+                                <span class="tab" data-type="0">女</span>
+                                <%}else{%>
+                                <span class="tab" data-type="1">男</span>
+                                <span class="tab on" data-type="0">女</span>
+                                <%}%>
+                            </div>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">籍贯</span>
+                            <div class="selector-input fl address-wrap"><input type="text" class="address" value="<%=resume[i].address%>" readonly/></div>
+                            <div class="selector-city fl"></div>
+                            <span class="title tit-r fl">生日</span>
+                            <span class="birth-wrap fl"><input type="text" class="birthday" id="birthday" readonly value="<%=new Date(resume[i].birthday).format("yyyy.MM")%>" /></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">手机号码</span>
+                            <input type="text" class="phone fl" value="<%=resume[i].phone%>"/>
+                            <span class="title tit-r fl">电子邮箱</span>
+                            <input type="text" class="email" value="<%=resume[i].email%>"/>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--基本信息 编辑模式 End-->
+
+                <!--教育信息 Start-->
+                <div class="resume-block resume-block-edu pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-education"></span>教育背景
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <%try{
+                        var edu_list = JSON.parse(resume[i].education_detail);
+                    if(edu_list.length>0){
+                        integrity+=10;
+                    %>
+                    <%for(var j = 0;j<edu_list.length;j++){%>
+                    <div class="resume-edu show-state" data-edu_id="<%=edu_list[j].edu_id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=edu_list[j].start_time.replace("-",".").substr(0,7)%>~<%=edu_list[j].end_time.replace("-",".").substr(0,7)%></span>
+                            <span class="school fl"><%=edu_list[j].school%></span>
+                        </div>
+                        <div class="resume-r">
+                            <%if(edu_list.length >1){%>
+                            <span class="btn-edit btn" data-startime="<%=edu_list[j].start_time.replace("-",".").substr(0,7)%>" data-endtime="<%=edu_list[j].end_time.replace("-",".").substr(0,7)%>" data-school="<%=edu_list[j].school%>" data-major="<%=edu_list[j].major%>" data-stage="<%=edu_list[j].stage%>"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                            <%}else{%>
+                            <span class="btn-edit btn" data-startime="<%=edu_list[j].start_time.replace("-",".").substr(0,7)%>" data-endtime="<%=edu_list[j].end_time.replace("-",".").substr(0,7)%>" data-school="<%=edu_list[j].school%>" data-major="<%=edu_list[j].major%>" data-stage="<%=edu_list[j].stage%>"><span class="icon-r-edit"></span></span>
+                            <%}%>
+                        </div>
+                        <!--确认删除-->
+                        <!--<div class="delete-box">-->
+                        <!--<div class="delete-box-main">-->
+                        <!--<p>确认删除本条消息吗?</p>-->
+                        <!--<div class="delete-box-btn">-->
+                        <!--<span class="btn btn-confirm-del">确定</span>-->
+                        <!--<span class="btn btn-cancel">取消</span>-->
+                        <!--</div>-->
+                        <!--<span class="triangleBottom"></span>-->
+                        <!--<span class="triangleBottom2"></span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="resume-edu-info">
+                            <span class="major"><%=edu_list[j].major%></span><span class="stage"><%=edu_list[j].stage%></span>
+                        </div>
+                    </div>
+                    <%} }
+                    }catch(e){}%>
+                </div>
+                <!--教育信息 End-->
+                <!--编辑模式 教育背景 Start-->
+                <div class="resume-edit resume-edit-edu">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">学校名称</span>
+                            <span class="fl"><input class="edit-school" type="text" placeholder="请输入你的学校名称"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">专业名称</span>
+                            <span class="fl"><input class="edit-major" type="text" placeholder="请输入你的专业名称"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">学历</span>
+                            <div class="fl">
+                                <span class="btn-selector"><input class="edit-stage" type="text" readonly/></span>
+                                <ul class="selector fl">
+                                    <li data-type="1">大专</li>
+                                    <li data-type="2">本科</li>
+                                    <li data-type="3">硕士</li>
+                                    <li data-type="5">博士及以上</li>
+                                    <li data-type="6">其他</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <div class="title fl">起止日期</div>
+                            <div class="fl"><span><input class="edit-startTime" id="edu-start" readonly type="text" placeholder="开始日期" /></span> ~ <span><input class="edit-endTime" id="edu-end" readonly type="text" placeholder="结束日期" /></span></div>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式 教育背景 end-->
+
+                <!--期望实习 Start-->
+                <div class="resume-block resume-block-hope pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-expecte-practice"></span>期望实习
+                        <div class="resume-r">
+                            <sapn class="btn-edit btn icon-r-edit"></sapn>
+                        </div>
+                    </div>
+                    <%try{
+                        integrity+=10;
+
+                        var type_id = resume[i].intern_expect_position_type.split(",");
+                        var type_text = [];
+                        for(var j=0,len=type_id.length;j<len;j++){
+                            var pid = parseInt(type_id[j].substr(0,1))-1;
+                            var sid = parseInt(type_id[j].substr(1)) ;
+                            if(pid>-1 && sid > -1){
+                                type_text.push(job_type[pid].sub_types[sid].group_name);
+                            }
+                        }
+                        var jt = type_text.toString();
+
+                        var payment = "";
+                        var payment_text = ["不限","50以下","50-100","100-200","200-500","500以上"];
+                        switch(parseInt(resume[i].intern_expect_min_payment)){
+                            case 0 :  payment = payment_text[0];break;
+                            case 1 :  payment = payment_text[1];break;
+                            case 50 :  payment = payment_text[2];break;
+                            case 100 :  payment = payment_text[3];break;
+                            case 200:  payment = payment_text[4];break;
+                            case 500:  payment = payment_text[5];break;
+                            default : payment = payment_text[0];break;
+                        }
+
+                        var days_type = parseInt((resume[i].intern_expect_days_type));
+                        var days_text = ["1-2天","3天","4天","5天","6-7天"];
+                        var days = days_text[days_type-1];
+
+                        var dur_type = parseInt((resume[i].intern_expect_dur_type));
+                        var dur_text = ["1个月以下","2个月","3个月","3个月以上"];
+                        var duration = dur_text[dur_type-1];
+
+                    %>
+                    <%}catch(e){}%>
+                    <ul class="resume-hope clearfix show-state">
+                        <li><span class="icon icon-new"></span><span class="hope-position" title="<%=resume[i].intern_expect_position.length>10?resume[i].intern_expect_position:""%>"><%=resume[i].intern_expect_position.length>10?resume[i].intern_expect_position.substr(0,10):resume[i].intern_expect_position%></span></li>
+                        <li><span class="icon icon-job-type"></span><span class="hope-position-type" data-id="<%=resume[i].intern_expect_position_type%>"><%=jt%></span></li>
+                        <li><span class="icon icon-locate"></span><span class="hope-city" data-cid="<%=resume[i].intern_expect_cid||0%>"><%=resume[i].intern_expect_city%></span></li>
+                        <li><span class="icon icon-salary"></span><span class="hope-payment" data-type="<%=resume[i].intern_expect_min_payment%>"><%=payment%></span></li>
+                        <li><span class="icon icon-calendar"></span><span class="hope-days" data-type="<%=resume[i].intern_expect_days_type%>"><%=days%>/周</span></li>
+                        <li><span class="icon icon-r-time"></span><span class="hope-duration" data-type="<%=resume[i].intern_expect_dur_type%>"><%=duration%></span></li>
+                    </ul>
+                </div>
+                <!--期望实习 End-->
+                <!--编辑模式 期望实习 Start-->
+                <div class="resume-edit resume-edit-hope">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">实习城市</span>
+                            <div class="fl">
+                                <span class="selector-input hope-city-wrap"><input class="edit-city" value="" type="text" readonly/></span>
+                                <span class="selector-city" style="margin-left: 0"></span>
+                            </div>
+                            <span class="title tit-r fl">期待日薪</span>
+                            <span class="btn-selector fl"><input class="edit-payment" readonly type="text" data-type="<%=resume[i].intern_expect_min_payment || 0%>"/></span>
+                            <ul class="selector selector-l" style="left:422px; top: 34px;">
+                                <li data-type="0">不限</li>
+                                <li data-type="1">50以下</li>
+                                <li data-type="50">50-100</li>
+                                <li data-type="100">100-200</li>
+                                <li data-type="200">200-500</li>
+                                <li data-type="500">500以上</li>
+                            </ul>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">职位名称</span>
+                            <span class="btn-selector fl"><input class="edit-position" type="text" value="<%=resume[i].intern_expect_position%>"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">职位类别</span>
+                            <div class="fl"><input class="edit-position-type" readonly type="text" data-id="<%=resume[i].intern_expect_position_type || 0%>"/></div>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">每周实习</span>
+                        <span class="edit-days fl">
+                            <span class="tab" data-type="1">1-2天</span>
+                            <span class="tab" data-type="2">3天</span>
+                            <span class="tab" data-type="3">4天</span>
+                            <span class="tab" data-type="4">5天</span>
+                            <span class="tab" data-type="5">6-7天</span>
+                        </span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">连续实习</span>
+                        <span class="edit-duration fl">
+                            <span class="tab" data-type="1">1个月以下</span>
+                            <span class="tab" data-type="2">2个月</span>
+                            <span class="tab" data-type="3">3个月</span>
+                            <span class="tab" data-type="4">3个月以上</span>
+                        </span>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定" data-rid="<%=resume[i].rid%>"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--期望实习 编辑模式 end-->
+
+                <!--校园经历 Start-->
+                <div class="resume-block resume-block-school pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-school-exper"></span>校园经历
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <%
+                    try{
+                        var exp_list = JSON.parse(resume[i].school_exp);
+                    if(exp_list.length>0){
+                        integrity+=10;
+                    for(var j = 0;j < exp_list.length;j++){
+                    %>
+                    <div class="resume-school resume-exp show-state"  data-id="<%=exp_list[j].id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></span>
+                            <span class="exp-name fl"><%=exp_list[j].name%></span>
+                            <span class="exp-role fl"><%=exp_list[j].role%></span>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" data-rid="<%=resume[i].rid%>" data-id="<%=exp_list[j].id%>" data-startime="<%=exp_list[j].startTime.replace("-",".").substr(0,7)%>" data-endtime="<%=exp_list[j].endTime.replace("-",".").substr(0,7)%>" data-name="<%=exp_list[j].name%>" data-role="<%=exp_list[j].role%>" data-content="<%=exp_list[j].content%>"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                        <div class="exp-content">
+                            <%-exp_list[j].content%>
+                        </div>
+                    </div>
+                    <% } }
+                    }catch(e){}%>
+                </div>
+                <!--校园经历 End-->
+                <!--编辑模式 校园经历 Start-->
+                <div class="resume-edit resume-edit-school">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">校园经历</span>
+                            <span class="fl"><input class="edit-name" type="text" placeholder="请输入你的校园经历名称"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <div class="title fl">起止日期</div>
+                            <div class="fl"><span><input class="edit-startTime" id="school-start" readonly type="text" placeholder="开始日期"/></span> - <span><input class="edit-endTime" id="school-end" readonly type="text" placeholder="结束日期"/></span></div>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">校园角色</span>
+                            <span class="fl"><input class="edit-role" type="text" placeholder="如外联负责人"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">经历内容</span>
+                            <span class="fl editor-content"><textarea id="content-school" class="edit-content" placeholder="请大致描述你的校园经历或做过的事儿"></textarea></span>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式 校园经历 End-->
+
+                <!--实习经历 Start-->
+                <div class="resume-block resume-block-intern pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-internship"></span>实习经历
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <%
+                    try{
+                        var exp_list = JSON.parse(resume[i].inter_exp);
+                    if(exp_list.length>0){
+                        integrity+=10;
+                    for(var j = 0;j < exp_list.length;j++){
+                    %>
+                    <div class="resume-intern resume-exp show-state"  data-id="<%=exp_list[j].id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></span>
+                            <span class="exp-name fl"><%=exp_list[j].name%></span>
+                            <span class="exp-role fl"><%=exp_list[j].role%></span>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" data-rid="<%=resume[i].rid%>" data-id="<%=exp_list[j].id%>" data-startime="<%=exp_list[j].startTime.replace("-",".").substr(0,7)%>" data-endtime="<%=exp_list[j].endTime.replace("-",".").substr(0,7)%>" data-name="<%=exp_list[j].name%>" data-role="<%=exp_list[j].role%>" data-content="<%=exp_list[j].content%>"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                        <div class="exp-content">
+                            <%-exp_list[j].content%>
+                        </div>
+                    </div>
+                    <% } }
+                    }catch(e){}%>
+                </div>
+                <!--实习经历 End-->
+                <!--编辑模式 实习经历 Start-->
+                <div class="resume-edit resume-edit-intern">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">实习公司</span>
+                            <span class="fl"><input class="edit-name"  type="text"placeholder="请输入你的实习公司名称"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <div class="title fl">实习时间</div>
+                            <div class="fl"><span><input class="edit-startTime" id="intern-start" readonly type="text" placeholder="开始日期"/></span> - <span><input class="edit-endTime" id="intern-end" readonly type="text" placeholder="结束日期"/></span></div>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">实习职位</span>
+                            <span><input class="edit-role" type="text" placeholder="如产品经理"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">实习内容</span>
+                            <span class="fl editor-content"><textarea id="content-intern" class="edit-content" placeholder="请输入你在公司实习的主要工作内容"></textarea></span>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式 实习经历 End-->
+
+                <!--项目经历 Start-->
+                <div class="resume-block resume-block-project pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-project-exper"></span>项目经历
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <%
+                    try{
+                        var exp_list = JSON.parse(resume[i].project_exp);
+                    if(exp_list.length>0){
+                        integrity+=10;
+                    for(var j = 0;j < exp_list.length;j++){
+                    %>
+                    <div class="resume-project resume-exp show-state"  data-id="<%=exp_list[j].id%>">
+                        <div class="info clearfix">
+                            <span class="resume-circle"></span>
+                            <span class="time fl"><%=exp_list[j].startTime.replace("-",".").substr(0,7)%>~<%=exp_list[j].endTime.replace("-",".").substr(0,7)%></span>
+                            <span class="exp-name fl"><%=exp_list[j].name%></span>
+                            <span class="exp-role fl"><%=exp_list[j].role%></span>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" data-rid="<%=resume[i].rid%>" data-id="<%=exp_list[j].id%>" data-startime="<%=exp_list[j].startTime.replace("-",".").substr(0,7)%>" data-endtime="<%=exp_list[j].endTime.replace("-",".").substr(0,7)%>" data-name="<%=exp_list[j].name%>" data-role="<%=exp_list[j].role%>" data-content="<%=exp_list[j].content%>"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                        <div class="exp-content">
+                            <%-exp_list[j].content%>
+                        </div>
+                    </div>
+                    <% } }
+                    }catch(e){}%>
+                </div>
+                <!--项目经历 End-->
+                <!--编辑模式 项目经历 Start-->
+                <div class="resume-edit resume-edit-project">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">项目名称</span>
+                            <span class="fl"><input class="edit-name" type="text" placeholder="请输入你的项目名称"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <div class="title fl">起止日期</div>
+                            <div class="fl"><span><input class="edit-startTime" id="pro-start" readonly type="text" placeholder="开始日期"/></span> - <span><input class="edit-endTime" id="pro-end" readonly type="text" placeholder="结束日期"/></span></div>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">项目角色</span>
+                            <span class="fl"><input class="edit-role" type="text" placeholder="如产品负责人"/></span>
+                        </div>
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">工作内容</span>
+                            <span class="fl editor-content"><textarea id="content-project" class="edit-content" placeholder="请输入你在项目中的主要的工作内容"></textarea></span>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式 项目经历 End-->
+
+                <!--我的技能 Start-->
+                <div class="resume-block resume-block-skill pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-my-skill"></span>我的技能
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <%
+                    try{
+                        var skill_list = JSON.parse(resume[i].skill);
+                    if(skill_list.length>0){
+                        integrity+=10;
+                    for(var j=0;j<skill_list.length;j++){
+                    %>
+                    <div class="resume-skill show-state" data-skill_id="<%=skill_list[j].skill_id%>">
+                        <span class="resume-circle"></span>
+                        <div class="skill"><%=skill_list[j].skill%></div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <%}}
+                    }catch(e){}%>
+                </div>
+                <!--我的技能 End-->
+                <!--编辑模式 技能展示-->
+                <div class="resume-edit resume-edit-skill">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item clearfix">
+                            <span class="title fl">技能名称</span>
+                            <input class="edit-skill fl" type="text"/>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式end-->
+
+                <!--奖项荣誉-->
+                <!--<div class="resume-block resume-block-honor pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-awards-honor"></span>奖项荣誉
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <div class="resume-honor resume-exp show-state">
+                        <span class="resume-circle"></span>
+                        <span class="time">2016.04</span>
+                        <div class="info">
+                            <span class="exp-name">国家奖这金</span>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" data-rid="" data-id="" data-startime="" data-endtime="" data-name="" data-role="" data-content=""><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                </div>-->
+
+                <!--自我描述 Start-->
+                <div class="resume-block resume-block-self pd">
+                    <%
+                    if(resume[i].self_desc){
+                        integrity+=10;
+                    %>
+                    <div class="resume-block-title">
+                        <span class="icon icon-self-des"></span>自我描述
+                        <div class="add-area" style="display: none;">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <div class="resume-self show-state">
+                        <div class="self-content">
+                            <%-resume[i].self_desc%>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn"><span class="icon-r-edit"></span></span>
+                        </div>
+                    </div>
+                    <%}else{%>
+                    <div class="resume-block-title">
+                        <span class="icon icon-self-des"></span>自我描述
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <div class="resume-self show-state">
+                        <div class="self-content"></div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" style="display: none;"><span class="icon-r-edit"></span></span>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+                <!--自我描述 End-->
+                <!--编辑模式 自我描述 Start-->
+                <div class="resume-edit resume-edit-self">
+                    <div class="resume-edit-box">
+                        <div class="resume-edit-item">
+                            <textarea id="content-self" class="self-content"></textarea>
+                        </div>
+                        <div class="btn-area">
+                            <input type="button" class="confirm btn" value="确定" data-rid="<%=resume[i].rid%>"/>
+                            <input type="button" class="console" value="取消"/>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式 自我描述 End-->
+
+                <!--作品展示  Start-->
+                <div class="resume-block resume-block-works pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-work-show"></span>作品展示
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <%
+                    try{
+                        var works = JSON.parse(resume[i].works);
+                    if(works.length>0){
+                        integrity+=10;
+                    for(var j = 0;j < works.length;j++){
+                    %>
+                    <%
+                    if(works[j].type == "online") {   //在线作品
+                    %>
+                    <div class="resume-works resume-exp show-state" data-id="<%=works[j].id%>">
+                        <div class="info">
+                            <span class="exp-name"><%=works[j].name%></span>
+                        </div>
+                        <div class="works-site">
+                            <% if(new RegExp("http").test(works[j].url)) {%>
+                                <a href="<%=works[j].url%>" target="_blank"><%=works[j].url%></a>
+                            <%}else{%>
+                                <a href="http://<%=works[j].url%>" target="_blank"><%=works[j].url%></a>
+                            <%}%>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" data-id="<%=works[j].id%>" data-name="<%=works[j].name%>" data-url="<%=works[j].url%>" data-works-type="online"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <%} else {%>
+                    <div class ="resume-works resume-exp show-state" data-id="<%=works[j].id%>">
+                        <div class="info">
+                            <span class="exp-name"><%=works[j].name%></span>
+                        </div>
+                        <div class="works-img">
+                            <a href="<%=works[j].link%>" data-lightbox="works"><img class="works-img-item" src="<%=works[j].link%>" /></a>
+                        </div>
+                        <div class="resume-r">
+                            <span class="btn-edit btn" data-id="<%=works[j].id%>" data-name="<%=works[j].name%>" data-link="<%=works[j].link%>" data-works-type="file"><span class="icon-r-edit"></span></span>
+                            <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <%}%>
+                    <% } }
+                    }catch(e){}%>
+                </div>
+                <!--作品展示  End-->
+                <!--编辑模式 作品展示 Start-->
+                <div class="resume-edit resume-edit-works">
+                    <div class="resume-edit-box">
+                        <ul class="resume-edit-tab clearfix">
+                            <li class="cur">上传作品</li>
+                            <li>在线作品</li>
+                        </ul>
+                        <!--上传作品-->
+                        <div class="tab-edit-box upload-box">
+                            <div class="resume-edit-item clearfix">
+                                <span class="title fl">作品名称</span>
+                                <input class="works-name fl" type="text" placeholder="希望展示的作品名称，15字以内"/>
+                            </div>
+                            <div class="resume-edit-item resume-works-preview" data-link="">
+                                <img src="" title="上传作品" />
+                            </div>
+                            <!--<div class="input-tips"><span class="icon-prompt"></span>作品类型必须是.gif,jpeg,jpg,png图片中的一种!</div>-->
+                            <div class="tab-edit-btn">
+                                <span class="upload-img">上传作品</span>
+                                <input type="file" id="works-file" class="works-file" value="上传作品" title="支持jpg、jpeg、gif、png格式，文件小于5M" />
+                            </div>
+                            <p>*支持格式：.jpg,.png,jpeg;大小不超过5M</p>
+                            <div class="btn-area">
+                                <input type="button" class="confirm btn" data-works-type="file" value="保存"/>
+                                <input type="button" class="console" value="取消"/>
+                            </div>
+                        </div>
+                        <!--在线简历-->
+                        <div class="tab-edit-box online-box">
+                            <div class="resume-edit-item clearfix">
+                                <span class="title fl">作品名称</span>
+                                <input class="works-name fl" type="text" placeholder="希望展示的作品名称，15字以内"/>
+                            </div>
+                            <div class="resume-edit-item clearfix">
+                                <span class="title fl">作品链接</span>
+                                <input class="works-url fl" type="text" placeholder="请输入作品的链接"/>
+                            </div>
+                            <p>可将作品上传至百度、360等网盘，并生成分享链接</p>
+                            <div class="btn-area">
+                                <input type="button" class="confirm btn" data-works-type="online" value="保存"/>
+                                <input type="button" class="console" value="取消"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--编辑模式 作品展示 End-->
+                <!--简历附件-->
+                <!--<div class="resume-block resume-attachment-blcok pd">
+                    <div class="resume-block-title">
+                        <span class="icon icon-attachment"></span>简历附件
+                        <div class="add-area">
+                            <span class="btn-add btn"><span class="icon-r-add"></span>添加</span>
+                        </div>
+                    </div>
+                    <div class="resume-attachment resume-exp show-state">
+                        <span class="resume-circle"></span>
+                        <p class="attachment">胡萌萌的简历.pdf</p>
+                        <div class="resume-r">
+                             <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <div class="resume-attachment resume-exp show-state">
+                        <span class="resume-circle"></span>
+                        <p class="attachment">萌萌喜欢老鼠爱大米.docx</p>
+                        <div class="resume-r">
+                          <span class="btn-delete btn"><span class="icon-r-del"></span></span>
+                        </div>
+                    </div>
+                    <span class="upload-attach">添加附件</span>
+                    <p class="upload-attach-tip">*支持格式:.jpg,.png,.jpeg,.pdf,.doc,.docx,.txt;大小不超过5M</p>
+                </div>-->
+
+                <!--找公司-->
+                <div class="resume-block-self-state pd">
+                    <div class="resume-block-self-state-top resume-block-top">
+                        <div class="resume-block-self-state-con">
+                            <div class="self-state-con">
+                                <%
+                                    var state = ""
+                                    switch(resume[i].work_state){
+                                        case 0: state ="我在学校，可来公司实习"; integrity+=10;break;
+                                        case 1: state ="我在实习，考虑换个公司"; integrity+=10;break;
+                                        case 2: state ="我在公司所在城市，可来实习"; integrity+=10;break;
+                                        case 3: state ="我暂时无法实习"; integrity+=10;break;
+                                    }
+                                %>
+                                <input id="self-state" name="self-state" type="button" class="self-state-btn" value="<%=state%>" placeholder="我的工作状态">
+                                <i></i>
+                            </div>
+                            <div class="self-state-list">
+                                <ul class="ul-self-state"  data-rid="<%=resume[i].rid%>">
+                                    <li class="btn" data-state="0">我在学校，可来公司实习</li>
+                                    <li class="btn" data-state="1">我在实习，考虑换个公司</li>
+                                    <li class="btn" data-state="2">我在公司所在城市，可来实习</li>
+                                    <li class="btn" data-state="3">我暂时无法实习</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="resume-update-time">更新于 : <%= new Date(parseInt(resume[i].update_time)).format("yyyy-MM-dd hh:mm")%></p>
+                </div>
+
+            </div>
+        </div>
+        <!--右侧-->
+        <div class="w330 fr">
+            <!--开通快招-->
+            <div class="join-tips sideBox2 mb20">
+                <div class="tips-content clearfix">
+                    <span class="btn-join fl <%=resume[i].is_public?"on":"off"%>"></span>
+                    <div class="join-intro fl">
+                        <span class="intro-top">开通快招<span class="icon-doubt"></span></span>
+                        <div class="join-detail transition">
+                            <p>开通快招，即默认简历部分信息被相应企业、机构查看和邀请（隐藏个人联系方式）；</p>
+                            <p>开通快招，即有机会获得公司招聘官面试邀请，挑选心仪公司参加面试。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--默认投递-->
+            <!-- <div class="default-delivery sideBox2 mb20 clearfix">
+                 <h3><span class="icon-line"></span>默认投递：</h3>
+                 <div class="right-wrap-default">在线简历</div>
+                 &lt;!&ndash;<div class="right-wrap-sel">
+                     默认简历<span class="icon-triangle-down"></span>
+                 </div>&ndash;&gt;
+                 &lt;!&ndash;<ul class="delivery-item wrap-item">
+                     <li>在线中文简历一</li>
+                     <li>在线中文简历二</li>
+                     <li>在线中文简历三</li>
+                     <li>在线中文简历四</li>
+                 </ul>&ndash;&gt;
+             </div>-->
+
+            <!---简历隐私-->
+            <!-- <div class="resume-privacy sideBox2 mb20">
+                 <h3><span class="icon-line"></span>简历隐私</h3>
+                 <div class="right-wrap-block pt-line">
+                     <span class="icon icon-view2"></span>简历可见度
+                     <div class="right-wrap-sel">
+                         对企业可见<span class="icon-triangle-down"></span>
+                     </div>
+                     <ul class="privacy-item wrap-item">
+                         <li>开放简历</li>
+                         <li>对企业可见</li>
+                         <li>对学生可见</li>
+                         <li>对自己可见</li>
+                     </ul>
+                 </div>
+                 <div class="right-wrap-block">
+                     <span class="icon icon-shield"></span>屏蔽的企业
+                 </div>
+                 <ul class="resume-privacy-item">
+                     <li>etouch.cn<div class="resume-r"><span class="icon icon-r-edit"></span><span class="icon icon-r-del"></span></div></li>
+                 </ul>
+                 <span class="add-shield-company"><span class="icon-r-add"></span>添加屏蔽企业邮箱后缀</span>
+
+                 &lt;!&ndash;屏蔽企业 编辑 Start&ndash;&gt;
+                 <div class="company-privacy">
+                     <input type="text" class="edit-company" />
+                     <div class="btn-area">
+                         <input type="button" class="confirm btn" value="确定">
+                         <input type="button" class="console" value="取消">
+                     </div>
+                 </div>
+                 &lt;!&ndash;屏蔽企业 编辑 End&ndash;&gt;
+             </div>-->
+
+            <!---简历隐私-->
+            <div class="resume-data sideBox2 mb20">
+                <h3><span class="icon-line"></span>简历数据</h3>
+                <div class="right-wrap-block">
+                    <span class="icon icon-job-deliver"></span>职位投递
+                    <div class="resume-data-block">
+                        <p>每日可投递：15</p>
+                        <p>今日已投递：<%=deliveries%></p>
+                    </div>
+                </div>
+                <!--<div class="right-wrap-block pt-line">
+                    <span class="icon icon-resume-interact"></span>简历互动
+                    <div class="resume-data-block">
+                        <p>简历被点击：150</p>
+                        <p>简历被邀请：100</p>
+                    </div>
+                </div>
+                <div class="right-wrap-block">
+                    <span class="icon icon-visit-record"></span>来访记录
+                    <div class="resume-data-block">
+                        <p>今日访问：9</p>
+                        <p>访问总量：1000</p>
+                    </div>
+                </div>-->
+            </div>
+
+            <!---简历隐私-->
+            <!-- <div class="resume-module sideBox2 mb20">
+                 <h3><span class="icon-line"></span>简历模块</h3>
+                 <ul class="resume-module-item">
+                     <li><span class="icon icon-base-info"></span>基本信息</li>
+                     <li><span class="icon icon-education"></span>教育背景</li>
+                     <li class="cur"><span class="icon icon-expecte-practice"></span>期望实习</li>
+                     <li><span class="icon icon-school-exper"></span>校园经历<span class="icon-is-check"></span></li>
+                     <li><span class="icon icon-internship"></span>实习经历<span class="icon-is-check"></span></li>
+                     <li><span class="icon icon-project-exper"></span>项目经历<span class="icon-is-check"></span></li>
+                     <li><span class="icon icon-my-skill"></span>我的技能<span class="icon-is-check"></span></li>
+                     <li><span class="icon icon-awards-honor"></span>奖项荣誉<span class="icon-no-check"></span></li>
+                     <li><span class="icon icon-self-des"></span>自我描述<span class="icon-no-check"></span></li>
+                     <li><span class="icon icon-work-show"></span>作品展示<span class="icon-no-check"></span></li>
+                     <li><span class="icon icon-attachment"></span>简历附件<span class="icon-no-check"></span></li>
+                 </ul>
+             </div>-->
+
+            <!---温馨提示-->
+            <div class="reminder sideBox2 mb20">
+                <span class="icon-reminder"></span>
+                <div class="reminder-block">
+                    <p>1.简历资料越完善，找到实习的可能性越大；</p>
+                    <p>2.投递岗位的要求应与简历意向相一致，否则可能会被筛选掉；</p>
+                    <!--<p>3.简历投递之后，可以在投递动态中修改投递出去的简历；</p>-->
+                    <p>3.推荐使用在线简历。相比较附件简历，系统能够根据在线简历推荐更多优质的职位或企业；</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%}}%>
+</div>
+<%include ../../common/footer.ejs%>
+<!---------弹窗----------->
+<div class='overlay'></div>
+<div class='popBox popBox-download'>
+    <div class='popBox-title tc'>请选择下载格式</div>
+    <div class="top-tip">
+        <i class="icon-light"></i>
+        <span class="cb">小贴士&nbsp;:&nbsp;</span>
+        <span class="cg">Word格式适合编辑，PDF格式更适合展示~</span>
+    </div>
+    <div class="download-area">
+        <a class="transition btn-download" href="/api/resume/download_pdf/<%=resume[0].rid%>?type=1">PDF(推荐)</a>
+        <a class="transition btn-download" href="/api/resume/download_doc/<%=resume[0].rid%>?type=1">Word</a>
+    </div>
+</div>
+<!------弹窗 end-------->
+<script type="text/javascript">
+    window.global = window.global || {};
+    global.rid = '<%=resume[0].rid%>';
+    global.uid = '<%=uid%>';
+    global.integrity = "<%=integrity%>";
+</script>
+<%include ../../common/ueditor_script.ejs%>
+<script src="<%=baseUrl%>/js/lib/IB_require.js" data-main="<%=baseUrl%>/js/page/private/IB_resume.js"></script>
+<%include ../../common/statistics.ejs%>
+<!--[if lte IE 8]>
+<script src="<%=baseUrl%>/js/plugin/background_size_emu.js"></script>
+<![endif]-->
+</body>
+</html>

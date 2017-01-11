@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <%include ../../header.ejs%>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .company-area >div{
+            font-size: 0;
+            position: relative;
+        }
+        .showCompany-item-btn{
+            position: absolute;
+            width: 6.3rem;
+            height: 1.8rem;
+            display: inline-block;
+            background-image: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/8132b845397b4175e31c19ad1528849b.png");
+            background-size: cover;
+            z-index: 1000;
+            bottom: 0.5rem;
+            right: 1.2rem;
+        }
+        .btn-join{
+            display: block;
+            width: 10.56rem;
+            height: 2.4rem;
+            margin: 0.5rem auto 1.5rem;
+            background-image: url("http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/f231615e2e9b5414df35e9b2a9ed5f02.png");
+            background-size: cover;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+    <script src="<%=baseUrl%>/js/lib/IB_require.js" async="true" defer data-main="<%=baseUrl%>/js/page/summer/IB_topic.js"></script>
+</head>
+<body>
+<%include ../../bodyHeader.ejs%>
+<div class="main">
+    <div class="top-banner">
+        <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/59984add438a8b195553bfaa4c8db441.png">
+    </div>
+    <div class="company-area">
+        <% var forward = "%2Fprivate%2Fsummer%2Ftopic%3Fname%3Dstartup"%>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/2cc45e3cc26855cbb3483ed37d543009.png" alt="极致车网"/>
+            <a href="/company/detail/4319?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/7d21982f9fb48131bb2fdd4c9253846b.png" alt="乐元素"/>
+            <a href="/company/detail/4302?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/917319efd567a5e79f304e9b75a30280.png" alt="触控科技"/>
+            <a href="/company/detail/4206?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/e40af3b5240395eb130f32206dc7c722.png" alt="赞那度"/>
+            <a href="/company/detail/4244?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/217b447621c36c603a2e5a5911a037b9.png" alt="天舍文化"/>
+            <a href="/company/detail/4309?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/2c81fa20f300186011654a9a097eab81.png" alt="魔方网"/>
+            <a href="/company/detail/4296?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/81abacb0ed68134121598e3a588a31f1.png" alt="创梦天地"/>
+            <a href="/company/detail/4199?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/5e5008cdb0598ea1f705769a4bc6c033.png" alt="积木盒子"/>
+            <a href="/company/detail/3589?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+        <div>
+            <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/f036f393c7ba349a46316295ce207699.png" alt="清单"/>
+            <a href="/company/detail/4243?forward=<%=forward%>" class="showCompany-item-btn" target="_blank"></a>
+        </div>
+    </div>
+    <div>
+        <img src="http://image.internbird.cn/21232f297a57a5a743894a0e4a801fc3/0d5053322f6c15a10b3713ca90960f1d.png">
+    </div>
+    <div>
+        <%if(isJoiner){%>
+        <a href="/private/summer/jobList?forward=<%=forward%>" class="btn-join"></a>
+        <%}else{%>
+        <a href="/private/summer?forward=<%=forward%>" class="btn-join"></a>
+        <%}%>
+    </div>
+</div>
+
+<%include ../../footer.ejs%>
+</body>
+</html>

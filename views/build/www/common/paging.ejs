@@ -1,0 +1,29 @@
+<%if(pages>1&&page<=pages){%>
+<div class="pages">
+    <%if(page>1){%>
+    <span class="on prev">上一页</span>
+    <%}else{%>
+    <span class="off">上一页</span>
+    <%}%>
+    <%
+     var a;
+        if(pages-page>4){
+            a = page>=5?(page-5):0;
+        }else{
+            a = pages>10?(pages-10):0
+        }
+     %>
+    <%for(var i=a;i<((pages>=a+10)?(a+10):pages);++i){%>
+    <%if(page == i+1){%>
+    <span class="active page" data-page="<%=i+1%>"><%=i+1%></span>
+    <%}else{%>
+    <span class="page" data-page="<%=i+1%>"><%=i+1%></span>
+    <%}%>
+    <%}%>
+    <%if(pages>page){%>
+    <span class="on next">下一页</span>
+    <%}else{%>
+    <span class="off">下一页</span>
+    <%}%>
+</div>
+<%}%>
